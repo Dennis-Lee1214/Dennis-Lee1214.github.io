@@ -1,0 +1,919 @@
+<!DOCTYPE html> <html lang="zh-cn"><head>
+<title>COMP1313 Computer system I</title>
+<base href="../../..">
+<meta name="pathname" content="study/year-1/comp1313/comp1313-computer-system-i.html">
+<meta name="description" content="Dennis - COMP1313 Computer system I">
+<meta property="og:title" content="COMP1313 Computer system I">
+<meta property="og:description" content="Dennis - COMP1313 Computer system I">
+<meta property="og:type" content="website">
+<meta property="og:url" content="study/year-1/comp1313/comp1313-computer-system-i.html">
+<meta property="og:image" content="image/6dd5333ee4144bc32b635ca6865eaa26-1.png">
+<meta charset="UTF-8"><meta property="og:site_name" content="Dennis"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="site-lib/rss.xml"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="stylesheet" href="site-lib/styles/theme.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager mod-macos is-frameless is-hidden-frameless obsidian-app show-inline-title is-floating-nav auto-full-screen show-ribbon show-view-header is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="COMP1313_Computer_system_I_0">COMP1313 Computer system I</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="Intro" dir="auto" class="heading" id="Intro_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Intro</h1></div><div class="el-h2"><h2 data-heading="What is Computer System" dir="auto" class="heading" id="What_is_Computer_System_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>What is Computer System</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>计算机系统 = 硬件+软件，他们协同工作来处理数据和执行任务<br>
+硬件：CPU, RAM, SSD, Keyboard, Moniitor<br>
+软件：Windows, macOS, Linux</li>
+</ul></div><div class="el-h2"><h2 data-heading="重要组成" dir="auto" class="heading" id="重要组成_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>重要组成</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">CPU中央处理器—— Executes instructions<br>
+执行指令，计算机的大脑</li>
+<li data-line="2" dir="auto">Memory（Main Memory/RAM）—— 存放<br>
+存放正在使用的程序、数据</li>
+<li data-line="4" dir="auto">I/O——输入输出<br>
+键盘输入；鼠标输入；屏幕输出</li>
+<li data-line="6" dir="auto">System Bus——传输数据<br>
+在data; address; control signals 中传输数据</li>
+</ol></div><div class="el-h1"><h1 data-heading="Logical" dir="auto" class="heading" id="Logical_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Logical</h1></div><div class="el-h2"><h2 data-heading="Transistors 晶体管" dir="auto" class="heading" id="Transistors_晶体管_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Transistors 晶体管</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Transistors are small semiconductor devices that amplify or switch electronic signals. They have 3 main uses: 晶体管儿是放大，切换电子信号的小型半导体器件
+<ol>
+<li data-line="1" dir="auto">as an electronic switch within a circuit 作为电路中的电子开关</li>
+<li data-line="2" dir="auto">to switch on another part of a circuit when a change in resistance of a sensor device is detected 当检测到传感器设备的电阻变化时，打开电路的另一部分</li>
+<li data-line="3" dir="auto">as an interface device, to receive signals from low current devices (such as ICs) and use these to turn on high current devices (such as motors) 作为接口设备，接收来自低电流设备（如IC）的信号，并使用这些设备打开大电流设备（如电机）</li>
+</ol>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>In the CPU, they are used to make logic gates CPU中被用作制造逻辑门</li>
+</ul></div><div class="el-h2"><h2 data-heading="Logic's relation to electronics" dir="auto" class="heading" id="Logic's_relation_to_electronics_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Logic's relation to electronics</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Current passes through(Low voltage低电压)----&gt;1.  电流通过则用1表示</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Current not passes(High voltage高电压)----&gt;0.  电流断开用0表示</li>
+</ul></div><div class="el-h2"><h2 data-heading="Logic notation" dir="auto" class="heading" id="Logic_notation_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Logic notation</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>and . are used for OR/AND</li>
+</ul>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>A + B means A or B</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>A . B means A and B</li>
+</ul>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>¬ can be used as 'NOT', 
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>A’, Ā, also means NOT A</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>⊕ can be used as 'XOR' or EXOR
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>A ⊕ B means A exclusive or B</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Truth table" dir="auto" class="heading" id="Truth_table_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Truth table</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>A truth table is a way to show the input, outputs and patterns of a boolean formula. 真值表是一种展示布尔式输入输出的一种方式</p>
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Example with AND:(A and B is inputs; Y is outputs)</li>
+</ul>
+</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">A</th>
+<th dir="ltr">B</th>
+<th dir="ltr">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">1</td>
+<td dir="auto">1</td>
+</tr>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Logic gates" dir="auto" class="heading" id="Logic_gates_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Logic gates</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Gate</th>
+<th dir="ltr">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">AND</td>
+<td dir="ltr"><span alt="6dd5333ee4144bc32b635ca6865eaa26 1.png" src="image/6dd5333ee4144bc32b635ca6865eaa26-1.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="6dd5333ee4144bc32b635ca6865eaa26 1.png" src="image/6dd5333ee4144bc32b635ca6865eaa26-1.png" target="_self"></span></td>
+</tr>
+<tr>
+<td dir="ltr">OR</td>
+<td dir="ltr"><span alt="Pasted image 20260929215111.png" src="image/pasted-image-20260929215111.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20260929215111.png" src="image/pasted-image-20260929215111.png" target="_self"></span></td>
+</tr>
+<tr>
+<td dir="ltr">NAND</td>
+<td dir="ltr"><span alt="Pasted image 20260929215118.png" src="image/pasted-image-20260929215118.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20260929215118.png" src="image/pasted-image-20260929215118.png" target="_self"></span></td>
+</tr>
+<tr>
+<td dir="ltr">NOR</td>
+<td dir="ltr"><span alt="Pasted image 20260929215134.png" src="image/pasted-image-20260929215134.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20260929215134.png" src="image/pasted-image-20260929215134.png" target="_self"></span></td>
+</tr>
+<tr>
+<td dir="ltr">XOR</td>
+<td dir="ltr"><span alt="Pasted image 20260929215145.png" src="image/pasted-image-20260929215145.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20260929215145.png" src="image/pasted-image-20260929215145.png" target="_self"></span></td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Can make ANY gate out of NAND/NOR gates 可以用NAND门或者NOR门构造所有其他门</li>
+</ul></div><div class="el-h2"><h2 data-heading="Boolean algebra 布尔代数" dir="auto" class="heading" id="Boolean_algebra_布尔代数_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Boolean algebra 布尔代数</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Valid for OR, AND, and XOR:
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Associative 结合律
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>A + (B+C) = (A + B) + C</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>A . (B . C) = (A . B) . C</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Distributive 分配律
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>A . (B + C) = (A . B) + (A . C)</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>A + (B . C) = (A + B) . (A + C)</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Commutative 交换律
+<ul class="has-list-bullet">
+<li data-line="8" dir="auto"><span class="list-bullet"></span>A + B = B + A</li>
+</ul>
+</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Absorptive 吸收律
+<ul class="has-list-bullet">
+<li data-line="10" dir="auto"><span class="list-bullet"></span>A . (A+B) = A</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>A + (A . B) = A</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Demorgan's theorems 德摩根定律
+<ul class="has-list-bullet">
+<li data-line="13" dir="auto"><span class="list-bullet"></span>¬(A + B) = ¬A . ¬B</li>
+<li data-line="14" dir="auto"><span class="list-bullet"></span>¬(A . B) = ¬A + ¬B</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span><span alt="Pasted image 20260929223241.png" src="image/pasted-image-20260929223241.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20260929223241.png" src="image/pasted-image-20260929223241.png" target="_self"></span></li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span>Break the line, change the sign 拆开顶线，改变中间符号</li>
+<li data-line="17" dir="auto"><span class="list-bullet"></span>A + B 取反，表示A或B至少一个成立这件事不成立，也就是A不成立并且B不成立，即 Ā · B̄</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="K-map" dir="auto" class="heading" id="K-map_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>K-map</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>圈内有变化的去掉，如果一直为0的话就写反，一直为1就取正</li>
+</ul></div><div class="el-h1"><h1 data-heading="Arithmetic" dir="auto" class="heading" id="Arithmetic_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Arithmetic</h1></div><div class="el-h2"><h2 data-heading="进制转换" dir="auto" class="heading" id="进制转换_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>进制转换</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>十进制转二进制
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>把数除以2</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>取整数商，当作下一轮要除的数</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>取余数，当作一个二进制位</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>重复直到商为0<br>
+Example: 13 / 2 =6......1<br>
+6 / 2 =3.......0<br>
+3 / 2 =1........1<br>
+1 / 2 =0........1<br>
+从下往上读:1101</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制转十进制
+<ul class="has-list-bullet">
+<li data-line="11" dir="auto"><span class="list-bullet"></span>写下二进制数，从右往左给每一位标上2的幂，从0开始2^0 2^1 2^2</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>每一位的数字乘以它对应的2的幂，最左边MSB乘的最大</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span>把所有乘积加起来<br>
+Example: 111001 = 1 <em> 2^0 + 0 </em> 2^1+ 0 <em> 2^2 + 1 </em> 2^3 + 1 <em> 2^4 + 1 </em> 2^5</li>
+</ul>
+</li>
+</ol></div><div class="el-h2"><h2 data-heading="二进制运算" dir="auto" class="heading" id="二进制运算_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制运算</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制加法
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>从右往左逐位计算</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>1+1写0进1</li>
+</ul>
+</li>
+<li data-line="3" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制减法
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>减法和竖式减法一样</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>0 - 1的时候需要借位，借位借到的是两个1</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制乘法
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>逐位乘，每一行向左多移一位，最后把所有积相加</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制除法
+<ul class="has-list-bullet">
+<li data-line="9" dir="auto"><span class="list-bullet"></span>比较除数和被除数当前部分</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>如果除数更小或相等，商写1，用除数作为要减去的数，从当前部分中减去，得到余数（类似于10进制数除法）</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>把被除数的下一位写下来，再重复第一步</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>一直重复，直到余数为0，或者被除数的所有位都用完</li>
+</ul>
+</li>
+</ol></div><div class="el-h2"><h2 data-heading="Signed integers 有符号整数和无符号数" dir="auto" class="heading" id="Signed_integers_有符号整数和无符号数_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Signed integers 有符号整数和无符号数</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>A signed integer is an integer that can be negative. The range of values it can be is usually sacrificed to allow negative numbers, compared to unsigned integers. 与无符号整数相比，值范围变小
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>An unsigned 8-bit integer can hold values between 0 to 255 无符号8位整数</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>A signed 8-bit integer could hold values between -128 to 127. 有符号8位整数</li>
+</ul>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>n 位无符号数能表示的范围是 0 到 2ⁿ − 1</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>有符号数范围是 −2ⁿ⁻¹ 到 2ⁿ⁻¹ − 1</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>同一串数字按无符号读和按补码读结果完全不同</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>有符号数加法:
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>和无符号做法完全一样 </li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>无符号:1011 + 0011 = 1110,即 11 + 3 = 14</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>补码:1011 + 0011 = 1110, 按补码读 1011 = -5,1110 = -2,即 -5 + 3 = -2</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>有符号数减法:
+<ul class="has-list-bullet">
+<li data-line="11" dir="auto"><span class="list-bullet"></span>加上负数数的补码</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>把 25 = 0011001 取补码得 1100111(-25),再做 0100111 + 1100111 = 0001110(高位溢出的进位丢掉)= 14</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Sign and Magnitude 原码" dir="auto" class="heading" id="Sign_and_Magnitude_原码_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Sign and Magnitude 原码</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>最高位（MSB）表示正负(最左侧)，1为正，0为负</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example:
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>11011, 十进制表示为-11</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>01011, 十进制表示为11</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>不太可能用来做数学，最高位只是用来表示符号</li>
+</ul></div><div class="el-h2"><h2 data-heading="2's Complement 补码" dir="auto" class="heading" id="2's_Complement_补码_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>2's Complement 补码</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>定义: X + (-X) = 2^n  一个正数X加上它的负数−X，结果等于2^n(其中n是二进制数的位数)</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>+3   0011</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>-3    1101</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>
+<pre><code data-line="3"> ======
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>
+<pre><code data-line="4">   &lt;span style="color:#d9534f;"&gt;1&lt;/span&gt;0000
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>结果10000是5位二进制，等于十进制的16，就是公式的2^4 </li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>计算机寄存器通常只有4位，因此存不下5位的10000，最高位的1被扔掉后剩下0000，对应十进制的0，3+(-3) = 0 数学逻辑完全正确，可以用作数学</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>最高有效位（最左边的那一位）仍然可以作为正负号的标志，类似于原码</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>负数需要把正数每一位都取反后加1</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example:
+<ul class="has-list-bullet">
+<li data-line="10" dir="auto"><span class="list-bullet"></span>001001 负数先取反每一位变为110110, 接着加1, 110111</li>
+</ul>
+</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>如何将两个补码的数加起来: 
+<ul class="has-list-bullet">
+<li data-line="12" dir="auto"><span class="list-bullet"></span>正常相加，遇到overoverflow就丢掉</li>
+</ul>
+</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>补码数转换为十进制:
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span>按照之前一样的方法2的平方,最高位变为负数相加.(eg: 1011=-8+0+2+1 = -5)</li>
+</ul>
+</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span>补码扩位，在左边补上若干个与原符号位相同的位，数值不变</li>
+</ul></div><div class="el-h2"><h2 data-heading="1's Complement 反码" dir="auto" class="heading" id="1's_Complement_反码_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>1's Complement 反码</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>负数需要把正数每一位都取反</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example:
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>001001变为负数</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>取反所有位110110</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>&nbsp;Similar to 2’s complement</li>
+</ul></div><div class="el-h2"><h2 data-heading="Floating point" dir="auto" class="heading" id="Floating_point_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Floating point</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Floating points are binary numbers that represents fractions 浮点数是表示分数的二进制数</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>分为三部分:
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Sign符号位 1bit</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Base 底数 </li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Exponent 指数  小数点要偏移多少位</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Mantissa(fraction) 尾数 有效数字</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>存储布局:
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>sign | Exponent | Mantissa</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>这是存储顺序,不是科学计数法的书写顺序<br>
+<span alt="Pasted image 20261014122425.png" src="image/pasted-image-20261014122425.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 565px; max-width: 100%;"><img alt="Pasted image 20261014122425.png" src="image/pasted-image-20261014122425.png" target="_self" style="width: 565px; max-width: 100%;"></span></li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>假设数字01101 000011,步骤按以下进行
+<ol>
+<li data-line="11" dir="auto">切开尾数和指数</li>
+<li data-line="12" dir="auto">两个分别按补码读出，注意第一位的sign，0代表正，1代表负</li>
+<li data-line="13" dir="auto">读出的尾数*2的指数</li>
+</ol>
+</li>
+<li data-line="14" dir="auto"><span class="list-bullet"></span>尾数 0.1101,指数 000011 = 3 → 0.1101 × 2³ → 小数点右移 3 位 → 110.1 = 4+2+0.5 = 6.5<br>
+→ 或者0.1101 = 0.5+0.25+0.0625 = 0.8125 * 2^3 = 6.5</li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span>尾数小数点后的数位见下表</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Decimal representation</th>
+<th dir="auto">1</th>
+<th dir="auto">.</th>
+<th dir="auto">1/2</th>
+<th dir="auto">1/4</th>
+<th dir="auto">1/8</th>
+<th dir="auto">1/16</th>
+<th dir="auto">1/32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="auto"></td>
+<td dir="auto">1</td>
+<td dir="auto">.</td>
+<td dir="auto">0.5</td>
+<td dir="auto">0.25</td>
+<td dir="auto">0.125</td>
+<td dir="auto">0.0625</td>
+<td dir="auto">0.03125</td>
+</tr>
+</tbody>
+</table></div><div class="el-h1"><h1 data-heading="Adder 加法器" dir="auto" class="heading" id="Adder_加法器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Adder 加法器</h1></div><div class="el-h2"><h2 data-heading="Half Adder 半加器" dir="auto" class="heading" id="Half_Adder_半加器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Half Adder 半加器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>将两个1位数相加输出Sum和Cout</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Truth Table:</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">A</th>
+<th dir="ltr">B</th>
+<th dir="ltr">Sum</th>
+<th dir="ltr">Carry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+</tr>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">1</td>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+<td dir="auto">1</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>1 + 1 = 0, carry 1</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Sum = A ⊕ B (XOR异或: 两个输入不同为1)</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Carry = A · B (AND与:两个都是1才为1)</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Half Adder = XOR + AND</li>
+</ul></div><div class="el-h2"><h2 data-heading="Full Adder 全加器" dir="auto" class="heading" id="Full_Adder_全加器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Full Adder 全加器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>将三个1位数相加，其中来自两个数字，另一个为来自进位，输出Sum和Cout</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Truth Table: 
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>规律:Sum = 3个输入里 1 的个数是奇数时为 1</li>
+</ul>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>布尔表达式
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Sum = A ⊕ B ⊕ Cin</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Cout = A·B + A·Cin + B·Cin</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实现方式:
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>2 个半加器 + 1 个 OR 门<br>
+<span alt="Pasted image 20261014235525.png" src="image/pasted-image-20261014235525.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 372px; max-width: 100%;"><img alt="Pasted image 20261014235525.png" src="image/pasted-image-20261014235525.png" target="_self" style="width: 372px; max-width: 100%;"></span></li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Ripple Carry Adder 行波进位加法器" dir="auto" class="heading" id="Ripple_Carry_Adder_行波进位加法器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Ripple Carry Adder 行波进位加法器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>把 n 个全加器串起来,做 n 位二进制加法</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>结构:
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>每一位一个全加器</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>最低位(LSB)的 Cin 接 0</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>每一级的 Cout 接到下一级的 Cin</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>每一级输出一位 Sum</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>流程: 从最右边开始逐位相加 → 产生 sum 和 carry → carry 传给下一级 → 重复</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>缺点: 高位必须等低位的进位算出来才能算,所以位数越多越慢<br>
+<span alt="Pasted image 20261015000503.png" src="image/pasted-image-20261015000503.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 560px; max-width: 100%;"><img alt="Pasted image 20261015000503.png" src="image/pasted-image-20261015000503.png" target="_self" style="width: 560px; max-width: 100%;"></span></li>
+</ul></div><div class="el-h1"><h1 data-heading="Flip-flops and Registers" dir="auto" class="heading" id="Flip-flops_and_Registers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Flip-flops and Registers</h1></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>flip-flops 是一个存储1为数据的电路</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>一共有3种类型</li>
+</ul></div><div class="el-h2"><h2 data-heading="组合电路combina circuit 和 时序电路 sequential circuit" dir="auto" class="heading" id="组合电路combina_circuit_和_时序电路_sequential_circuit_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>组合电路combina circuit 和 时序电路 sequential circuit</h2></div><div class="el-table" dir="auto" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="auto"></th>
+<th dir="ltr">组合电路</th>
+<th dir="ltr">时序电路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">输出取决于</td>
+<td dir="ltr">只看当前输入</td>
+<td dir="ltr">当前输入+过去状态</td>
+</tr>
+<tr>
+<td dir="ltr">有记忆吗</td>
+<td dir="ltr">没有</td>
+<td dir="ltr">有</td>
+</tr>
+<tr>
+<td dir="ltr">例子</td>
+<td dir="ltr">加法器</td>
+<td dir="ltr">触发器</td>
+</tr>
+<tr>
+<td dir="ltr">需要时钟吗</td>
+<td dir="ltr">不需要</td>
+<td dir="ltr">通常需要</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Rest-set flip flops(SR) 基本锁存器" dir="auto" class="heading" id="Rest-set_flip_flops(SR)_基本锁存器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Rest-set flip flops(SR) 基本锁存器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>一种使用reset复位 和 set设置 的输入的flip flops, 由NAND 或 NOR gates组成</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>输出结果为 Q存储的值 ; Q(NOT Q) Q的相反值</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">S</th>
+<th dir="ltr">R</th>
+<th dir="ltr">result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">0</td>
+<td dir="ltr">保持上一次的状态</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">0</td>
+<td dir="ltr">Q=1 置位</td>
+</tr>
+<tr>
+<td dir="auto">0</td>
+<td dir="auto">1</td>
+<td dir="ltr">Q=0 复位</td>
+</tr>
+<tr>
+<td dir="auto">1</td>
+<td dir="auto">1</td>
+<td dir="ltr">禁止</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>
+<p>NOR门的禁止状态是S=R=1 ; S=R=0是保持不变</p>
+</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>
+<p>&nbsp;NAND门的禁止状态是S=R=0 ; S=R=1是保持不变</p>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>为什么S=R=1禁止:</p>
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>两个输入都为 1 时,两个 NOR 门输出都变成 0,Q 和 Q̄ 都是 0,违反了"Q 和 Q̄ 互为相反"的规则。如果 S、R 同时变回 0,两个门会"竞争",最后停在哪个状态是随机的</li>
+</ul>
+<p><span alt="Pasted image 20261015172827.png" src="image/pasted-image-20261015172827.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 240px; max-width: 100%;"><img alt="Pasted image 20261015172827.png" src="image/pasted-image-20261015172827.png" target="_self" style="width: 240px; max-width: 100%;"></span></p>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Gated Latch 门控锁存器" dir="auto" class="heading" id="Gated_Latch_门控锁存器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Gated Latch 门控锁存器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>在基本锁存器上加一个时钟输入</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>CLK = 0 时 S和R不起作用，锁存器保持原状态</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>CLK = 1 时 S和R恢复正常<br>
+<span alt="Pasted image 20261015173358.png" src="image/pasted-image-20261015173358.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 482px; max-width: 100%;"><img alt="Pasted image 20261015173358.png" src="image/pasted-image-20261015173358.png" target="_self" style="width: 482px; max-width: 100%;"></span></li>
+</ul></div><div class="el-h2"><h2 data-heading="D-type flip flop D锁存器——常用" dir="auto" class="heading" id="D-type_flip_flop_D锁存器——常用_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>D-type flip flop D锁存器——常用</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>解决了SR的缺陷，在S和R之间加了一个反相器(NOT), 只保留一个输入D(Data)
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>D当作S</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>NOT当R</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>S和R永远相反，这样就不会出现无效状态<br>
+<span alt="Pasted image 20261015174016.png" src="image/pasted-image-20261015174016.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 489px; max-width: 100%;"><img alt="Pasted image 20261015174016.png" src="image/pasted-image-20261015174016.png" target="_self" style="width: 489px; max-width: 100%;"></span></li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Register 寄存器" dir="auto" class="heading" id="Register_寄存器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Register 寄存器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>registers的本质是几个flip flops触发器并排放在一起</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>寄存器通常用作处理器中的临时存储，因为：
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>它们比主存储器更快、更方便</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>更多的寄存器可以帮助加快复杂的计算速度</li>
+</ul>
+</li>
+</ul></div><div class="el-p"><p dir="auto"><span alt="Pasted image 20261015180100.png" src="image/pasted-image-20261015180100.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 538px; max-width: 100%;"><img alt="Pasted image 20261015180100.png" src="image/pasted-image-20261015180100.png" target="_self" style="width: 538px; max-width: 100%;"></span></p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>4 位寄存器 = 4 个 D 触发器。用法:把数据放在 D0–D3 上,然后给一个时钟脉冲把它存进去</li>
+</ul></div><div class="el-h2"><h2 data-heading="Shift Register 移位寄存器" dir="auto" class="heading" id="Shift_Register_移位寄存器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Shift Register 移位寄存器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>
+<p>结构：触发器首尾相连,前一个的输出 Q 接下一个的输入 D,共用时钟。每来一个时钟脉冲,所有数据同时向右(或左)挪一格<br>
+<span alt="Pasted image 20261015180956.png" src="image/pasted-image-20261015180956.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="Pasted image 20261015180956.png" src="image/pasted-image-20261015180956.png" target="_self"></span></p>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>
+<p>串行：只有1根线，数据排队一个一个过</p>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>
+<p>并行：多根线，数据同时过</p>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Example SI是串行接口，一次进1位:</p>
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>SI = 0, register = 0011 -&gt; register = 0001</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>SI = 1, register = 0001 -&gt; register = 1000</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>SI = 1, register = 1000-&gt; register = 1100</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>&nbsp;SI = 0, register = 1100 -&gt; register = 0110</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>&nbsp;SI = 1, register = 0110 -&gt; register = 1011</li>
+</ul>
+</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>
+<p>共有四种类型：</p>
+</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">类型</th>
+<th dir="ltr">输入</th>
+<th dir="ltr">输出</th>
+<th dir="ltr">典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">SISO</td>
+<td dir="ltr">串行 1次1位</td>
+<td dir="ltr">串行</td>
+<td dir="ltr">延迟数据</td>
+</tr>
+<tr>
+<td dir="ltr">SIPO</td>
+<td dir="ltr">串行</td>
+<td dir="ltr">并行</td>
+<td dir="ltr">接收串行数据:串行设备每个时钟送 1 位,4 个时钟后 4 位凑齐,CPU 一次读走</td>
+</tr>
+<tr>
+<td dir="ltr">PISO</td>
+<td dir="ltr">并行</td>
+<td dir="ltr">串行</td>
+<td dir="ltr">发送串行数据:CPU 先一次装入 4 位,再每个时钟移出 1 位。有 load 和 shift 两种模式</td>
+</tr>
+<tr>
+<td dir="ltr">PIPO</td>
+<td dir="ltr">并行</td>
+<td dir="ltr">并行</td>
+<td dir="ltr">就是普通寄存器。例:老式并行打印口,一次接收 8 位</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="移位的算术/逻辑用途" dir="auto" class="heading" id="移位的算术/逻辑用途_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>移位的算术/逻辑用途</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>移位在算数中: 左移1位 = *2  右移1位 = /2</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>以11010001为例子</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">操作</th>
+<th dir="ltr">规则</th>
+<th dir="ltr">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Logical right shift 逻辑右移</td>
+<td dir="ltr">右移，最高位补0</td>
+<td dir="auto">01101000</td>
+</tr>
+<tr>
+<td dir="ltr">Arithmetic right shift 算数右移</td>
+<td dir="ltr">右移，最高位保持符号位不变</td>
+<td dir="auto">11101000</td>
+</tr>
+<tr>
+<td dir="ltr">Right rotate 右循环</td>
+<td dir="ltr">右移，移出的最低位绕回最高位</td>
+<td dir="auto">11101000</td>
+</tr>
+<tr>
+<td dir="ltr">Logical left shift 逻辑左移</td>
+<td dir="ltr">左移，最低位补0</td>
+<td dir="auto">10100010</td>
+</tr>
+<tr>
+<td dir="ltr">Arithmetic left shift 算术左移</td>
+<td dir="ltr">左移，最低位补0</td>
+<td dir="auto">10100010</td>
+</tr>
+<tr>
+<td dir="ltr">Left Rotate 左循环</td>
+<td dir="ltr">左移，移出的最高位绕回最低位</td>
+<td dir="auto">10100011</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="CPU中寄存器种类" dir="auto" class="heading" id="CPU中寄存器种类_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CPU中寄存器种类</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>通用/数据/地址寄存器：</p>
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>general purpose通用寄存器：用来存放数据，做运算</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Data数据：只存取数据，不能运算</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Address 地址：专门存放地址，例如栈指针stack pointer</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Condition codes：CPU在算数/逻辑运算后自动设置的标志</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>控制寄存器：</p>
+<ul class="has-list-bullet">
+<li data-line="8" dir="auto"><span class="list-bullet"></span>PC(Program Counter):下一条要取的指令的地址</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>IR(Instruction Register):刚取回来的那条指令</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>MAR(Memory Address Register):要读/写的内存地址</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>MBR(Memory Buffer Register):要读/写的数据</li>
+</ul>
+</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Example：</p>
+<ul class="has-list-bullet">
+<li data-line="13" dir="auto"><span class="list-bullet"></span>Load a into r1  ← 把内存里的 a(=2) 读入寄存器r1</li>
+<li data-line="14" dir="auto"><span class="list-bullet"></span>Load b into r3  ← 把内存里的 b(=3) 读入寄存器 r3</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span>r2 ← r1 + r3  ← ALU 相加,r2 = 5</li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span>Store r2 into c  ← 把r2写回内存的c</li>
+</ul>
+</li>
+</ul></div><div class="el-h1"><h1 data-heading="CPU's" dir="auto" class="heading" id="CPU's_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CPU's</h1></div><div class="el-h2"><h2 data-heading="Structure" dir="auto" class="heading" id="Structure_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Structure</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CPU有：
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Arithmetic and Logic unit-ALU 算数逻辑单元(负责算数运算)</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Control unit-CU 控制单元(告诉其他组件要做什么)</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Registers 寄存器(用于存储值的单元)</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CPU要：
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Fetch instructions 获取指令</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>Decode instructions 解码指令</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>Fetch data 获取数据</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>Process data 处理数据</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>Write data 写入数据</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>以上过程化简为'fetch - decode - execute'循环</li>
+</ul></div><div class="el-h2"><h2 data-heading="Registers" dir="auto" class="heading" id="Registers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Registers</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>寄存器是CPU用于存储值的临时存储空间</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>它们足够大，可以容纳一个完整的地址，就像一个完整的单词一样大</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>常见的5个：
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>PC 存下一条指令地址</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>CIR 存当前指令</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>MAR 存要读写的内存地址</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>MDR 存读出或写入的数据</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>ACC 存ALU运算结果</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>SR 状态标志，如溢出，进位</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Memory 内存单元" dir="auto" class="heading" id="Memory_内存单元_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Memory 内存单元</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>内存由许多"格子"组成，每格有唯一的地址和内容</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Read：
+<ol>
+<li data-line="2" dir="auto">把地址（如 11010000）放进 MAR</li>
+<li data-line="3" dir="auto">CPU 通过控制总线发出读信号</li>
+<li data-line="4" dir="auto">该地址的内容（10010001）被复制到 MDR</li>
+</ol>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Write：
+<ol>
+<li data-line="6" dir="auto">先把要写的数据（11111011）放进 MDR</li>
+<li data-line="7" dir="auto">把目标地址放进 MAR</li>
+<li data-line="8" dir="auto">发出写信号，MDR 的内容被写入内存</li>
+</ol>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="I/O and Instructions/Data" dir="auto" class="heading" id="I/O_and_Instructions/Data_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>I/O and Instructions/Data</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>不同的 CPU 家族（x86、ARM、MIPS、AVR）指令集不同，机器码互相不能运行。所以我们写高级语言，再针对特定架构编译</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>间接寻址：
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span><code>mov r0, [r2]</code>：把 r2 里存的<em>地址</em>对应的内存数据读到 r0</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><code>add r0, r1, [r2]</code>：r1 加上"r2 所指地址里的值"，结果放进 r0</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>方括号表示"取这个地址里的内容"，需要额外访问一次内存</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Fetch–Decode–Execute 指令周期" dir="auto" class="heading" id="Fetch–Decode–Execute_指令周期_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Fetch–Decode–Execute 指令周期</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CPU 的工作就是不断循环：取指 → 译码 → 执行 → 存储结果
+<ol>
+<li data-line="1" dir="auto">PC 里是下一条指令的地址</li>
+<li data-line="2" dir="auto">PC → MAR（通过地址总线）</li>
+<li data-line="3" dir="auto">内存中 MAR 所指单元的内容 → MDR</li>
+<li data-line="4" dir="auto">MDR → CIR</li>
+<li data-line="5" dir="auto">PC 加 1，指向下一条</li>
+<li data-line="6" dir="auto">译码并通过控制总线发信号执行</li>
+<li data-line="7" dir="auto">重复</li>
+</ol>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Interrupt 中断" dir="auto" class="heading" id="Interrupt_中断_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Interrupt 中断</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>一个让 CPU 暂时停下当前任务、去处理紧急事件的信号。处理完后，CPU 通常回到原来的任务</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>保存现场：处理中断前，把 PC 和 CIR 压入系统栈。处理完后再恢复，任务从断点继续</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>嵌套中断 2种方法:
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>保存当前中断的状态，去处理新的</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>按优先级决定是否打断。例如笔记本"电量过低"的优先级最高</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>中断的数据流
+<ol>
+<li data-line="6" dir="auto">保存当前 PC</li>
+<li data-line="7" dir="auto">把 PC 复制到 MBR（MDR）</li>
+<li data-line="8" dir="auto">栈指针 → MAR</li>
+<li data-line="9" dir="auto">把 MBR（MDR） 写入内存（栈）</li>
+<li data-line="10" dir="auto">把 PC 设为中断处理程序的入口地址</li>
+<li data-line="11" dir="auto">取并执行处理程序的第一条指令</li>
+</ol>
+</li>
+</ul></div><div class="el-h1"><h1 data-heading="Buses and Interconnects 总线与互连" dir="auto" class="heading" id="Buses_and_Interconnects_总线与互连_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Buses and Interconnects 总线与互连</h1></div><div class="el-h2"><h2 data-heading="Buses 总线" dir="auto" class="heading" id="Buses_总线_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Buses 总线</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>电脑中的所有设备需要连接</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>这些连接被称为Buses</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>就像一个单元传输到另一个单元的路径</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>主板上的traces走线，线缆都是buses</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Bus width 位宽:一次能同时传多少 bit。例如数据总线 64 位,地址总线 48 位就是64位电脑</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Bus speed 速度:用 GT/s(每秒传输次数)衡量</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>总线是共享的，多个设备同时想用怎么办
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>Bus master总线主控:当前发起传输的设备</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>Bus arbitration:决定下一个谁当master</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>两种方式：
+<ul class="has-list-bullet">
+<li data-line="10" dir="auto"><span class="list-bullet"></span>centralized 集中式：用一个专门的arbiter仲裁器，设备发 Bus Request, 仲裁器选一个并回Bus Grant</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>distributed 分布式: 没有中央仲裁器,每个设备自带控制逻辑, 多个设备同时申请时优先级最高者获得总线</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>总线有两种方式
+<ul class="has-list-bullet">
+<li data-line="13" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Dedicated 专用
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span>地址、数据、控制各有自己的线</li>
+</ul>
+</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Multiplexed 复用
+<ul class="has-list-bullet">
+<li data-line="16" dir="auto"><span class="list-bullet"></span>同一组线分时传不同信号。优点是线少, 缺点是会有轻微延迟</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Buses Type 总线类型" dir="auto" class="heading" id="Buses_Type_总线类型_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Buses Type 总线类型</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Address Bus 地址总线</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>单向 CPU→内存I/O</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>作用：告诉memory要读写哪个位置</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>width决定了可以寻址的空间:n位地址线→2ⁿ 个地址
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>8080的16位地址线→2¹⁶ = 65,536 个地址,每个地址对应 1 字节 → 64 KB</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>现代CPU用48-52位物理地址，256TB到4PB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Data Bus 数据总线</p>
+<ul class="has-list-bullet">
+<li data-line="8" dir="auto"><span class="list-bullet"></span>双向传输，传输数据和指令</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>width常见8/16/32/64位，现代PC内存常用64位</li>
+</ul>
+</li>
+<li data-line="11" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Contro Bus 控制总线</p>
+<ul class="has-list-bullet">
+<li data-line="12" dir="auto"><span class="list-bullet"></span>双向传输，传输状态和命令还有时序，实际由多条单线组成</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>常见信号：
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span>Clock:同步所有操作</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span>Memory Read:把指定地址的内容放到数据总线</li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span>Memory Write:把数据总线上的内容写入指定地址</li>
+<li data-line="17" dir="auto"><span class="list-bullet"></span>Bus request:设备申请用总线</li>
+<li data-line="18" dir="auto"><span class="list-bullet"></span>Interrupt Request:出错请求 CPU 处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div><div class="el-table" dir="auto" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="auto"></th>
+<th dir="ltr">Data Bus</th>
+<th dir="ltr">Address Bus</th>
+<th dir="ltr">Control Bus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">作用</td>
+<td dir="ltr">传数据</td>
+<td dir="ltr">传地址</td>
+<td dir="ltr">协调控制</td>
+</tr>
+<tr>
+<td dir="ltr">方向</td>
+<td dir="ltr">双向</td>
+<td dir="ltr">单向(CPU→内存/IO)</td>
+<td dir="ltr">双向(由多条单向线组成)</td>
+</tr>
+<tr>
+<td dir="ltr">位宽含义</td>
+<td dir="ltr">一次传多少数据</td>
+<td dir="ltr">最大可寻址内存</td>
+<td dir="ltr">线数不固定</td>
+</tr>
+<tr>
+<td dir="ltr">何时活跃</td>
+<td dir="ltr">数据传输阶段</td>
+<td dir="ltr">总线周期开始时</td>
+<td dir="ltr">每次操作都在变化</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Read and Write 读写流程" dir="auto" class="heading" id="Read_and_Write_读写流程_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Read and Write 读写流程</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Read:
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>CPU 把地址 <code>1001001</code> 放到 Address Bus</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>给出Read信号 control bus</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>内存把该地址的内容 <code>1101001</code> 放到 Data Bus</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>CPU 取走</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Write:
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>CPU 把地址 <code>1001100</code> 放到 Address Bus,同时把数据 <code>1111111</code> 放到 Data Bus</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>给出Write信号</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>内存里 <code>1001100</code> 的内容从 <code>0000000</code> 变成 <code>1111111</code></li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Serial and Parallel 串行与并行" dir="auto" class="heading" id="Serial_and_Parallel_串行与并行_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Serial and Parallel 串行与并行</h2></div><div class="el-table" dir="auto" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="auto"></th>
+<th dir="ltr">Serial 串行</th>
+<th dir="ltr">Parallel 并行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">线数</td>
+<td dir="ltr">1条</td>
+<td dir="ltr">n条</td>
+</tr>
+<tr>
+<td dir="ltr">每周期传输</td>
+<td dir="ltr">1 bit</td>
+<td dir="ltr">最多n bit</td>
+</tr>
+<tr>
+<td dir="ltr">成本</td>
+<td dir="ltr">低</td>
+<td dir="ltr">高</td>
+</tr>
+<tr>
+<td dir="ltr">适合</td>
+<td dir="ltr">长距离</td>
+<td dir="ltr">低距离</td>
+</tr>
+<tr>
+<td dir="ltr">高频表现</td>
+<td dir="ltr">好</td>
+<td dir="ltr">差</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>现在几乎都是Serial串行
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>因为Parallel在高频下会
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>clock skew时钟偏斜:个条线上信号到达时间有差异，位对不齐</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Crosstalk串扰：相邻导线互相干扰</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Chipset 芯片组" dir="auto" class="heading" id="Chipset_芯片组_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Chipset 芯片组</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>经典架构(1990s-2000s) Northbridge + Southbridge
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Northbridge(北桥):连接 CPU、RAM、显卡, 处理高速数据。CPU 与北桥之间的总线叫 FSB(Front-Side Bus)</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Southbridge(南桥):管 I/O,如硬盘、USB、声卡、网卡。它接在北桥上, 不直接连 CPU</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>瓶颈: CPU、内存、显卡的数据全挤在 FSB 这一条共享总线上</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>现代架构(2010s至今)
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>内存控制器和显卡通道集成进 CPU, CPU 直连 RAM 和显卡, 北桥消失, 瓶颈也随之消除</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>南桥演变为 PCH(Platform Controller Hub), 通过高速链路(如 Intel 的 DMI)直连 CPU, 管理 SATA、USB 等慢速外设</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>结果: 延迟更低、带宽更高</li>
+</ul>
+</li>
+</ul></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#COMP1313_Computer_system_I_0" data-path="#COMP1313_Computer_system_I_0"><div class="tree-item-inner heading-link" heading-name="COMP1313 Computer system I">COMP1313 Computer system I</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Intro_0" data-path="#Intro_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Intro">Intro</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#What_is_Computer_System_0" data-path="#What_is_Computer_System_0"><div class="tree-item-inner heading-link" heading-name="What is Computer System">What is Computer System</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#重要组成_0" data-path="#重要组成_0"><div class="tree-item-inner heading-link" heading-name="重要组成">重要组成</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Logical_0" data-path="#Logical_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Logical">Logical</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Transistors_晶体管_0" data-path="#Transistors_晶体管_0"><div class="tree-item-inner heading-link" heading-name="Transistors 晶体管">Transistors 晶体管</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Logic's_relation_to_electronics_0" data-path="#Logic's_relation_to_electronics_0"><div class="tree-item-inner heading-link" heading-name="Logic's relation to electronics">Logic's relation to electronics</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Logic_notation_0" data-path="#Logic_notation_0"><div class="tree-item-inner heading-link" heading-name="Logic notation">Logic notation</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Truth_table_0" data-path="#Truth_table_0"><div class="tree-item-inner heading-link" heading-name="Truth table">Truth table</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Logic_gates_0" data-path="#Logic_gates_0"><div class="tree-item-inner heading-link" heading-name="Logic gates">Logic gates</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Boolean_algebra_布尔代数_0" data-path="#Boolean_algebra_布尔代数_0"><div class="tree-item-inner heading-link" heading-name="Boolean algebra 布尔代数">Boolean algebra 布尔代数</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#K-map_0" data-path="#K-map_0"><div class="tree-item-inner heading-link" heading-name="K-map">K-map</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Arithmetic_0" data-path="#Arithmetic_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Arithmetic">Arithmetic</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#进制转换_0" data-path="#进制转换_0"><div class="tree-item-inner heading-link" heading-name="进制转换">进制转换</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#二进制运算_0" data-path="#二进制运算_0"><div class="tree-item-inner heading-link" heading-name="二进制运算">二进制运算</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Signed_integers_有符号整数和无符号数_0" data-path="#Signed_integers_有符号整数和无符号数_0"><div class="tree-item-inner heading-link" heading-name="Signed integers 有符号整数和无符号数">Signed integers 有符号整数和无符号数</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Sign_and_Magnitude_原码_0" data-path="#Sign_and_Magnitude_原码_0"><div class="tree-item-inner heading-link" heading-name="Sign and Magnitude 原码">Sign and Magnitude 原码</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#2's_Complement_补码_0" data-path="#2's_Complement_补码_0"><div class="tree-item-inner heading-link" heading-name="2's Complement 补码">2's Complement 补码</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#1's_Complement_反码_0" data-path="#1's_Complement_反码_0"><div class="tree-item-inner heading-link" heading-name="1's Complement 反码">1's Complement 反码</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Floating_point_0" data-path="#Floating_point_0"><div class="tree-item-inner heading-link" heading-name="Floating point">Floating point</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Adder_加法器_0" data-path="#Adder_加法器_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Adder 加法器">Adder 加法器</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Half_Adder_半加器_0" data-path="#Half_Adder_半加器_0"><div class="tree-item-inner heading-link" heading-name="Half Adder 半加器">Half Adder 半加器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Full_Adder_全加器_0" data-path="#Full_Adder_全加器_0"><div class="tree-item-inner heading-link" heading-name="Full Adder 全加器">Full Adder 全加器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Ripple_Carry_Adder_行波进位加法器_0" data-path="#Ripple_Carry_Adder_行波进位加法器_0"><div class="tree-item-inner heading-link" heading-name="Ripple Carry Adder 行波进位加法器">Ripple Carry Adder 行波进位加法器</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Flip-flops_and_Registers_0" data-path="#Flip-flops_and_Registers_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Flip-flops and Registers">Flip-flops and Registers</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#组合电路combina_circuit_和_时序电路_sequential_circuit_0" data-path="#组合电路combina_circuit_和_时序电路_sequential_circuit_0"><div class="tree-item-inner heading-link" heading-name="组合电路combina circuit 和 时序电路 sequential circuit">组合电路combina circuit 和 时序电路 sequential circuit</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Rest-set_flip_flops(SR)_基本锁存器_0" data-path="#Rest-set_flip_flops(SR)_基本锁存器_0"><div class="tree-item-inner heading-link" heading-name="Rest-set flip flops(SR) 基本锁存器">Rest-set flip flops(SR) 基本锁存器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Gated_Latch_门控锁存器_0" data-path="#Gated_Latch_门控锁存器_0"><div class="tree-item-inner heading-link" heading-name="Gated Latch 门控锁存器">Gated Latch 门控锁存器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#D-type_flip_flop_D锁存器——常用_0" data-path="#D-type_flip_flop_D锁存器——常用_0"><div class="tree-item-inner heading-link" heading-name="D-type flip flop D锁存器——常用">D-type flip flop D锁存器——常用</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Register_寄存器_0" data-path="#Register_寄存器_0"><div class="tree-item-inner heading-link" heading-name="Register 寄存器">Register 寄存器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Shift_Register_移位寄存器_0" data-path="#Shift_Register_移位寄存器_0"><div class="tree-item-inner heading-link" heading-name="Shift Register 移位寄存器">Shift Register 移位寄存器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#移位的算术/逻辑用途_0" data-path="#移位的算术/逻辑用途_0"><div class="tree-item-inner heading-link" heading-name="移位的算术/逻辑用途">移位的算术/逻辑用途</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#CPU中寄存器种类_0" data-path="#CPU中寄存器种类_0"><div class="tree-item-inner heading-link" heading-name="CPU中寄存器种类">CPU中寄存器种类</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#CPU's_0" data-path="#CPU's_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="CPU's">CPU's</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Structure_0" data-path="#Structure_0"><div class="tree-item-inner heading-link" heading-name="Structure">Structure</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Registers_0" data-path="#Registers_0"><div class="tree-item-inner heading-link" heading-name="Registers">Registers</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Memory_内存单元_0" data-path="#Memory_内存单元_0"><div class="tree-item-inner heading-link" heading-name="Memory 内存单元">Memory 内存单元</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#I/O_and_Instructions/Data_0" data-path="#I/O_and_Instructions/Data_0"><div class="tree-item-inner heading-link" heading-name="I/O and Instructions/Data">I/O and Instructions/Data</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Fetch–Decode–Execute_指令周期_0" data-path="#Fetch–Decode–Execute_指令周期_0"><div class="tree-item-inner heading-link" heading-name="Fetch–Decode–Execute 指令周期">Fetch–Decode–Execute 指令周期</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Interrupt_中断_0" data-path="#Interrupt_中断_0"><div class="tree-item-inner heading-link" heading-name="Interrupt 中断">Interrupt 中断</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1313/comp1313-computer-system-i.html#Buses_and_Interconnects_总线与互连_0" data-path="#Buses_and_Interconnects_总线与互连_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Buses and Interconnects 总线与互连">Buses and Interconnects 总线与互连</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Buses_总线_0" data-path="#Buses_总线_0"><div class="tree-item-inner heading-link" heading-name="Buses 总线">Buses 总线</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Buses_Type_总线类型_0" data-path="#Buses_Type_总线类型_0"><div class="tree-item-inner heading-link" heading-name="Buses Type 总线类型">Buses Type 总线类型</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Read_and_Write_读写流程_0" data-path="#Read_and_Write_读写流程_0"><div class="tree-item-inner heading-link" heading-name="Read and Write 读写流程">Read and Write 读写流程</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Serial_and_Parallel_串行与并行_0" data-path="#Serial_and_Parallel_串行与并行_0"><div class="tree-item-inner heading-link" heading-name="Serial and Parallel 串行与并行">Serial and Parallel 串行与并行</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1313/comp1313-computer-system-i.html#Chipset_芯片组_0" data-path="#Chipset_芯片组_0"><div class="tree-item-inner heading-link" heading-name="Chipset 芯片组">Chipset 芯片组</div></a><div class="tree-item-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>

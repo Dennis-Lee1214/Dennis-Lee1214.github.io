@@ -1,0 +1,473 @@
+<!DOCTYPE html> <html lang="zh-cn"><head>
+<title>COMP1311-Mathematics</title>
+<base href="../../..">
+<meta name="pathname" content="study/year-1/comp1311/comp1311-mathematics.html">
+<meta name="description" content="Dennis - COMP1311-Mathematics">
+<meta property="og:title" content="COMP1311-Mathematics">
+<meta property="og:description" content="Dennis - COMP1311-Mathematics">
+<meta property="og:type" content="website">
+<meta property="og:url" content="study/year-1/comp1311/comp1311-mathematics.html">
+<meta property="og:image" content="image/截屏2026-10-19-21.31.02.png">
+<meta charset="UTF-8"><meta property="og:site_name" content="Dennis"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="site-lib/rss.xml"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="stylesheet" href="site-lib/styles/theme.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager mod-macos is-frameless is-hidden-frameless obsidian-app show-inline-title is-floating-nav auto-full-screen show-ribbon show-view-header is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="COMP1311-Mathematics_0">COMP1311-Mathematics</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="Formal Proof" dir="auto" class="heading" id="Formal_Proof_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Formal Proof</h1></div><div class="el-h2"><h2 data-heading="Proposition and Predicate 命题与谓词" dir="auto" class="heading" id="Proposition_and_Predicate_命题与谓词_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Proposition and Predicate 命题与谓词</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>proposition 命题</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Example：Johor is in Malaysia.</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Predicate 谓词</p>
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>定义:Contains variables; the truth value depends on the values ​​assigned to the variables. 含变量，真值取决于变量取值</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>Example: P(x): x&gt;8 if P=9,T</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Neither 两者皆非</p>
+<ul class="has-list-bullet">
+<li data-line="9" dir="auto"><span class="list-bullet"></span>Example: 疑问句、命令、主观、悖论; What's you name?, This statement is false.</li>
+</ul>
+</li>
+</ol></div><div class="el-h2"><h2 data-heading="Components of a formal proof 形式证明的组成" dir="auto" class="heading" id="Components_of_a_formal_proof_形式证明的组成_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Components of a formal proof 形式证明的组成</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Components 组成
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Premises 前提：假设为真的陈述，证明起点。</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Conclusion 结论：需建立的陈述。</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Arguments 论证：从前提推导结论的逻辑步骤。</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>可借助Axioms公理和已证结果（定理和引理）
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>可写为P→Q&nbsp;形式</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>Axioms 公理: 无需证明即接受为真</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>Theorem 定理：已证明的命题</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>Lemma 引理：辅助证明其他结果的已证命题</li>
+</ul>
+</li>
+</ol></div><div class="el-h2"><h2 data-heading="Proof method 证明方法" dir="auto" class="heading" id="Proof_method_证明方法_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Proof method 证明方法</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">Direct proof 直接证明: 从前提直接推导结论</li>
+<li data-line="1" dir="auto">Proof by cases 分情况证明: 划分所有可能情况逐一证明</li>
+<li data-line="2" dir="auto">Proof by contrapositive逆否证明: 证明非Q→非P代替P→Q&nbsp;</li>
+<li data-line="3" dir="auto">Proof by contradiction反证法：假设命题为假，推出矛盾</li>
+<li data-line="4" dir="auto">Mathematical induction数学归纳法：证基础情况，再证每步递推</li>
+</ol></div><div class="el-h2"><h2 data-heading="Example" dir="auto" class="heading" id="Example_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example</h2></div><div class="el-p"><p dir="auto">Proposition 命题: </p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>The 1st of October is a Wednesday, so the 13th of October is a Monday</li>
+</ul></div><div class="el-p"><p dir="auto">Premises 前提:</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>October is a Wednesday.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>The days of the week repeat every seven days in their usual order.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>13 October is 12 days after 1 October.</li>
+</ul></div><div class="el-p"><p dir="auto">Argument 论证:</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Since 12 = 7 + 5, moving forward 7 days from Wednesday returns to Wednesday.</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Moving forward another 5 days gives Monday.</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Therefore, 13 October is a Monday.</li>
+</ul></div><div class="el-p"><p dir="auto">Conclusion 结论:</p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>
+<p>13 October is a Monday.</p>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>
+<p>证明 = 前提 + 论证 + 结论。</p>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="证明方法" dir="auto" class="heading" id="证明方法_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>证明方法</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Direct proof 直接证明</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>证 P→Q: 假设 P,用定义一步步推到 Q</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>模版：假设P → 用定义展开 → 凑出Q的定义形式
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例: 若 18|n,则 6|n n可以被18整除，则n可以被6整除
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>假设n = 18k，k∈ℤ</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>18=6×3,所以 n=6(3k)</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>3k 是整数</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>所以 n=6m, m=3k∈ℤ, 即 6|n</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：两个奇数之积是奇数
+<ul class="has-list-bullet">
+<li data-line="9" dir="auto"><span class="list-bullet"></span>设 a=2k+1, b=2m+1</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>ab=4km+2k+2m+1 =2(2km+k+m)+1</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>2km+k+m 是整数,所以 ab 是奇数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="13" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Counterexample 反例</p>
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>推翻全称命题:找一个 P 真、Q 假的例子
+<ul class="has-list-bullet">
+<li data-line="15" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例: a²=b² ⟹ a=b 
+<ul class="has-list-bullet">
+<li data-line="16" dir="auto"><span class="list-bullet"></span>证明是假的,取 a=2,b=−2。应该改成 a=b 或 a=−b,或加条件 a,b≥0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="18" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>If and only if 当且仅当</p>
+<ul class="has-list-bullet">
+<li data-line="19" dir="auto"><span class="list-bullet"></span>证 P↔Q:两个方向都要证</li>
+<li data-line="20" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>先假设P，推出Q，再重新假设Q，推出P
+<ul class="has-list-bullet">
+<li data-line="21" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：x²=x ⟺ x=0 或 x=1
+<ul class="has-list-bullet">
+<li data-line="22" dir="auto"><span class="list-bullet"></span>⇒x²−x=0,即 x(x−1)=0,所以 x=0 或 x=1</li>
+<li data-line="23" dir="auto"><span class="list-bullet"></span>⇐:x=0 时 0²=0,x=1 时 1²=1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="25" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Contraposition 逆否命题</p>
+<ul class="has-list-bullet">
+<li data-line="26" dir="auto"><span class="list-bullet"></span>P→Q ≡ ¬Q→¬P (逻辑等价)</li>
+<li data-line="27" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>用的时机：证"n² 偶 ⟹ n 偶"时,n²=2k 很难变成 n 的形式。逆否命题"n 奇 ⟹ n² 奇"则很顺:n=2k+1, n²=2(2k²+2k)+1
+<ul class="has-list-bullet">
+<li data-line="28" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：x+y≥2 ⟹ x≥1 或 y≥1
+<ul class="has-list-bullet">
+<li data-line="29" dir="auto"><span class="list-bullet"></span>逆否: x&lt;1 且 y&lt;1 ⟹ x+y&lt;2</li>
+<li data-line="30" dir="auto"><span class="list-bullet"></span>两个不等式相加:x+y&lt;1+1=2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="32" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Case analysis 分情况</p>
+<ul class="has-list-bullet">
+<li data-line="33" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>分的情况加起来必须覆盖所有情况；每个情况都要单独证明
+<ul class="has-list-bullet">
+<li data-line="34" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：n²+3n 是偶数
+<ul class="has-list-bullet">
+<li data-line="35" dir="auto"><span class="list-bullet"></span>n=2k: 4k²+6k=2 (2k²+3k)</li>
+<li data-line="36" dir="auto"><span class="list-bullet"></span>n=2k+1:4k²+10k+4 =2 (2k²+5k+2)</li>
+<li data-line="37" dir="auto"><span class="list-bullet"></span>每个整数非奇即偶,所以情况穷尽</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="39" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Contradiction 反证法</p>
+<ul class="has-list-bullet">
+<li data-line="40" dir="auto"><span class="list-bullet"></span>假设结论为假 → 推出矛盾 ⊥ → 原结论成立 不能只写矛盾，要写清楚和什么矛盾</li>
+<li data-line="41" dir="auto"><span class="list-bullet"></span>contraposition逆否命题 和 contradiction反证法的区别：</li>
+<li data-line="42" dir="auto"><span class="list-bullet"></span>contraposition：目标是 P→Q,假设 ¬Q, 必须推出 ¬P,目标明确</li>
+<li data-line="43" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Contradiction：假设整个命题为假, 推出任何矛盾都行
+<ul class="has-list-bullet">
+<li data-line="44" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：没有最小正实数
+<ul class="has-list-bullet">
+<li data-line="45" dir="auto"><span class="list-bullet"></span>假设 x 是最小正实数,取 y=x/2。</li>
+<li data-line="46" dir="auto"><span class="list-bullet"></span>y&gt;0 且 y&lt;x, 与"x 最小"矛盾</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="48" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Induction 归纳法</p>
+<ul class="has-list-bullet">
+<li data-line="49" dir="auto"><span class="list-bullet"></span>类似于多米诺骨牌</li>
+<li data-line="50" dir="auto"><span class="list-bullet"></span>Base case：证明 P(1) 成立(推倒第一块)</li>
+<li data-line="51" dir="auto"><span class="list-bullet"></span>Inductive hypothesis：假设某个 k 使 P(k) 成立</li>
+<li data-line="52" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Inductive step：证明 P(k+1)(每块推倒下一块)
+<ul class="has-list-bullet">
+<li data-line="53" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>例：2ⁿ≥n+1
+<ul class="has-list-bullet">
+<li data-line="54" dir="auto"><span class="list-bullet"></span>Base:n=1, 2¹=2≥2</li>
+<li data-line="55" dir="auto"><span class="list-bullet"></span>Step:假设 2ᵏ≥k+1。则 2ᵏ⁺¹=2·2ᵏ ；2·2ᵏ ≥ 2(k+1) ；2(k+1) = 2k+2；2k+2 ≥ k+2</li>
+<li data-line="56" dir="auto"><span class="list-bullet"></span>2ᵏ⁺¹ = 2·2ᵏ ≥ 2(k+1) = 2k+2 ≥ k+2</li>
+<li data-line="57" dir="auto"><span class="list-bullet"></span>所以 2ᵏ⁺¹ ≥ k+2,这正是 P(k+1)</li>
+<li data-line="58" dir="auto"><span class="list-bullet"></span>用到的两个不等式:归纳假设 2ᵏ≥k+1,以及 2k+2≥k+2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div><div class="el-h1"><h1 data-heading="Sets, Functions and Relations" dir="auto" class="heading" id="Sets,_Functions_and_Relations_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Sets, Functions and Relations</h1></div><div class="el-h2"><h2 data-heading="Basic of sets 集合基础" dir="auto" class="heading" id="Basic_of_sets_集合基础_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Basic of sets 集合基础</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>定义：互不相同，定义明确的对象的集合</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>写法：
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Roster:D={0,1,2,3}  </li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Set-builder:I = {i∈ℤ : 0≤i&lt;4}, 冒号读作"such that"</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>集合不记顺序和重复，因此 {1,2,3}={3,2,1}={1,1,2,3}</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>| A | 的意思是集合中不同元素的个数
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>例如 |{1,1,2,2,3}| = 3</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>∅ 和{∅}的不同：∅没有元素，因此｜∅｜ = 0；{∅}里有一个空集元素，因此为1；空集是任何集合的子集</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>⊆ 的意思代表A的每个元素都在B里面；⊊ 代表A是B的子集，但A不等于B</li>
+</ul></div><div class="el-h2"><h2 data-heading="Sets operations 集合运算" dir="auto" class="heading" id="Sets_operations_集合运算_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Sets operations 集合运算</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">逻辑</th>
+<th dir="ltr">运算</th>
+<th dir="ltr">意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">OR</td>
+<td dir="ltr">A∪B</td>
+<td dir="ltr">在 A 或 B(包含两者都在)</td>
+</tr>
+<tr>
+<td dir="ltr">AND</td>
+<td dir="ltr">A∩B</td>
+<td dir="ltr">在 A 且在 B</td>
+</tr>
+<tr>
+<td dir="ltr">AND NOT</td>
+<td dir="ltr">A∖B</td>
+<td dir="ltr">在 A 不在 B(顺序有关)</td>
+</tr>
+<tr>
+<td dir="ltr">NOT</td>
+<td dir="ltr">Aᶜ=U∖A</td>
+<td dir="ltr">不在 A(要先知道全集 U)</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Example：</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>U={1..6}, A={1,2,4,6}, B={2,3,4}</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>A∪B={1,2,3,4,6}</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>A∩B={2,4}</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>A∖B={1,6}</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>Aᶜ={3,5}</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>常用定律：</p>
+<ul class="has-list-bullet">
+<li data-line="8" dir="auto"><span class="list-bullet"></span>恒等: A∪∅=A, A∩U=A</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>幂等: A∪A=A, A∩A=A</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>互补: A∪Aᶜ=U, A∩Aᶜ=∅, (Aᶜ)ᶜ=A</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>交换律与结合律: ∪ 和 ∩ 都满足,但 ∖ 不满足交换律</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>分配律: A∩(B∪C)=(A∩B)∪(A∩C)</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span>De Morgan: (A∪B)ᶜ=Aᶜ∩Bᶜ, (A∩B)ᶜ=Aᶜ∪Bᶜ 口诀：把 NOT 推进去, OR 和 AND 互换</li>
+</ul>
+</li>
+<li data-line="14" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>证明集合等式：</p>
+<ul class="has-list-bullet">
+<li data-line="15" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>取任意 x,用"每步等价"的方式推
+<ul class="has-list-bullet">
+<li data-line="16" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example: 
+<ul class="has-list-bullet">
+<li data-line="17" dir="auto"><span class="list-bullet"></span>x∈(A∪B)ᶜ ⟺ x∉A∪B ⟺ x∉A 且 x∉B ⟺ x∈Aᶜ∩Bᶜ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集" dir="auto" class="heading" id="Ordered_Pairs,_Cartesian_Products,_and_Power_Sets_有序对，乘积与幂集_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">
+<p>Ordered pair有序对：(a,b) = (c,d) 当且仅当 a=c 且 b=d，例如 (2,5) ≠ (5,2),但 {2,5} = {5,2}</p>
+</li>
+<li data-line="1" dir="auto">
+<p>Tuple 元组：固定位置数的记录，如 (student_id, module, mark)=(31415,”COMP1311",78)</p>
+</li>
+<li data-line="2" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Cartesian product 笛卡尔积 A×B={(a,b) : a∈A, b∈B}</p>
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>A={u₁,u₂}, B={read,write}:A×B 有 4 个对：A × B = {(u₁,read),(u₁,write),(u₂,read),(u₂,write)}</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>独立选择相乘:3 个系统×2 个浏览器×2 种模式=12 个测试用例</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>A×∅=∅;只允许部分组合时,得到的是 A×B 的子集</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Power set 幂集：𝒫(A) 是 A 的所有子集的集合</p>
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>它的元素是<strong>子集</strong>,不是 A 的元素</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>𝒫({a,b}) = {∅,{a},{b},{a,b}}</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>每个元素"选或不选"两种,所以 |A|=n 时 |𝒫(A)| = 2ⁿ</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>3个元素即为1+3+3+1 = 8个子集</li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Bit string位字符：顺序固定为 (logging, caching, encryption) 时,101 表示 {logging, encryption} 
+<ul class="has-list-bullet">
+<li data-line="12" dir="auto"><span class="list-bullet"></span>位字符串提供了子集的紧凑表示</li>
+</ul>
+</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span>𝒫(∅)={∅}, 大小为 2⁰=1, 幂集永远不为空</li>
+</ul>
+</li>
+<li data-line="15" dir="auto">
+<p>Relation 关系:R⊆A×B,即"真正成立的那些对"</p>
+</li>
+<li data-line="16" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Function 函数 f:A→B:对每个 a∈A,输出存在且唯一。两个输入可以共用一个输出,但一个输入不能有两个输出</p>
+<ul class="has-list-bullet">
+<li data-line="17" dir="auto"><span class="list-bullet"></span>A={1,2,3}, B={a,b}</li>
+<li data-line="18" dir="auto"><span class="list-bullet"></span>P={(1,a), (2,b),(3,b)}:是函数</li>
+<li data-line="19" dir="auto"><span class="list-bullet"></span>Q={(1,a), (1,b), (2,a), (3,b)}:不是函数, 1有两个输出(唯一性失败)</li>
+<li data-line="20" dir="auto"><span class="list-bullet"></span>T={(1,a), (2,b)}:不是函数, 3没有输出 (存在性失败)</li>
+</ul>
+</li>
+</ol></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Example：U={u₁,u₂}, R={viewer,admin}, F={cache,logs}</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>用户-角色可能对:2×2 = 4</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>功能配置数:|𝒫(F)| = 2²=4</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>实际允许的用户-角色对:一个 relation (U×R 的子集)</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>每个用户恰有一个默认角色:一个 function U→R</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>
+<p>Conclusion：</p>
+</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">概念</th>
+<th dir="ltr">回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Set 集合</td>
+<td dir="ltr">哪些对象属于？</td>
+</tr>
+<tr>
+<td dir="ltr">Tuple 元组</td>
+<td dir="ltr">每个位置代表什么？</td>
+</tr>
+<tr>
+<td dir="ltr">Cartesian product 笛卡尔积</td>
+<td dir="ltr">哪些有序组合是可能的？</td>
+</tr>
+<tr>
+<td dir="ltr">Power set 幂集</td>
+<td dir="ltr">哪些选法是可能的？</td>
+</tr>
+<tr>
+<td dir="ltr">Relation 关系</td>
+<td dir="ltr">哪些链接实际成立？</td>
+</tr>
+<tr>
+<td dir="ltr">Function 函数</td>
+<td dir="ltr">每个输入是否恰好一个输出？</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Relation 关系" dir="auto" class="heading" id="Relation_关系_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Relation 关系</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>什么是relation
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>关系 R 是笛卡尔积的子集:R ⊆ A × B,即 R = {(a, b) | a ∈ A 且 b ∈ B}</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>通俗理解：Relation就是“把集合里的元素连起来的方式”，R里的每个有序对就是一条连线</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example：
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>A = {1,2,3}, R = {(1,2),(2,3)} → “1 与 2 相关, 2 与 3 相关”</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>颜色与水果:C = {red, orange, yellow}, F = {apple, orange, lemon}
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>R = {(apple, red), (orange, orange), (lemon, yellow)}</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>F × C 共有 3 × 3 = 9 个有序对, 而 R 只有 3 个 → R 只是 F × C 的一个子集</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>Digraph 有向图:用箭头表示关系，每个有序对(a,b)画成一条从a指向b的箭头; (a,a)是自环</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span><span alt="截屏2026-10-19 21.31.02.png" src="image/截屏2026-10-19-21.31.02.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 364px; max-width: 100%;"><img alt="截屏2026-10-19 21.31.02.png" src="image/截屏2026-10-19-21.31.02.png" target="_self" style="width: 364px; max-width: 100%;"></span></li>
+</ul>
+</li>
+<li data-line="10" dir="auto">Six Types of Relational Properties 6种关系性质</li>
+</ol></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">性质</th>
+<th dir="ltr">形式化定义</th>
+<th dir="ltr">理解</th>
+<th dir="ltr">有向图特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Reflexive 自反</td>
+<td dir="ltr">∀a∈A, (a,a)∈R</td>
+<td dir="ltr">每个元素都和自己相关</td>
+<td dir="ltr">每个点都有自环</td>
+</tr>
+<tr>
+<td dir="ltr">Irreflexive 非自反</td>
+<td dir="ltr">∀a∈A, (a,a)∉R</td>
+<td dir="ltr">没有元素和自己相关</td>
+<td dir="ltr">每个都没有任何自环</td>
+</tr>
+<tr>
+<td dir="ltr">Symmetric 对称</td>
+<td dir="ltr">(a,b)∈R ⇒ (b,a)∈R</td>
+<td dir="ltr">有去必有回</td>
+<td dir="ltr">箭头都是双向的</td>
+</tr>
+<tr>
+<td dir="ltr">Asymmetric 非对称</td>
+<td dir="ltr">(a,b)∈R ⇒ (b,a)∉R</td>
+<td dir="ltr">有去必无回</td>
+<td dir="ltr">无双向箭头,也无自环</td>
+</tr>
+<tr>
+<td dir="ltr">Transitive 传递</td>
+<td dir="ltr">(a,b)∈R 且 (b,c)∈R ⇒ (a,c)∈R</td>
+<td dir="ltr">能走两步到的,必须能一步直达</td>
+<td dir="ltr">a→b→c 时必有 a→c</td>
+</tr>
+<tr>
+<td dir="ltr">Antisymmetric 反对称</td>
+<td dir="ltr">(a,b)∈R 且 (b,a)∈R ⇒ a=b</td>
+<td dir="ltr">不同元素不能互相指向</td>
+<td dir="ltr">双向箭头只允许是自环</td>
+</tr>
+</tbody>
+</table></div><div class="el-ol"><ol start="3">
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Equivalence Relations and Equivalence Classes 等价关系与等价类</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>等价关系：同时满足自反+对称+传递，记作“~”</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>等价关系中将集合元素分类到buckets中，每个buckets被称为等价类</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><code>[a] = {x ∈ A : x ~ a}</code></li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>重要性质：
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>每个元素恰好属一个类</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>各类互不重叠</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>所有类合起来覆盖整个集合</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example:
+<ul class="has-list-bullet">
+<li data-line="9" dir="auto"><span class="list-bullet"></span>(首字母相同):A = {apple, ant, ball, bat, cat}</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>[apple] = {apple, ant}, [ball] = {ball, bat}, [cat] = {cat}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="12" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Partial Order 篇序</p>
+<ul class="has-list-bullet">
+<li data-line="13" dir="auto"><span class="list-bullet"></span>定义：同时满足Reflexive 自反，Antisymmetric 反对称，Transitive 传递</li>
+<li data-line="14" dir="auto"><span class="list-bullet"></span>通常写作 a ≼ b 代替 (a,b)∈R。此时 (A, R) 称为poset偏序集</li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span>类似 ≤, 但不要求所有两个元素都能比较</li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span>严格篇序：把自反换成非自反,即 非自反 + 反对称 + 传递(类似 &lt; 而不是 ≤)</li>
+</ul>
+</li>
+</ol></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#COMP1311-Mathematics_0" data-path="#COMP1311-Mathematics_0"><div class="tree-item-inner heading-link" heading-name="COMP1311-Mathematics">COMP1311-Mathematics</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1311/comp1311-mathematics.html#Formal_Proof_0" data-path="#Formal_Proof_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Formal Proof">Formal Proof</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Proposition_and_Predicate_命题与谓词_0" data-path="#Proposition_and_Predicate_命题与谓词_0"><div class="tree-item-inner heading-link" heading-name="Proposition and Predicate 命题与谓词">Proposition and Predicate 命题与谓词</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Components_of_a_formal_proof_形式证明的组成_0" data-path="#Components_of_a_formal_proof_形式证明的组成_0"><div class="tree-item-inner heading-link" heading-name="Components of a formal proof 形式证明的组成">Components of a formal proof 形式证明的组成</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Proof_method_证明方法_0" data-path="#Proof_method_证明方法_0"><div class="tree-item-inner heading-link" heading-name="Proof method 证明方法">Proof method 证明方法</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Example_0" data-path="#Example_0"><div class="tree-item-inner heading-link" heading-name="Example">Example</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#证明方法_0" data-path="#证明方法_0"><div class="tree-item-inner heading-link" heading-name="证明方法">证明方法</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1311/comp1311-mathematics.html#Sets,_Functions_and_Relations_0" data-path="#Sets,_Functions_and_Relations_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Sets, Functions and Relations">Sets, Functions and Relations</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Basic_of_sets_集合基础_0" data-path="#Basic_of_sets_集合基础_0"><div class="tree-item-inner heading-link" heading-name="Basic of sets 集合基础">Basic of sets 集合基础</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Sets_operations_集合运算_0" data-path="#Sets_operations_集合运算_0"><div class="tree-item-inner heading-link" heading-name="Sets operations 集合运算">Sets operations 集合运算</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Ordered_Pairs,_Cartesian_Products,_and_Power_Sets_有序对，乘积与幂集_0" data-path="#Ordered_Pairs,_Cartesian_Products,_and_Power_Sets_有序对，乘积与幂集_0"><div class="tree-item-inner heading-link" heading-name="Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集">Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1311/comp1311-mathematics.html#Relation_关系_0" data-path="#Relation_关系_0"><div class="tree-item-inner heading-link" heading-name="Relation 关系">Relation 关系</div></a><div class="tree-item-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>

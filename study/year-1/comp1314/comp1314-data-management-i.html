@@ -1,0 +1,714 @@
+<!DOCTYPE html> <html lang="zh-cn"><head>
+<title>COMP1314-Data management I</title>
+<base href="../../..">
+<meta name="pathname" content="study/year-1/comp1314/comp1314-data-management-i.html">
+<meta name="description" content="Dennis - COMP1314-Data management I">
+<meta property="og:title" content="COMP1314-Data management I">
+<meta property="og:description" content="Dennis - COMP1314-Data management I">
+<meta property="og:type" content="website">
+<meta property="og:url" content="study/year-1/comp1314/comp1314-data-management-i.html">
+<meta property="og:image" content="image/截屏2026-10-11-18.02.41.png">
+<meta charset="UTF-8"><meta property="og:site_name" content="Dennis"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="site-lib/rss.xml"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="stylesheet" href="site-lib/styles/theme.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager mod-macos is-frameless is-hidden-frameless obsidian-app show-inline-title is-floating-nav auto-full-screen show-ribbon show-view-header is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="COMP1314-Data_management_I_0">COMP1314-Data management I</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="Unix" dir="auto" class="heading" id="Unix_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Unix</h1></div><div class="el-h2"><h2 data-heading="Piping 管道" dir="auto" class="heading" id="Piping_管道_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Piping 管道</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>每个进程(process)都有三个文件描述符</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>
+<p>STDIN - input from the user 输入</p>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>
+<p>STOUT - normal output 输出</p>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>
+<p>STDERR - Error output 错误输出</p>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>
+<p>Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入</p>
+</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Piping  a program's output into another program:</p>
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>program_1 | program_2
+<ul class="has-list-bullet">
+<li data-line="8" dir="auto"><span class="list-bullet"></span>program_1's output goes into program2 前一个程序的输出变为后一个的输入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Pushing a program's output into a file:</p>
+<ul class="has-list-bullet">
+<li data-line="11" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>program_1 &gt; file.txt
+<ul class="has-list-bullet">
+<li data-line="12" dir="auto"><span class="list-bullet"></span>The output of program_1 will go into file.txt 输出写入内容</li>
+</ul>
+</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>program_1 &gt;&gt; file.txt
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span>The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="16" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>Get input from a file to put into a program:</p>
+<ul class="has-list-bullet">
+<li data-line="17" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>program_1 &lt; input.txt
+<ul class="has-list-bullet">
+<li data-line="18" dir="auto"><span class="list-bullet"></span>program_1 gets input from input.txt 从文件读取输入</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Filter" dir="auto" class="heading" id="Filter_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Filter</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>A filter is a program that takes input, changes it in some way, then outputs it  again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>They can be used just like in piping. 可以像管道一样使用</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>some filters:</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Filter</th>
+<th dir="ltr">Function of filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">head</td>
+<td dir="ltr">Takes first 10 lines 看前10行</td>
+</tr>
+<tr>
+<td dir="ltr">tail</td>
+<td dir="ltr">Takes last 10 lines 看后10行</td>
+</tr>
+<tr>
+<td dir="ltr">sort</td>
+<td dir="ltr">Organises data 排序(-n 按数字 -r 倒序)</td>
+</tr>
+<tr>
+<td dir="ltr">wc</td>
+<td dir="ltr">Prints number if newlines 统计行/词/字符数(wc -1 只数行数)</td>
+</tr>
+<tr>
+<td dir="ltr">uniq</td>
+<td dir="ltr">Remove duplicate lines 去重(只去掉相邻的重复行)</td>
+</tr>
+<tr>
+<td dir="ltr">tr</td>
+<td dir="ltr">按字符替/删除</td>
+</tr>
+<tr>
+<td dir="ltr">cut</td>
+<td dir="ltr">切出某几列</td>
+</tr>
+<tr>
+<td dir="ltr">du</td>
+<td dir="ltr">预估文件大小</td>
+</tr>
+<tr>
+<td dir="ltr">xargs</td>
+<td dir="ltr">构建和执行命令行</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="grep" dir="auto" class="heading" id="grep_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>grep</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>结构Example:<br>
+grep [opentions] pattern [file...]</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>"-i"意思是忽略大小写</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>"-c"意思是找匹配了多少行，不是匹配本身</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>"error"意思是找含error的行</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>"-o"意思是只返回行中匹配的部分，不返回整行</li>
+</ul>
+</li>
+</ul></div><div class="el-pre"><pre><code data-line="0">	grep&nbsp;error&nbsp;dummyerror.log&nbsp; # 找含 error 的行&nbsp;
+	grep&nbsp;-i&nbsp;error&nbsp;dummyerror.log&nbsp; # -i：忽略大小写&nbsp;
+	grep&nbsp;-c&nbsp;Manhattan&nbsp;file.csv&nbsp; # -c：直接数匹配了多少行
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-h2"><h2 data-heading="sed 流编辑器" dir="auto" class="heading" id="sed_流编辑器_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>sed 流编辑器</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>工作方式：读取输入 → 按命令修改 → 把结果输出到标准输出
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>结构Example:<br>
+<code>sed [options] command [file ...]</code>  最常用作替换文本</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>基本格式：
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>s/要查找的内容/替换成的内容/标志</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实际例子 1：
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>在名为“file”的文件中将“abc”转换为“cba”</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>Sed 's/abc/cba/g' ./file</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>结尾的g代表全局，不加g的话就会只替换第一个出现的</li>
+</ul>
+</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实际例子 2：
+<ul class="has-list-bullet">
+<li data-line="10" dir="auto"><span class="list-bullet"></span><code>echo Hello World | sed "s/Hello/Hi/I"</code></li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span>输出Hi World</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>结尾的I代表忽略大小写</li>
+</ul>
+</li>
+<li data-line="13" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实际例子 3:
+<ul class="has-list-bullet">
+<li data-line="14" dir="auto"><span class="list-bullet"></span><code>cat sed-example-delete.txt | sed '/Run/d'</code></li>
+<li data-line="15" dir="auto"><span class="list-bullet"></span>这个是清理数据，删除所有包含Run的行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="awk 文本数据处理" dir="auto" class="heading" id="awk_文本数据处理_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>awk 文本数据处理</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>适合分析表格数据
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>record 记录：默认每一行就是一条记录（默认分隔符是换行 \n）</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>field 字段：每条记录按空白切成若干字段，用 $1、$2、$3… 访问；$0 表示整行</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>结构Example：
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>awk 'BEGIN { 开始前执行一次 } { 每行都执行 } END { 结束后执行一次 }'</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实际例子 1:
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span><code>awk 'BEGIN { print "File\tOwner" } { print $9, "\t", $3 } END { print "done" }'</code></li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>意思为ls -l 输出中 $9 是文件名，$3 是所有者，所以结果是先打印表头 File Owner，再逐行打印文件名和所有者，最后打印 done</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>实际例子 2：
+<ul class="has-list-bullet">
+<li data-line="9" dir="auto"><span class="list-bullet"></span>awk ' {print $1,$3} '</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>意思为print第一和第三列</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Regular expression" dir="auto" class="heading" id="Regular_expression_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Regular expression</h2></div><div class="el-p"><p dir="auto"><span alt="截屏2026-10-11 18.02.41.png" src="image/截屏2026-10-11-18.02.41.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="截屏2026-10-11 18.02.41.png" src="image/截屏2026-10-11-18.02.41.png" target="_self"></span></p></div><div class="el-h2"><h2 data-heading="Wildcards 通配符" dir="auto" class="heading" id="Wildcards_通配符_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Wildcards 通配符</h2></div><div class="el-p"><p dir="auto"><span alt="截屏2026-10-16 15.01.09.png" src="image/截屏2026-10-16-15.01.09.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="截屏2026-10-16 15.01.09.png" src="image/截屏2026-10-16-15.01.09.png" target="_self"></span></p></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>通配符可以组合使用
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>ls *.??? | wc -l：统计扩展名恰好为3个字符的文件数</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>ls ?.* | wc -l：统计文件名主体只有1个字符，带任意扩展名的文件数</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>ls ?.[a-c] | wc -l 统计形如单字符.a/b/c的文件数</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Permissions 文件权限" dir="auto" class="heading" id="Permissions_文件权限_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Permissions 文件权限</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>
+<p>“Chmod”命令将更改文件的权限</p>
+</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>
+<p>“Ls -l”命令将显示文件的权限</p>
+</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>许可字符串</p>
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span>rwx  r-x r-x 意思是 这个是可执行文件，只有所有者能修改，其他人只能读和执行</li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>drwxr-xr-x 意思是目录</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>第一位代表文件类型 -是普通文件，d是目录</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>2-4位 是user所有者的权限</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>5-7位 是group的权限</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>8-10位 是others其他人的权限</li>
+<li data-line="10" dir="auto"><span class="list-bullet"></span>r = 读  w = 写  x = 执行  - = 没有该权限</li>
+</ul>
+</li>
+<li data-line="12" dir="auto"><span class="list-bullet"></span>
+<p>修改权限 2种方法</p>
+</li>
+</ul></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>法1
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>要获取文件的权限号，请像这样排列一个表格：<br>
+<span alt="截屏2026-10-16 15.11.58.png" src="image/截屏2026-10-16-15.11.58.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="截屏2026-10-16 15.11.58.png" src="image/截屏2026-10-16-15.11.58.png" target="_self"></span>
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>如果授予权限，在表格里写1，禁止写0<br>
+<span alt="截屏2026-10-16 15.13.03.png" src="image/截屏2026-10-16-15.13.03.png" class="internal-embed media-embed image-embed is-loaded" target="_self"><img alt="截屏2026-10-16 15.13.03.png" src="image/截屏2026-10-16-15.13.03.png" target="_self"></span></li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>现在取出三组二进制数字：111 100 100</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>转换为十进制：7 4 4</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>以下为每个权限组合的表格</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th align="center" dir="ltr">Binary</th>
+<th align="center" dir="ltr">Decimal</th>
+<th align="center" dir="ltr">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" dir="auto">000</td>
+<td align="center" dir="auto">0</td>
+<td align="center" dir="ltr">No permissions</td>
+</tr>
+<tr>
+<td align="center" dir="auto">001</td>
+<td align="center" dir="auto">1</td>
+<td align="center" dir="ltr">Execute only</td>
+</tr>
+<tr>
+<td align="center" dir="auto">010</td>
+<td align="center" dir="auto">2</td>
+<td align="center" dir="ltr">Write only</td>
+</tr>
+<tr>
+<td align="center" dir="auto">011</td>
+<td align="center" dir="auto">3</td>
+<td align="center" dir="ltr">Write + Execute</td>
+</tr>
+<tr>
+<td align="center" dir="auto">100</td>
+<td align="center" dir="auto">4</td>
+<td align="center" dir="ltr">Read only</td>
+</tr>
+<tr>
+<td align="center" dir="auto">101</td>
+<td align="center" dir="auto">5</td>
+<td align="center" dir="ltr">Read + Execute</td>
+</tr>
+<tr>
+<td align="center" dir="auto">110</td>
+<td align="center" dir="auto">6</td>
+<td align="center" dir="ltr">Read + Write</td>
+</tr>
+<tr>
+<td align="center" dir="auto">111</td>
+<td align="center" dir="auto">7</td>
+<td align="center" dir="ltr">All permissions</td>
+</tr>
+</tbody>
+</table></div><div class="el-ol"><ol start="2">
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>法2 使用chmod修改权限
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>格式如下：
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span><code>chmod [人员访问][操作][权限类型][路径]</code></li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>人员： u g o a 操作：+授予 -撤销  == 直接设定</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example:
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>chmod g+w file 意思为 授予group的写入file的权限</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>chmod u+x runme.sh 意思为 授予users 执行文件runme.sh的权限</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>chmod 744 test.sh 也是可以的</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>所有参数类型见下表：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">Person accesing<br></th>
+<th dir="ltr">Operation</th>
+<th dir="ltr">Type of permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">'u' - user</td>
+<td dir="ltr">'+' - grant</td>
+<td dir="ltr">'r' = read</td>
+</tr>
+<tr>
+<td dir="ltr">'g' - group</td>
+<td dir="ltr">'-' - revoke</td>
+<td dir="ltr">'w' - write</td>
+</tr>
+<tr>
+<td dir="ltr">'o' - others</td>
+<td dir="ltr">'=' - set</td>
+<td dir="ltr">'x' = execute</td>
+</tr>
+<tr>
+<td dir="ltr">'a' - all</td>
+<td dir="auto"></td>
+<td dir="ltr">'-' = none</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Process management 流程管理" dir="auto" class="heading" id="Process_management_流程管理_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Process management 流程管理</h2></div><div class="el-h2"><h2 data-heading="Run job运行程序" dir="auto" class="heading" id="Run_job运行程序_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Run job运行程序</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>需要有可执行权限 chmod u+x 程序名
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>u = user, +x = 增加执行权限</li>
+</ul>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>用./前缀运行当前目录下的程序 ./helloworld.sh</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>结束程序使用Ctrl-c</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Example:</li>
+</ul></div><div class="el-pre"><pre class="language-bash"><code data-line="0" class="language-bash is-loaded"><span class="token function">touch</span> helloworld.sh        <span class="token comment"># 创建空文件</span>
+pico helloworld.sh         <span class="token comment"># 用 pico 编辑器写内容</span>
+<span class="token function">cat</span> helloworld.sh          <span class="token comment"># 查看内容:#!/bin/bash + echo "Hello world!"</span>
+./helloworld.sh            <span class="token comment"># 报错:Permission denied(没有执行权限)</span>
+<span class="token function">chmod</span> u+x helloworld.sh    <span class="token comment"># 加上执行权限</span>
+./helloworld.sh            <span class="token comment"># 成功输出 Hello world!</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-h2"><h2 data-heading="Command: ps" dir="auto" class="heading" id="Command_ps_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Command: ps</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>使用ps[options]来查看正在运行的进程</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span><code>./helloworld.sh&amp;</code> 
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>结尾的&amp;意思是让任务在后台进行，不再占用终端</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>终端返回 [1] 32758，[1]是job number作业编号，32758是PID</li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><code>ps -u 用户名</code> 输入后会输出一以下列，含义如下表</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">列</th>
+<th dir="ltr">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">PID</td>
+<td dir="ltr">进程编号</td>
+</tr>
+<tr>
+<td dir="ltr">TTY</td>
+<td dir="ltr">进程关联的终端</td>
+</tr>
+<tr>
+<td dir="ltr">TIME</td>
+<td dir="ltr">占用CPU的累计时间</td>
+</tr>
+<tr>
+<td dir="ltr">CMD</td>
+<td dir="ltr">启动该进程的命令</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="Command：top" dir="auto" class="heading" id="Command：top_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Command：top</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>用来查看所有进程的CPU、内存使用情况，是实时刷新的</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>与ps的区别是，ps是那一刻的情况，top是实时刷新的</li>
+</ul></div><div class="el-h2"><h2 data-heading="Command：kill" dir="auto" class="heading" id="Command：kill_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Command：kill</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>使用<code>kill [options] &lt;PID&gt;</code>来终止进程</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Example：<code>kill -SIGTERM 1710</code></li>
+</ul></div><div class="el-pre"><pre class="language-bash"><code data-line="0" class="language-bash is-loaded">	./helloworld.sh <span class="token operator">&amp;</span>      <span class="token comment"># 后台运行,返回 PID 1212</span>
+	<span class="token function">ps</span> <span class="token parameter variable">-u</span> dst1m17          <span class="token comment"># 找到 helloworld.sh 的 PID</span>
+	<span class="token function">kill</span> <span class="token number">1212</span>              <span class="token comment"># 终止它</span>
+	<span class="token comment"># 输出:[1]+ Terminated  ./helloworld.sh</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>有两种方式
+<ol>
+<li data-line="1" dir="auto">SIGTERM 可以被进程忽略，会优雅的退出（保存进度、释放资源）</li>
+<li data-line="2" dir="auto">SIGKILL 强制立即终止，不能被忽略</li>
+</ol>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Run in background 前后台切换" dir="auto" class="heading" id="Run_in_background_前后台切换_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Run in background 前后台切换</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>先Ctrl-z，暂停当前进程</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>bg，让进程在后台进行</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>fg，把后台进程来回前台</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>和&amp;的区别，&amp;是启动时就放在后台；Ctr-z+bg是运行中途才放进后台</li>
+</ul></div><div class="el-h2"><h2 data-heading="Command：Screen" dir="auto" class="heading" id="Command：Screen_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Command：Screen</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Screen可以使即使用户断开服务器连接，让进程在screen里跑，进程仍然不会被结束</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>简而言之，Screen是一个可以脱离用户登录状态而持续存在的终端会话</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Screen常用命令见下表:</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">命令</th>
+<th dir="ltr">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">screen</td>
+<td dir="ltr">创建新的screen</td>
+</tr>
+<tr>
+<td dir="ltr">screen -s 名字</td>
+<td dir="ltr">创建并命名一个screen</td>
+</tr>
+<tr>
+<td dir="ltr">screen-d</td>
+<td dir="ltr">分离，让进程继续在后台跑</td>
+</tr>
+<tr>
+<td dir="ltr">screen-list</td>
+<td dir="ltr">列出所有screen</td>
+</tr>
+<tr>
+<td dir="ltr">screen-r 名字或id</td>
+<td dir="ltr">恢复一个screen</td>
+</tr>
+<tr>
+<td dir="ltr">Ctrl-d/exit</td>
+<td dir="ltr">关闭并销毁当前screen</td>
+</tr>
+</tbody>
+</table></div><div class="el-h1"><h1 data-heading="Data exchange" dir="auto" class="heading" id="Data_exchange_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Data exchange</h1></div><div class="el-h2"><h2 data-heading="CSV and TSV" dir="auto" class="heading" id="CSV_and_TSV_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CSV and TSV</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>CSV用逗号分隔列，TSV用tab，每行一条记录</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>简单，Unix工具(cut,sort,grep...)都可以直接处理</li>
+</ul></div><div class="el-h2"><h2 data-heading="CSV defect CSV缺陷" dir="auto" class="heading" id="CSV_defect_CSV缺陷_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CSV defect CSV缺陷</h2></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>换行符问题</p>
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>\r是回到行首，\n是下移一行</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Windows用\r\n, Mac Linux用\n</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>单元格内excel原本有2行，导出CSV后，工具按行读得到3行</li>
+</ul>
+</li>
+<li data-line="5" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>读取逗号时冲突</p>
+<ul class="has-list-bullet">
+<li data-line="6" dir="auto"><span class="list-bullet"></span>“The Lion, The Witch and the Wardrobe” 本身含逗号</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>用 <code>cut -d',' -f1,2,3</code> 按逗号硬切,会把这本书名切成两列,数据错位</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>CSV 的规则是含逗号的字段要用<strong>双引号</strong>包起来,但 <code>cut</code> 不懂引号</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>写入时必须加引号</p>
+<ul class="has-list-bullet">
+<li data-line="11" dir="auto"><span class="list-bullet"></span>导出时,含逗号的字段要加引号，否则读不对</li>
+</ul>
+</li>
+</ol></div><div class="el-h2"><h2 data-heading="CSV and TSV不够用的场景" dir="auto" class="heading" id="CSV_and_TSV不够用的场景_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>CSV and TSV不够用的场景</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>CSV and TSV是固定行列格式，因此所有的行都必须描述同一类东西</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>适合列表，例如学生名单、新闻列表</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>不适合灵活格式的关系型数据库(模块，学生，成绩混在一个文件里)</li>
+</ul></div><div class="el-h2"><h2 data-heading="Human-readable and Machine-readable" dir="auto" class="heading" id="Human-readable_and_Machine-readable_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Human-readable and Machine-readable</h2></div><div class="el-table" dir="auto" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="auto"></th>
+<th dir="ltr">人可读</th>
+<th dir="ltr">机器可读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">形式</td>
+<td dir="ltr">无结构(图片)</td>
+<td dir="ltr">必须有结构</td>
+</tr>
+<tr>
+<td dir="ltr">关注点</td>
+<td dir="ltr">易用性</td>
+<td dir="ltr">效率</td>
+</tr>
+<tr>
+<td dir="ltr">特点</td>
+<td dir="ltr">人能读写</td>
+<td dir="ltr">人不好读写(XML)</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>机器可读的好处:
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Searching 搜索</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>Aggregation 汇总</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>Prediction 预测</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>Linking 链接</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Relation 关系" dir="auto" class="heading" id="Relation_关系_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Relation 关系</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>建模方式:
+<ol>
+<li data-line="1" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Hierarchical 层级模型:单一父节点，类似于树
+<ul class="has-list-bullet">
+<li data-line="2" dir="auto"><span class="list-bullet"></span>查询路径: COMP1314 → Andrew Smith → Coursework 2</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span alt="截屏2026-10-19 19.34.10.png" src="image/截屏2026-10-19-19.34.10.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 705px; max-width: 100%;"><img alt="截屏2026-10-19 19.34.10.png" src="image/截屏2026-10-19-19.34.10.png" target="_self" style="width: 705px; max-width: 100%;"></span></li>
+</ul>
+</li>
+<li data-line="4" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Network 网络模型:允许多个父节点(一个学生属于多个模块),不再严格是树
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span><span alt="截屏2026-10-19 19.34.48.png" src="image/截屏2026-10-19-19.34.48.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 715px; max-width: 100%;"><img alt="截屏2026-10-19 19.34.48.png" src="image/截屏2026-10-19-19.34.48.png" target="_self" style="width: 715px; max-width: 100%;"></span></li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Object- oriented面向对象：实体是类，有属性，关系用指针表示
+<ul class="has-list-bullet">
+<li data-line="7" dir="auto"><span class="list-bullet"></span>如：Modules[...].Students[...].Marks[...]</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span><span alt="截屏2026-10-19 19.35.10.png" src="image/截屏2026-10-19-19.35.10.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 658px; max-width: 100%;"><img alt="截屏2026-10-19 19.35.10.png" src="image/截屏2026-10-19-19.35.10.png" target="_self" style="width: 658px; max-width: 100%;"></span></li>
+</ul>
+</li>
+<li data-line="9" dir="auto"><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Relational 关系模型: 实体变成表(Modules,students,marks)，用id把表连起来
+<ul class="has-list-bullet">
+<li data-line="10" dir="auto"><span class="list-bullet"></span>如：<code>Marks[Student_ID=1, Assignment=2]</code></li>
+<li data-line="11" dir="auto"><span class="list-bullet"></span><span alt="截屏2026-10-19 19.45.51.png" src="image/截屏2026-10-19-19.45.51.png" class="internal-embed media-embed image-embed is-loaded" target="_self" style="width: 618px; max-width: 100%;"><img alt="截屏2026-10-19 19.45.51.png" src="image/截屏2026-10-19-19.45.51.png" target="_self" style="width: 618px; max-width: 100%;"></span></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Markup 标记 从人读到机器读" dir="auto" class="heading" id="Markup_标记_从人读到机器读_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Markup 标记 从人读到机器读</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>markup就是在原文上加标注(元数据),原文不变，类似于批注
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>可以标注结构，内容，含义，方便工具处理</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Example：蚂蚁与蚂蚱
+<ul class="has-list-bullet">
+<li data-line="3" dir="auto"><span class="list-bullet"></span>先标出title，para，quote，moral</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span>再加属性：<code>&lt;story id="1"&gt;</code>、<code>&lt;para voice="narrator"&gt;</code>、<code>&lt;quote character="ant"&gt;</code></li>
+<li data-line="5" dir="auto"><span class="list-bullet"></span>层级关系也可以用标记语言表示:<code>&lt;Module name="COMP1204"&gt;&lt;Student name="Andrew Smith"&gt;&lt;Coursework ...&gt;&lt;Mark1&gt;78%&lt;/Mark1&gt;...</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="YAML" dir="auto" class="heading" id="YAML_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>YAML</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>全称 Yet another markup language</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>常用于配置文件</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>技术上是Jason的超集: 合法的Jason 基本都是合法的YAML</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>语法特点:
+<ul class="has-list-bullet">
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>用空白缩进表示层级
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>优点：容易读</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>缺点：容易写错</li>
+</ul>
+</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>基本结构是键值对(<code>key: value</code>)</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>列表用-开头</li>
+</ul>
+</li>
+<li data-line="9" dir="auto"><span class="list-bullet"></span>Example:</li>
+</ul></div><div class="el-pre"><pre class="language-yaml"><code data-line="0" class="language-yaml is-loaded"><span class="token key atrule">people</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">person</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> Tom
+      <span class="token key atrule">role</span><span class="token punctuation">:</span> Teaching
+      <span class="token key atrule">favourite numbers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token number">42</span>
+        <span class="token punctuation">-</span> <span class="token number">13</span>
+        <span class="token punctuation">-</span> <span class="token number">3.141</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>适用场景
+<ul class="has-list-bullet">
+<li data-line="1" dir="auto"><span class="list-bullet"></span>适合配置文件，保存简单的应用状态</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>缺点是规则模糊，不同解析器不同结果</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Json" dir="auto" class="heading" id="Json_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Json</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>全称JavaScript Object Notation javascript的对象表示法</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>为了在不同语言、程序之间互相交换数据</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>json里只有: 对象Object ，列表List (一串东西)，值Value (字符串，数字，true/false，null)</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>有对象但没有类</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>语法
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>对象用<code>{ }</code>, 里面是<code>"字符串键": 值</code>，用逗号分隔</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>列表用<code>[ ]</code></li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>键必须是双引号字符串</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><span class="list-bullet"></span>Example:</li>
+</ul></div><div class="el-pre"><pre class="language-json"><code data-line="0" class="language-json is-loaded"><span class="token punctuation">{</span>
+	<span class="token property">"person"</span><span class="token operator">:</span> <span class="token punctuation">{</span>                     <span class="token comment">//一整个{}是对象</span>
+		<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Tom"</span><span class="token punctuation">,</span>             <span class="token comment">//值</span>
+		<span class="token property">"role"</span><span class="token operator">:</span> <span class="token string">"Teaching"</span><span class="token punctuation">,</span>       <span class="token comment">//值</span>
+		<span class="token property">"lucky"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">3.141</span><span class="token punctuation">]</span> <span class="token comment">//列表</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>在各个语言中如何使用</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">语言</th>
+<th dir="ltr">解析</th>
+<th dir="ltr">取值</th>
+<th dir="auto"></th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Java</td>
+<td dir="ltr"><code>new JSONObject("...")</code></td>
+<td dir="ltr"><code>getJSONObject("person").getString("name")</code></td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+</tr>
+<tr>
+<td dir="ltr">Python</td>
+<td dir="ltr"><code>json.loads('...')</code></td>
+<td dir="ltr"><code>myJSON["person"]["name"]</code></td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+</tr>
+<tr>
+<td dir="ltr">JavaScript</td>
+<td dir="ltr"><code>JSON.parse('...')</code></td>
+<td dir="ltr"><code>myJSON["person"]["name"]</code></td>
+<td dir="auto"></td>
+<td dir="auto"></td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>
+<p><code>myJSON["person"]["name"]</code> 先取出"person"这个键对应的值</p>
+</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>
+<p><code>{"name": "Tom", "role": "Teaching", "lucky": [42, 13, 3.141]}</code></p>
+</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>
+<p>接着找到name，输出Tom</p>
+</li>
+<li data-line="4" dir="auto"><span class="list-bullet"></span><span class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>
+<p>使用场景：</p>
+<ul class="has-list-bullet">
+<li data-line="5" dir="auto"><span class="list-bullet"></span>网络数据传输 API调用</li>
+<li data-line="6" dir="auto"><span class="list-bullet"></span>不同程序之间交换数据</li>
+<li data-line="7" dir="auto"><span class="list-bullet"></span>配置文件</li>
+</ul>
+</li>
+</ul></div><div class="el-h2"><h2 data-heading="Markup Languages 标记语言" dir="auto" class="heading" id="Markup_Languages_标记语言_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Markup Languages 标记语言</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>不改变内容前提下给内容额外加信息</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>可以控制样式/结构</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>机器可以解析内容</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>同上</li>
+</ul></div><div class="el-h3"><h3 data-heading="HTML" dir="auto" class="heading" id="HTML_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>HTML</h3></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>分为三种：</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">类型</th>
+<th dir="ltr">作用</th>
+<th dir="ltr">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">结构 structure</td>
+<td dir="ltr">文档骨架</td>
+<td dir="ltr"><code>&lt;body&gt;, &lt;h1&gt;</code></td>
+</tr>
+<tr>
+<td dir="ltr">表现 presentation</td>
+<td dir="ltr">外观</td>
+<td dir="ltr"><code>&lt;b&gt;, &lt;i&gt;</code> (粗体、斜体)</td>
+</tr>
+<tr>
+<td dir="ltr">语义 semantics</td>
+<td dir="ltr">含义</td>
+<td dir="ltr"><code>&lt;strong&gt;, &lt;em&gt;</code> (强调）</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span><code>&lt;body&gt;, &lt;b&gt;</code>虽然显示上都是粗体，但是语义不同，<code>&lt;strong&gt;</code>表示很重要，搜索引擎可以理解，<code>&lt;b&gt;</code>只是单纯变粗，提倡用语义标签</li>
+</ul></div><div class="el-h3"><h3 data-heading="ink 互动小说标记语言" dir="auto" class="heading" id="ink_互动小说标记语言_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>ink 互动小说标记语言</h3></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>用于网页互动小说，另一种超文本标记语言</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>可以和Unity集成</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>核心概念</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">概念</th>
+<th dir="ltr">语法</th>
+<th dir="ltr">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Knot 结</td>
+<td dir="ltr"><code>=== london ===</code></td>
+<td dir="ltr">标签/章节，下面的内容属于这个 knot，直到下一个 knot</td>
+</tr>
+<tr>
+<td dir="ltr">Divert 转向</td>
+<td dir="ltr"><code>-&gt; london</code></td>
+<td dir="ltr">类似 <code>GOTO</code>，跳转到对应 knot</td>
+</tr>
+<tr>
+<td dir="ltr">Choice 选项</td>
+<td dir="ltr"><code>+ "Around the world, Monsieur?"</code></td>
+<td dir="ltr">让读者选择，选项及其下面的文字会成为故事一部分</td>
+</tr>
+</tbody>
+</table></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#COMP1314-Data_management_I_0" data-path="#COMP1314-Data_management_I_0"><div class="tree-item-inner heading-link" heading-name="COMP1314-Data management I">COMP1314-Data management I</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1314/comp1314-data-management-i.html#Unix_0" data-path="#Unix_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Unix">Unix</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Piping_管道_0" data-path="#Piping_管道_0"><div class="tree-item-inner heading-link" heading-name="Piping 管道">Piping 管道</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Filter_0" data-path="#Filter_0"><div class="tree-item-inner heading-link" heading-name="Filter">Filter</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#grep_0" data-path="#grep_0"><div class="tree-item-inner heading-link" heading-name="grep">grep</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#sed_流编辑器_0" data-path="#sed_流编辑器_0"><div class="tree-item-inner heading-link" heading-name="sed 流编辑器">sed 流编辑器</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#awk_文本数据处理_0" data-path="#awk_文本数据处理_0"><div class="tree-item-inner heading-link" heading-name="awk 文本数据处理">awk 文本数据处理</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Regular_expression_0" data-path="#Regular_expression_0"><div class="tree-item-inner heading-link" heading-name="Regular expression">Regular expression</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Wildcards_通配符_0" data-path="#Wildcards_通配符_0"><div class="tree-item-inner heading-link" heading-name="Wildcards 通配符">Wildcards 通配符</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Permissions_文件权限_0" data-path="#Permissions_文件权限_0"><div class="tree-item-inner heading-link" heading-name="Permissions 文件权限">Permissions 文件权限</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Process_management_流程管理_0" data-path="#Process_management_流程管理_0"><div class="tree-item-inner heading-link" heading-name="Process management 流程管理">Process management 流程管理</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Run_job运行程序_0" data-path="#Run_job运行程序_0"><div class="tree-item-inner heading-link" heading-name="Run job运行程序">Run job运行程序</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Command_ps_0" data-path="#Command_ps_0"><div class="tree-item-inner heading-link" heading-name="Command: ps">Command: ps</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Command：top_0" data-path="#Command：top_0"><div class="tree-item-inner heading-link" heading-name="Command：top">Command：top</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Command：kill_0" data-path="#Command：kill_0"><div class="tree-item-inner heading-link" heading-name="Command：kill">Command：kill</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Run_in_background_前后台切换_0" data-path="#Run_in_background_前后台切换_0"><div class="tree-item-inner heading-link" heading-name="Run in background 前后台切换">Run in background 前后台切换</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Command：Screen_0" data-path="#Command：Screen_0"><div class="tree-item-inner heading-link" heading-name="Command：Screen">Command：Screen</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1314/comp1314-data-management-i.html#Data_exchange_0" data-path="#Data_exchange_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Data exchange">Data exchange</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#CSV_and_TSV_0" data-path="#CSV_and_TSV_0"><div class="tree-item-inner heading-link" heading-name="CSV and TSV">CSV and TSV</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#CSV_defect_CSV缺陷_0" data-path="#CSV_defect_CSV缺陷_0"><div class="tree-item-inner heading-link" heading-name="CSV defect CSV缺陷">CSV defect CSV缺陷</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#CSV_and_TSV不够用的场景_0" data-path="#CSV_and_TSV不够用的场景_0"><div class="tree-item-inner heading-link" heading-name="CSV and TSV不够用的场景">CSV and TSV不够用的场景</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Human-readable_and_Machine-readable_0" data-path="#Human-readable_and_Machine-readable_0"><div class="tree-item-inner heading-link" heading-name="Human-readable and Machine-readable">Human-readable and Machine-readable</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Relation_关系_0" data-path="#Relation_关系_0"><div class="tree-item-inner heading-link" heading-name="Relation 关系">Relation 关系</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Markup_标记_从人读到机器读_0" data-path="#Markup_标记_从人读到机器读_0"><div class="tree-item-inner heading-link" heading-name="Markup 标记 从人读到机器读">Markup 标记 从人读到机器读</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#YAML_0" data-path="#YAML_0"><div class="tree-item-inner heading-link" heading-name="YAML">YAML</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#Json_0" data-path="#Json_0"><div class="tree-item-inner heading-link" heading-name="Json">Json</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-1/comp1314/comp1314-data-management-i.html#Markup_Languages_标记语言_0" data-path="#Markup_Languages_标记语言_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="Markup Languages 标记语言">Markup Languages 标记语言</div></a><div class="tree-item-children"><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#HTML_0" data-path="#HTML_0"><div class="tree-item-inner heading-link" heading-name="HTML">HTML</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-item-self is-clickable" href="study/year-1/comp1314/comp1314-data-management-i.html#ink_互动小说标记语言_0" data-path="#ink_互动小说标记语言_0"><div class="tree-item-inner heading-link" heading-name="ink 互动小说标记语言">ink 互动小说标记语言</div></a><div class="tree-item-children"></div></div></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>

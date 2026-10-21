@@ -1,0 +1,346 @@
+<!DOCTYPE html> <html lang="zh-cn"><head>
+<title>1. Computer system and peripheral Hardware</title>
+<base href="../../../..">
+<meta name="pathname" content="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html">
+<meta name="description" content="Dennis - 1. Computer system and peripheral Hardware">
+<meta property="og:title" content="1. Computer system and peripheral Hardware">
+<meta property="og:description" content="Dennis - 1. Computer system and peripheral Hardware">
+<meta property="og:type" content="website">
+<meta property="og:url" content="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html">
+<meta property="og:image" content="undefined">
+<meta charset="UTF-8"><meta property="og:site_name" content="Dennis"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="site-lib/rss.xml"><script async="" id="webpage-script" src="site-lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-wasm-script" src="site-lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="site-lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="site-lib/media/favicon.png"><link rel="stylesheet" href="site-lib/styles/obsidian.css"><link rel="stylesheet" href="site-lib/styles/theme.css"><link rel="preload" href="site-lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="site-lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="site-lib/styles/main-styles.css"></noscript><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-vertical-spacing:1.3em;--sidebar-margin:12px}:root{background-color:#202124}.sidebar{height:100%;font-size:14px;z-index:10;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));position:relative;overflow:hidden;overflow:clip;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}#left-sidebar{left:0}#right-sidebar{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}.sidebar.floating{position:absolute}.sidebar .leaf-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .leaf-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}#left-sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}#right-sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar #left-sidebar-content,.sidebar #right-sidebar-content{contain:none!important;container-type:normal!important;animation:none!important}.sidebar:has(.leaf-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:calc(2.3em + 2 * var(--sidebar-margin));width:var(--sidebar-width);padding:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}#left-sidebar .sidebar-topbar{left:0;flex-direction:row;border-top-right-radius:var(--radius-l)}#right-sidebar .sidebar-topbar{right:0;flex-direction:row-reverse;border-top-left-radius:var(--radius-l)}#left-sidebar .topbar-content{margin-right:calc(2.3em + var(--sidebar-margin));flex-direction:row}#right-sidebar .topbar-content{margin-left:calc(2.3em + var(--sidebar-margin));flex-direction:row-reverse}.topbar-content{overflow:hidden visible;overflow:clip visible;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:2px!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}#left-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}#right-sidebar .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.feature-title{margin-left:1px;text-transform:uppercase;letter-spacing:.06em;margin-top:.75em;margin-bottom:.75em}.feature-header{display:flex;align-items:center;padding-top:0;font-size:1em;padding-left:0}body.floating-sidebars .sidebar{position:absolute}body{transition:background-color var(--color-fade-speed) ease-in-out}#navbar:not(:empty){display:flex;align-items:center;justify-content:space-between;padding:.5em 1em;width:100%}#main{display:flex;flex-direction:column;height:100%;width:100%;align-items:stretch;justify-content:center}#main-horizontal{display:flex;flex-direction:row;flex-grow:1;width:100%;align-items:stretch;justify-content:center}#center-content{flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0!important;transition:opacity .2s ease-in-out;pointer-events:none}#center-content>.obsidian-document{padding-left:2em;padding-right:1em;margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}body #center-content>.obsidian-document>.markdown-preview-sizer{padding-bottom:80vh;width:100%;max-width:var(--line-width);flex-basis:var(--line-width);transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document>div{width:100%!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}#center-content>.obsidian-document:not([data-type=markdown]).embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}#center-content>.obsidian-document:not([data-type=markdown]).embed>*{max-width:100%;max-height:100%;object-fit:contain}:not(h1,h2,h3,h4,h5,h6,li):has(> :is(.math,table)){overflow-x:auto!important}#center-content>.obsidian-document:not([data-type=markdown]){overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.obsidian-document[data-type=attachment]{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.obsidian-document[data-type=attachment]>*{outline:0;border:none;box-shadow:none}.obsidian-document[data-type=attachment] :is(img){max-width:90%;max-height:90%;object-fit:contain}.obsidian-document[data-type=attachment]>:is(audio){width:100%;max-width:min(90%,var(--line-width))}.obsidian-document[data-type=attachment]>:is(embed,iframe,video){width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.canvas-wrapper>:is(.header,.footer){z-index:100;position:absolute;display:flex;justify-content:center;flex-direction:column;width:100%;align-items:center}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){let e=document.querySelectorAll("link[itemprop='include']");for(const t of e){let e=t.getAttribute("href");try{let o="";if(e.startsWith("https:")||e.startsWith("http:")||"file:"!=window.location.protocol){const n=await fetch(e);if(!n.ok){console.log("Could not include file: "+e),t?.remove();continue}o=await n.text()}else{const t=document.getElementById(btoa(encodeURI(e)));if(t){const e=JSON.parse(decodeURI(atob(t.getAttribute("value")??"")));o=e?.data??""}}let n=document.createRange().createContextualFragment(o);t.before(n),t.remove(),console.log("Included text: "+o),console.log("Included file: "+e)}catch(o){t?.remove(),console.log("Could not include file: "+e,o);continue}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script")));!function e(n){let l=o[n],c=n+1;l?(l&&"true"!=l.getAttribute("loaded")||n<o.length&&e(c),n<o.length&&l.addEventListener("load",(()=>e(c)))):n<o.length?e(c):t()}(0)}</script></head><body class="publish css-settings-manager mod-macos is-frameless is-hidden-frameless obsidian-app show-inline-title is-floating-nav auto-full-screen show-ribbon show-view-header is-focused"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="parsed-feature-container" style="display: contents;"><link itemprop="include" href="site-lib/html/custom-head-content-content.html"></div><div id="main"><div id="navbar"></div><div id="main-horizontal"><div id="left-content" class="leaf" style="--sidebar-width: var(--sidebar-width-left);"><div id="left-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><div id="search-container"><div id="search-wrapper"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div aria-label="Clear search" id="search-clear-button"></div></div></div></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"><link itemprop="include" href="site-lib/html/file-tree-content.html"></div></div><script defer="">let ls = document.querySelector("#left-sidebar"); ls.classList.toggle("is-collapsed", window.innerWidth < 768); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div></div><div id="center-content" class="leaf"><div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event allow-fold-headings allow-fold-lists show-indentation-guide show-properties is-readable-line-width" data-type="markdown"><style id="MJX-CHTML-styles"></style><pre class="frontmatter language-yaml" style="display: none;"><code class="language-yaml is-loaded"><span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token datetime number">2025-09-20</span>
+<span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 计算机系统及硬件
+<span class="token key atrule">tags</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> computersystem</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre><div class="markdown-preview-sizer markdown-preview-section"><div class="header"><h1 class="page-title heading inline-title" id="1._Computer_system_and_peripheral_Hardware_0">1. Computer system and peripheral Hardware</h1><div class="data-bar"></div></div><div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px;"></div><div class="el-h1"><h1 data-heading="计算机发展历程" dir="auto" class="heading" id="计算机发展历程_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>计算机发展历程</h1></div><div class="el-h2"><h2 data-heading="第一代 1940-1956 真空管 Vacuum Tubes" dir="auto" class="heading" id="第一代_1940-1956_真空管_Vacuum_Tubes_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>第一代 1940-1956 真空管 Vacuum Tubes</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>ENICA（18000根真空管，27吨，1800平方英尺）</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>极大、极耗电，输入用打孔纸带和磁带</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>编程语言：机器语言machine code</li>
+</ul></div><div class="el-h2"><h2 data-heading="第二代 1957-1963 晶体管 Transistors" dir="auto" class="heading" id="第二代_1957-1963_晶体管_Transistors_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>第二代 1957-1963 晶体管 Transistors</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>比真空管更小、更快、更少热量</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>引入CPU，内存，I/O单元</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>编程语言：FORTRAN(1956), ALGOL(1958), COBOL(1959)</li>
+</ul></div><div class="el-h2"><h2 data-heading="第三代 1964-1971 集成电路 Integrated Circuits(IC)" dir="auto" class="heading" id="第三代_1964-1971_集成电路_Integrated_Circuits(IC)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>第三代 1964-1971 集成电路 Integrated Circuits(IC)</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>一片硅芯片包含多个晶体管/寄存器/电容</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>更快更可靠，内存更大</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>高级语言BASIC，小型机minicomputer出现，例如IBM 360，IBM370</li>
+</ul></div><div class="el-h2"><h2 data-heading="第四代 1971-至今 微处理器 Microprocessor" dir="auto" class="heading" id="第四代_1971-至今_微处理器_Microprocessor_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>第四代 1971-至今 微处理器 Microprocessor</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>一个芯片完成所有运算、逻辑、控制功能</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>体积小，可携带，个人电脑和计算机网络诞生</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>存储：RAM、ROM</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>例如IBM PC，Apple mac</li>
+</ul></div><div class="el-h2"><h2 data-heading="第五代 未来 人工智能 Artificial Intelligence(AI)" dir="auto" class="heading" id="第五代_未来_人工智能_Artificial_Intelligence(AI)_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>第五代 未来 人工智能 Artificial Intelligence(AI)</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>理解自然语言，语音识别，模拟人类行为</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>速度最快，尺寸最小</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>I/o: 触屏、触摸板、语音、扫描、打印机等</li>
+<li data-line="3" dir="auto"><span class="list-bullet"></span>例如桌面、笔记本、平板、智能手机</li>
+</ul></div><div class="el-h1"><h1 data-heading="计算机类型分类" dir="auto" class="heading" id="计算机类型分类_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>计算机类型分类</h1></div><div class="el-h2"><h2 data-heading="微型计算机 Micro Computers" dir="auto" class="heading" id="微型计算机_Micro_Computers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>微型计算机 Micro Computers</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>单CPU，单用户。家庭/办公/学校使用</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">类型</th>
+<th dir="ltr">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Personal Computer(PC)</td>
+<td dir="ltr">个人使用的微型计算机</td>
+</tr>
+<tr>
+<td dir="ltr">Laptop</td>
+<td dir="ltr">小型、可携带的PC</td>
+</tr>
+<tr>
+<td dir="ltr">Workstation</td>
+<td dir="ltr">供商业专业人士使用的高性能网络PC</td>
+</tr>
+<tr>
+<td dir="ltr">Network Server</td>
+<td dir="ltr">协调网络通信和资源共享的更强大微型计算机</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="小型计算机 Mini Computers" dir="auto" class="heading" id="小型计算机_Mini_Computers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>小型计算机 Mini Computers</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>比主机便宜/功能少，但比PC/贵功能强</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>又称mid-servers</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>用于科学/工程计算、商业事务处理、文件处理、数据库管理</li>
+</ul></div><div class="el-h2"><h2 data-heading="大型主机 Mainframe Computers" dir="auto" class="heading" id="大型主机_Mainframe_Computers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>大型主机 Mainframe Computers</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>大型机构使用，处理大批量关键任务</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>例如人口普查，行业规划，大规模事务处理</li>
+</ul></div><div class="el-h2"><h2 data-heading="超级计算机 Supercomputers" dir="auto" class="heading" id="超级计算机_Supercomputers_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>超级计算机 Supercomputers</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>专门解决复杂科学和工业问题</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>例如气候研究，天气预报，基因组测序</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>提供极大的计算能力</li>
+</ul></div><div class="el-h1"><h1 data-heading="硬件功能" dir="auto" class="heading" id="硬件功能_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>硬件功能</h1></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">功能</th>
+<th dir="ltr">说明</th>
+<th dir="ltr">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Input 输入</td>
+<td dir="ltr">接受输入数据，转换为电子形式</td>
+<td dir="ltr">键盘，鼠标，光学扫描仪</td>
+</tr>
+<tr>
+<td dir="ltr">Processing 处理</td>
+<td dir="ltr">处理接收到的数据</td>
+<td dir="ltr">CPU（含ALU算数逻辑单元+Control Unit控制单元）</td>
+</tr>
+<tr>
+<td dir="ltr">Output 输出</td>
+<td dir="ltr">将处理结果以人类可读的形式呈现</td>
+<td dir="ltr">显示器、打印机</td>
+</tr>
+<tr>
+<td dir="ltr">Primary Storage 主存</td>
+<td dir="ltr">直接供CPU使用的内存</td>
+<td dir="ltr">RAM，ROM</td>
+</tr>
+<tr>
+<td dir="ltr">Secondary Storage 辅存</td>
+<td dir="ltr">长期保存数据</td>
+<td dir="ltr">磁盘、光盘</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">控制Control：CPU中的控制单元（Control Unit）负责控制计算机其他所有组件</p></div><div class="el-h2"><h2 data-heading="处理速度" dir="auto" class="heading" id="处理速度_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>处理速度</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">时间单位</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Millisecond 毫秒</td>
+<td dir="ltr">千分之一秒</td>
+</tr>
+<tr>
+<td dir="ltr">Microsecond 微秒</td>
+<td dir="ltr">百万分之一秒</td>
+</tr>
+<tr>
+<td dir="ltr">Nanosecond 纳秒</td>
+<td dir="ltr">十亿分之一秒</td>
+</tr>
+<tr>
+<td dir="ltr">Picosecond 皮秒</td>
+<td dir="ltr">百亿分之一秒</td>
+</tr>
+</tbody>
+</table></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">速度单位</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">MIPS</td>
+<td dir="ltr">百万条指令/秒</td>
+</tr>
+<tr>
+<td dir="ltr">Teraflops</td>
+<td dir="ltr">万亿浮点运算/秒（超级计算机）</td>
+</tr>
+<tr>
+<td dir="ltr">MHz 兆赫</td>
+<td dir="ltr">百万次循环/秒</td>
+</tr>
+<tr>
+<td dir="ltr">GHz 吉赫</td>
+<td dir="ltr">十亿次循环/秒</td>
+</tr>
+</tbody>
+</table></div><div class="el-h1"><h1 data-heading="外部设备" dir="auto" class="heading" id="外部设备_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>外部设备</h1></div><div class="el-h2"><h2 data-heading="什么是外部设备" dir="auto" class="heading" id="什么是外部设备_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>什么是外部设备</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>所有输入，输出和辅助存储设备的统称。是计算系统的一部分，但不是CPU本身</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>联机设备(Online)：与CPU分离但电子连接并受其控制（外部设备Peripherals属于此类）</li>
+<li data-line="2" dir="auto"><span class="list-bullet"></span>脱机设备(Offline)：与CPU分离且不受其控制</li>
+</ul></div><div class="el-h1"><h1 data-heading="输入技术" dir="auto" class="heading" id="输入技术_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>输入技术</h1></div><div class="el-h2"><h2 data-heading="键盘与GUI" dir="auto" class="heading" id="键盘与GUI_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>键盘与GUI</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>键盘是最广泛使用的输入设备。图形用户界面（GUI）通过图标、菜单、按钮进行选择操作、</li>
+</ul></div><div class="el-h2"><h2 data-heading="指向设备 Pointing Devices" dir="auto" class="heading" id="指向设备_Pointing_Devices_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>指向设备 Pointing Devices</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">设备</th>
+<th dir="ltr">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Mouse</td>
+<td dir="ltr">电子鼠标</td>
+</tr>
+<tr>
+<td dir="ltr">Trackball</td>
+<td dir="ltr">固定不动，滚球移动光标</td>
+</tr>
+<tr>
+<td dir="ltr">Pointing Stick</td>
+<td dir="ltr">键盘上的橡皮头，通过压力移动光标</td>
+</tr>
+<tr>
+<td dir="ltr">Touchpad</td>
+<td dir="ltr">手指在矩形感应面上移动光标</td>
+</tr>
+<tr>
+<td dir="ltr">Touch Screen</td>
+<td dir="ltr">红外线/声波/电流网络，触碰即断开</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="笔试输入 Pen-based Computing" dir="auto" class="heading" id="笔试输入_Pen-based_Computing_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>笔试输入 Pen-based Computing</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>用于平板电脑和PDA。压感层在液晶屏下方，配合软件数字化手写/绘图</li>
+</ul></div><div class="el-h2"><h2 data-heading="语音识别 Speech Recognition" dir="auto" class="heading" id="语音识别_Speech_Recognition_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>语音识别 Speech Recognition</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">类别</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Discrete</td>
+<td dir="ltr">那个单词之间需停顿</td>
+</tr>
+<tr>
+<td dir="ltr">Continuous</td>
+<td dir="ltr">按正常语速说话</td>
+</tr>
+</tbody>
+</table></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>系统将语音与音频模式库比对。需要Training训练识别个人声音或Speaker Independent（无需训练）</li>
+</ul></div><div class="el-h2"><h2 data-heading="光学扫描 Optical Scanning" dir="auto" class="heading" id="光学扫描_Optical_Scanning_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>光学扫描 Optical Scanning</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>读取文字或图形并转为数字输入</li>
+</ul></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">类型</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Flatbed scanner 平板扫描仪</td>
+<td dir="ltr">扫描文档和图像</td>
+</tr>
+<tr>
+<td dir="ltr">OCR 光学字符识别</td>
+<td dir="ltr">读取字符和条码，用于商品标签、邮件分拣、试卷评分</td>
+</tr>
+<tr>
+<td dir="ltr">Wand 扫描棒</td>
+<td dir="ltr">读取条形码如UPC</td>
+</tr>
+</tbody>
+</table></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">其他输入技术</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Magnetic stripe 磁条</td>
+<td dir="ltr">读取信用卡磁条</td>
+</tr>
+<tr>
+<td dir="ltr">Smart card 智能卡</td>
+<td dir="ltr">内置微处理器芯片和内存信用卡</td>
+</tr>
+<tr>
+<td dir="ltr">Digital Camera数码相机</td>
+<td dir="ltr">数字图像输入</td>
+</tr>
+<tr>
+<td dir="ltr">MICR 磁墨字符识别</td>
+<td dir="ltr">银行支票底部磁性墨水印刷的账号</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="输出技术" dir="auto" class="heading" id="输出技术_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>输出技术</h2></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">视频显示Video Displays</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">CRT 阴极射线管</td>
+<td dir="ltr">类似电视，多数台式电脑屏幕</td>
+</tr>
+<tr>
+<td dir="ltr">LCD 液晶显示</td>
+<td dir="ltr">笔记本/PAD/部分 PC</td>
+</tr>
+</tbody>
+</table></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">打印输出 Printed Output</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Inkjet 喷墨打印机</td>
+<td dir="ltr">墨水喷射到纸上</td>
+</tr>
+<tr>
+<td dir="ltr">Laser 激光打印机</td>
+<td dir="ltr">静电感光过程，类似复印机</td>
+</tr>
+</tbody>
+</table></div><div class="el-h1"><h1 data-heading="存储技术" dir="auto" class="heading" id="存储技术_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>存储技术</h1></div><div class="el-h2"><h2 data-heading="二进制表示 Binary Representation" dir="auto" class="heading" id="二进制表示_Binary_Representation_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>二进制表示 Binary Representation</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>计算机通过信号的有无（ON=1，OFF=2）处理和存储数据</li>
+</ul></div><div class="el-h2"><h2 data-heading="Bit与Byte" dir="auto" class="heading" id="Bit与Byte_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>Bit与Byte</h2></div><div class="el-p"><p dir="auto">Bit（位） = 最小数据单元，0或1<br>
+Byte（字节）= 8个bit，代表一个字符或数字</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th dir="ltr">存储容量单位</th>
+<th dir="auto"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td dir="ltr">Byte</td>
+<td dir="ltr">8 bits</td>
+</tr>
+<tr>
+<td dir="ltr">KB</td>
+<td dir="ltr">约一千bytes</td>
+</tr>
+<tr>
+<td dir="ltr">MB</td>
+<td dir="ltr">约一百万bytes</td>
+</tr>
+<tr>
+<td dir="ltr">GB</td>
+<td dir="ltr">约十亿Bytes</td>
+</tr>
+<tr>
+<td dir="ltr">TB</td>
+<td dir="ltr">约万亿bytes</td>
+</tr>
+<tr>
+<td dir="ltr">PB</td>
+<td dir="ltr">约千万亿bytes</td>
+</tr>
+</tbody>
+</table></div><div class="el-h2"><h2 data-heading="直接访问 VS 顺序访问" dir="auto" class="heading" id="直接访问_VS_顺序访问_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>直接访问 VS 顺序访问</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>Direct Access（直接/随机）：每个位置有唯一的地址，访问时间相同。例：半导体内存芯片、磁盘。</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>Sequential Access（顺序）：必须按顺序读取。例：磁带Magnetic tape</li>
+</ul></div><div class="el-h2"><h2 data-heading="半导体内存 Semiconductor" dir="auto" class="heading" id="半导体内存_Semiconductor_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span>半导体内存 Semiconductor</h2></div><div class="el-ul"><ul class="has-list-bullet">
+<li data-line="0" dir="auto"><span class="list-bullet"></span>RAM（随机存取）= 易失性volatile，断电丢失，可读写，最常用主存</li>
+<li data-line="1" dir="auto"><span class="list-bullet"></span>ROM（只读）= 永久存储，只读不写，制造时烧录程序，称为固件firmware</li>
+</ul></div><div class="footer"><div class="data-bar"></div></div></div></div></div><div id="right-content" class="leaf" style="--sidebar-width: var(--sidebar-width-right);"><div id="right-sidebar" class="sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme-toggle-input" id=""><input class="theme-toggle-input" type="checkbox" id="theme-toggle-input"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content-wrapper"><div id="right-sidebar-content" class="leaf-content"><div class="graph-view-wrapper"><div class="feature-header"><div class="feature-title">Interactive Graph</div></div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<div class="graph-icon graph-global" role="button" aria-label="Global Graph" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-git-fork"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div id="outline" class=" tree-container"><div class="feature-header"><div class="feature-title">Table Of Contents</div><button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-item" data-depth="1"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#1._Computer_system_and_peripheral_Hardware_0" data-path="#1._Computer_system_and_peripheral_Hardware_0"><div class="tree-item-inner heading-link" heading-name="1. Computer system and peripheral Hardware">1. Computer system and peripheral Hardware</div></a><div class="tree-item-children"></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#计算机发展历程_0" data-path="#计算机发展历程_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="计算机发展历程">计算机发展历程</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#第一代_1940-1956_真空管_Vacuum_Tubes_0" data-path="#第一代_1940-1956_真空管_Vacuum_Tubes_0"><div class="tree-item-inner heading-link" heading-name="第一代 1940-1956 真空管 Vacuum Tubes">第一代 1940-1956 真空管 Vacuum Tubes</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#第二代_1957-1963_晶体管_Transistors_0" data-path="#第二代_1957-1963_晶体管_Transistors_0"><div class="tree-item-inner heading-link" heading-name="第二代 1957-1963 晶体管 Transistors">第二代 1957-1963 晶体管 Transistors</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#第三代_1964-1971_集成电路_Integrated_Circuits(IC)_0" data-path="#第三代_1964-1971_集成电路_Integrated_Circuits(IC)_0"><div class="tree-item-inner heading-link" heading-name="第三代 1964-1971 集成电路 Integrated Circuits(IC)">第三代 1964-1971 集成电路 Integrated Circuits(IC)</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#第四代_1971-至今_微处理器_Microprocessor_0" data-path="#第四代_1971-至今_微处理器_Microprocessor_0"><div class="tree-item-inner heading-link" heading-name="第四代 1971-至今 微处理器 Microprocessor">第四代 1971-至今 微处理器 Microprocessor</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#第五代_未来_人工智能_Artificial_Intelligence(AI)_0" data-path="#第五代_未来_人工智能_Artificial_Intelligence(AI)_0"><div class="tree-item-inner heading-link" heading-name="第五代 未来 人工智能 Artificial Intelligence(AI)">第五代 未来 人工智能 Artificial Intelligence(AI)</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#计算机类型分类_0" data-path="#计算机类型分类_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="计算机类型分类">计算机类型分类</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#微型计算机_Micro_Computers_0" data-path="#微型计算机_Micro_Computers_0"><div class="tree-item-inner heading-link" heading-name="微型计算机 Micro Computers">微型计算机 Micro Computers</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#小型计算机_Mini_Computers_0" data-path="#小型计算机_Mini_Computers_0"><div class="tree-item-inner heading-link" heading-name="小型计算机 Mini Computers">小型计算机 Mini Computers</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#大型主机_Mainframe_Computers_0" data-path="#大型主机_Mainframe_Computers_0"><div class="tree-item-inner heading-link" heading-name="大型主机 Mainframe Computers">大型主机 Mainframe Computers</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#超级计算机_Supercomputers_0" data-path="#超级计算机_Supercomputers_0"><div class="tree-item-inner heading-link" heading-name="超级计算机 Supercomputers">超级计算机 Supercomputers</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#硬件功能_0" data-path="#硬件功能_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="硬件功能">硬件功能</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#处理速度_0" data-path="#处理速度_0"><div class="tree-item-inner heading-link" heading-name="处理速度">处理速度</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#外部设备_0" data-path="#外部设备_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="外部设备">外部设备</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#什么是外部设备_0" data-path="#什么是外部设备_0"><div class="tree-item-inner heading-link" heading-name="什么是外部设备">什么是外部设备</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#输入技术_0" data-path="#输入技术_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="输入技术">输入技术</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#键盘与GUI_0" data-path="#键盘与GUI_0"><div class="tree-item-inner heading-link" heading-name="键盘与GUI">键盘与GUI</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#指向设备_Pointing_Devices_0" data-path="#指向设备_Pointing_Devices_0"><div class="tree-item-inner heading-link" heading-name="指向设备 Pointing Devices">指向设备 Pointing Devices</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#笔试输入_Pen-based_Computing_0" data-path="#笔试输入_Pen-based_Computing_0"><div class="tree-item-inner heading-link" heading-name="笔试输入 Pen-based Computing">笔试输入 Pen-based Computing</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#语音识别_Speech_Recognition_0" data-path="#语音识别_Speech_Recognition_0"><div class="tree-item-inner heading-link" heading-name="语音识别 Speech Recognition">语音识别 Speech Recognition</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#光学扫描_Optical_Scanning_0" data-path="#光学扫描_Optical_Scanning_0"><div class="tree-item-inner heading-link" heading-name="光学扫描 Optical Scanning">光学扫描 Optical Scanning</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#输出技术_0" data-path="#输出技术_0"><div class="tree-item-inner heading-link" heading-name="输出技术">输出技术</div></a><div class="tree-item-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="1"><a class="tree-item-self is-clickable mod-collapsible" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#存储技术_0" data-path="#存储技术_0"><div class="tree-item-icon collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><div class="tree-item-inner heading-link" heading-name="存储技术">存储技术</div></a><div class="tree-item-children"><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#二进制表示_Binary_Representation_0" data-path="#二进制表示_Binary_Representation_0"><div class="tree-item-inner heading-link" heading-name="二进制表示 Binary Representation">二进制表示 Binary Representation</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#Bit与Byte_0" data-path="#Bit与Byte_0"><div class="tree-item-inner heading-link" heading-name="Bit与Byte">Bit与Byte</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#直接访问_VS_顺序访问_0" data-path="#直接访问_VS_顺序访问_0"><div class="tree-item-inner heading-link" heading-name="直接访问 VS 顺序访问">直接访问 VS 顺序访问</div></a><div class="tree-item-children"></div></div><div class="tree-item" data-depth="2"><a class="tree-item-self is-clickable" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html#半导体内存_Semiconductor_0" data-path="#半导体内存_Semiconductor_0"><div class="tree-item-inner heading-link" heading-name="半导体内存 Semiconductor">半导体内存 Semiconductor</div></a><div class="tree-item-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector("#right-sidebar"); rs.classList.toggle("is-collapsed", window.innerWidth < 768); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></div></div></body></html>
