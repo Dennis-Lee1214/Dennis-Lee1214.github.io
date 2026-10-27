@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Webpage HTML Export 导出后的自动修复（提交时由 pre-commit hook 自动运行）：
 1. 把数学公式字体改成从 CDN 加载（插件没导出这些字体）
-2. 去掉左右侧栏（文件目录、搜索、关系图、目录）和底部反向链接，正文铺满页面
+2. 去掉左右侧栏（文件目录、搜索、关系图、目录）、底部反向链接和链接悬停预览，正文铺满页面
 手动运行：在仓库文件夹里  python3 fix_math_fonts.py
 """
 import pathlib, re
@@ -14,7 +14,7 @@ FONT = re.compile(r'url\("[^"]*?(mjx-(tex|mhc)-[a-z0-9]+\.woff2)"\)')
 
 MARK = 'id="plain-layout"'
 LAYOUT = """<style id="plain-layout">
-#left-content,#right-content,#navbar,.sidebar-collapse-icon,.footer,.backlinks{display:none!important}
+#left-content,#right-content,#navbar,.sidebar-collapse-icon,.footer,.backlinks,.hover-popover{display:none!important}
 #main-horizontal,#center-content{width:100%!important;max-width:none!important}
 body,.obsidian-document,.markdown-preview-view{--line-width:100%!important;--file-line-width:100%!important;--line-width-adaptive:100%!important;--max-width:100%!important}
 .markdown-preview-sizer{max-width:none!important;width:100%!important}
