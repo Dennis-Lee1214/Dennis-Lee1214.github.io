@@ -1,4 +1,170 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dennis]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Dennis</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 21 Oct 2026 13:49:47 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 21 Oct 2026 13:49:46 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[index]]></title><description><![CDATA[
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dennis]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Dennis</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 29 Oct 2026 13:47:09 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 29 Oct 2026 13:47:09 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[COMP1314-Data management I]]></title><description><![CDATA[ 每个进程(process)都有三个文件描述符 STDIN - input from the user 输入 STOUT - normal output 输出 STDERR - Error output 错误输出 Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入 Piping a program's output into another program: program_1 | program_2 program_1's output goes into program2 前一个程序的输出变为后一个的输入 Pushing a program's output into a file: program_1 &gt; file.txt The output of program_1 will go into file.txt 输出写入内容 program_1 &gt;&gt; file.txt The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾 Get input from a file to put into a program: program_1 &lt; input.txt program_1 gets input from input.txt 从文件读取输入 A filter is a program that takes input, changes it in some way, then outputs it again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序
+They can be used just like in piping. 可以像管道一样使用
+some filters: 搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match 结构Example:
+grep [opentions] pattern [file...]
+"-i"意思是忽略大小写
+"-c"意思是找匹配了多少行，不是匹配本身
+"error"意思是找含error的行
+"-o"意思是只返回行中匹配的部分，不返回整行 grep&nbsp;error&nbsp;dummyerror.log&nbsp; # 找含 error 的行&nbsp; grep&nbsp;-i&nbsp;error&nbsp;dummyerror.log&nbsp; # -i：忽略大小写&nbsp; grep&nbsp;-c&nbsp;Manhattan&nbsp;file.csv&nbsp; # -c：直接数匹配了多少行 工作方式：读取输入 → 按命令修改 → 把结果输出到标准输出 结构Example:
+sed [options] command [file ...] 最常用作替换文本
+基本格式： s/要查找的内容/替换成的内容/标志 实际例子 1： 在名为“file”的文件中将“abc”转换为“cba”
+Sed 's/abc/cba/g' ./file
+结尾的g代表全局，不加g的话就会只替换第一个出现的 实际例子 2： echo Hello World | sed "s/Hello/Hi/I"
+输出Hi World
+结尾的I代表忽略大小写 实际例子 3: cat sed-example-delete.txt | sed '/Run/d'
+这个是清理数据，删除所有包含Run的行 适合分析表格数据 record 记录：默认每一行就是一条记录（默认分隔符是换行 \n）
+field 字段：每条记录按空白切成若干字段，用 $1、$2、$3… 访问；$0 表示整行
+结构Example： awk 'BEGIN { 开始前执行一次 } { 每行都执行 } END { 结束后执行一次 }' 实际例子 1: awk 'BEGIN { print "File\tOwner" } { print $9, "\t", $3 } END { print "done" }'
+意思为ls -l 输出中 $9 是文件名，$3 是所有者，所以结果是先打印表头 File Owner，再逐行打印文件名和所有者，最后打印 done 实际例子 2： awk ' {print $1,$3} '
+意思为print第一和第三列 <img alt="截屏2026-10-11 18.02.41.png" src="image/截屏2026-10-11-18.02.41.png" target="_self"><br><img alt="截屏2026-10-16 15.01.09.png" src="image/截屏2026-10-16-15.01.09.png" target="_self">
+通配符可以组合使用 ls *.??? | wc -l：统计扩展名恰好为3个字符的文件数
+ls ?.* | wc -l：统计文件名主体只有1个字符，带任意扩展名的文件数
+ls ?.[a-c] | wc -l 统计形如单字符.a/b/c的文件数 “Chmod”命令将更改文件的权限 “Ls -l”命令将显示文件的权限 许可字符串 rwx r-x r-x 意思是 这个是可执行文件，只有所有者能修改，其他人只能读和执行
+drwxr-xr-x 意思是目录
+第一位代表文件类型 -是普通文件，d是目录
+2-4位 是user所有者的权限
+5-7位 是group的权限
+8-10位 是others其他人的权限
+r = 读 w = 写 x = 执行 - = 没有该权限 修改权限 2种方法 法1 要获取文件的权限号，请像这样排列一个表格：<br>
+<img alt="截屏2026-10-16 15.11.58.png" src="image/截屏2026-10-16-15.11.58.png" target="_self"> 如果授予权限，在表格里写1，禁止写0<br>
+<img alt="截屏2026-10-16 15.13.03.png" src="image/截屏2026-10-16-15.13.03.png" target="_self">
+现在取出三组二进制数字：111 100 100
+转换为十进制：7 4 4
+以下为每个权限组合的表格 法2 使用chmod修改权限 格式如下： chmod [人员访问][操作][权限类型][路径]
+人员： u g o a 操作：+授予 -撤销 == 直接设定
+Example: chmod g+w file 意思为 授予group的写入file的权限
+chmod u+x runme.sh 意思为 授予users 执行文件runme.sh的权限
+chmod 744 test.sh 也是可以的 所有参数类型见下表： 需要有可执行权限 chmod u+x 程序名 u = user, +x = 增加执行权限 用./前缀运行当前目录下的程序 ./helloworld.sh
+结束程序使用Ctrl-c
+Example:
+touch helloworld.sh # 创建空文件
+pico helloworld.sh # 用 pico 编辑器写内容
+cat helloworld.sh # 查看内容:#!/bin/bash + echo "Hello world!"
+./helloworld.sh # 报错:Permission denied(没有执行权限)
+chmod u+x helloworld.sh # 加上执行权限
+./helloworld.sh # 成功输出 Hello world! 使用ps[options]来查看正在运行的进程
+./helloworld.sh&amp; 结尾的&amp;意思是让任务在后台进行，不再占用终端
+终端返回 [1] 32758，[1]是job number作业编号，32758是PID ps -u 用户名 输入后会输出一以下列，含义如下表 用来查看所有进程的CPU、内存使用情况，是实时刷新的
+与ps的区别是，ps是那一刻的情况，top是实时刷新的 使用kill [options] &lt;PID&gt;来终止进程
+Example：kill -SIGTERM 1710 ./helloworld.sh &amp; # 后台运行,返回 PID 1212 ps -u dst1m17 # 找到 helloworld.sh 的 PID kill 1212 # 终止它 # 输出:[1]+ Terminated ./helloworld.sh 有两种方式 SIGTERM 可以被进程忽略，会优雅的退出（保存进度、释放资源）
+SIGKILL 强制立即终止，不能被忽略 先Ctrl-z，暂停当前进程
+bg，让进程在后台进行
+fg，把后台进程来回前台
+和&amp;的区别，&amp;是启动时就放在后台；Ctr-z+bg是运行中途才放进后台 Screen可以使即使用户断开服务器连接，让进程在screen里跑，进程仍然不会被结束
+简而言之，Screen是一个可以脱离用户登录状态而持续存在的终端会话
+Screen常用命令见下表: CSV用逗号分隔列，TSV用tab，每行一条记录
+简单，Unix工具(cut,sort,grep...)都可以直接处理 换行符问题 \r是回到行首，\n是下移一行
+Windows用\r\n, Mac Linux用\n
+单元格内excel原本有2行，导出CSV后，工具按行读得到3行 读取逗号时冲突 “The Lion, The Witch and the Wardrobe” 本身含逗号
+用 cut -d',' -f1,2,3 按逗号硬切,会把这本书名切成两列,数据错位
+CSV 的规则是含逗号的字段要用双引号包起来,但 cut 不懂引号 写入时必须加引号 导出时,含逗号的字段要加引号，否则读不对 CSV and TSV是固定行列格式，因此所有的行都必须描述同一类东西
+适合列表，例如学生名单、新闻列表
+不适合灵活格式的关系型数据库(模块，学生，成绩混在一个文件里) 机器可读的好处: Searching 搜索
+Aggregation 汇总
+Prediction 预测
+Linking 链接 建模方式: Hierarchical 层级模型:单一父节点，类似于树 查询路径: COMP1314 → Andrew Smith → Coursework 2
+<br><img alt="截屏2026-10-19 19.34.10.png" src="image/截屏2026-10-19-19.34.10.png" target="_self" style="width: 705px; max-width: 100%;"> Network 网络模型:允许多个父节点(一个学生属于多个模块),不再严格是树 <br><img alt="截屏2026-10-19 19.34.48.png" src="image/截屏2026-10-19-19.34.48.png" target="_self" style="width: 715px; max-width: 100%;"> Object- oriented面向对象：实体是类，有属性，关系用指针表示 如：Modules[...].Students[...].Marks[...]
+<br><img alt="截屏2026-10-19 19.35.10.png" src="image/截屏2026-10-19-19.35.10.png" target="_self" style="width: 658px; max-width: 100%;"> Relational 关系模型: 实体变成表(Modules,students,marks)，用id把表连起来 如：Marks[Student_ID=1, Assignment=2]
+<br><img alt="截屏2026-10-19 19.45.51.png" src="image/截屏2026-10-19-19.45.51.png" target="_self" style="width: 618px; max-width: 100%;"> markup就是在原文上加标注(元数据),原文不变，类似于批注 可以标注结构，内容，含义，方便工具处理
+Example：蚂蚁与蚂蚱 先标出title，para，quote，moral
+再加属性：&lt;story id="1"&gt;、&lt;para voice="narrator"&gt;、&lt;quote character="ant"&gt;
+层级关系也可以用标记语言表示:&lt;Module name="COMP1204"&gt;&lt;Student name="Andrew Smith"&gt;&lt;Coursework ...&gt;&lt;Mark1&gt;78%&lt;/Mark1&gt;... 全称 Yet another markup language
+常用于配置文件
+技术上是Jason的超集: 合法的Jason 基本都是合法的YAML
+语法特点: 用空白缩进表示层级 优点：容易读
+缺点：容易写错 基本结构是键值对(key: value)
+列表用-开头 Example:
+people: - person: name: Tom role: Teaching favourite numbers: - 42 - 13 - 3.141 适用场景 适合配置文件，保存简单的应用状态
+缺点是规则模糊，不同解析器不同结果 全称JavaScript Object Notation javascript的对象表示法
+为了在不同语言、程序之间互相交换数据
+json里只有: 对象Object ，列表List (一串东西)，值Value (字符串，数字，true/false，null)
+有对象但没有类
+语法 对象用{ }, 里面是"字符串键": 值，用逗号分隔
+列表用[ ]
+键必须是双引号字符串 Example:
+{ "person": { //一整个{}是对象 "name": "Tom", //值 "role": "Teaching", //值 "lucky": [42, 13, 3.141] //列表 }
+} 在各个语言中如何使用 myJSON["person"]["name"] 先取出"person"这个键对应的值 {"name": "Tom", "role": "Teaching", "lucky": [42, 13, 3.141]} 接着找到name，输出Tom 使用场景： 网络数据传输 API调用
+不同程序之间交换数据
+配置文件 不改变内容前提下给内容额外加信息
+可以控制样式/结构
+机器可以解析内容
+同上 分为三种： &lt;body&gt;, &lt;b&gt;虽然显示上都是粗体，但是语义不同，&lt;strong&gt;表示很重要，搜索引擎可以理解，&lt;b&gt;只是单纯变粗，提倡用语义标签 用于网页互动小说，另一种超文本标记语言
+可以和Unity集成
+核心概念 特点： Hierarchical（层级/树状结构）：由 tags、attributes、content 组成
+用来承载数据carry data，而不是显示数据display data，后者是HTML的作用
+没有预定义标签：标签可以自定义，比如 &lt;Pizza&gt;、&lt;plugin&gt;
+可以用 DTD 或 Schema 来规定标签的含义和结构 语法规则--辨别HTML and XML 所有元素都要有结束标签
+标签区分大小写
+元素必须正确嵌套
+文档必须有一个root element
+属性值必须加引号 Example：
+&lt;menu id="file" value="File"&gt; &lt;popup&gt; &lt;menuitem value="New" onclick="CreateNewDoc()" /&gt; &lt;menuitem value="Open" onclick="OpenDoc()" /&gt; &lt;menuitem value="Close" onclick="CloseDoc()" /&gt; &lt;/popup&gt; &lt;/menu&gt; Namespaces命名空间 由于tag是自己定义的，不同的人可能用同一个名字表示不同的东西
+例： Vancy 眼中的 &lt;Person&gt;：名字、妻子、三个孩子
+Dennis眼中的 &lt;Person&gt;：员工 ID、价值 18000、按了 647 个按钮 解决方法：加前缀
+语法：xmlns:前缀="URI"，之后就可以写 前缀:标签名 前缀localName是随便起的，URI才是namespaces唯一的名字 &lt;Employee xmlns:personal="https://buttonfactory/personal" xmlns:work="https://buttonfactory/work"&gt; &lt;personal:Person name="Joe"&gt;...&lt;/personal:Person&gt; &lt;work:Person id="106111101"&gt;...&lt;/work:Person&gt;
+&lt;/Employee&gt; Schema 模式 Schema规定了合法数据的样子，赋予结构化数据含义
+例如所有餐厅都用一个schema写菜单，方便程序直接对比
+Example: 设计披萨 schema 方法： XSD (XML Schema Definition), DTD（Document Type Definition） 只要有属性或子元素就是complex type &lt;xs:element name="Pizza"&gt; &lt;!-- 根元素 Pizza --&gt; &lt;xs:complexType&gt; &lt;!-- 有子元素+属性 → complex --&gt; &lt;xs:sequence&gt; &lt;!-- 下面三个按顺序 --&gt; &lt;xs:element name="Base" type="xs:string"/&gt; &lt;!-- 简单元素，恰好一次 --&gt; &lt;xs:element name="Cheese" type="xs:string"/&gt; &lt;xs:element name="Toppings"&gt; &lt;xs:complexType&gt; &lt;xs:sequence&gt; &lt;xs:element name="Topping" type="xs:string" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;!-- 0 到无限个 --&gt; &lt;/xs:sequence&gt; &lt;/xs:complexType&gt; &lt;/xs:element&gt; &lt;/xs:sequence&gt; &lt;xs:attribute type="xs:string" name="name"/&gt; &lt;!-- 属性放最后 --&gt; &lt;/xs:complexType&gt;
+&lt;/xs:element&gt; 关键写法： &lt;xs:sequence&gt;：子元素必须按顺序出现
+&lt;xs:all&gt;：子元素顺序任意
+两者默认 minOccurs = 1、maxOccurs = 1（即"恰好出现一次"）
+minOccurs="0" → 可选
+maxOccurs="unbounded" → 可以重复无限次
+&lt;xs:attribute&gt; 要写在 complexType 的末尾（sequence 之后）
+use="required" → 属性必填 关系数据库分为两部分： 数据库管理系统（DBMS），管理数据库的软件
+数据库（实际数据本身） 还有多种类型的数据库技术，例如： 关系：MySQL、SQLite、PostgreSQL
+非关系（NoSQL）：MongoDB，Couchbase 数据独立性：从应用程序和用户中绝缘数据的结构和存储方式
+逻辑独立性：防止逻辑结构变化（模式/属性）
+物理独立性：防止物理结构变化（如何储存） DBMS是一组计算机程序，它： 支持数据模型来表示数据库
+存储和管理大量数据
+管理交易和并发transaction management, concurrency control
+控制访问access control
+具有弹性resiliency（可以从崩溃中恢复） 数据模型是描述数据的数学概念 关系模型是使用最广泛的数据模型 每个数据模型都必须配一种数据语言，它分成两个子语言： DDL（Data Definition Language，数据定义语言） 定义结构，即模版
+类似于设计表格的表头 DML（Data Manipulation Language，数据操纵语言） 对数据进行增、删、改、查
+往表格里填数据、找数据 关系数据模型是一种使用关系relations的数据模型
+正式定义：关系 = 若干集合的笛卡尔积的子集subset of cartesian product of sets
+一个关系就是一张表
+非正式说法：关系就像表格，或者说是数据库表中记录的集合
+每一列是一个属性attribute
+每一行是一个元组Tuple
+k-ary relation k元关系是指有k列关系
+关系的5个性质 每一行代表R的一个k元组
+行的顺序无关紧要
+所有行都互不相同
+列的顺序也不重要
+每一列的含义由它的名字来表达 被SQL、Microsoft Access使用<br>
+<img alt="Pasted image 20261027124251.png" src="image/pasted-image-20261027124251.png" target="_self" style="width: 382px; max-width: 100%;">
+模式（schema）是某个 k 元关系的"蓝图"或"模板" 模式存储关系名和属性的有序序列
+DBMS 会实现这个模式，给出类型定义
+数据库中存放的是模式的实例instances，实例必须遵守模式所规定的性质 k-tuple k 元组：k 个元素的有序序列，元素可以重复。例如 (2,0,1) 是 3 元组，(a,b,a,a,c) 是 5 元组
+笛卡尔积: D₁ × D₂ × … × Dₖ：所有满足 dᵢ ∈ Dᵢ 的 k 元组 (d₁, d₂, …, dₖ) 组成的集合
+基数公式：|D₁ × D₂ × … × Dₖ| = |D₁| × |D₂| × … × |Dₖ| 例：D₁ = {0,1}，D₂ = {a,b,c,d}，则积的大小 = 2 × 4 = 8 k-ary relation k元关系 和 arity元数 一个 k-ary relation 是 k 个集合笛卡尔积的子集，k 叫做 arity 元数，其实就是"表有几列"
+一元unary：R = {0, 2, 4, …, 100}，偶数集合
+二元binary：T = {(a,b) : a 和 b 生日相同}
+三元ternary：S = {(m,n,s) : s = m + n}，例如 (1,2,3)、(5,5,10) Relation schema关系模式: 关系名+属性列表, 例如Student(ID, name)
+在真正的DBMS里，模式还会规定每个属性的数据类型, 例如 Student(int: ID, string: name) Instance实例: 符合这个模式的一个具体关系（具体的一张填好数据的表） Schema只有一个，而Instance可以有很多
+Intension 与 Extension内涵与外延 内涵可以理解为表格的结构，实例则为表格的数据 键是指能够唯一标识一条记录的属性或属性集合,关系里不允许两行在这组属性上的值完全相同
+Example: number (ID) or a first name + surname
+<br><img alt="截屏2026-10-29 15.13.53.png" src="image/截屏2026-10-29-15.13.53.png" target="_self" style="width: 496px; max-width: 100%;">
+判断{title, year, length, starName} 是键吗？是，因为这四列组合在一起没有重复的项
+判断{year, studioName} 是键吗？不是，Paramount 在 1992 年有好几行 函数依赖关系是将列映射到其他列的函数
+定义: A1,…,An → B1,…,Bm 成立 ；只要两行在A上相同，它们在B上也一定相同
+A叫做determinant决定因素 B叫做dependent set依赖集
+Example: 以上表格满足函数依赖: (first name, last name) → (age, sex) 不满足的依赖: (last name) → (age)
+-&nbsp;(last name) → (sex) 存在依赖因为每个名字+姓都有一个唯一确定的年龄+性别
+不存在依赖因为当输入Li时，会有20，99两个年龄以及M和F两个性别
+注意: 一张表只能证明 FD不成立，不能证明 FD一定成立 存在一个反例，整个表就不成立
+没有反例只能说明目前没冲突，不能确定它成立 如果存在(A1, A2, A3...) → (B1, B2, B3...)，那可以推出 (A1, A2, A3...) → B1
+&nbsp;(A1, A2, A3...) → B2
+&nbsp;(A1, A2, A3...) → B3 etc. 右侧一定是左侧的子集 (A1, A2, A3) → (A1, A2)
+(A1, A2, A3) → A3
+(A1, A2, A3) → (A1, A3) etc. 所有满足S的表都满足X → Y，就说 S 逻辑蕴含 X → Y 传递性 Transitivity：A → B，B → C ⊧ A → C
+增广律 Augmentation：A → B ⊧ AC → BC（两边同时加上同一个属性） 如果S ⊧ T 且 T ⊧ S 那 S 和 T 等价，即它们被完全相同的表所满足(满足相同的函数依赖) X 是超键，当且仅当对每个属性 Aᵢ，都有X → Aᵢ
+因此，知道了超键的值，整行其他所有列就都确定了，所以它能唯一定位一行
+全部属性的集合永远是超键，所以每个关系至少有一个超键 上述表格中 (first name, last name)就是一个superkey,因为都是唯一的
+(Last name)就不是一个superkey因为有两个Li 一种特殊的superkey，是最小的超键
+去掉任何一个属性就不再是超键
+上表中{First name} {Age} {Last name, Sex}都是候选键 {Last name, Sex}中删掉 Sex，剩 {Last name}：Li 重复，删掉 Last name，剩 {Sex}：M、F 重复 ]]></description><link>study/year-1/comp1314/comp1314-data-management-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1314/COMP1314-Data management I.md</guid><pubDate>Thu, 29 Oct 2026 13:42:36 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-29 15.13.53]]></title><description><![CDATA[<img src="image/截屏2026-10-29-15.13.53.png" target="_self">]]></description><link>image/截屏2026-10-29-15.13.53.html</link><guid isPermaLink="false">Image/截屏2026-10-29 15.13.53.png</guid><pubDate>Thu, 29 Oct 2026 07:13:55 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[index]]></title><description><![CDATA[
 <a data-tooltip-position="top" aria-label="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" target="_self">Computer Science, School of Electronics &amp; Computer Science, University of Southampton</a>
 Year 1
 University email: hl11g25 at soton dot ac dot uk
@@ -308,100 +474,7 @@ for (int i = 0; i &lt; 3; i++) { printf("Current value: %d\n", *ptr1); ptr1++;
 double数组: 地址 6422272 → 6422280 → 6422288,间隔 8 用&amp;arr[i]指向任意元素
 int *ptr1 = &amp;arr[0];
 int *ptr2 = &amp;arr[2]; 输出10 和 30
-]]></description><link>study/year-1/comp1312/comp1312-programming-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1312/COMP1312-Programming I.md</guid><pubDate>Tue, 20 Oct 2026 08:39:40 GMT</pubDate></item><item><title><![CDATA[COMP1314-Data management I]]></title><description><![CDATA[ 每个进程(process)都有三个文件描述符 STDIN - input from the user 输入 STOUT - normal output 输出 STDERR - Error output 错误输出 Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入 Piping a program's output into another program: program_1 | program_2 program_1's output goes into program2 前一个程序的输出变为后一个的输入 Pushing a program's output into a file: program_1 &gt; file.txt The output of program_1 will go into file.txt 输出写入内容 program_1 &gt;&gt; file.txt The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾 Get input from a file to put into a program: program_1 &lt; input.txt program_1 gets input from input.txt 从文件读取输入 A filter is a program that takes input, changes it in some way, then outputs it again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序
-They can be used just like in piping. 可以像管道一样使用
-some filters: 搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match 结构Example:
-grep [opentions] pattern [file...]
-"-i"意思是忽略大小写
-"-c"意思是找匹配了多少行，不是匹配本身
-"error"意思是找含error的行
-"-o"意思是只返回行中匹配的部分，不返回整行 grep&nbsp;error&nbsp;dummyerror.log&nbsp; # 找含 error 的行&nbsp; grep&nbsp;-i&nbsp;error&nbsp;dummyerror.log&nbsp; # -i：忽略大小写&nbsp; grep&nbsp;-c&nbsp;Manhattan&nbsp;file.csv&nbsp; # -c：直接数匹配了多少行 工作方式：读取输入 → 按命令修改 → 把结果输出到标准输出 结构Example:
-sed [options] command [file ...] 最常用作替换文本
-基本格式： s/要查找的内容/替换成的内容/标志 实际例子 1： 在名为“file”的文件中将“abc”转换为“cba”
-Sed 's/abc/cba/g' ./file
-结尾的g代表全局，不加g的话就会只替换第一个出现的 实际例子 2： echo Hello World | sed "s/Hello/Hi/I"
-输出Hi World
-结尾的I代表忽略大小写 实际例子 3: cat sed-example-delete.txt | sed '/Run/d'
-这个是清理数据，删除所有包含Run的行 适合分析表格数据 record 记录：默认每一行就是一条记录（默认分隔符是换行 \n）
-field 字段：每条记录按空白切成若干字段，用 $1、$2、$3… 访问；$0 表示整行
-结构Example： awk 'BEGIN { 开始前执行一次 } { 每行都执行 } END { 结束后执行一次 }' 实际例子 1: awk 'BEGIN { print "File\tOwner" } { print $9, "\t", $3 } END { print "done" }'
-意思为ls -l 输出中 $9 是文件名，$3 是所有者，所以结果是先打印表头 File Owner，再逐行打印文件名和所有者，最后打印 done 实际例子 2： awk ' {print $1,$3} '
-意思为print第一和第三列 <img alt="截屏2026-10-11 18.02.41.png" src="image/截屏2026-10-11-18.02.41.png" target="_self"><br><img alt="截屏2026-10-16 15.01.09.png" src="image/截屏2026-10-16-15.01.09.png" target="_self">
-通配符可以组合使用 ls *.??? | wc -l：统计扩展名恰好为3个字符的文件数
-ls ?.* | wc -l：统计文件名主体只有1个字符，带任意扩展名的文件数
-ls ?.[a-c] | wc -l 统计形如单字符.a/b/c的文件数 “Chmod”命令将更改文件的权限 “Ls -l”命令将显示文件的权限 许可字符串 rwx r-x r-x 意思是 这个是可执行文件，只有所有者能修改，其他人只能读和执行
-drwxr-xr-x 意思是目录
-第一位代表文件类型 -是普通文件，d是目录
-2-4位 是user所有者的权限
-5-7位 是group的权限
-8-10位 是others其他人的权限
-r = 读 w = 写 x = 执行 - = 没有该权限 修改权限 2种方法 法1 要获取文件的权限号，请像这样排列一个表格：<br>
-<img alt="截屏2026-10-16 15.11.58.png" src="image/截屏2026-10-16-15.11.58.png" target="_self"> 如果授予权限，在表格里写1，禁止写0<br>
-<img alt="截屏2026-10-16 15.13.03.png" src="image/截屏2026-10-16-15.13.03.png" target="_self">
-现在取出三组二进制数字：111 100 100
-转换为十进制：7 4 4
-以下为每个权限组合的表格 法2 使用chmod修改权限 格式如下： chmod [人员访问][操作][权限类型][路径]
-人员： u g o a 操作：+授予 -撤销 == 直接设定
-Example: chmod g+w file 意思为 授予group的写入file的权限
-chmod u+x runme.sh 意思为 授予users 执行文件runme.sh的权限
-chmod 744 test.sh 也是可以的 所有参数类型见下表： 需要有可执行权限 chmod u+x 程序名 u = user, +x = 增加执行权限 用./前缀运行当前目录下的程序 ./helloworld.sh
-结束程序使用Ctrl-c
-Example:
-touch helloworld.sh # 创建空文件
-pico helloworld.sh # 用 pico 编辑器写内容
-cat helloworld.sh # 查看内容:#!/bin/bash + echo "Hello world!"
-./helloworld.sh # 报错:Permission denied(没有执行权限)
-chmod u+x helloworld.sh # 加上执行权限
-./helloworld.sh # 成功输出 Hello world! 使用ps[options]来查看正在运行的进程
-./helloworld.sh&amp; 结尾的&amp;意思是让任务在后台进行，不再占用终端
-终端返回 [1] 32758，[1]是job number作业编号，32758是PID ps -u 用户名 输入后会输出一以下列，含义如下表 用来查看所有进程的CPU、内存使用情况，是实时刷新的
-与ps的区别是，ps是那一刻的情况，top是实时刷新的 使用kill [options] &lt;PID&gt;来终止进程
-Example：kill -SIGTERM 1710 ./helloworld.sh &amp; # 后台运行,返回 PID 1212 ps -u dst1m17 # 找到 helloworld.sh 的 PID kill 1212 # 终止它 # 输出:[1]+ Terminated ./helloworld.sh 有两种方式 SIGTERM 可以被进程忽略，会优雅的退出（保存进度、释放资源）
-SIGKILL 强制立即终止，不能被忽略 先Ctrl-z，暂停当前进程
-bg，让进程在后台进行
-fg，把后台进程来回前台
-和&amp;的区别，&amp;是启动时就放在后台；Ctr-z+bg是运行中途才放进后台 Screen可以使即使用户断开服务器连接，让进程在screen里跑，进程仍然不会被结束
-简而言之，Screen是一个可以脱离用户登录状态而持续存在的终端会话
-Screen常用命令见下表: CSV用逗号分隔列，TSV用tab，每行一条记录
-简单，Unix工具(cut,sort,grep...)都可以直接处理 换行符问题 \r是回到行首，\n是下移一行
-Windows用\r\n, Mac Linux用\n
-单元格内excel原本有2行，导出CSV后，工具按行读得到3行 读取逗号时冲突 “The Lion, The Witch and the Wardrobe” 本身含逗号
-用 cut -d',' -f1,2,3 按逗号硬切,会把这本书名切成两列,数据错位
-CSV 的规则是含逗号的字段要用双引号包起来,但 cut 不懂引号 写入时必须加引号 导出时,含逗号的字段要加引号，否则读不对 CSV and TSV是固定行列格式，因此所有的行都必须描述同一类东西
-适合列表，例如学生名单、新闻列表
-不适合灵活格式的关系型数据库(模块，学生，成绩混在一个文件里) 机器可读的好处: Searching 搜索
-Aggregation 汇总
-Prediction 预测
-Linking 链接 建模方式: Hierarchical 层级模型:单一父节点，类似于树 查询路径: COMP1314 → Andrew Smith → Coursework 2
-<br><img alt="截屏2026-10-19 19.34.10.png" src="image/截屏2026-10-19-19.34.10.png" target="_self" style="width: 705px; max-width: 100%;"> Network 网络模型:允许多个父节点(一个学生属于多个模块),不再严格是树 <br><img alt="截屏2026-10-19 19.34.48.png" src="image/截屏2026-10-19-19.34.48.png" target="_self" style="width: 715px; max-width: 100%;"> Object- oriented面向对象：实体是类，有属性，关系用指针表示 如：Modules[...].Students[...].Marks[...]
-<br><img alt="截屏2026-10-19 19.35.10.png" src="image/截屏2026-10-19-19.35.10.png" target="_self" style="width: 658px; max-width: 100%;"> Relational 关系模型: 实体变成表(Modules,students,marks)，用id把表连起来 如：Marks[Student_ID=1, Assignment=2]
-<br><img alt="截屏2026-10-19 19.45.51.png" src="image/截屏2026-10-19-19.45.51.png" target="_self" style="width: 618px; max-width: 100%;"> markup就是在原文上加标注(元数据),原文不变，类似于批注 可以标注结构，内容，含义，方便工具处理
-Example：蚂蚁与蚂蚱 先标出title，para，quote，moral
-再加属性：&lt;story id="1"&gt;、&lt;para voice="narrator"&gt;、&lt;quote character="ant"&gt;
-层级关系也可以用标记语言表示:&lt;Module name="COMP1204"&gt;&lt;Student name="Andrew Smith"&gt;&lt;Coursework ...&gt;&lt;Mark1&gt;78%&lt;/Mark1&gt;... 全称 Yet another markup language
-常用于配置文件
-技术上是Jason的超集: 合法的Jason 基本都是合法的YAML
-语法特点: 用空白缩进表示层级 优点：容易读
-缺点：容易写错 基本结构是键值对(key: value)
-列表用-开头 Example:
-people: - person: name: Tom role: Teaching favourite numbers: - 42 - 13 - 3.141 适用场景 适合配置文件，保存简单的应用状态
-缺点是规则模糊，不同解析器不同结果 全称JavaScript Object Notation javascript的对象表示法
-为了在不同语言、程序之间互相交换数据
-json里只有: 对象Object ，列表List (一串东西)，值Value (字符串，数字，true/false，null)
-有对象但没有类
-语法 对象用{ }, 里面是"字符串键": 值，用逗号分隔
-列表用[ ]
-键必须是双引号字符串 Example:
-{ "person": { //一整个{}是对象 "name": "Tom", //值 "role": "Teaching", //值 "lucky": [42, 13, 3.141] //列表 }
-} 在各个语言中如何使用 myJSON["person"]["name"] 先取出"person"这个键对应的值 {"name": "Tom", "role": "Teaching", "lucky": [42, 13, 3.141]} 接着找到name，输出Tom 使用场景： 网络数据传输 API调用
-不同程序之间交换数据
-配置文件 不改变内容前提下给内容额外加信息
-可以控制样式/结构
-机器可以解析内容
-同上 分为三种： &lt;body&gt;, &lt;b&gt;虽然显示上都是粗体，但是语义不同，&lt;strong&gt;表示很重要，搜索引擎可以理解，&lt;b&gt;只是单纯变粗，提倡用语义标签 用于网页互动小说，另一种超文本标记语言
-可以和Unity集成
-核心概念
-]]></description><link>study/year-1/comp1314/comp1314-data-management-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1314/COMP1314-Data management I.md</guid><pubDate>Tue, 20 Oct 2026 07:54:29 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[COMP1311-Mathematics]]></title><description><![CDATA[ proposition 命题 定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见
+]]></description><link>study/year-1/comp1312/comp1312-programming-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1312/COMP1312-Programming I.md</guid><pubDate>Tue, 20 Oct 2026 08:39:40 GMT</pubDate></item><item><title><![CDATA[COMP1311-Mathematics]]></title><description><![CDATA[ proposition 命题 定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见
 Example：Johor is in Malaysia. Predicate 谓词 定义:Contains variables; the truth value depends on the values ​​assigned to the variables. 含变量，真值取决于变量取值
 Example: P(x): x&gt;8 if P=9,T Neither 两者皆非 Example: 疑问句、命令、主观、悖论; What's you name?, This statement is false. Components 组成 Premises 前提：假设为真的陈述，证明起点。
 Conclusion 结论：需建立的陈述。
