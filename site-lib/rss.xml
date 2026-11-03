@@ -1,4 +1,420 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dennis]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Dennis</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 29 Oct 2026 13:47:09 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 29 Oct 2026 13:47:09 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[COMP1314-Data management I]]></title><description><![CDATA[ 每个进程(process)都有三个文件描述符 STDIN - input from the user 输入 STOUT - normal output 输出 STDERR - Error output 错误输出 Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入 Piping a program's output into another program: program_1 | program_2 program_1's output goes into program2 前一个程序的输出变为后一个的输入 Pushing a program's output into a file: program_1 &gt; file.txt The output of program_1 will go into file.txt 输出写入内容 program_1 &gt;&gt; file.txt The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾 Get input from a file to put into a program: program_1 &lt; input.txt program_1 gets input from input.txt 从文件读取输入 A filter is a program that takes input, changes it in some way, then outputs it again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dennis]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>Dennis</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 03 Nov 2026 13:10:27 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 03 Nov 2026 13:10:25 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[COMP1312-Programming I]]></title><description><![CDATA[
+Variable变量：类似于盒子，用来存放数据 Data Type数据类型：整数，小数，字符
+Value值：variable中的值 int num = 3; // int = Data type ; num = variable name ; 3 = value Local 局部变量 在函数内部声明, 只能在函数内部使用 void function() { int num1 = 3; // 局部变量 printf("%d", num1); } Global 全局变量 在所有函数外声明，整个程序都能用 Automatic 自动变量 所有局部变量默认就是auto Static 静态变量 函数调用完后，值仍然保留 void function() { int local_var = 10; static int static_var = 10; local_var += 10; static_var += 10; printf("Local: %d\n", local_var); printf("Static: %d\n", static_var);
+}
+// main 里调用 3 次 输出：
+Local: 20 Static: 20
+Local: 20 Static: 30
+Local: 20 Static: 40 local_var每次调用都重新创建，从10开始, static_var只在第一次初始化 External 外部变量 用external声明, 变量能在多个.c文件之间共享 Register 寄存器变量 变量放进CPU寄存器，访问更快 Constant 常量 使用后值不能再修改 只能包含数字，字母，下划线
+只能以字母或下划线开头，不能以数字开头
+不能有空格
+不能是保留字(for, while, if, const....)
+区分大小写 int 整数 范围: -2147483648～2147483647 约21亿
+int num_dec = 3.15; 输出3 不是四舍五入，直接丢掉小数
+\n表示换行 float和double 小数 都可以存小数，double精度更高，占内存是float的两倍
+printf默认6位小数，float num1 = 0.0000003; 用%f会显示0.000000, 用%.7f 才能显示0.0000003. %.xf x显示的小数位数
+float num2 =3; 也可以，会自动变成3.000000 char 字符 只存一个字符，用单引号 ‘a’
+- 注意不是双引号
+- 字符在电脑里是数字'a' = 97 'b'=98 bool 布尔 只有true 1和false 0
+需要#include &lt;stdbool.h&gt;
+打印用%d，所以会显示1或0 void 空 表示 “没有值”，不能用来声明变量，如void num1;会报错
+只用于函数返回类型、 参数、指针，例如void function1()表示这个函数不返回任何值 struct 结构体: 把不同类型的数据打包
+struct module { int studentID; float score;
+}; // 注意：结尾必须有分号！ int main() { struct module comp1312; // 创建一个 module 类型的变量 comp1312.studentID = 3303359; // 用 . 访问成员 comp1312.score = 87; printf("Student ID: %d\n", comp1312.studentID); printf("Score: %.2f\n", comp1312.score); // 87.00 保留两位小数
+} enum 枚举: 给数字起名字 从0开始递增: monday=0, tuesday=1......
+也可以自定义值 enum days { monday, tuesday, wednesday, thursday, friday };
+enum days day = monday;
+printf("Day is %d\n", day); // 输出 0 printf and scanf 输入和输出 格式符: %d(int), %c(char), %f(float), %lf(double)
+scanf里必须加&amp;，意思是这个变量的内存地址，将用户的输入写入这个变量
+printf只是读取值，不需要&amp; printf("%d", variable_name); // 输出
+scanf("%d", &amp;variable_name); // 输入 Operators 运算符 Arithmetic 算数: 加法+, 减法-, 乘法*, 结果只保留整数部分除法/, 取余数%
+Unary 一元: 加一x++, 减一x--
+Relational 关系: &gt; &lt; &gt;= &lt;= == != 结果都为1或0（真或假）
+Logical 逻辑: &amp;&amp; 意思为与 (AND), ||意思为或(OR), !意思为非(NOT)
+简写: x += y ---- x = x+y 以此类推 if 判断真假, 为T则执行，为F则跳过 int num1 = 3;
+if (num1 &gt; 1) { printf("Number is larger than 1\n");
+}
+printf("Completed"); if-else 二选一执行其中一个 if (num1 &gt; 1) { printf("Number is larger than 1\n");
+} else { printf("Number is lesser than 1\n");
+} if-else-if 从第一个判断开始检查，遇到为T的就执行，后面的全部跳过 if (num1 &gt; 1) { ... } // 条件 1
+else if (num1 == 1) { ... } // 条件 2
+else if (num1 == num2) { ... } // 条件 3
+else { ... } // 都不满足 Nested if-else 嵌套 多层if-else，先判断最外层的大类，再判断小类 if (num1 &gt; 1) { if (num1 == 1) {...} else {...}
+} else { if (num1 == num2) {...} else {...}
+} switch if- else-if的另一种写法，适合拿一个变量和多个固定值比较 switch (num1) { case 1: printf("Case 1\n"); break; case 2: printf("Case 2\n"); break; case 3: printf("Case 3\n"); break; default: printf("Default\n"); break;
+} for 循环 initialize初始化，循环开始前执行一次 ; test 判断，每一轮循环开始前检查，T才执行循环 ; update 更新 ，每一轮循环体结束后执行
+for (initialize; test; update)
+{ // 循环体
+} while 循环 与for循环的区别只有三个是拆开写的
+int i = 0; // ① 初始化：写在循环外面
+while (i &lt; 5) // ② 判断
+{ printf("COMP1312\n"); i++; // ③ 更新：写在循环体里面
+} do-while循环 判断位于循环后，因此最少执行次数为1次
+结尾必须加分号
+int i = 5;
+do
+{ printf("Countdown: %d\n", i); i--;
+} while (i &gt; 0); // 注意：结尾有分号！ Array 数组循环 以下例子为给五个盒子fuzhi
+int arr_int[5]; for (int i = 0; i &lt; 5; i++)
+{ arr_int[i] = i; // 第 i 个盒子放入 i printf("arr_int[%d] : %d\n", i, arr_int[i]);
+} 循环控制语句 break；意思为立刻跳出循环，不管条件成不成立
+continue；跳过本轮循环体剩下的代码，直接开始下一轮
+for (int i = 0; i &lt; 5; i++)
+{ printf("Counter: %d\n", i); if (i == 2) { break; // i 等于 2 时才退出 }
+}
+for (int i = 1; i &lt;= 5; i++)
+{ if (i == 3) continue; // i 是 3 时，跳过下面的 printf printf("%d\n", i);
+} 指针是一种数据类型，存的是内存地址
+可以是变量、函数或是另一个pointers的地址
+可以访问修改地址里的数据
+输出地址使用%p
+指针自己也是变量，也有地址
+data_type *pointer_name; 或 int *numint_p;
+float *numflt_p;
+double *numdb_p;
+char *char_p; 含义 " * "表示这是一个指针
+指针的类型要和它指向的变量类型一致int用 int* int num1 = 1;
+int *numint_p = &amp;num1; &amp; 叫address-of operator 取地址运算符，用作获取已有变量的地址 每个变量都有两个属性 value 存放的值
+address 在内存中的位置 不同类型如何打印值和地址: 打印地址时一定要用&amp;变量名 + %p printf(“Address num1: %p\n", &amp;num1);
+%p这一类为format specifier格式说明符，作用是告诉printf要输出的值是什么类型 int main(){ int num1 = 1; int *ptr_num1 = &amp;num1; printf("Value of num1 is %d\n",num1); printf("Value of ptr_num1 is %d\n",*ptr_num1); //*为解引用运算符 printf("num1 address: %p\n", &amp;num1); printf("ptr_num1 address: %p\n",ptr_num1); printf("ptr_num1 address2: %p\n",&amp;ptr_num1); //指针自己的地址
+} Out put:
+Value of num1 is 1
+Value of ptr_num1 is 1
+num1 address: 0061FF18
+ptr_num1 address: 0061FF18
+ptr_num1 address2: 0054xf3 *ptr_num1用%d打印得到1，说明 是dereference operator解引用运算符，顺着地址取值
+&amp;num1和ptr_num1打印出相同的address因为pointers存的就是num1的address
+&amp;ptr_num1打印的是指针自己的地址 方法1: num1 = 50; 直接修改变量的值
+方法2: * ptr1 = 38; 通过指针修改值
+Example: int num1 = 3; int *ptr1 = &amp;num1; printf("Value num1 before: %d\n", num1); printf("Value num1 before: %d\n", *ptr1); *ptr1 = 38; printf("Value num1 after: %d\n", num1); printf("Value num1 after: %d\n", *ptr1); Out put:
+Value num1 before: 3
+Value num1 before: 3
+Value num1 after: 38
+Value num1 after: 38 int num = 10;
+int *p = &amp;num; &amp;num ──► num 的地址 p ──► 存着 num 的地址(和 &amp;num 相同) *p ──► num 的值(10) &amp;p ──► p 自己的地址 两个pointers指向一个num1
+int num1 = 3;
+int *ptr1 = &amp;num1;
+int *ptr2 = &amp;num1; 两个pointers指向一个num1，读出的地址都是一样的，只是他们各自的address不同 Double Pointers 双重指针
+int num1 = 1;
+int *ptr1 = &amp;num1;
+int **ptr2 = &amp;ptr1; ptr2 是 "指向指针的指针",所以类型要多一个 *
+ptr2 含义是ptr1的地址
+*ptr2 含义是ptr1的值，即num1的地址
+**ptr2 含义是num1的值 Chain pointer 链式指针
+int *ptr1 = &amp;num1;
+int **ptr2 = &amp;ptr1;
+int ***ptr3 = &amp;ptr2; 规律一样，***ptr3 = 47; 连剥三层，最终修改num1
+有几个 ，解引用就要用几个 数组名就是首元素地址
+int arr[3] = {10, 20, 30};
+int *ptr1;
+ptr1 = arr; // 注意:不需要写 &amp;arr ptr1的值是0061FF10,指向arr[0] pointers可以像数组一样用下标 arr[i] 和 ptr1[i] 完全等价
+&amp;arr[i] 和 &amp;ptr1[i] 地址相同
+*ptr1 等价于 ptr1[0] 指针算数遍历数组 ptr1++ 指针移到下一个元素
+ptr1-- 退回上一个元素
+ptr1 = ptr1 + 2
+ptr1++ 不是地址 +1,而是加一个元素的大小。int 数组地址 +4,double 数组 +8
+使用for循环配合ptr++遍历整个数组
+for (int i = 0; i &lt; 3; i++) { printf("Current value: %d\n", *ptr1); ptr1++;
+} address的step取决于类型(int double) int数组: 地址 6422284 → 6422288 → 6422292, 间隔 4
+double数组: 地址 6422272 → 6422280 → 6422288,间隔 8 用&amp;arr[i]指向任意元素
+int *ptr1 = &amp;arr[0];
+int *ptr2 = &amp;arr[2]; 输出10 和 30 Example:
+struct personal { char name[30]; int age; };
+struct personal p1 = {"john", 27};
+struct personal *p2 = &amp;p1; 访问成员变量的方式 普通变量: p1.name、p1.age
+指针: p2-&gt;name、p2-&gt;age
+p2-&gt;age 完全等价于 (*p2).age 函数参数默认是pass by value传值，函数拿到的是一份拷贝，改了也不影响外面
+void func1(int *a, int *b); // 形参是指针
+func1(&amp;x, &amp;y); // 实参传地址 如果写成 void swap(int a, int b)，交换的只是拷贝，x、y不会变 Swap
+void swap(int *a, int *b)
+{ int c = *a; // 暂存 x 的值 *a = *b; // 通过地址修改 x *b = c; // 通过地址修改 y
+} int x = 10;
+int y = 40;
+printf("x: %d , y: %d\n", x, y);
+swap(&amp;x, &amp;y); // 传地址
+printf("x: %d , y: %d\n", x, y); /* Output
+x: 10 , y: 40
+x: 40 , y: 10
+*/ 修改并返回
+int sum(int *a, int *b)
+{ *a = 20; // x 被改成 20 *b = 30; // y 被改成 30 return *a + *b; // 返回 50
+} int total;
+int x = 40;
+int y = 60;
+printf("x: %d\n", x);
+printf("y: %d\n", y);
+total = sum(&amp;x, &amp;y);
+printf("x: %d\n", x);
+printf("y: %d\n", y);
+printf("Total: %d\n", total); /* Output
+x: 40
+y: 60
+x: 20
+y: 30
+Total: 50
+*/ 传值和传地址
+void func1(int *g, int h, int *j)
+{ *g = 10; // 指针 → 改了 a h = 15; // 传值 → 只改拷贝，b 不变 *j = 20; // 指针 → 改了 c
+} int a = 30;
+int b = 40;
+int c = 50;
+printf("a: %d, b: %d, c: %d\n", a, b, c);
+func1(&amp;a, b, &amp;c); // b 没有 &amp;
+printf("a: %d, b: %d, c: %d\n", a, b, c); /* Output
+a: 30, b: 40, c: 50
+a: 10, b: 40, c: 20
+*/ 传指针变量
+void func1(int *w)
+{ *w = 20; // w 收到 x 的地址
+} int x = 10;
+int *a = &amp;x; // a 已经存着 x 的地址
+printf("x: %d\n", x);
+func1(a); // 直接传 a，不加 &amp;
+printf("x: %d\n", x); /* Output
+x: 10
+x: 20
+*/ 传数组
+void func1(int *ar) // 也可写成 int ar[]
+{ ar[0] = 10; // 直接修改原数组 ar[1] = 20; ar[2] = 30;
+} int arr[3] = {1, 2, 3};
+printf("%d, %d, %d\n", arr[0], arr[1], arr[2]);
+func1(arr); // 数组名就是地址，不加 &amp;
+printf("%d, %d, %d\n", arr[0], arr[1], arr[2]); /* Output
+1, 2, 3
+10, 20, 30
+*/ 结构体
+struct personal
+{ int age; double weight;
+}; void func1(struct personal *p)
+{ p-&gt;age = 27; // 指针用 -&gt;，等价于 (*p).age p-&gt;weight = 68.00;
+} struct personal p;
+func1(&amp;p); // 传结构体地址
+printf("Age: %d\n", p.age); // 普通变量用 .
+printf("Weight: %.2lfKG\n", p.weight); /* Output
+Age: 27
+Weight: 68.00KG
+*/ 函数返回指针
+int *findMax(int *ar, int size)
+{ int *max = &amp;ar[0]; // 先假设第一个元素最大 for (int i = 1; i &lt; size; i++) { if (ar[i] &gt; *max) // *max 是当前最大值 max = &amp;ar[i]; // 记住更大元素的地址 } return max; // 返回地址（指针）
+} int arr[5] = {12, 45, 7, 30, 18};
+int *p; p = findMax(arr, 5); // p 指向 arr[1]
+printf("Max value: %d\n", *p);
+*p = 100; // 通过返回的指针直接修改原数组
+printf("arr[1]: %d\n", arr[1]); /* Output
+Max value: 45
+arr[1]: 100
+*/ NULL 的用途是表示"这个指针目前无效"，方便在使用前检查，避免解引用野指针
+int *ptr = NULL; // 暂时不指向任何东西时，先设成 NULL
+if (ptr == NULL) ... void *是通用指针，可以存任何类型变量的地址
+void *ptr;
+ptr = &amp;num; // 可以指向 int
+ptr = &amp;letter; // 也可以指向 char 限制 不能直接解引用，需要先转换，例如：*(int *)ptr, 先当成 int* 再取值
+不能做指针运算
+不能 ++ / -- int num = 10;
+char letter = 'c';
+char *name = "John"; /* 1. void 指针可以指向任何类型 */
+void *ptr; ptr = &amp;num; // 指向 int
+printf("num: %d\n", *(int *)ptr); // 先转成 int* 再解引用 ptr = &amp;letter; // 改为指向 char
+printf("letter: %c\n", *(char *)ptr); // 先转成 char* 再解引用 /* 2. void 指针数组：一个数组存不同类型的地址 */
+void *arr[3];
+arr[0] = &amp;num; // int*
+arr[1] = &amp;letter; // char*
+arr[2] = &amp;name; // name 是 char*，所以 &amp;name 是 char** printf("arr[0]: %d\n", *(int *)arr[0]);
+printf("arr[1]: %c\n", *(char *)arr[1]);
+printf("arr[2]: %s\n", *(char **)arr[2]); // 解引用一次得到 char*（字符串） /* Output
+num: 10
+letter: c
+arr[0]: 10
+arr[1]: c
+arr[2]: John
+*/
+void *ptr = &amp;num; printf("%d\n", *ptr); // 不能直接解引用：编译器不知道要读几个字节
+ptr + 1; // 不能做指针运算：void 没有大小
+ptr++; // 不能自增 / 自减 printf("%d\n", *(int *)ptr); // 解决方法：先强制转换(cast)再使用 C语言没有垃圾回收，借到的内存需要自己还
+常见问题： Dangling pointer 悬空指针——内存已经free了指针还在用
+Buffer Overflow 缓冲区溢出——写入的数据超过分配大小
+Memory Leak 内存泄漏——分配了但从来没free
+Double free 重复释放——对同一个指针free两次 四个函数 malloc() - memory allocation int *ptr = (int*) malloc(3 * sizeof(int));
+分配一整块内存，大小单位是字节
+sizeof(int) 通常是 4，所以 3 × 4 = 12 bytes
+内存不初始化，里面是 garbage values垃圾值 calloc() - contiguous allocation int *ptr = (int*) calloc(3, sizeof(int));
+两个参数：元素个数 n 和 每个元素大小
+内存同样是 12 bytes，但全部初始化为 0 realloc() - re-allocation ptr = realloc(ptr, 5 * sizeof(int));
+改变已分配内存的大小
+原有数据保留，新增部分是垃圾值
+realloc 可能把数据搬到一块新地址，所以必须用返回值更新 ptr free() free(ptr);
+释放内存，还给系统
+不要对同一个指针调用两次 写法 #include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; int main(void) { int *ptr = malloc(3 * sizeof(int)); if (ptr == NULL) { // ② 检查是否分配失败 printf("Allocation failed\n"); return 1; } ptr[0] = 30; ptr[1] = 20; ptr[2] = 50; free(ptr); // ① 每次分配都要配对 free ptr = NULL; // ③ free 后设为 NULL，防止悬空指针 return 0;
+} Testing就是评估程序，找出错误
+手动测试和自动化测试，各有优缺点
+Black / White / Grey Box Testing 黑盒测试 看不到代码，测试视角是用户，关注输入→输出是否正确
+优：不需技术、适合大系统、以用户为中心、用例容易复现
+缺：测试失败时找不到原因 白盒测试 看得到全部代码，测试视角是开发者，关注内部代码、结构、逻辑
+优：测试彻底，能更早发现bug，更全面
+缺：需要技术能力，依赖测试者水平 灰盒测试 看到部分代码，测试视角两者结合，关注功能和内部结构设计用例
+优：兼顾两者，平衡，成本合理
+缺：对内部代码访问有限，设计用例更复杂 功能测试与非功能测试 Functional——功能是否符合需求 Unit testing: 测单个组件，例如一个函数
+Integration testing：测多个组件之间的配合
+System testing：测整个系统 Non-Functional——速度、安全、可扩展性等做的好不好 Performance：速度、响应时间
+Usability：用户体验、好不好用
+Compatibility：在不同OS/平台/环境下能否运行 Test case 测试用例 Test Case ID：唯一编号
+Objective / Description：这个用例要验证什么
+Input：输入数据——要特别测： Edge cases（边界值）：最大值、最小值，如 0、负数
+Unexpected inputs（异常输入）：特殊字符、类型错误、空字符串 Expected Output：预期结果（测试前就要写好）
+Actual Output：实际运行结果 FILE 是 &lt;stdio.h&gt; 里定义的一个结构体structure，里面记录了当前读写位置 position、缓冲区buffer，以及打开模式和错误标志flags
+fptr 是指向这个结构体的指针。之后的每个文件函数都要传入 fptr，用它告诉函数你要操作的是哪个文件
+FILE *fptr; 成功时返回一个 FILE *
+失败时返回 NULL 一定要关闭文件的原因 保存数据
+释放资源
+避免问题，防止文件损坏，防止文件打开的太多 fclose(fptr); // 成功返回 0，失败返回 EOF
+#include &lt;stdio.h&gt; // 1. 引入头文件 int main()
+{ FILE *fptr; // 2. 声明 FILE 指针 fptr = fopen("new.txt", "w"); // 3. 用 "w" 打开 if (fptr == NULL) // 4. 检查是否 NULL return 1; fclose(fptr); // 5. 关闭 return 0;
+} 写入错误常见原因:磁盘满了、U 盘被拔掉、文件是用 "r"（只读）模式打开的 写一个字符
+参数中fptr的位置在最后
+返回值：成功时返回写入的那个字符，失败时返回 EOF
+屏幕上什么都不会显示，因为输出进了文件
+fputc('H', fptr);
+fputc('i', fptr);
+fputc('\n', fptr); // '\n' 也是一个字符，作用是换行 char word[] = "HELLO";
+for (int i = 0; word[i] != '\0'; i++) // 遇到 '\0' 停止，它是字符串结束标志 fputc(word[i], fptr); 文件内容:
+Hi
+HELLO fputs不会自动换行，puts会自动加\n
+返回值：成功时返回非负数，失败时返回 EOF
+fputs("Shopping List\n", fptr);
+fputs("1. Rice\n", fptr); 理解为写到文件里的 printf，唯一的区别是多了第一个参数 fptr
+printf 的所有格式符都能用：%d 整数、%f 浮点数、%.1f 保留 1 位小数、%s 字符串、%c 字符、%2d 宽度为 2 并右对齐
+成功输出写入的字符数，失败输出负数
+printf( "Score: %d\n", 95); // 输出到屏幕
+fprintf(fptr, "Score: %d\n", 95); // 输出到文件 它把内存里的原始字节原样复制到文件中。文件大小是 5 × 4 = 20 字节
+成功输出写入的项数，失败显示小于count
+int marks[5] = {78, 92, 65, 88, 71};
+FILE *fptr = fopen("marks.dat", "wb");
+size_t n = fwrite(marks, sizeof(int), 5, fptr);
+// 数据地址 每项大小 项数 文件 二进制fwrite对比文本fprintf，速度更快，空间更紧凑，但是受字节序、int大小影响 调用 fprintf 时，数据并不会马上写到磁盘，而是先放在内存缓冲区里，攒够一批再一起写，因为每次单独访问磁盘很慢 fclose() 会自动刷新缓冲区
+fflush(fptr) 会立即写入磁盘，但不关闭文件。适合日志这类"程序崩溃也不能丢"的数据。 如果程序在两者之前崩溃，缓冲区里的数据就会丢失 你的程序 --fprintf()--&gt; 缓冲区(内存) --fflush()/fclose()--&gt; 磁盘文件
+]]></description><link>study/year-1/comp1312/comp1312-programming-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1312/COMP1312-Programming I.md</guid><pubDate>Tue, 03 Nov 2026 08:36:09 GMT</pubDate></item><item><title><![CDATA[COMP1311-Mathematics]]></title><description><![CDATA[ proposition 命题 定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见
+Example：Johor is in Malaysia. Predicate 谓词 定义:Contains variables; the truth value depends on the values ​​assigned to the variables. 含变量，真值取决于变量取值
+Example: P(x): x&gt;8 if P=9,T Neither 两者皆非 Example: 疑问句、命令、主观、悖论; What's you name?, This statement is false. Components 组成 Premises 前提：假设为真的陈述，证明起点。
+Conclusion 结论：需建立的陈述。
+Arguments 论证：从前提推导结论的逻辑步骤。 可借助Axioms公理和已证结果（定理和引理） 可写为P→Q&nbsp;形式
+Axioms 公理: 无需证明即接受为真
+Theorem 定理：已证明的命题
+Lemma 引理：辅助证明其他结果的已证命题 Direct proof 直接证明: 从前提直接推导结论
+Proof by cases 分情况证明: 划分所有可能情况逐一证明
+Proof by contrapositive逆否证明: 证明非Q→非P代替P→Q&nbsp;
+Proof by contradiction反证法：假设命题为假，推出矛盾
+Mathematical induction数学归纳法：证基础情况，再证每步递推
+Proposition 命题: The 1st of October is a Wednesday, so the 13th of October is a Monday
+Premises 前提:
+October is a Wednesday.
+The days of the week repeat every seven days in their usual order.
+13 October is 12 days after 1 October.
+Argument 论证:
+Since 12 = 7 + 5, moving forward 7 days from Wednesday returns to Wednesday.
+Moving forward another 5 days gives Monday.
+Therefore, 13 October is a Monday.
+Conclusion 结论: 13 October is a Monday. 证明 = 前提 + 论证 + 结论。 Direct proof 直接证明 证 P→Q: 假设 P,用定义一步步推到 Q
+模版：假设P → 用定义展开 → 凑出Q的定义形式 例: 若 18|n,则 6|n n可以被18整除，则n可以被6整除 假设n = 18k，k∈ℤ
+18=6×3,所以 n=6(3k)
+3k 是整数
+所以 n=6m, m=3k∈ℤ, 即 6|n 例：两个奇数之积是奇数 设 a=2k+1, b=2m+1
+ab=4km+2k+2m+1 =2(2km+k+m)+1
+2km+k+m 是整数,所以 ab 是奇数 Counterexample 反例 推翻全称命题:找一个 P 真、Q 假的例子 例: a²=b² ⟹ a=b 证明是假的,取 a=2,b=−2。应该改成 a=b 或 a=−b,或加条件 a,b≥0 If and only if 当且仅当 证 P↔Q:两个方向都要证
+先假设P，推出Q，再重新假设Q，推出P 例：x²=x ⟺ x=0 或 x=1 ⇒x²−x=0,即 x(x−1)=0,所以 x=0 或 x=1
+⇐:x=0 时 0²=0,x=1 时 1²=1 Contraposition 逆否命题 P→Q ≡ ¬Q→¬P (逻辑等价)
+用的时机：证"n² 偶 ⟹ n 偶"时,n²=2k 很难变成 n 的形式。逆否命题"n 奇 ⟹ n² 奇"则很顺:n=2k+1, n²=2(2k²+2k)+1 例：x+y≥2 ⟹ x≥1 或 y≥1 逆否: x&lt;1 且 y&lt;1 ⟹ x+y&lt;2
+两个不等式相加:x+y&lt;1+1=2 Case analysis 分情况 分的情况加起来必须覆盖所有情况；每个情况都要单独证明 例：n²+3n 是偶数 n=2k: 4k²+6k=2 (2k²+3k)
+n=2k+1:4k²+10k+4 =2 (2k²+5k+2)
+每个整数非奇即偶,所以情况穷尽 Contradiction 反证法 假设结论为假 → 推出矛盾 ⊥ → 原结论成立 不能只写矛盾，要写清楚和什么矛盾
+contraposition逆否命题 和 contradiction反证法的区别：
+contraposition：目标是 P→Q,假设 ¬Q, 必须推出 ¬P,目标明确
+Contradiction：假设整个命题为假, 推出任何矛盾都行 例：没有最小正实数 假设 x 是最小正实数,取 y=x/2。
+y&gt;0 且 y&lt;x, 与"x 最小"矛盾 Induction 归纳法 类似于多米诺骨牌
+Base case：证明 P(1) 成立(推倒第一块)
+Inductive hypothesis：假设某个 k 使 P(k) 成立
+Inductive step：证明 P(k+1)(每块推倒下一块) 例：2ⁿ≥n+1 Base:n=1, 2¹=2≥2
+Step:假设 2ᵏ≥k+1。则 2ᵏ⁺¹=2·2ᵏ ；2·2ᵏ ≥ 2(k+1) ；2(k+1) = 2k+2；2k+2 ≥ k+2
+2ᵏ⁺¹ = 2·2ᵏ ≥ 2(k+1) = 2k+2 ≥ k+2
+所以 2ᵏ⁺¹ ≥ k+2,这正是 P(k+1)
+用到的两个不等式:归纳假设 2ᵏ≥k+1,以及 2k+2≥k+2 定义：互不相同，定义明确的对象的集合
+写法： Roster:D={0,1,2,3} Set-builder:I = {i∈ℤ : 0≤i&lt;4}, 冒号读作"such that" 集合不记顺序和重复，因此 {1,2,3}={3,2,1}={1,1,2,3}
+| A | 的意思是集合中不同元素的个数 例如 |{1,1,2,2,3}| = 3 ∅ 和{∅}的不同：∅没有元素，因此｜∅｜ = 0；{∅}里有一个空集元素，因此为1；空集是任何集合的子集
+⊆ 的意思代表A的每个元素都在B里面；⊊ 代表A是B的子集，但A不等于B Example： U={1..6}, A={1,2,4,6}, B={2,3,4}
+A∪B={1,2,3,4,6}
+A∩B={2,4}
+A∖B={1,6}
+Aᶜ={3,5} 常用定律： 恒等: A∪∅=A, A∩U=A
+幂等: A∪A=A, A∩A=A
+互补: A∪Aᶜ=U, A∩Aᶜ=∅, (Aᶜ)ᶜ=A
+交换律与结合律: ∪ 和 ∩ 都满足,但 ∖ 不满足交换律
+分配律: A∩(B∪C)=(A∩B)∪(A∩C)
+De Morgan: (A∪B)ᶜ=Aᶜ∩Bᶜ, (A∩B)ᶜ=Aᶜ∪Bᶜ 口诀：把 NOT 推进去, OR 和 AND 互换 证明集合等式： 取任意 x,用"每步等价"的方式推 Example: x∈(A∪B)ᶜ ⟺ x∉A∪B ⟺ x∉A 且 x∉B ⟺ x∈Aᶜ∩Bᶜ Ordered pair有序对：(a,b) = (c,d) 当且仅当 a=c 且 b=d，例如 (2,5) ≠ (5,2),但 {2,5} = {5,2} Tuple 元组：固定位置数的记录，如 (student_id, module, mark)=(31415,”COMP1311",78) Cartesian product 笛卡尔积 A×B={(a,b) : a∈A, b∈B} A={u₁,u₂}, B={read,write}:A×B 有 4 个对：A × B = {(u₁,read),(u₁,write),(u₂,read),(u₂,write)}
+独立选择相乘:3 个系统×2 个浏览器×2 种模式=12 个测试用例
+A×∅=∅;只允许部分组合时,得到的是 A×B 的子集 Power set 幂集：𝒫(A) 是 A 的所有子集的集合 它的元素是子集,不是 A 的元素
+𝒫({a,b}) = {∅,{a},{b},{a,b}}
+每个元素"选或不选"两种,所以 |A|=n 时 |𝒫(A)| = 2ⁿ
+3个元素即为1+3+3+1 = 8个子集
+Bit string位字符：顺序固定为 (logging, caching, encryption) 时,101 表示 {logging, encryption} 位字符串提供了子集的紧凑表示 𝒫(∅)={∅}, 大小为 2⁰=1, 幂集永远不为空 Relation 关系:R⊆A×B,即"真正成立的那些对" Function 函数 f:A→B:对每个 a∈A,输出存在且唯一。两个输入可以共用一个输出,但一个输入不能有两个输出 A={1,2,3}, B={a,b}
+P={(1,a), (2,b),(3,b)}:是函数
+Q={(1,a), (1,b), (2,a), (3,b)}:不是函数, 1有两个输出(唯一性失败)
+T={(1,a), (2,b)}:不是函数, 3没有输出 (存在性失败) Example：U={u₁,u₂}, R={viewer,admin}, F={cache,logs} 用户-角色可能对:2×2 = 4
+功能配置数:|𝒫(F)| = 2²=4
+实际允许的用户-角色对:一个 relation (U×R 的子集)
+每个用户恰有一个默认角色:一个 function U→R Conclusion： 什么是relation 关系 R 是笛卡尔积的子集:R ⊆ A × B,即 R = {(a, b) | a ∈ A 且 b ∈ B}
+通俗理解：Relation就是“把集合里的元素连起来的方式”，R里的每个有序对就是一条连线
+Example： A = {1,2,3}, R = {(1,2),(2,3)} → “1 与 2 相关, 2 与 3 相关”
+颜色与水果:C = {red, orange, yellow}, F = {apple, orange, lemon} R = {(apple, red), (orange, orange), (lemon, yellow)}
+F × C 共有 3 × 3 = 9 个有序对, 而 R 只有 3 个 → R 只是 F × C 的一个子集 Digraph 有向图:用箭头表示关系，每个有序对(a,b)画成一条从a指向b的箭头; (a,a)是自环
+<img alt="截屏2026-10-19 21.31.02.png" src="image/截屏2026-10-19-21.31.02.png" target="_self" style="width: 364px; max-width: 100%;"> Six Types of Relational Properties 6种关系性质 Equivalence Relations and Equivalence Classes 等价关系与等价类 给元素分组
+等价关系：同时满足自反+对称+传递，记作“~”
+等价关系中将集合元素分类到buckets中，每个buckets被称为等价类
+[a] = {x ∈ A : x ~ a}
+重要性质： 每个元素恰好属一个类
+各类互不重叠
+所有类合起来覆盖整个集合 Example: (首字母相同):A = {apple, ant, ball, bat, cat}
+[apple] = {apple, ant}, [ball] = {ball, bat}, [cat] = {cat} Partial Order 篇序 给元素排高低
+定义：同时满足Reflexive 自反，Antisymmetric 反对称，Transitive 传递
+通常写作 a ≼ b 代替 (a,b)∈R。此时 (A, R) 称为poset偏序集
+类似 ≤, 但不要求所有两个元素都能比较
+严格篇序：把自反换成非自反,即 非自反 + 反对称 + 传递 (符号&lt; ) function是一种特殊的relation
+规则：定义域里的每个元素，都恰好对应培域里的一个元素，不能一对多
+记作：，并且 术语： 定义域： Domain，，含义：所有输入 陪域： Codomain，， 含义：所有"允许的"输出 值域/像: Range / Image，, 实际被打中的输出 Example： ，，
+Domain = Codomain = Range = 不同的输入一定得到不同的输出，没有两个箭头指向同一个点
+陪域里的每一个元素，被至多1个(0或1个)输入指向
+形式定义: 证明: 思路：假设 ，推出 证明 是单射：
+证明不是单射则找两个不同的输入得到相同的输出 陪域里每一个元素都至少被一个箭头打中，没有空着的输出
+陪域里每个元素被至少 1 个输入指向
+形式定义: 证明: 思路：任取 ，反解出 ，并检查 确实在定义域里
+证明 （）是满射： 任取 ，令 解得 这个 仍然是实数 → 满射 证明不是满射则找一个陪域里打不中的元素： ：取 ，没有实数 满足 → 不是满射 即是单射又是满射
+两边每个元素都恰好有一个输入指向 定义：
+cancellation identities 消去恒等式: 也就是 和 复合起来等于什么都没做 求反函数的三步: 确认 是双射
+交换 和 ： 变成 解出 ，得到 Example: 确认是双射 ，所以 验算： 基数 = 集合里元素的个数，记作 有限集的规则 容斥原理 inclusion–exclusion： 不相交时: 幂集： Example: ， → ， Countably Infinite 可数无穷 如果一个集合能和 建立双射，它就是可数无穷的，基数记作 （读 aleph-null / aleph-zero） 是最小的无穷
+Example: ，，取 单射：
+满射：任意偶数 都有原像 所以是双射，
+因此偶数和自然数一样多, 基数看的是能不能配对, 不是谁包含谁 无穷集合 定义: 集合 A 是无穷的 ⟺ A 能和它自己的某个真子集（proper subset）建立双射
+打破了"有限集合的真子集一定更小"这条规律 和偶数 是 的真子集，因为它把所有奇数都拿掉了
+但每个自然数都有一个偶数伙伴，每个偶数也都有一个自然数伙伴，谁都不落单
+因此真子集和原集合一样大
+这便是无穷集合的定义 命题是一个陈述句，并且要么真、要么假。不能既真又假，也不能无法判断 真值表: Tautology 重言式 所有情况下都为T
+p ∨ ¬p Contradiction 矛盾式 所有情况下都为 F
+p ∧ ¬p Contingency 可满足但非永真 有时 T 有时 F
+p ∧ q, p → q 变量个数 n → 行数 2ⁿ：2 个变量 4 行，3 个变量 8 行
+从最内层开始，一层一层算中间列，最后算出整个式子 ((p→q) ∧ (q→r)) → (p→r)
+思路: 要想证明以上式子为Tautology，恒为真；可以证明这个式子为F，若证明不出来，则恒为真
+步骤: 依据真值表，只有在左边为T、右边为F的时候才位F
+箭头右侧的(p→r)为F，因此p为T, r为F
+箭头左侧要为T, 因此(p→q)为T, (q→r)为T，因此q = F
+q 不可能既 T 又 F，找不到让它为假的情况，为tautology p → (q∨r) 和 (p→q) ∨ (p→r) 是否等价
+逻辑等价的定义: 两个式子在每一行的真值都相同。 两列算出来完全一样（都只在 p=T, q=F, r=F 那行为 F），所以等价 p → q → p ∧ q
+p → (q → (p ∧ q)) 右结合加括号
+最后一列全T
+直观理解：如果 p 真、q 真，那 p∧q 当然真 {(P∨¬Q) ∧ (¬P∨¬Q)} ∨ Q
+真值表最后一列全 T ⇒ tautology
+(P∨¬Q) ∧ (¬P∨¬Q) 提取公因子 ¬Q
+变成 ¬Q ∨ (P∧¬P) = ¬Q ∨ F = ¬Q
+所以整个式子 = ¬Q ∨ Q 对于P → Q
+]]></description><link>study/year-1/comp1311/comp1311-mathematics.html</link><guid isPermaLink="false">Study/Year 1/COMP1311/COMP1311-Mathematics.md</guid><pubDate>Tue, 03 Nov 2026 07:58:11 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[COMP1314-Data management I]]></title><description><![CDATA[ 每个进程(process)都有三个文件描述符 STDIN - input from the user 输入 STOUT - normal output 输出 STDERR - Error output 错误输出 Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入 Piping a program's output into another program: program_1 | program_2 program_1's output goes into program2 前一个程序的输出变为后一个的输入 Pushing a program's output into a file: program_1 &gt; file.txt The output of program_1 will go into file.txt 输出写入内容 program_1 &gt;&gt; file.txt The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾 Get input from a file to put into a program: program_1 &lt; input.txt program_1 gets input from input.txt 从文件读取输入 A filter is a program that takes input, changes it in some way, then outputs it again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序
 They can be used just like in piping. 可以像管道一样使用
 some filters: 搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match 结构Example:
 grep [opentions] pattern [file...]
@@ -155,8 +571,8 @@ Example: 以上表格满足函数依赖: (first name, last name) → (age, sex) 
 不存在依赖因为当输入Li时，会有20，99两个年龄以及M和F两个性别
 注意: 一张表只能证明 FD不成立，不能证明 FD一定成立 存在一个反例，整个表就不成立
 没有反例只能说明目前没冲突，不能确定它成立 如果存在(A1, A2, A3...) → (B1, B2, B3...)，那可以推出 (A1, A2, A3...) → B1
-&nbsp;(A1, A2, A3...) → B2
-&nbsp;(A1, A2, A3...) → B3 etc. 右侧一定是左侧的子集 (A1, A2, A3) → (A1, A2)
+-&nbsp;(A1, A2, A3...) → B2
+-&nbsp;(A1, A2, A3...) → B3 etc. 右侧一定是左侧的子集 (A1, A2, A3) → (A1, A2)
 (A1, A2, A3) → A3
 (A1, A2, A3) → (A1, A3) etc. 所有满足S的表都满足X → Y，就说 S 逻辑蕴含 X → Y 传递性 Transitivity：A → B，B → C ⊧ A → C
 增广律 Augmentation：A → B ⊧ AC → BC（两边同时加上同一个属性） 如果S ⊧ T 且 T ⊧ S 那 S 和 T 等价，即它们被完全相同的表所满足(满足相同的函数依赖) X 是超键，当且仅当对每个属性 Aᵢ，都有X → Aᵢ
@@ -164,33 +580,60 @@ Example: 以上表格满足函数依赖: (first name, last name) → (age, sex) 
 全部属性的集合永远是超键，所以每个关系至少有一个超键 上述表格中 (first name, last name)就是一个superkey,因为都是唯一的
 (Last name)就不是一个superkey因为有两个Li 一种特殊的superkey，是最小的超键
 去掉任何一个属性就不再是超键
-上表中{First name} {Age} {Last name, Sex}都是候选键 {Last name, Sex}中删掉 Sex，剩 {Last name}：Li 重复，删掉 Last name，剩 {Sex}：M、F 重复 ]]></description><link>study/year-1/comp1314/comp1314-data-management-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1314/COMP1314-Data management I.md</guid><pubDate>Thu, 29 Oct 2026 13:42:36 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-29 15.13.53]]></title><description><![CDATA[<img src="image/截屏2026-10-29-15.13.53.png" target="_self">]]></description><link>image/截屏2026-10-29-15.13.53.html</link><guid isPermaLink="false">Image/截屏2026-10-29 15.13.53.png</guid><pubDate>Thu, 29 Oct 2026 07:13:55 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[index]]></title><description><![CDATA[
-<a data-tooltip-position="top" aria-label="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" target="_self">Computer Science, School of Electronics &amp; Computer Science, University of Southampton</a>
-Year 1
-University email: hl11g25 at soton dot ac dot uk
-Email: dennislee92805 at gmail dot com
-<br>GitHub: <a data-tooltip-position="top" aria-label="https://github.com/Dennis-Lee1214" rel="noopener nofollow" class="external-link is-unresolved" href="https://github.com/Dennis-Lee1214" target="_self">Dennis-Lee1214</a> 2026-10: Started this site
-<br>2026-05: Finished <a data-tooltip-position="top" aria-label="Projects" data-href="Projects" href="projects.html" class="internal-link" target="_self" rel="noopener nofollow">Free Fall Physics Simulator</a>
-Studying: This year (Year 1, 2026/27): Computer Systems, Data Management, Programming, Mathematics, COMP Part I Laboratory ProgrammeLast year (Year 0, 2025/26): Mathematics A, Mathematics B, Mathematics for Science and Engineering, Computer Systems and Applications, Fundamentals of Computing, Theoretical Aspects of Computing, Programming and Coursework, Computer Applications]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Wed, 21 Oct 2026 13:47:17 GMT</pubDate></item><item><title><![CDATA[Notes]]></title><description><![CDATA[These notes are based on the lecture slides at the University of Southampton, with extra information added where it helps to explain things further. They are definitely not perfect notes, but writing notes is a great way to learn, and if other people can read them and get something out of them, that would be great :DEdit: these were written while the modules ran (Year 0 in 2025/2026, Year 1 in 2026/2027). Content may have changed since then, but hopefully they are still useful.
-<a data-tooltip-position="top" aria-label="COMP1311-Mathematics" data-href="COMP1311-Mathematics" href="study/year-1/comp1311/comp1311-mathematics.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1311 Mathematics</a>
-<br><a data-tooltip-position="top" aria-label="COMP1312-Programming I" data-href="COMP1312-Programming I" href="study/year-1/comp1312/comp1312-programming-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1312 Programming I</a>
-<br><a data-tooltip-position="top" aria-label="COMP1313 Computer system I" data-href="COMP1313 Computer system I" href="study/year-1/comp1313/comp1313-computer-system-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1313 Computer System I</a>
-<br><a data-tooltip-position="top" aria-label="COMP1314-Data management I" data-href="COMP1314-Data management I" href="study/year-1/comp1314/comp1314-data-management-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1314 Data Management I</a> <br><a data-href="1. Computer system and peripheral Hardware" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html" class="internal-link" target="_self" rel="noopener nofollow">1. Computer system and peripheral Hardware</a>
-<br><a data-href="4. Translators" href="study/year-0/sem-1/geng0030/4.-translators.html" class="internal-link" target="_self" rel="noopener nofollow">4. Translators</a>
-<br><a data-href="10. System Bus" href="study/year-0/sem-1/geng0030/10.-system-bus.html" class="internal-link" target="_self" rel="noopener nofollow">10. System Bus</a>
-<br><a data-href="Final exam" href="study/year-0/sem-2/geng0030/final-exam.html" class="internal-link" target="_self" rel="noopener nofollow">Final exam</a>
-]]></description><link>notes.html</link><guid isPermaLink="false">Notes.md</guid><pubDate>Wed, 21 Oct 2026 13:42:34 GMT</pubDate></item><item><title><![CDATA[Projects]]></title><description><![CDATA[May 2026 · Python, Tkinter, MatplotlibA desktop app for learning kinematics: drop objects under different gravity and air resistance and watch the motion, the numbers and the graphs change in real time.<img alt="freefall-earth.jpg" src="image/freefall-earth.jpg" target="_self">My partI contributed to the design and development of the app:
-Storyboards: designed the storyboards for the whole application, which the team built from across all four increments
-Real-time graphs: built the graphing feature, one of the app's core features, which plots displacement, velocity and acceleration against time from the simulation data with Matplotlib, updating live during a run, colour-coded per object
-Interface: increased font sizes and resized the control panel and the simulation info panel, following feedback that the text was too small to read
-<br><img alt="freefall-graphs.jpg" src="image/freefall-graphs.jpg" target="_self">What the app does
-Drop up to two objects side by side, with material presets from feather to lead, or set mass, drag coefficient and area by hand
-9 planetary environments, each with its own gravity, air density and background; air resistance can be turned on or off
-Live info panel (time, velocity, height, status), a run summary, and a 20-question random physics quiz
-Sign up / log in with input validation
-<br><img alt="freefall-jupiter.jpg" src="image/freefall-jupiter.jpg" target="_self">Testing: vacuum-mode fall times matched t = √(2h/g) on Earth, the Moon and Mars; all 31 test cases from Increment 3 passed, plus the new login tests.What I'd do differently: plan the harder features earlier (sound effects, graph export, a terminal velocity indicator and password hashing were left out for time), and store passwords hashed instead of in plain text.]]></description><link>projects.html</link><guid isPermaLink="false">Projects.md</guid><pubDate>Wed, 21 Oct 2026 13:35:14 GMT</pubDate><enclosure url="image/freefall-earth.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-earth.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-jupiter]]></title><description><![CDATA[<img src="image/freefall-jupiter.jpg" target="_self">]]></description><link>image/freefall-jupiter.html</link><guid isPermaLink="false">Image/freefall-jupiter.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-jupiter.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-jupiter.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-earth]]></title><description><![CDATA[<img src="image/freefall-earth.jpg" target="_self">]]></description><link>image/freefall-earth.html</link><guid isPermaLink="false">Image/freefall-earth.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-earth.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-earth.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-graphs]]></title><description><![CDATA[<img src="image/freefall-graphs.jpg" target="_self">]]></description><link>image/freefall-graphs.html</link><guid isPermaLink="false">Image/freefall-graphs.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-graphs.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-graphs.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Misc]]></title><description><![CDATA[
-Things I read: <a data-tooltip-position="top" aria-label="https://github.com/eternity4719/HowToLiveBetter" rel="noopener nofollow" class="external-link is-unresolved" href="https://github.com/eternity4719/HowToLiveBetter" target="_self">高性价比人生指南</a>
-]]></description><link>misc.html</link><guid isPermaLink="false">Misc.md</guid><pubDate>Wed, 21 Oct 2026 13:19:12 GMT</pubDate></item><item><title><![CDATA[COMP1313 Computer system I]]></title><description><![CDATA[
+上表中{First name} {Age} {Last name, Sex}都是候选键 {Last name, Sex}中删掉 Sex，剩 {Last name}：Li 重复，删掉 Last name，剩 {Sex}：M、F 重复 如何找到所有候选键？ 我们需要找到所有超键（superkeys） 我们需要弄清楚如何证明 F ⊧ X → Y（F 是一组函数依赖） X⁺ = { Aᵢ : F ⊧ X → Aᵢ } 是 X 关于 F 的闭包 简单来说，X⁺ 是 schema 中所有满足以下条件的列的集合：如果 F 中的函数依赖都成立，那么 X → X⁺ 中的这些列也成立 F ⊧ X → Y 当且仅当 Y ⊆ X⁺ 这句话的意思是："只要 F 中的所有依赖都成立，X → Y 就成立"这个条件为真，当且仅当 Y 中的列全都属于"在 F 成立时 X 能推出的列"
+它让我们能够用计算的方式找出超键，进而找出候选键。 如果 X⁺ 里没有包含所有的列，我们就可以确定 X 不是超键。如果包含了所有的列，那它就是超键 闭包算法可以帮我们检查一组列是否为超键，需要给出： 一个 schema：R
+一组函数依赖：F
+R 中要检查是否为超键的一组列：X 闭包算法的步骤如下： 从集合 X 开始，把它记作 X₀
+查看 F，检查是否存在某个 Y → Z，使得 Y 是当前集合 Xₙ 的子集
+如果存在，就把 Z 与 X₀ 取并集，记作 X₁。之后用 X₁ 代替 X₀
+不断重复、反复遍历 F，直到 Xₙ 不再变化为止
+这时你得到的就是 X⁺ 举个例子： R(A,B,C,D,E,H,G) - 这是我们的 schema
+F = { AB → CD, C → EH, AC → H } - 这是函数依赖的集合
+{A, C}⁺ - 这是我们要求的 因为 {A, C}⁺ 只有 {A, C, E, H}，没有包含 R 中的所有列，所以它不是超键
+再来看另一个例子： R(A,B,C,D,E,H,G) - 这是我们的 schema
+F = { AB → CD, C → EH, D → G } - 这是函数依赖的集合
+{A, B}⁺ - 这是我们要求的 {A, B}⁺ 包含了 R 中的所有元素，说明 {A, B} 是超键
+{A, B} 也是候选键，因为 {A}⁺ 是 {A}，{B}⁺ 是 {B}；它是这个 schema 中最小形式的超键 Attribute属性: 就是列,比如name,每个属性都有一个domain域，也就是允许取值的集合 Tuple元组: 就是行，每个值对应一个属性。比如 (101, ‘Lina’, ‘AI’) Arity元数/度 列的数量，students有3个属性，arity=3 Cardinality基数 行的数量 Relation关系: 结构相同的元组组成的集合 把两个关系的行合起来，重复的只保留一份
+必须同时满足 两个关系的 arity 相同（列数一样）
+对应位置的属性域相同（类型一样）<br>
+<img alt="截屏2026-11-02 12.47.45.png" src="image/截屏2026-11-02-12.47.45.png" target="_self" style="width: 502px; max-width: 100%;"> 当对两个关系执行“差”操作时，从最左边的表格中拿走元素
+此操作返回左侧表格，但不返回右侧表格中的元素。<br>
+<img alt="截屏2026-11-02 12.51.51.png" src="image/截屏2026-11-02-12.51.51.png" target="_self" style="width: 526px; max-width: 100%;"> 笛卡尔积的工作方式与集合论相同
+这将返回一个表格，其中包含左侧表格中记录和右侧表格中记录的所有可能配对<br>
+<img alt="截屏2026-11-02 12.53.21.png" src="image/截屏2026-11-02-12.53.21.png" target="_self" style="width: 513px; max-width: 100%;"> 投影操作就像“过滤器”一样。
+它从我们的表格中删除任何不需要的列，只留下我们想要的列。
+语法是这样的: <br><img alt="237" src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image5.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved" style="width: 237px; max-width: 100%;">
+其中“&lt;属性列表&gt;”是我们想要保留的列列表，而“&lt;关系名称&gt;”是要过滤的表的名称<br>
+<img alt="截屏2026-11-02 14.12.43.png" src="image/截屏2026-11-02-14.12.43.png" target="_self" style="width: 554px; max-width: 100%;"> “selection”运算符允许您在条件旁边检查记录。
+如果条件显示为假，则不要将此记录包含在结果中
+如果条件显示为真，则将此记录包含在结果中
+语法是这样的: <br><img alt="283" src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image7.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved" style="width: 283px; max-width: 100%;">
+其中“￼θ”是要使用的条件，“&lt;关系名称&gt;”是要检查的记录表的名称 条件可以使用谓词逻辑的语法
+最后一个例子在实践中有点不必要，但它展示了如何在条件中使用谓词逻辑语法<br>
+<img alt="截屏2026-11-02 14.16.14.png" src="image/截屏2026-11-02-14.16.14.png" target="_self" style="width: 520px; max-width: 100%;"> 重命名运算符只需将列从一个名称重命名为另一个名称
+这在“union”操作中特别有用，因为可以将一个表中的列重命名为另一个表的相同列名，然后将它们“union”在一起。
+语法是这样的: <br><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image11.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+“&lt;oldname&gt;”是列的旧名称，“&lt;newname&gt;”是列的新名称，“&lt;关系名称&gt;”是我们应该重命名的列的关系名称
+您还可以通过以下方式重命名多个列：
+<br><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image12.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+这将返回相同的表格，但O1、O2和O3列分别重命名为N1、N2和N3<br>
+<img alt="截屏2026-11-02 14.35.08.png" src="image/截屏2026-11-02-14.35.08.png" target="_self" style="width: 577px; max-width: 100%;"> Relations:Question: Write a single relational algebra expression to find the names of all lecturers in the CS department who teach at least one 15-credit module in Semester 1.Step 1 – Combine all relations:This produces every possible combination of lecturers, teaching records and modules.Step 2 – Filter with selection:
+Linking conditions (match IDs between tables): Lecturers.LID = Teaches.LID
+Teaches.Module = Modules.Module Question conditions: Department = 'CS', Credits = 15, Semester = 1 Step 3 – Project the attribute we want:Check with sample data:LecturersTeachesModules
+Step 1: arity = 3 + 3 + 2 = 8 columns; cardinality = 3 × 4 × 4 = 48 rows
+Step 2: only 2 rows survive: Siti fails: Department = 'Maths'
+Wei fails: Semester = 2 and Credits = 7.5
+Step 3 result: Rahman 满足条件的课有两门，σ 之后有两行，但 π 之后只剩一行，因为关系是集合，π 自动去重。"at least one" 就是靠这个实现的：满足一门或多门，名字都只出现一次 定义：R ∩ S = { t | t ∈ R 且 t ∈ S }，也就是两个关系共有的元组
+基本运算表达：R ∩ S = R − (R − S) 性质：满足交换律、结合律，并且是幂等的（R ∩ R = R）
+R − S 是"R 里不在 S 中的部分"，再从 R 里去掉这部分，剩下的就是两边都有的 定义: 类似于编程中的临时变量 P ← R ∩ S 不增加表达能力，只是 syntactic convenience句法便利 核心公式：R ⋈θ S = σθ(R × S) 先做笛卡尔积（所有两两组合），再用条件 θ 筛选 类型: Theta-join ⋈_θ 条件: 任意比较：=, ≠, &lt;, ≤, &gt;, ≥
+重复列: 保留 Equi-join ⋈_A=B 条件: 只用 =
+重复列: 保留 Natural join ⋈ 条件: 自动对所有同名属性做 =
+重复列: 去掉
+注意: natural join会匹配所有同名属性，不只是你想要的那个 Example: Equi-join 的结果有 SID | Name | Major | SID | Module | Grade，SID 出现两次
+Natural join 的结果是 SID | Name | Major | Module | Grade，SID 只出现一次 定义：R(X, Y) ÷ S(Y) = { x | 对 S 中每一个 y，(x, y) 都在 R 里 }
+基本运算表达：R ÷ S = π_X(R) − π_X( (π_X(R) × S) − R ) inner join普通连接 会把没匹配上的元素丢掉，outer join会保留它们，缺的属性填充NULL Left ⟕：保留左表全部
+Right ⟖：保留右表全部
+Full ⟗：两边都保留 ]]></description><link>study/year-1/comp1314/comp1314-data-management-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1314/COMP1314-Data management I.md</guid><pubDate>Tue, 03 Nov 2026 04:29:08 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[COMP1313 Computer system I]]></title><description><![CDATA[
 计算机系统 = 硬件+软件，他们协同工作来处理数据和执行任务
 硬件：CPU, RAM, SSD, Keyboard, Moniitor
 软件：Windows, macOS, Linux CPU中央处理器—— Executes instructions
@@ -353,210 +796,113 @@ Crosstalk串扰：相邻导线互相干扰 经典架构(1990s-2000s) Northbridge
 Southbridge(南桥):管 I/O,如硬盘、USB、声卡、网卡。它接在北桥上, 不直接连 CPU
 瓶颈: CPU、内存、显卡的数据全挤在 FSB 这一条共享总线上 现代架构(2010s至今) 内存控制器和显卡通道集成进 CPU, CPU 直连 RAM 和显卡, 北桥消失, 瓶颈也随之消除
 南桥演变为 PCH(Platform Controller Hub), 通过高速链路(如 Intel 的 DMI)直连 CPU, 管理 SATA、USB 等慢速外设
-结果: 延迟更低、带宽更高 ]]></description><link>study/year-1/comp1313/comp1313-computer-system-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1313/COMP1313 Computer system I.md</guid><pubDate>Tue, 20 Oct 2026 12:44:43 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[COMP1312-Programming I]]></title><description><![CDATA[
-Variable变量：类似于盒子，用来存放数据 Data Type数据类型：整数，小数，字符
-Value值：variable中的值 int num = 3; // int = Data type ; num = variable name ; 3 = value Local 局部变量 在函数内部声明, 只能在函数内部使用 void function() { int num1 = 3; // 局部变量 printf("%d", num1); } Global 全局变量 在所有函数外声明，整个程序都能用 Automatic 自动变量 所有局部变量默认就是auto Static 静态变量 函数调用完后，值仍然保留 void function() { int local_var = 10; static int static_var = 10; local_var += 10; static_var += 10; printf("Local: %d\n", local_var); printf("Static: %d\n", static_var);
-}
-// main 里调用 3 次 输出：
-Local: 20 Static: 20
-Local: 20 Static: 30
-Local: 20 Static: 40 local_var每次调用都重新创建，从10开始, static_var只在第一次初始化 External 外部变量 用external声明, 变量能在多个.c文件之间共享 Register 寄存器变量 变量放进CPU寄存器，访问更快 Constant 常量 使用后值不能再修改 只能包含数字，字母，下划线
-只能以字母或下划线开头，不能以数字开头
-不能有空格
-不能是保留字(for, while, if, const....)
-区分大小写 int 整数 范围: -2147483648～2147483647 约21亿
-int num_dec = 3.15; 输出3 不是四舍五入，直接丢掉小数
-\n表示换行 float和double 小数 都可以存小数，double精度更高，占内存是float的两倍
-printf默认6位小数，float num1 = 0.0000003; 用%f会显示0.000000, 用%.7f 才能显示0.0000003. %.xf x显示的小数位数
-float num2 =3; 也可以，会自动变成3.000000 char 字符 只存一个字符，用单引号 ‘a’
-- 注意不是双引号
-- 字符在电脑里是数字'a' = 97 'b'=98 bool 布尔 只有true 1和false 0
-需要#include &lt;stdbool.h&gt;
-打印用%d，所以会显示1或0 void 空 表示 “没有值”，不能用来声明变量，如void num1;会报错
-只用于函数返回类型、 参数、指针，例如void function1()表示这个函数不返回任何值 struct 结构体: 把不同类型的数据打包
-struct module { int studentID; float score;
-}; // 注意：结尾必须有分号！ int main() { struct module comp1312; // 创建一个 module 类型的变量 comp1312.studentID = 3303359; // 用 . 访问成员 comp1312.score = 87; printf("Student ID: %d\n", comp1312.studentID); printf("Score: %.2f\n", comp1312.score); // 87.00 保留两位小数
-} enum 枚举: 给数字起名字 从0开始递增: monday=0, tuesday=1......
-也可以自定义值 enum days { monday, tuesday, wednesday, thursday, friday };
-enum days day = monday;
-printf("Day is %d\n", day); // 输出 0 printf and scanf 输入和输出 格式符: %d(int), %c(char), %f(float), %lf(double)
-scanf里必须加&amp;，意思是这个变量的内存地址，将用户的输入写入这个变量
-printf只是读取值，不需要&amp; printf("%d", variable_name); // 输出
-scanf("%d", &amp;variable_name); // 输入 Operators 运算符 Arithmetic 算数: 加法+, 减法-, 乘法*, 结果只保留整数部分除法/, 取余数%
-Unary 一元: 加一x++, 减一x--
-Relational 关系: &gt; &lt; &gt;= &lt;= == != 结果都为1或0（真或假）
-Logical 逻辑: &amp;&amp; 意思为与 (AND), ||意思为或(OR), !意思为非(NOT)
-简写: x += y ---- x = x+y 以此类推 if 判断真假, 为T则执行，为F则跳过 int num1 = 3;
-if (num1 &gt; 1) { printf("Number is larger than 1\n");
-}
-printf("Completed"); if-else 二选一执行其中一个 if (num1 &gt; 1) { printf("Number is larger than 1\n");
-} else { printf("Number is lesser than 1\n");
-} if-else-if 从第一个判断开始检查，遇到为T的就执行，后面的全部跳过 if (num1 &gt; 1) { ... } // 条件 1
-else if (num1 == 1) { ... } // 条件 2
-else if (num1 == num2) { ... } // 条件 3
-else { ... } // 都不满足 Nested if-else 嵌套 多层if-else，先判断最外层的大类，再判断小类 if (num1 &gt; 1) { if (num1 == 1) {...} else {...}
-} else { if (num1 == num2) {...} else {...}
-} switch if- else-if的另一种写法，适合拿一个变量和多个固定值比较 switch (num1) { case 1: printf("Case 1\n"); break; case 2: printf("Case 2\n"); break; case 3: printf("Case 3\n"); break; default: printf("Default\n"); break;
-} for 循环 initialize初始化，循环开始前执行一次 ; test 判断，每一轮循环开始前检查，T才执行循环 ; update 更新 ，每一轮循环体结束后执行
-for (initialize; test; update)
-{ // 循环体
-} while 循环 与for循环的区别只有三个是拆开写的
-int i = 0; // ① 初始化：写在循环外面
-while (i &lt; 5) // ② 判断
-{ printf("COMP1312\n"); i++; // ③ 更新：写在循环体里面
-} do-while循环 判断位于循环后，因此最少执行次数为1次
-结尾必须加分号
-int i = 5;
-do
-{ printf("Countdown: %d\n", i); i--;
-} while (i &gt; 0); // 注意：结尾有分号！ Array 数组循环 以下例子为给五个盒子fuzhi
-int arr_int[5]; for (int i = 0; i &lt; 5; i++)
-{ arr_int[i] = i; // 第 i 个盒子放入 i printf("arr_int[%d] : %d\n", i, arr_int[i]);
-} 循环控制语句 break；意思为立刻跳出循环，不管条件成不成立
-continue；跳过本轮循环体剩下的代码，直接开始下一轮
-for (int i = 0; i &lt; 5; i++)
-{ printf("Counter: %d\n", i); if (i == 2) { break; // i 等于 2 时才退出 }
-}
-for (int i = 1; i &lt;= 5; i++)
-{ if (i == 3) continue; // i 是 3 时，跳过下面的 printf printf("%d\n", i);
-} 指针是一种数据类型，存的是内存地址
-可以是变量、函数或是另一个pointers的地址
-可以访问修改地址里的数据
-输出地址使用%p
-指针自己也是变量，也有地址
-data_type *pointer_name; 或 int *numint_p;
-float *numflt_p;
-double *numdb_p;
-char *char_p; 含义 " * "表示这是一个指针
-指针的类型要和它指向的变量类型一致int用 int* int num1 = 1;
-int *numint_p = &amp;num1; &amp; 叫address-of operator 取地址运算符，用作获取已有变量的地址 每个变量都有两个属性 value 存放的值
-address 在内存中的位置 不同类型如何打印值和地址: 打印地址时一定要用&amp;变量名 + %p printf(“Address num1: %p\n", &amp;num1);
-%p这一类为format specifier格式说明符，作用是告诉printf要输出的值是什么类型 int main(){ int num1 = 1; int *ptr_num1 = &amp;num1; printf("Value of num1 is %d\n",num1); printf("Value of ptr_num1 is %d\n",*ptr_num1); //*为解引用运算符 printf("num1 address: %p\n", &amp;num1); printf("ptr_num1 address: %p\n",ptr_num1); printf("ptr_num1 address2: %p\n",&amp;ptr_num1); //指针自己的地址
-} Out put:
-Value of num1 is 1
-Value of ptr_num1 is 1
-num1 address: 0061FF18
-ptr_num1 address: 0061FF18
-ptr_num1 address2: 0054xf3 *ptr_num1用%d打印得到1，说明 是dereference operator解引用运算符，顺着地址取值
-&amp;num1和ptr_num1打印出相同的address因为pointers存的就是num1的address
-&amp;ptr_num1打印的是指针自己的地址 方法1: num1 = 50; 直接修改变量的值
-方法2: * ptr1 = 38; 通过指针修改值
-Example: int num1 = 3; int *ptr1 = &amp;num1; printf("Value num1 before: %d\n", num1); printf("Value num1 before: %d\n", *ptr1); *ptr1 = 38; printf("Value num1 after: %d\n", num1); printf("Value num1 after: %d\n", *ptr1); Out put:
-Value num1 before: 3
-Value num1 before: 3
-Value num1 after: 38
-Value num1 after: 38 int num = 10;
-int *p = &amp;num; &amp;num ──► num 的地址 p ──► 存着 num 的地址(和 &amp;num 相同) *p ──► num 的值(10) &amp;p ──► p 自己的地址 两个pointers指向一个num1
-int num1 = 3;
-int *ptr1 = &amp;num1;
-int *ptr2 = &amp;num1; 两个pointers指向一个num1，读出的地址都是一样的，只是他们各自的address不同 Double Pointers 双重指针
-int num1 = 1;
-int *ptr1 = &amp;num1;
-int **ptr2 = &amp;ptr1; ptr2 是 "指向指针的指针",所以类型要多一个 *
-ptr2 含义是ptr1的地址
-*ptr2 含义是ptr1的值，即num1的地址
-**ptr2 含义是num1的值 Chain pointer 链式指针
-int *ptr1 = &amp;num1;
-int **ptr2 = &amp;ptr1;
-int ***ptr3 = &amp;ptr2; 规律一样，***ptr3 = 47; 连剥三层，最终修改num1
-有几个 ，解引用就要用几个 数组名就是首元素地址
-int arr[3] = {10, 20, 30};
-int *ptr1;
-ptr1 = arr; // 注意:不需要写 &amp;arr ptr1的值是0061FF10,指向arr[0] pointers可以像数组一样用下标 arr[i] 和 ptr1[i] 完全等价
-&amp;arr[i] 和 &amp;ptr1[i] 地址相同
-*ptr1 等价于 ptr1[0] 指针算数遍历数组 ptr1++ 指针移到下一个元素
-ptr1-- 退回上一个元素
-ptr1 = ptr1 + 2
-ptr1++ 不是地址 +1,而是加一个元素的大小。int 数组地址 +4,double 数组 +8
-使用for循环配合ptr++遍历整个数组
-for (int i = 0; i &lt; 3; i++) { printf("Current value: %d\n", *ptr1); ptr1++;
-} address的step取决于类型(int double) int数组: 地址 6422284 → 6422288 → 6422292, 间隔 4
-double数组: 地址 6422272 → 6422280 → 6422288,间隔 8 用&amp;arr[i]指向任意元素
-int *ptr1 = &amp;arr[0];
-int *ptr2 = &amp;arr[2]; 输出10 和 30
-]]></description><link>study/year-1/comp1312/comp1312-programming-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1312/COMP1312-Programming I.md</guid><pubDate>Tue, 20 Oct 2026 08:39:40 GMT</pubDate></item><item><title><![CDATA[COMP1311-Mathematics]]></title><description><![CDATA[ proposition 命题 定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见
-Example：Johor is in Malaysia. Predicate 谓词 定义:Contains variables; the truth value depends on the values ​​assigned to the variables. 含变量，真值取决于变量取值
-Example: P(x): x&gt;8 if P=9,T Neither 两者皆非 Example: 疑问句、命令、主观、悖论; What's you name?, This statement is false. Components 组成 Premises 前提：假设为真的陈述，证明起点。
-Conclusion 结论：需建立的陈述。
-Arguments 论证：从前提推导结论的逻辑步骤。 可借助Axioms公理和已证结果（定理和引理） 可写为P→Q&nbsp;形式
-Axioms 公理: 无需证明即接受为真
-Theorem 定理：已证明的命题
-Lemma 引理：辅助证明其他结果的已证命题 Direct proof 直接证明: 从前提直接推导结论
-Proof by cases 分情况证明: 划分所有可能情况逐一证明
-Proof by contrapositive逆否证明: 证明非Q→非P代替P→Q&nbsp;
-Proof by contradiction反证法：假设命题为假，推出矛盾
-Mathematical induction数学归纳法：证基础情况，再证每步递推
-Proposition 命题: The 1st of October is a Wednesday, so the 13th of October is a Monday
-Premises 前提:
-October is a Wednesday.
-The days of the week repeat every seven days in their usual order.
-13 October is 12 days after 1 October.
-Argument 论证:
-Since 12 = 7 + 5, moving forward 7 days from Wednesday returns to Wednesday.
-Moving forward another 5 days gives Monday.
-Therefore, 13 October is a Monday.
-Conclusion 结论: 13 October is a Monday. 证明 = 前提 + 论证 + 结论。 Direct proof 直接证明 证 P→Q: 假设 P,用定义一步步推到 Q
-模版：假设P → 用定义展开 → 凑出Q的定义形式 例: 若 18|n,则 6|n n可以被18整除，则n可以被6整除 假设n = 18k，k∈ℤ
-18=6×3,所以 n=6(3k)
-3k 是整数
-所以 n=6m, m=3k∈ℤ, 即 6|n 例：两个奇数之积是奇数 设 a=2k+1, b=2m+1
-ab=4km+2k+2m+1 =2(2km+k+m)+1
-2km+k+m 是整数,所以 ab 是奇数 Counterexample 反例 推翻全称命题:找一个 P 真、Q 假的例子 例: a²=b² ⟹ a=b 证明是假的,取 a=2,b=−2。应该改成 a=b 或 a=−b,或加条件 a,b≥0 If and only if 当且仅当 证 P↔Q:两个方向都要证
-先假设P，推出Q，再重新假设Q，推出P 例：x²=x ⟺ x=0 或 x=1 ⇒x²−x=0,即 x(x−1)=0,所以 x=0 或 x=1
-⇐:x=0 时 0²=0,x=1 时 1²=1 Contraposition 逆否命题 P→Q ≡ ¬Q→¬P (逻辑等价)
-用的时机：证"n² 偶 ⟹ n 偶"时,n²=2k 很难变成 n 的形式。逆否命题"n 奇 ⟹ n² 奇"则很顺:n=2k+1, n²=2(2k²+2k)+1 例：x+y≥2 ⟹ x≥1 或 y≥1 逆否: x&lt;1 且 y&lt;1 ⟹ x+y&lt;2
-两个不等式相加:x+y&lt;1+1=2 Case analysis 分情况 分的情况加起来必须覆盖所有情况；每个情况都要单独证明 例：n²+3n 是偶数 n=2k: 4k²+6k=2 (2k²+3k)
-n=2k+1:4k²+10k+4 =2 (2k²+5k+2)
-每个整数非奇即偶,所以情况穷尽 Contradiction 反证法 假设结论为假 → 推出矛盾 ⊥ → 原结论成立 不能只写矛盾，要写清楚和什么矛盾
-contraposition逆否命题 和 contradiction反证法的区别：
-contraposition：目标是 P→Q,假设 ¬Q, 必须推出 ¬P,目标明确
-Contradiction：假设整个命题为假, 推出任何矛盾都行 例：没有最小正实数 假设 x 是最小正实数,取 y=x/2。
-y&gt;0 且 y&lt;x, 与"x 最小"矛盾 Induction 归纳法 类似于多米诺骨牌
-Base case：证明 P(1) 成立(推倒第一块)
-Inductive hypothesis：假设某个 k 使 P(k) 成立
-Inductive step：证明 P(k+1)(每块推倒下一块) 例：2ⁿ≥n+1 Base:n=1, 2¹=2≥2
-Step:假设 2ᵏ≥k+1。则 2ᵏ⁺¹=2·2ᵏ ；2·2ᵏ ≥ 2(k+1) ；2(k+1) = 2k+2；2k+2 ≥ k+2
-2ᵏ⁺¹ = 2·2ᵏ ≥ 2(k+1) = 2k+2 ≥ k+2
-所以 2ᵏ⁺¹ ≥ k+2,这正是 P(k+1)
-用到的两个不等式:归纳假设 2ᵏ≥k+1,以及 2k+2≥k+2 定义：互不相同，定义明确的对象的集合
-写法： Roster:D={0,1,2,3} Set-builder:I = {i∈ℤ : 0≤i&lt;4}, 冒号读作"such that" 集合不记顺序和重复，因此 {1,2,3}={3,2,1}={1,1,2,3}
-| A | 的意思是集合中不同元素的个数 例如 |{1,1,2,2,3}| = 3 ∅ 和{∅}的不同：∅没有元素，因此｜∅｜ = 0；{∅}里有一个空集元素，因此为1；空集是任何集合的子集
-⊆ 的意思代表A的每个元素都在B里面；⊊ 代表A是B的子集，但A不等于B Example： U={1..6}, A={1,2,4,6}, B={2,3,4}
-A∪B={1,2,3,4,6}
-A∩B={2,4}
-A∖B={1,6}
-Aᶜ={3,5} 常用定律： 恒等: A∪∅=A, A∩U=A
-幂等: A∪A=A, A∩A=A
-互补: A∪Aᶜ=U, A∩Aᶜ=∅, (Aᶜ)ᶜ=A
-交换律与结合律: ∪ 和 ∩ 都满足,但 ∖ 不满足交换律
-分配律: A∩(B∪C)=(A∩B)∪(A∩C)
-De Morgan: (A∪B)ᶜ=Aᶜ∩Bᶜ, (A∩B)ᶜ=Aᶜ∪Bᶜ 口诀：把 NOT 推进去, OR 和 AND 互换 证明集合等式： 取任意 x,用"每步等价"的方式推 Example: x∈(A∪B)ᶜ ⟺ x∉A∪B ⟺ x∉A 且 x∉B ⟺ x∈Aᶜ∩Bᶜ Ordered pair有序对：(a,b) = (c,d) 当且仅当 a=c 且 b=d，例如 (2,5) ≠ (5,2),但 {2,5} = {5,2} Tuple 元组：固定位置数的记录，如 (student_id, module, mark)=(31415,”COMP1311",78) Cartesian product 笛卡尔积 A×B={(a,b) : a∈A, b∈B} A={u₁,u₂}, B={read,write}:A×B 有 4 个对：A × B = {(u₁,read),(u₁,write),(u₂,read),(u₂,write)}
-独立选择相乘:3 个系统×2 个浏览器×2 种模式=12 个测试用例
-A×∅=∅;只允许部分组合时,得到的是 A×B 的子集 Power set 幂集：𝒫(A) 是 A 的所有子集的集合 它的元素是子集,不是 A 的元素
-𝒫({a,b}) = {∅,{a},{b},{a,b}}
-每个元素"选或不选"两种,所以 |A|=n 时 |𝒫(A)| = 2ⁿ
-3个元素即为1+3+3+1 = 8个子集
-Bit string位字符：顺序固定为 (logging, caching, encryption) 时,101 表示 {logging, encryption} 位字符串提供了子集的紧凑表示 𝒫(∅)={∅}, 大小为 2⁰=1, 幂集永远不为空 Relation 关系:R⊆A×B,即"真正成立的那些对" Function 函数 f:A→B:对每个 a∈A,输出存在且唯一。两个输入可以共用一个输出,但一个输入不能有两个输出 A={1,2,3}, B={a,b}
-P={(1,a), (2,b),(3,b)}:是函数
-Q={(1,a), (1,b), (2,a), (3,b)}:不是函数, 1有两个输出(唯一性失败)
-T={(1,a), (2,b)}:不是函数, 3没有输出 (存在性失败) Example：U={u₁,u₂}, R={viewer,admin}, F={cache,logs} 用户-角色可能对:2×2 = 4
-功能配置数:|𝒫(F)| = 2²=4
-实际允许的用户-角色对:一个 relation (U×R 的子集)
-每个用户恰有一个默认角色:一个 function U→R Conclusion： 什么是relation 关系 R 是笛卡尔积的子集:R ⊆ A × B,即 R = {(a, b) | a ∈ A 且 b ∈ B}
-通俗理解：Relation就是“把集合里的元素连起来的方式”，R里的每个有序对就是一条连线
-Example： A = {1,2,3}, R = {(1,2),(2,3)} → “1 与 2 相关, 2 与 3 相关”
-颜色与水果:C = {red, orange, yellow}, F = {apple, orange, lemon} R = {(apple, red), (orange, orange), (lemon, yellow)}
-F × C 共有 3 × 3 = 9 个有序对, 而 R 只有 3 个 → R 只是 F × C 的一个子集 Digraph 有向图:用箭头表示关系，每个有序对(a,b)画成一条从a指向b的箭头; (a,a)是自环
-<img alt="截屏2026-10-19 21.31.02.png" src="image/截屏2026-10-19-21.31.02.png" target="_self" style="width: 364px; max-width: 100%;"> Six Types of Relational Properties 6种关系性质 Equivalence Relations and Equivalence Classes 等价关系与等价类 等价关系：同时满足自反+对称+传递，记作“~”
-等价关系中将集合元素分类到buckets中，每个buckets被称为等价类
-[a] = {x ∈ A : x ~ a}
-重要性质： 每个元素恰好属一个类
-各类互不重叠
-所有类合起来覆盖整个集合 Example: (首字母相同):A = {apple, ant, ball, bat, cat}
-[apple] = {apple, ant}, [ball] = {ball, bat}, [cat] = {cat} Partial Order 篇序 定义：同时满足Reflexive 自反，Antisymmetric 反对称，Transitive 传递
-通常写作 a ≼ b 代替 (a,b)∈R。此时 (A, R) 称为poset偏序集
-类似 ≤, 但不要求所有两个元素都能比较
-严格篇序：把自反换成非自反,即 非自反 + 反对称 + 传递(类似 &lt; 而不是 ≤) ]]></description><link>study/year-1/comp1311/comp1311-mathematics.html</link><guid isPermaLink="false">Study/Year 1/COMP1311/COMP1311-Mathematics.md</guid><pubDate>Mon, 19 Oct 2026 13:59:18 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 21.31.02]]></title><description><![CDATA[<img src="image/截屏2026-10-19-21.31.02.png" target="_self">]]></description><link>image/截屏2026-10-19-21.31.02.html</link><guid isPermaLink="false">Image/截屏2026-10-19 21.31.02.png</guid><pubDate>Mon, 19 Oct 2026 13:31:03 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.45.51]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.45.51.png" target="_self">]]></description><link>image/截屏2026-10-19-19.45.51.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.45.51.png</guid><pubDate>Mon, 19 Oct 2026 11:45:54 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.35.48]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.35.48.png" target="_self">]]></description><link>image/截屏2026-10-19-19.35.48.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.35.48.png</guid><pubDate>Mon, 19 Oct 2026 11:35:51 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.35.10]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.35.10.png" target="_self">]]></description><link>image/截屏2026-10-19-19.35.10.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.35.10.png</guid><pubDate>Mon, 19 Oct 2026 11:35:12 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.34.48]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.34.48.png" target="_self">]]></description><link>image/截屏2026-10-19-19.34.48.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.34.48.png</guid><pubDate>Mon, 19 Oct 2026 11:34:52 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.34.10]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.34.10.png" target="_self">]]></description><link>image/截屏2026-10-19-19.34.10.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.34.10.png</guid><pubDate>Mon, 19 Oct 2026 11:34:13 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Final exam]]></title><link>study/year-0/sem-2/geng0030/final-exam.html</link><guid isPermaLink="false">Study/Year 0/sem 2/GENG0030/Final exam.md</guid><pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate></item><item><title><![CDATA[4. Translators]]></title><description><![CDATA[
+结果: 延迟更低、带宽更高 核心思想: 顺序处理，Stored- program 存储程序。程序和数据放在同一个内存里，通过同一套总线和CPU交换
+<br><img alt="Pasted image 20261026101916.png" src="image/pasted-image-20261026101916.png" target="_self">
+每一步要访问内存两次：一次取指令，一次取或写数据。因为只有一条路，这两次只能一前一后进行
+CPU越快，由于内存相对较慢因此等待的比例越大，解决办法： Caching：把常用数据放在离CPU更近更快的cache里
+Prefetching：在CPU真正需要之前把数据搬进cache
+Multithreading：一个线程在等内存时，CPU先去做另一个线程的事 核心思想：并行处理，CPU在取下一条指令的同时，可以读写数据
+<br><img alt="Pasted image 20261026103235.png" src="image/pasted-image-20261026103235.png" target="_self">
+优点： 没有Von Neumann的瓶颈
+更快 缺点： 更贵，更复杂，两套内存和两套总线
+内存空间是固定的，指令区只能放数据
+不够灵活，程序不能把指令当数据来修改 Modified Harvard架构 结合两种架构
+CPU内部，有分开的指令cache和数据cache，都是分层的L1，可以同时取指令和取数据
+CPU外部，两者共用一块主存RAM，像 Von Neumann 一样灵活、便宜 Split-cache：上面讲的，cache 分开、主存统一
+Instruction-memory-as-data：允许把指令内存当数据来读，比如从程序存储器里读一张常量表
+Data-memory-as-instruction：允许执行数据内存里的代码 指令的结构：Opcode操作码(做什么) + Operands操作数(对谁做) Runtime = 指令数 × 每条指令的周期数（CPI） × 时钟周期时间 CISC想减少指令数：一条指令做很多事
+RISC想减少CPI：每条指令简单、执行快 CISC — Complex Instruction Set Computer 指令多，单条指令功能强，一条指令可以完成取数 + 计算 + 存回
+长度不固定，解码复杂
+高功耗
+靠硬件优化
+需要更少RAM
+寻址方式多
+代表: Intel x86 / AMD、IBM System/360 RISC — Reduced Instruction Set Computer 指令少简单，一个时钟周期左右完成
+长度固定，解码简单，可以做pipeline
+功耗低
+靠编译器优化
+需要更多RAM
+Load/Store 架构：只有 LOAD 和 STORE 能访问内存，计算只在寄存器之间进行
+代表：ARM(手机、Raspberry Pi)、Apple M1–M4、RISC-V pipelines让CPU运行更快，因为它把多条指令的不同阶段重叠起来做
+公式 无流水线: 总时间 = n k T
+有流水线: 总时间 = (k+n-1) * T ——在一条k个阶段的流水线上，n条指令全部执行完一共需要多少个时钟周期 运行方式如下图
+<br><img alt="Pasted image 20261027112531.png" src="image/pasted-image-20261027112531.png" target="_self" style="width: 449px; max-width: 100%;"> Data Hazards 数据冒险 后一条指令要用前一条指令还没算出来的结果
+Example: I1: DIV R1, R2 ; 结果写进 R1
+I2: ADD R3, R1 ; 要读 R1
+I3: SUB R3, #2
+I2 在 Decode 阶段就要读 R1，但这时 I1 还在 Execute，R1 的值还没出来
+pipelines会发生 stall停顿 解决方法: Data forwarding 数据前递 加一条通道，把 ALU 的输出直接送给下一条指令的 ALU 输入，不用等写回寄存器
+代价是需要额外的冒险检测逻辑以及多路检测器 Stall/bubbles 硬件等待 最简单
+浪费周期 instruction reordering 编译器重排指令 编译器在生成机器码时发现依赖关系，把不相关的指令塞到中间，填补空档
+缺点是不一定总能找到可以挪的指令 Contro Hazard 控制冒险 if-else中例如jump to L1，但是分支的结果要到 Execute 阶段才知道，可是 Fetch 阶段每个周期都要取一条新指令。在结果出来之前，CPU 只能先猜一个方向接着取
+Example： T5：取 IX（"if false, jump to L11"）
+T6、T7：CPU 不知道结果，就按顺序继续取了 I6、I7
+T7：IX 到达 Execute，结果出来了：要跳到 L11
+所以 I6、I7 是白取的，必须flush清空。T8 重新从 I10 开始取
+因此 T8、T9 里有空格
+flush 的深度取决于分支走到第几个阶段才出结果 jump和Branch的区别 Jump 无条件跳转，目标地址在Decode 阶段就知道，只浪费 1 条指令
+Branch 条件分枝，要等 Execute 阶段算出条件，浪费更多 解决方法： Branch Prediction 分支预测 思路：先猜一个方向，接着做 Delayed Branching 延迟分支 编译器就从分支前面挑一条和分支结果无关的指令，挪到分支后面的位置，被执行
+类似于编译器重排 一个时钟周期可以同时执行多条指令 T1: C = a + b
+T2: D = e * f 传统上是先执行T1，再执行T2
+因为他们不互相依赖，所以可以按这个方式执行: 同时执行T1, T2 Instruction level parallelism 指令级并行度 程序里本身有多少互相独立的指令 Compiler based optimisation 编译器优化 由编译器来决定哪里可能使用超标量技术 Hardware techniques 硬件技术 如果CPU上没有足够的执行资源来一次执行多个指令，那么这在物理上是不可能发生的 受以下限制: True Data Dependency (Read-After-Write) 真数据依赖 当多个指令使用同一个寄存器，只能等待
+R0&nbsp;= R1 + R2
+R3 =&nbsp;R0 Procedural Dependency 过程/控制依赖 类似于真数据依赖，不过是分支绝了寄存器的内容
+&nbsp;IF R0 = 1 THEN R1&nbsp;= 5 R2 = R2 +&nbsp;R1 Resource Conflict 资源冲突 当两个指令同时需要相同的资源时
+示例：如果两个指令需要 ALU Antidependency (Write-After-Read) 反依赖 (1) R3 = R3 + R5
+(2) R4 = R3 + 1
+(3) R3 = R5 + 1
+(3)不能在(2)之前执行，因为(2)需要R3的旧值, (3)覆盖了R3。这是反依赖。这可以通过重命名寄存器来修复 Output dependency (Write-After-Write) 输出依赖 (1) R3 = R3 + R5
+(2) R3 = 1
+如果(2)在(1)之前完成，那么(1)将有错误的输出。这是输出依赖性, 这可以通过重命名寄存器来修复 Speedup = 旧时间 ÷ 新时间 程序原来跑 20 分钟，现在跑 15 分钟，Speedup = 20 / 15 = 1.33，也就是快了 1.33 倍，或者说提速 33% 并行后的运行时间: Tp = 完成任务所需的总努力（时间）
+Ws = 绝对必须按顺序完成的位
+Wp = 可以并行完成的位
+<br>P = 核心数量<img alt="Pasted image 20261103112346.png" src="image/pasted-image-20261103112346.png" target="_self" style="width: 135px; max-width: 100%;"> 加速比 s = 顺序部分占的比例（只能 1 个处理器做）
+p = 可并行部分占的比例，s + p = 1
+<br>n = 处理器个数<img alt="截屏2026-11-03 11.39.33.png" src="image/截屏2026-11-03-11.39.33.png" target="_self" style="width: 181px; max-width: 100%;"> 上限speedup s = 顺序部分占的比例（只能 1 个处理器做）
+最大speedup = 1/s 直觉上，会认为核心越多，电脑就越快。
+实际上，由于Amdahl定律，随着核心数量的增加，处理能力有限:<br>
+<img alt="Pasted image 20261103112529.png" src="image/pasted-image-20261103112529.png" target="_self" style="width: 443px; max-width: 100%;">
+Amdahl定律表明，在CPU的更大部分应用小速度比在CPU的小部分应用大速度效率更高
+程序的顺序部分比例决定了加速的上限
+N 核 CPU 不可能比同频率的单核快 N 倍 Multiprogramming多道程序: 程序 A 等 I/O 时，CPU 切去跑程序 B，B 等的时候再跑 C，这叫interleaving交错
+Multiprocessing双处理器: 处理器 1 跑 A，处理器 2 跑 B 和 C, 这叫overlapping重叠
+交错 = 并发（轮流做），重叠 = 并行（同时做） 分类 SISD 单指令单数据 一个处理器，一条指令流，处理一份数据。就是传统的单核顺序计算机
+用途：传统软件、简单脚本，没有并行性的算法 SIMD 单指令多数据 同一条指令同时作用在很多份数据上，各处理单元步调一致lockstep
+代表：向量处理器、阵列处理器
+用途：图形与游戏（矩阵、光照）、图像滤镜、机器学习的矩阵乘法、音视频编解码
+比喻：老师对全班说把你白板上的数加 5。指令只有一条，数据有很多份 MISD 多指令单数据 多个处理器对同一份数据执行不同的指令
+没有商业化实现
+用途：对可靠性要求极高的系统（飞控、太空探测器，多个单元冗余地计算和核对），以及学术研究
+比喻：几个技师同时检查同一辆车，有的查刹车，有的查发动机，有的查车灯 MIMD 多指令多数据 多个处理器各自执行不同的指令，处理不同的数据，最灵活，适用于任何应用
+代表：SMP对称多处理器、集群、NUMA 系统，以及现代多核 CPU
+用途：Web 服务器同时处理多个请求、数据库并发事务、科学计算集群、云计算虚拟机
+比喻：厨房里几个厨师，一个煎牛排、一个拌沙拉、一个做酱汁 ]]></description><link>study/year-1/comp1313/comp1313-computer-system-i.html</link><guid isPermaLink="false">Study/Year 1/COMP1313/COMP1313 Computer system I.md</guid><pubDate>Tue, 03 Nov 2026 04:08:31 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-03 11.39.33]]></title><description><![CDATA[<img src="image/截屏2026-11-03-11.39.33.png" target="_self">]]></description><link>image/截屏2026-11-03-11.39.33.html</link><guid isPermaLink="false">Image/截屏2026-11-03 11.39.33.png</guid><pubDate>Tue, 03 Nov 2026 03:39:39 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Pasted image 20261103112529]]></title><description><![CDATA[<img src="image/pasted-image-20261103112529.png" target="_self">]]></description><link>image/pasted-image-20261103112529.html</link><guid isPermaLink="false">Image/Pasted image 20261103112529.png</guid><pubDate>Tue, 03 Nov 2026 03:25:29 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Pasted image 20261103112346]]></title><description><![CDATA[<img src="image/pasted-image-20261103112346.png" target="_self">]]></description><link>image/pasted-image-20261103112346.html</link><guid isPermaLink="false">Image/Pasted image 20261103112346.png</guid><pubDate>Tue, 03 Nov 2026 03:23:46 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 14.35.08]]></title><description><![CDATA[<img src="image/截屏2026-11-02-14.35.08.png" target="_self">]]></description><link>image/截屏2026-11-02-14.35.08.html</link><guid isPermaLink="false">Image/截屏2026-11-02 14.35.08.png</guid><pubDate>Mon, 02 Nov 2026 06:35:10 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 14.16.14]]></title><description><![CDATA[<img src="image/截屏2026-11-02-14.16.14.png" target="_self">]]></description><link>image/截屏2026-11-02-14.16.14.html</link><guid isPermaLink="false">Image/截屏2026-11-02 14.16.14.png</guid><pubDate>Mon, 02 Nov 2026 06:16:16 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 14.12.43]]></title><description><![CDATA[<img src="image/截屏2026-11-02-14.12.43.png" target="_self">]]></description><link>image/截屏2026-11-02-14.12.43.html</link><guid isPermaLink="false">Image/截屏2026-11-02 14.12.43.png</guid><pubDate>Mon, 02 Nov 2026 06:12:45 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 12.53.21]]></title><description><![CDATA[<img src="image/截屏2026-11-02-12.53.21.png" target="_self">]]></description><link>image/截屏2026-11-02-12.53.21.html</link><guid isPermaLink="false">Image/截屏2026-11-02 12.53.21.png</guid><pubDate>Mon, 02 Nov 2026 04:53:27 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 12.51.51]]></title><description><![CDATA[<img src="image/截屏2026-11-02-12.51.51.png" target="_self">]]></description><link>image/截屏2026-11-02-12.51.51.html</link><guid isPermaLink="false">Image/截屏2026-11-02 12.51.51.png</guid><pubDate>Mon, 02 Nov 2026 04:51:55 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 12.51.39]]></title><description><![CDATA[<img src="image/截屏2026-11-02-12.51.39.png" target="_self">]]></description><link>image/截屏2026-11-02-12.51.39.html</link><guid isPermaLink="false">Image/截屏2026-11-02 12.51.39.png</guid><pubDate>Mon, 02 Nov 2026 04:51:41 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-11-02 12.47.45]]></title><description><![CDATA[<img src="image/截屏2026-11-02-12.47.45.png" target="_self">]]></description><link>image/截屏2026-11-02-12.47.45.html</link><guid isPermaLink="false">Image/截屏2026-11-02 12.47.45.png</guid><pubDate>Mon, 02 Nov 2026 04:47:48 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-29 15.13.53]]></title><description><![CDATA[<img src="image/截屏2026-10-29-15.13.53.png" target="_self">]]></description><link>image/截屏2026-10-29-15.13.53.html</link><guid isPermaLink="false">Image/截屏2026-10-29 15.13.53.png</guid><pubDate>Thu, 29 Oct 2026 07:13:55 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[index]]></title><description><![CDATA[
+<a data-tooltip-position="top" aria-label="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" rel="noopener nofollow" class="external-link is-unresolved" href="https://www.southampton.ac.uk/about/faculties-schools-departments/school-of-electronics-and-computer-science" target="_self">Computer Science, School of Electronics &amp; Computer Science, University of Southampton</a>
+Year 1
+University email: hl11g25 at soton dot ac dot uk
+Email: dennislee92805 at gmail dot com
+<br>GitHub: <a data-tooltip-position="top" aria-label="https://github.com/Dennis-Lee1214" rel="noopener nofollow" class="external-link is-unresolved" href="https://github.com/Dennis-Lee1214" target="_self">Dennis-Lee1214</a> 2026-10: Started this site
+<br>2026-05: Finished <a data-tooltip-position="top" aria-label="Projects" data-href="Projects" href="projects.html" class="internal-link" target="_self" rel="noopener nofollow">Free Fall Physics Simulator</a>
+Studying: This year (Year 1, 2026/27): Computer Systems, Data Management, Programming, Mathematics, COMP Part I Laboratory ProgrammeLast year (Year 0, 2025/26): Mathematics A, Mathematics B, Mathematics for Science and Engineering, Computer Systems and Applications, Fundamentals of Computing, Theoretical Aspects of Computing, Programming and Coursework, Computer Applications]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Wed, 21 Oct 2026 13:47:17 GMT</pubDate></item><item><title><![CDATA[Notes]]></title><description><![CDATA[These notes are based on the lecture slides at the University of Southampton, with extra information added where it helps to explain things further. They are definitely not perfect notes, but writing notes is a great way to learn, and if other people can read them and get something out of them, that would be great :DEdit: these were written while the modules ran (Year 0 in 2025/2026, Year 1 in 2026/2027). Content may have changed since then, but hopefully they are still useful.
+<a data-tooltip-position="top" aria-label="COMP1311-Mathematics" data-href="COMP1311-Mathematics" href="study/year-1/comp1311/comp1311-mathematics.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1311 Mathematics</a>
+<br><a data-tooltip-position="top" aria-label="COMP1312-Programming I" data-href="COMP1312-Programming I" href="study/year-1/comp1312/comp1312-programming-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1312 Programming I</a>
+<br><a data-tooltip-position="top" aria-label="COMP1313 Computer system I" data-href="COMP1313 Computer system I" href="study/year-1/comp1313/comp1313-computer-system-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1313 Computer System I</a>
+<br><a data-tooltip-position="top" aria-label="COMP1314-Data management I" data-href="COMP1314-Data management I" href="study/year-1/comp1314/comp1314-data-management-i.html" class="internal-link" target="_self" rel="noopener nofollow">COMP1314 Data Management I</a> <br><a data-href="1. Computer system and peripheral Hardware" href="study/year-0/sem-1/geng0030/1.-computer-system-and-peripheral-hardware.html" class="internal-link" target="_self" rel="noopener nofollow">1. Computer system and peripheral Hardware</a>
+<br><a data-href="4. Translators" href="study/year-0/sem-1/geng0030/4.-translators.html" class="internal-link" target="_self" rel="noopener nofollow">4. Translators</a>
+<br><a data-href="10. System Bus" href="study/year-0/sem-1/geng0030/10.-system-bus.html" class="internal-link" target="_self" rel="noopener nofollow">10. System Bus</a>
+<br><a data-href="Final exam" href="study/year-0/sem-2/geng0030/final-exam.html" class="internal-link" target="_self" rel="noopener nofollow">Final exam</a>
+]]></description><link>notes.html</link><guid isPermaLink="false">Notes.md</guid><pubDate>Wed, 21 Oct 2026 13:42:34 GMT</pubDate></item><item><title><![CDATA[Projects]]></title><description><![CDATA[May 2026 · Python, Tkinter, MatplotlibA desktop app for learning kinematics: drop objects under different gravity and air resistance and watch the motion, the numbers and the graphs change in real time.<img alt="freefall-earth.jpg" src="image/freefall-earth.jpg" target="_self">My partI contributed to the design and development of the app:
+Storyboards: designed the storyboards for the whole application, which the team built from across all four increments
+Real-time graphs: built the graphing feature, one of the app's core features, which plots displacement, velocity and acceleration against time from the simulation data with Matplotlib, updating live during a run, colour-coded per object
+Interface: increased font sizes and resized the control panel and the simulation info panel, following feedback that the text was too small to read
+<br><img alt="freefall-graphs.jpg" src="image/freefall-graphs.jpg" target="_self">What the app does
+Drop up to two objects side by side, with material presets from feather to lead, or set mass, drag coefficient and area by hand
+9 planetary environments, each with its own gravity, air density and background; air resistance can be turned on or off
+Live info panel (time, velocity, height, status), a run summary, and a 20-question random physics quiz
+Sign up / log in with input validation
+<br><img alt="freefall-jupiter.jpg" src="image/freefall-jupiter.jpg" target="_self">Testing: vacuum-mode fall times matched t = √(2h/g) on Earth, the Moon and Mars; all 31 test cases from Increment 3 passed, plus the new login tests.What I'd do differently: plan the harder features earlier (sound effects, graph export, a terminal velocity indicator and password hashing were left out for time), and store passwords hashed instead of in plain text.]]></description><link>projects.html</link><guid isPermaLink="false">Projects.md</guid><pubDate>Wed, 21 Oct 2026 13:35:14 GMT</pubDate><enclosure url="image/freefall-earth.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-earth.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-jupiter]]></title><description><![CDATA[<img src="image/freefall-jupiter.jpg" target="_self">]]></description><link>image/freefall-jupiter.html</link><guid isPermaLink="false">Image/freefall-jupiter.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-jupiter.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-jupiter.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-earth]]></title><description><![CDATA[<img src="image/freefall-earth.jpg" target="_self">]]></description><link>image/freefall-earth.html</link><guid isPermaLink="false">Image/freefall-earth.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-earth.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-earth.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[freefall-graphs]]></title><description><![CDATA[<img src="image/freefall-graphs.jpg" target="_self">]]></description><link>image/freefall-graphs.html</link><guid isPermaLink="false">Image/freefall-graphs.jpg</guid><pubDate>Wed, 21 Oct 2026 13:25:35 GMT</pubDate><enclosure url="image/freefall-graphs.jpg" length="0" type="image/jpeg"/><content:encoded>&lt;figure&gt;&lt;img src="image/freefall-graphs.jpg"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Misc]]></title><description><![CDATA[
+Things I read: <a data-tooltip-position="top" aria-label="https://github.com/eternity4719/HowToLiveBetter" rel="noopener nofollow" class="external-link is-unresolved" href="https://github.com/eternity4719/HowToLiveBetter" target="_self">高性价比人生指南</a>
+]]></description><link>misc.html</link><guid isPermaLink="false">Misc.md</guid><pubDate>Wed, 21 Oct 2026 13:19:12 GMT</pubDate></item><item><title><![CDATA[截屏2026-10-19 21.31.02]]></title><description><![CDATA[<img src="image/截屏2026-10-19-21.31.02.png" target="_self">]]></description><link>image/截屏2026-10-19-21.31.02.html</link><guid isPermaLink="false">Image/截屏2026-10-19 21.31.02.png</guid><pubDate>Mon, 19 Oct 2026 13:31:03 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.45.51]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.45.51.png" target="_self">]]></description><link>image/截屏2026-10-19-19.45.51.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.45.51.png</guid><pubDate>Mon, 19 Oct 2026 11:45:54 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.35.48]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.35.48.png" target="_self">]]></description><link>image/截屏2026-10-19-19.35.48.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.35.48.png</guid><pubDate>Mon, 19 Oct 2026 11:35:51 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.35.10]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.35.10.png" target="_self">]]></description><link>image/截屏2026-10-19-19.35.10.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.35.10.png</guid><pubDate>Mon, 19 Oct 2026 11:35:12 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.34.48]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.34.48.png" target="_self">]]></description><link>image/截屏2026-10-19-19.34.48.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.34.48.png</guid><pubDate>Mon, 19 Oct 2026 11:34:52 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[截屏2026-10-19 19.34.10]]></title><description><![CDATA[<img src="image/截屏2026-10-19-19.34.10.png" target="_self">]]></description><link>image/截屏2026-10-19-19.34.10.html</link><guid isPermaLink="false">Image/截屏2026-10-19 19.34.10.png</guid><pubDate>Mon, 19 Oct 2026 11:34:13 GMT</pubDate><enclosure url="." length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="."&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Final exam]]></title><link>study/year-0/sem-2/geng0030/final-exam.html</link><guid isPermaLink="false">Study/Year 0/sem 2/GENG0030/Final exam.md</guid><pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate></item><item><title><![CDATA[4. Translators]]></title><description><![CDATA[
 将程序员写的高级/汇编语言代码翻译成计算机可理解的二进制形式的实用程序
 三种翻译器：Compiler编译器/Interpreter解释器/Assembler汇编器 将高级语言代码一次性全部翻译成机器码，生成可执行文件
 编译后可多次使用，无需重新编译。会对代码进行优化（optimise）。错误只在完整编译后才报告。编译后的代码难以反推回溯代码，难以修改
