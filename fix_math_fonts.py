@@ -2,7 +2,7 @@
 """Webpage HTML Export 导出后的自动修复（提交时由 pre-commit hook 自动运行）：
 1. 把数学公式字体改成从 CDN 加载（插件没导出这些字体）
 2. 去掉左右侧栏（文件目录、搜索、关系图、目录）、底部反向链接和链接悬停预览，正文铺满页面；手机上缩小缩进和边距
-3. 导航栏里的 Blog 链接去掉外部链接小箭头，颜色和其他导航链接一致
+3. 去掉所有外部链接后面的小箭头；Blog 链接颜色和其他导航链接一致；隐藏每页顶部的笔记标题（如 index）；所有链接改成蓝色
 手动运行：在仓库文件夹里  python3 fix_math_fonts.py
 """
 import pathlib, re
@@ -17,7 +17,13 @@ MARK = 'id="plain-layout"'
 LAYOUT = """<style id="plain-layout">
 #left-content,#right-content,#navbar,.sidebar-collapse-icon,.footer,.backlinks,.hover-popover{display:none!important}
 #main-horizontal,#center-content{width:100%!important;max-width:none!important}
-a.external-link[href^="https://dennis-lee1214.github.io/blog"]{background-image:none!important;padding-inline-end:0!important;padding-right:0!important;color:var(--link-color)!important;text-decoration-line:var(--link-decoration)!important}
+a.external-link{background-image:none!important;padding-inline-end:0!important;padding-right:0!important}
+a.external-link[href^="https://dennis-lee1214.github.io/blog"]{color:var(--link-color)!important;text-decoration-line:var(--link-decoration)!important}
+.inline-title,.page-title.inline-title{display:none!important}
+body,.theme-light,.theme-dark,.obsidian-document,.markdown-preview-view{--link-color:#1a73e8!important;--link-color-hover:#1558b0!important;--link-external-color:#1a73e8!important;--link-external-color-hover:#1558b0!important;--link-unresolved-color:#1a73e8!important}
+a,a.internal-link,a.external-link{color:#1a73e8!important}
+a:hover{color:#1558b0!important}
+a.is-unresolved{opacity:1!important;filter:none!important}
 body,.obsidian-document,.markdown-preview-view{--line-width:100%!important;--file-line-width:100%!important;--line-width-adaptive:100%!important;--max-width:100%!important}
 .markdown-preview-sizer{max-width:none!important;width:100%!important}
 @media (max-width:760px){body,.obsidian-document,.markdown-preview-view{--list-indent:1.1em!important;--file-margins-x:14px!important;--file-margins-y:20px!important;--font-text-size:15px!important;--p-spacing:0.75rem!important}.markdown-preview-view{padding-left:14px!important;padding-right:14px!important}.markdown-rendered li{line-height:1.6}}
