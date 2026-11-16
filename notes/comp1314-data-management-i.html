@@ -1432,7 +1432,7 @@ grep [opentions] pattern [file…]</li>
 <li>它从我们的表格中删除任何不需要的列，只留下我们想要的列。</li>
 <li>语法是这样的:
 <ul>
-<li><span class="img-wrap"><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image5.png" alt="237" /></span></li>
+<li><span class="math inline">\pi_{\langle \text{attribute list} \rangle}(\langle \text{relation name} \rangle)</span></li>
 <li>其中“&lt;属性列表&gt;”是我们想要保留的列列表，而“&lt;关系名称&gt;”是要过滤的表的名称<br />
 <span class="img-wrap"><img src="assets/截屏2026-11-02-14.12.43.png" width="627" /></span></li>
 </ul></li>
@@ -1445,7 +1445,7 @@ grep [opentions] pattern [file…]</li>
 <li>如果条件显示为真，则将此记录包含在结果中</li>
 <li>语法是这样的:
 <ul>
-<li><span class="img-wrap"><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image7.png" alt="283" /></span></li>
+<li><span class="math inline">\sigma_{\Theta}(\langle \text{relation name} \rangle)</span></li>
 <li>其中“￼θ”是要使用的条件，“&lt;关系名称&gt;”是要检查的记录表的名称</li>
 </ul></li>
 <li>条件可以使用谓词逻辑的语法</li>
@@ -1458,10 +1458,10 @@ grep [opentions] pattern [file…]</li>
 <li>这在“union”操作中特别有用，因为可以将一个表中的列重命名为另一个表的相同列名，然后将它们“union”在一起。</li>
 <li>语法是这样的:
 <ul>
-<li><span class="img-wrap"><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image11.png" alt="308" /></span></li>
+<li><span class="math inline">\rho_{\langle \text{oldname} \rangle \to \langle \text{newname} \rangle}(\langle \text{relation name} \rangle)</span></li>
 <li>“<code>&lt;oldname&gt;</code>”是列的旧名称，“<code>&lt;newname&gt;</code>”是列的新名称，“&lt;关系名称&gt;”是我们应该重命名的列的关系名称</li>
 <li>还可以通过以下方式重命名多个列：</li>
-<li><span class="img-wrap"><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image12.png" alt="305" /></span></li>
+<li><span class="math inline">\rho_{O_1 \to N_1,\ O_2 \to N_2,\ O_3 \to N_3}(\langle \text{relation name} \rangle)</span></li>
 <li>这将返回相同的表格，但O1、O2和O3列分别重命名为N1、N2和N3<br />
 <span class="img-wrap"><img src="assets/截屏2026-11-02-14.35.08.png" width="582" /></span></li>
 </ul></li>
