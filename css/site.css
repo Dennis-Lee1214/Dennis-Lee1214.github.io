@@ -1,0 +1,86 @@
+/* Main pages: index, notes, projects, misc */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 3em max(1.25em, 5vw) 4em;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #222;
+  background: #fff;
+}
+
+a {
+  color: #3a6fd8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Top navigation: Hongyi Li | Notes | Projects | Misc | Blog */
+.site-nav {
+  margin: 0 0 0.8em;
+  padding-top: 1.2em;
+  border-top: 1px solid #e5e5e5;
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.site-nav .sep {
+  color: #222;
+  font-weight: 400;
+  margin: 0 0.3em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+  margin: 2em 0;
+}
+
+h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 1.8em 0 1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+ul {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+li {
+  margin: 0.45em 0;
+}
+
+li::marker {
+  color: #bbb;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: 620px;
+  height: auto;
+  margin: 8px 0;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-top: 1.5em;
+  }
+  .site-nav {
+    font-size: 1.6em;
+  }
+}

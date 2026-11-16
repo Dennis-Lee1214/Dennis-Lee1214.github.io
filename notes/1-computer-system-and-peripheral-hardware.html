@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1. Computer system and peripheral Hardware</title>
+  <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+<div class="doc">
+
+<p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
+<p class="title">1. Computer system and peripheral Hardware</p>
+<p class="subtitle">Hongyi Li</p>
+
+<p class="contents-label">Contents</p>
+<nav class="toc">
+<ul>
+<li><a href="#计算机发展历程" id="toc-计算机发展历程">计算机发展历程</a>
+<ul>
+<li><a href="#第一代-1940-1956-真空管-vacuum-tubes" id="toc-第一代-1940-1956-真空管-vacuum-tubes">第一代 1940-1956 真空管 Vacuum Tubes</a></li>
+<li><a href="#第二代-1957-1963-晶体管-transistors" id="toc-第二代-1957-1963-晶体管-transistors">第二代 1957-1963 晶体管 Transistors</a></li>
+<li><a href="#第三代-1964-1971-集成电路-integrated-circuitsic" id="toc-第三代-1964-1971-集成电路-integrated-circuitsic">第三代 1964-1971 集成电路 Integrated Circuits(IC)</a></li>
+<li><a href="#第四代-1971-至今-微处理器-microprocessor" id="toc-第四代-1971-至今-微处理器-microprocessor">第四代 1971-至今 微处理器 Microprocessor</a></li>
+<li><a href="#第五代-未来-人工智能-artificial-intelligenceai" id="toc-第五代-未来-人工智能-artificial-intelligenceai">第五代 未来 人工智能 Artificial Intelligence(AI)</a></li>
+</ul></li>
+<li><a href="#计算机类型分类" id="toc-计算机类型分类">计算机类型分类</a>
+<ul>
+<li><a href="#微型计算机-micro-computers" id="toc-微型计算机-micro-computers">微型计算机 Micro Computers</a></li>
+<li><a href="#小型计算机-mini-computers" id="toc-小型计算机-mini-computers">小型计算机 Mini Computers</a></li>
+<li><a href="#大型主机-mainframe-computers" id="toc-大型主机-mainframe-computers">大型主机 Mainframe Computers</a></li>
+<li><a href="#超级计算机-supercomputers" id="toc-超级计算机-supercomputers">超级计算机 Supercomputers</a></li>
+</ul></li>
+<li><a href="#硬件功能" id="toc-硬件功能">硬件功能</a>
+<ul>
+<li><a href="#处理速度" id="toc-处理速度">处理速度</a></li>
+</ul></li>
+<li><a href="#外部设备" id="toc-外部设备">外部设备</a>
+<ul>
+<li><a href="#什么是外部设备" id="toc-什么是外部设备">什么是外部设备</a></li>
+</ul></li>
+<li><a href="#输入技术" id="toc-输入技术">输入技术</a>
+<ul>
+<li><a href="#键盘与gui" id="toc-键盘与gui">键盘与GUI</a></li>
+<li><a href="#指向设备-pointing-devices" id="toc-指向设备-pointing-devices">指向设备 Pointing Devices</a></li>
+<li><a href="#笔试输入-pen-based-computing" id="toc-笔试输入-pen-based-computing">笔试输入 Pen-based Computing</a></li>
+<li><a href="#语音识别-speech-recognition" id="toc-语音识别-speech-recognition">语音识别 Speech Recognition</a></li>
+<li><a href="#光学扫描-optical-scanning" id="toc-光学扫描-optical-scanning">光学扫描 Optical Scanning</a></li>
+<li><a href="#输出技术" id="toc-输出技术">输出技术</a></li>
+</ul></li>
+<li><a href="#存储技术" id="toc-存储技术">存储技术</a>
+<ul>
+<li><a href="#二进制表示-binary-representation" id="toc-二进制表示-binary-representation">二进制表示 Binary Representation</a></li>
+<li><a href="#bit与byte" id="toc-bit与byte">Bit与Byte</a></li>
+<li><a href="#直接访问-vs-顺序访问" id="toc-直接访问-vs-顺序访问">直接访问 VS 顺序访问</a></li>
+<li><a href="#半导体内存-semiconductor" id="toc-半导体内存-semiconductor">半导体内存 Semiconductor</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="计算机发展历程">计算机发展历程</h1>
+<h2 id="第一代-1940-1956-真空管-vacuum-tubes">第一代 1940-1956 真空管 Vacuum Tubes</h2>
+<ul>
+<li>ENICA（18000根真空管，27吨，1800平方英尺）</li>
+<li>极大、极耗电，输入用打孔纸带和磁带</li>
+<li>编程语言：机器语言machine code</li>
+</ul>
+<h2 id="第二代-1957-1963-晶体管-transistors">第二代 1957-1963 晶体管 Transistors</h2>
+<ul>
+<li>比真空管更小、更快、更少热量</li>
+<li>引入CPU，内存，I/O单元</li>
+<li>编程语言：FORTRAN(1956), ALGOL(1958), COBOL(1959)</li>
+</ul>
+<h2 id="第三代-1964-1971-集成电路-integrated-circuitsic">第三代 1964-1971 集成电路 Integrated Circuits(IC)</h2>
+<ul>
+<li>一片硅芯片包含多个晶体管/寄存器/电容</li>
+<li>更快更可靠，内存更大</li>
+<li>高级语言BASIC，小型机minicomputer出现，例如IBM 360，IBM370</li>
+</ul>
+<h2 id="第四代-1971-至今-微处理器-microprocessor">第四代 1971-至今 微处理器 Microprocessor</h2>
+<ul>
+<li>一个芯片完成所有运算、逻辑、控制功能</li>
+<li>体积小，可携带，个人电脑和计算机网络诞生</li>
+<li>存储：RAM、ROM</li>
+<li>例如IBM PC，Apple mac</li>
+</ul>
+<h2 id="第五代-未来-人工智能-artificial-intelligenceai">第五代 未来 人工智能 Artificial Intelligence(AI)</h2>
+<ul>
+<li>理解自然语言，语音识别，模拟人类行为</li>
+<li>速度最快，尺寸最小</li>
+<li>I/o: 触屏、触摸板、语音、扫描、打印机等</li>
+<li>例如桌面、笔记本、平板、智能手机</li>
+</ul>
+<h1 id="计算机类型分类">计算机类型分类</h1>
+<h2 id="微型计算机-micro-computers">微型计算机 Micro Computers</h2>
+<ul>
+<li>单CPU，单用户。家庭/办公/学校使用</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Personal Computer(PC)</td>
+<td>个人使用的微型计算机</td>
+</tr>
+<tr class="even">
+<td>Laptop</td>
+<td>小型、可携带的PC</td>
+</tr>
+<tr class="odd">
+<td>Workstation</td>
+<td>供商业专业人士使用的高性能网络PC</td>
+</tr>
+<tr class="even">
+<td>Network Server</td>
+<td>协调网络通信和资源共享的更强大微型计算机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="小型计算机-mini-computers">小型计算机 Mini Computers</h2>
+<ul>
+<li>比主机便宜/功能少，但比PC/贵功能强</li>
+<li>又称mid-servers</li>
+<li>用于科学/工程计算、商业事务处理、文件处理、数据库管理</li>
+</ul>
+<h2 id="大型主机-mainframe-computers">大型主机 Mainframe Computers</h2>
+<ul>
+<li>大型机构使用，处理大批量关键任务</li>
+<li>例如人口普查，行业规划，大规模事务处理</li>
+</ul>
+<h2 id="超级计算机-supercomputers">超级计算机 Supercomputers</h2>
+<ul>
+<li>专门解决复杂科学和工业问题</li>
+<li>例如气候研究，天气预报，基因组测序</li>
+<li>提供极大的计算能力</li>
+</ul>
+<h1 id="硬件功能">硬件功能</h1>
+<table>
+<thead>
+<tr class="header">
+<th>功能</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input 输入</td>
+<td>接受输入数据，转换为电子形式</td>
+<td>键盘，鼠标，光学扫描仪</td>
+</tr>
+<tr class="even">
+<td>Processing 处理</td>
+<td>处理接收到的数据</td>
+<td>CPU（含ALU算数逻辑单元+Control Unit控制单元）</td>
+</tr>
+<tr class="odd">
+<td>Output 输出</td>
+<td>将处理结果以人类可读的形式呈现</td>
+<td>显示器、打印机</td>
+</tr>
+<tr class="even">
+<td>Primary Storage 主存</td>
+<td>直接供CPU使用的内存</td>
+<td>RAM，ROM</td>
+</tr>
+<tr class="odd">
+<td>Secondary Storage 辅存</td>
+<td>长期保存数据</td>
+<td>磁盘、光盘</td>
+</tr>
+</tbody>
+</table>
+<p>控制Control：CPU中的控制单元（Control Unit）负责控制计算机其他所有组件</p>
+<h2 id="处理速度">处理速度</h2>
+<table>
+<thead>
+<tr class="header">
+<th>时间单位</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Millisecond 毫秒</td>
+<td>千分之一秒</td>
+</tr>
+<tr class="even">
+<td>Microsecond 微秒</td>
+<td>百万分之一秒</td>
+</tr>
+<tr class="odd">
+<td>Nanosecond 纳秒</td>
+<td>十亿分之一秒</td>
+</tr>
+<tr class="even">
+<td>Picosecond 皮秒</td>
+<td>百亿分之一秒</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>速度单位</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MIPS</td>
+<td>百万条指令/秒</td>
+</tr>
+<tr class="even">
+<td>Teraflops</td>
+<td>万亿浮点运算/秒（超级计算机）</td>
+</tr>
+<tr class="odd">
+<td>MHz 兆赫</td>
+<td>百万次循环/秒</td>
+</tr>
+<tr class="even">
+<td>GHz 吉赫</td>
+<td>十亿次循环/秒</td>
+</tr>
+</tbody>
+</table>
+<h1 id="外部设备">外部设备</h1>
+<h2 id="什么是外部设备">什么是外部设备</h2>
+<ul>
+<li>所有输入，输出和辅助存储设备的统称。是计算系统的一部分，但不是CPU本身</li>
+<li>联机设备(Online)：与CPU分离但电子连接并受其控制（外部设备Peripherals属于此类）</li>
+<li>脱机设备(Offline)：与CPU分离且不受其控制</li>
+</ul>
+<h1 id="输入技术">输入技术</h1>
+<h2 id="键盘与gui">键盘与GUI</h2>
+<ul>
+<li>键盘是最广泛使用的输入设备。图形用户界面（GUI）通过图标、菜单、按钮进行选择操作、</li>
+</ul>
+<h2 id="指向设备-pointing-devices">指向设备 Pointing Devices</h2>
+<table>
+<thead>
+<tr class="header">
+<th>设备</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mouse</td>
+<td>电子鼠标</td>
+</tr>
+<tr class="even">
+<td>Trackball</td>
+<td>固定不动，滚球移动光标</td>
+</tr>
+<tr class="odd">
+<td>Pointing Stick</td>
+<td>键盘上的橡皮头，通过压力移动光标</td>
+</tr>
+<tr class="even">
+<td>Touchpad</td>
+<td>手指在矩形感应面上移动光标</td>
+</tr>
+<tr class="odd">
+<td>Touch Screen</td>
+<td>红外线/声波/电流网络，触碰即断开</td>
+</tr>
+</tbody>
+</table>
+<h2 id="笔试输入-pen-based-computing">笔试输入 Pen-based Computing</h2>
+<ul>
+<li>用于平板电脑和PDA。压感层在液晶屏下方，配合软件数字化手写/绘图</li>
+</ul>
+<h2 id="语音识别-speech-recognition">语音识别 Speech Recognition</h2>
+<table>
+<thead>
+<tr class="header">
+<th>类别</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Discrete</td>
+<td>那个单词之间需停顿</td>
+</tr>
+<tr class="even">
+<td>Continuous</td>
+<td>按正常语速说话</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>系统将语音与音频模式库比对。需要Training训练识别个人声音或Speaker Independent（无需训练）</li>
+</ul>
+<h2 id="光学扫描-optical-scanning">光学扫描 Optical Scanning</h2>
+<ul>
+<li>读取文字或图形并转为数字输入</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flatbed scanner 平板扫描仪</td>
+<td>扫描文档和图像</td>
+</tr>
+<tr class="even">
+<td>OCR 光学字符识别</td>
+<td>读取字符和条码，用于商品标签、邮件分拣、试卷评分</td>
+</tr>
+<tr class="odd">
+<td>Wand 扫描棒</td>
+<td>读取条形码如UPC</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>其他输入技术</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Magnetic stripe 磁条</td>
+<td>读取信用卡磁条</td>
+</tr>
+<tr class="even">
+<td>Smart card 智能卡</td>
+<td>内置微处理器芯片和内存信用卡</td>
+</tr>
+<tr class="odd">
+<td>Digital Camera数码相机</td>
+<td>数字图像输入</td>
+</tr>
+<tr class="even">
+<td>MICR 磁墨字符识别</td>
+<td>银行支票底部磁性墨水印刷的账号</td>
+</tr>
+</tbody>
+</table>
+<h2 id="输出技术">输出技术</h2>
+<table>
+<thead>
+<tr class="header">
+<th>视频显示Video Displays</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRT 阴极射线管</td>
+<td>类似电视，多数台式电脑屏幕</td>
+</tr>
+<tr class="even">
+<td>LCD 液晶显示</td>
+<td>笔记本/PAD/部分 PC</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>打印输出 Printed Output</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inkjet 喷墨打印机</td>
+<td>墨水喷射到纸上</td>
+</tr>
+<tr class="even">
+<td>Laser 激光打印机</td>
+<td>静电感光过程，类似复印机</td>
+</tr>
+</tbody>
+</table>
+<h1 id="存储技术">存储技术</h1>
+<h2 id="二进制表示-binary-representation">二进制表示 Binary Representation</h2>
+<ul>
+<li>计算机通过信号的有无（ON=1，OFF=2）处理和存储数据</li>
+</ul>
+<h2 id="bit与byte">Bit与Byte</h2>
+<p>Bit（位） = 最小数据单元，0或1<br />
+Byte（字节）= 8个bit，代表一个字符或数字</p>
+<table>
+<thead>
+<tr class="header">
+<th>存储容量单位</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Byte</td>
+<td>8 bits</td>
+</tr>
+<tr class="even">
+<td>KB</td>
+<td>约一千bytes</td>
+</tr>
+<tr class="odd">
+<td>MB</td>
+<td>约一百万bytes</td>
+</tr>
+<tr class="even">
+<td>GB</td>
+<td>约十亿Bytes</td>
+</tr>
+<tr class="odd">
+<td>TB</td>
+<td>约万亿bytes</td>
+</tr>
+<tr class="even">
+<td>PB</td>
+<td>约千万亿bytes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="直接访问-vs-顺序访问">直接访问 VS 顺序访问</h2>
+<ul>
+<li>Direct Access（直接/随机）：每个位置有唯一的地址，访问时间相同。例：半导体内存芯片、磁盘。</li>
+<li>Sequential Access（顺序）：必须按顺序读取。例：磁带Magnetic tape</li>
+</ul>
+<h2 id="半导体内存-semiconductor">半导体内存 Semiconductor</h2>
+<ul>
+<li>RAM（随机存取）= 易失性volatile，断电丢失，可读写，最常用主存</li>
+<li>ROM（只读）= 永久存储，只读不写，制造时烧录程序，称为固件firmware</li>
+</ul>
+
+</div>
+</body>
+</html>

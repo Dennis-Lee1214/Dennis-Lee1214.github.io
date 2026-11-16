@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COMP1314 Data management I</title>
+  <link rel="stylesheet" href="../css/page.css">
+  <script defer="" src="../vendor/katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+</head>
+<body>
+<div class="doc">
+
+<p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
+<p class="title">COMP1314 Data management I</p>
+<p class="subtitle">Hongyi Li</p>
+
+<p class="contents-label">Contents</p>
+<nav class="toc">
+<ul>
+<li><a href="#unix" id="toc-unix">Unix</a>
+<ul>
+<li><a href="#piping-管道" id="toc-piping-管道">Piping 管道</a></li>
+<li><a href="#filter" id="toc-filter">Filter</a></li>
+<li><a href="#grep" id="toc-grep">grep</a></li>
+<li><a href="#sed-流编辑器" id="toc-sed-流编辑器">sed 流编辑器</a></li>
+<li><a href="#awk-文本数据处理" id="toc-awk-文本数据处理">awk 文本数据处理</a></li>
+<li><a href="#regular-expression" id="toc-regular-expression">Regular expression</a></li>
+<li><a href="#wildcards-通配符" id="toc-wildcards-通配符">Wildcards 通配符</a></li>
+<li><a href="#permissions-文件权限" id="toc-permissions-文件权限">Permissions 文件权限</a></li>
+<li><a href="#process-management-流程管理" id="toc-process-management-流程管理">Process management 流程管理</a></li>
+<li><a href="#run-job运行程序" id="toc-run-job运行程序">Run job运行程序</a></li>
+<li><a href="#command-ps" id="toc-command-ps">Command: ps</a></li>
+<li><a href="#commandtop" id="toc-commandtop">Command：top</a></li>
+<li><a href="#commandkill" id="toc-commandkill">Command：kill</a></li>
+<li><a href="#run-in-background-前后台切换" id="toc-run-in-background-前后台切换">Run in background 前后台切换</a></li>
+<li><a href="#commandscreen" id="toc-commandscreen">Command：Screen</a></li>
+</ul></li>
+<li><a href="#data-exchange" id="toc-data-exchange">Data exchange</a>
+<ul>
+<li><a href="#csv-and-tsv" id="toc-csv-and-tsv">CSV and TSV</a></li>
+<li><a href="#csv-defect-csv缺陷" id="toc-csv-defect-csv缺陷">CSV defect CSV缺陷</a></li>
+<li><a href="#csv-and-tsv不够用的场景" id="toc-csv-and-tsv不够用的场景">CSV and TSV不够用的场景</a></li>
+<li><a href="#human-readable-and-machine-readable" id="toc-human-readable-and-machine-readable">Human-readable and Machine-readable</a></li>
+<li><a href="#relation-关系" id="toc-relation-关系">Relation 关系</a></li>
+<li><a href="#markup-标记-从人读到机器读" id="toc-markup-标记-从人读到机器读">Markup 标记 从人读到机器读</a></li>
+<li><a href="#yaml" id="toc-yaml">YAML</a></li>
+<li><a href="#json" id="toc-json">Json</a></li>
+<li><a href="#markup-languages-标记语言" id="toc-markup-languages-标记语言">Markup Languages 标记语言</a></li>
+</ul></li>
+<li><a href="#relation-model-关系模型" id="toc-relation-model-关系模型">Relation model 关系模型</a>
+<ul>
+<li><a href="#the-relational-data-model-关系数据模型" id="toc-the-relational-data-model-关系数据模型">The relational data model 关系数据模型</a></li>
+<li><a href="#keys-and-functional-dependencies-键和函数依赖" id="toc-keys-and-functional-dependencies-键和函数依赖">Keys and functional dependencies 键和函数依赖</a></li>
+<li><a href="#key-键" id="toc-key-键">key 键</a></li>
+<li><a href="#relational-algebra-关系代数" id="toc-relational-algebra-关系代数">Relational algebra 关系代数</a></li>
+<li><a href="#normalisation-规范化" id="toc-normalisation-规范化">Normalisation 规范化</a></li>
+<li><a href="#modelling-and-sql-basics-数据建模和sql基础知识" id="toc-modelling-and-sql-basics-数据建模和sql基础知识">Modelling and SQL basics 数据建模和SQL基础知识</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="unix">Unix</h1>
+<h2 id="piping-管道">Piping 管道</h2>
+<ul>
+<li>每个进程(process)都有三个文件描述符
+<ul>
+<li><p>STDIN - input from the user 输入</p></li>
+<li><p>STOUT - normal output 输出</p></li>
+<li><p>STDERR - Error output 错误输出</p></li>
+<li><p>Piping refer to redirecting the output of one program into the input of another program. 管道是指将一个程序的输入重定向到另一个程序的输入</p></li>
+<li><p>Piping a program’s output into another program:</p>
+<ul>
+<li>program_1 | program_2
+<ul>
+<li>program_1’s output goes into program2 前一个程序的输出变为后一个的输入</li>
+</ul></li>
+</ul></li>
+<li><p>Pushing a program’s output into a file:</p>
+<ul>
+<li>program_1 &gt; file.txt
+<ul>
+<li>The output of program_1 will go into file.txt 输出写入内容</li>
+</ul></li>
+<li>program_1 &gt;&gt; file.txt
+<ul>
+<li>The output of program_1 will be appended to fill.txt 输出内容搭配文件末尾</li>
+</ul></li>
+</ul></li>
+<li><p>Get input from a file to put into a program:</p>
+<ul>
+<li>program_1 &lt; input.txt
+<ul>
+<li>program_1 gets input from input.txt 从文件读取输入</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="filter">Filter</h2>
+<ul>
+<li>A filter is a program that takes input, changes it in some way, then outputs it again. 过滤器是一个接收输入，以某种方式更改输入然后再次输出的程序</li>
+<li>They can be used just like in piping. 可以像管道一样使用</li>
+<li>some filters:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th>Function of filter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>head</td>
+<td>Takes first 10 lines 看前10行</td>
+</tr>
+<tr class="even">
+<td>tail</td>
+<td>Takes last 10 lines 看后10行</td>
+</tr>
+<tr class="odd">
+<td>sort</td>
+<td>Organises data 排序(-n 按数字 -r 倒序)</td>
+</tr>
+<tr class="even">
+<td>wc</td>
+<td>Prints number if newlines 统计行/词/字符数(wc -1 只数行数)</td>
+</tr>
+<tr class="odd">
+<td>uniq</td>
+<td>Remove duplicate lines 去重(只去掉相邻的重复行)</td>
+</tr>
+<tr class="even">
+<td>tr</td>
+<td>按字符替/删除</td>
+</tr>
+<tr class="odd">
+<td>cut</td>
+<td>切出某几列</td>
+</tr>
+<tr class="even">
+<td>du</td>
+<td>预估文件大小</td>
+</tr>
+<tr class="odd">
+<td>xargs</td>
+<td>构建和执行命令行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grep">grep</h2>
+<ul>
+<li>搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match
+<ul>
+<li>结构Example:<br />
+grep [opentions] pattern [file…]</li>
+<li>“-i“意思是忽略大小写</li>
+<li>“-c“意思是找匹配了多少行，不是匹配本身</li>
+<li>“error“意思是找含error的行</li>
+<li>“-o“意思是只返回行中匹配的部分，不返回整行</li>
+</ul></li>
+</ul>
+<pre><code>    grep error dummyerror.log  # 找含 error 的行 
+    grep -i error dummyerror.log  # -i：忽略大小写 
+    grep -c Manhattan file.csv  # -c：直接数匹配了多少行</code></pre>
+<h2 id="sed-流编辑器">sed 流编辑器</h2>
+<ul>
+<li>工作方式：读取输入 → 按命令修改 → 把结果输出到标准输出
+<ul>
+<li>结构Example:<br />
+<code>sed [options] command [file ...]</code> 最常用作替换文本</li>
+<li>基本格式：
+<ul>
+<li>s/要查找的内容/替换成的内容/标志</li>
+</ul></li>
+<li>实际例子 1：
+<ul>
+<li>在名为“file”的文件中将“abc”转换为“cba”</li>
+<li>Sed ‘s/abc/cba/g’ ./file</li>
+<li>结尾的g代表全局，不加g的话就会只替换第一个出现的</li>
+</ul></li>
+<li>实际例子 2：
+<ul>
+<li><code>echo Hello World | sed "s/Hello/Hi/I"</code></li>
+<li>输出Hi World</li>
+<li>结尾的I代表忽略大小写</li>
+</ul></li>
+<li>实际例子 3:
+<ul>
+<li><code>cat sed-example-delete.txt | sed '/Run/d'</code></li>
+<li>这个是清理数据，删除所有包含Run的行</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="awk-文本数据处理">awk 文本数据处理</h2>
+<ul>
+<li>适合分析表格数据
+<ul>
+<li>record 记录：默认每一行就是一条记录（默认分隔符是换行 \n）</li>
+<li>field 字段：每条记录按空白切成若干字段，用 <span class="math inline">1、</span>2、<span class="math inline">3… 访问；</span>0 表示整行</li>
+<li>结构Example：
+<ul>
+<li>awk ‘BEGIN { 开始前执行一次 } { 每行都执行 } END { 结束后执行一次 }’</li>
+</ul></li>
+<li>实际例子 1:
+<ul>
+<li><code>awk 'BEGIN { print "File\tOwner" } { print $9, "\t", $3 } END { print "done" }'</code></li>
+<li>意思为ls -l 输出中 <span class="math inline">9 是文件名，</span>3 是所有者，所以结果是先打印表头 File Owner，再逐行打印文件名和所有者，最后打印 done</li>
+</ul></li>
+<li>实际例子 2：
+<ul>
+<li>awk ’ {print <span class="math inline">1,</span>3} ’</li>
+<li>意思为print第一和第三列</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="regular-expression">Regular expression</h2>
+<p><img src="assets/截屏2026-10-11-18.02.41.png" /></p>
+<h2 id="wildcards-通配符">Wildcards 通配符</h2>
+<p><img src="assets/截屏2026-10-16-15.01.09.png" /></p>
+<ul>
+<li>通配符可以组合使用
+<ul>
+<li>ls *.??? | wc -l：统计扩展名恰好为3个字符的文件数</li>
+<li>ls ?.* | wc -l：统计文件名主体只有1个字符，带任意扩展名的文件数</li>
+<li>ls ?.[a-c] | wc -l 统计形如单字符.a/b/c的文件数</li>
+</ul></li>
+</ul>
+<h2 id="permissions-文件权限">Permissions 文件权限</h2>
+<ul>
+<li><p>“Chmod”命令将更改文件的权限</p></li>
+<li><p>“Ls -l”命令将显示文件的权限</p></li>
+<li><p>许可字符串</p>
+<ul>
+<li>rwx r-x r-x 意思是 这个是可执行文件，只有所有者能修改，其他人只能读和执行</li>
+<li>drwxr-xr-x 意思是目录</li>
+<li>第一位代表文件类型 -是普通文件，d是目录</li>
+<li>2-4位 是user所有者的权限</li>
+<li>5-7位 是group的权限</li>
+<li>8-10位 是others其他人的权限</li>
+<li>r = 读 w = 写 x = 执行 - = 没有该权限</li>
+</ul></li>
+<li><p>修改权限 2种方法</p></li>
+</ul>
+<ol type="1">
+<li>法1
+<ul>
+<li>要获取文件的权限号，请像这样排列一个表格：<br />
+<img src="assets/截屏2026-10-16-15.11.58.png" />
+<ul>
+<li>如果授予权限，在表格里写1，禁止写0<br />
+<img src="assets/截屏2026-10-16-15.13.03.png" /></li>
+<li>现在取出三组二进制数字：111 100 100</li>
+<li>转换为十进制：7 4 4</li>
+<li>以下为每个权限组合的表格</li>
+</ul></li>
+</ul></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Binary</th>
+<th style="text-align: center;">Decimal</th>
+<th style="text-align: center;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">000</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">No permissions</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">001</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Execute only</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">010</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Write only</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">011</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Write + Execute</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Read only</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">101</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Read + Execute</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Read + Write</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">111</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">All permissions</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>法2 使用chmod修改权限
+<ul>
+<li>格式如下：
+<ul>
+<li><code>chmod [人员访问][操作][权限类型][路径]</code><br />
+- 人员： u g o a 操作：+授予 -撤销 == 直接设定<br />
+- Example:
+<ul>
+<li>chmod g+w file 意思为 授予group的写入file的权限</li>
+<li>chmod u+x runme.sh 意思为 授予users 执行文件runme.sh的权限</li>
+<li>chmod 744 test.sh 也是可以的<br />
+- 所有参数类型见下表：</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Person accesing<br></th>
+<th>Operation</th>
+<th>Type of permission</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>‘u’ - user</td>
+<td>‘+’ - grant</td>
+<td>‘r’ = read</td>
+</tr>
+<tr class="even">
+<td>‘g’ - group</td>
+<td>‘-’ - revoke</td>
+<td>‘w’ - write</td>
+</tr>
+<tr class="odd">
+<td>‘o’ - others</td>
+<td>‘=’ - set</td>
+<td>‘x’ = execute</td>
+</tr>
+<tr class="even">
+<td>‘a’ - all</td>
+<td></td>
+<td>‘-’ = none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="process-management-流程管理">Process management 流程管理</h2>
+<h2 id="run-job运行程序">Run job运行程序</h2>
+<ul>
+<li>需要有可执行权限 chmod u+x 程序名
+<ul>
+<li>u = user, +x = 增加执行权限</li>
+</ul></li>
+<li>用./前缀运行当前目录下的程序 ./helloworld.sh</li>
+<li>结束程序使用Ctrl-c</li>
+<li>Example:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> helloworld.sh        <span class="co"># 创建空文件</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pico</span> helloworld.sh         <span class="co"># 用 pico 编辑器写内容</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> helloworld.sh          <span class="co"># 查看内容:#!/bin/bash + echo &quot;Hello world!&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./helloworld.sh</span>            <span class="co"># 报错:Permission denied(没有执行权限)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> u+x helloworld.sh    <span class="co"># 加上执行权限</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">./helloworld.sh</span>            <span class="co"># 成功输出 Hello world!</span></span></code></pre></div>
+<h2 id="command-ps">Command: ps</h2>
+<ul>
+<li>使用ps[options]来查看正在运行的进程</li>
+<li><code>./helloworld.sh&amp;</code>
+<ul>
+<li>结尾的&amp;意思是让任务在后台进行，不再占用终端</li>
+<li>终端返回 [1] 32758，[1]是job number作业编号，32758是PID</li>
+</ul></li>
+<li><code>ps -u 用户名</code> 输入后会输出一以下列，含义如下表</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PID</td>
+<td>进程编号</td>
+</tr>
+<tr class="even">
+<td>TTY</td>
+<td>进程关联的终端</td>
+</tr>
+<tr class="odd">
+<td>TIME</td>
+<td>占用CPU的累计时间</td>
+</tr>
+<tr class="even">
+<td>CMD</td>
+<td>启动该进程的命令</td>
+</tr>
+</tbody>
+</table>
+<h2 id="commandtop">Command：top</h2>
+<ul>
+<li>用来查看所有进程的CPU、内存使用情况，是实时刷新的</li>
+<li>与ps的区别是，ps是那一刻的情况，top是实时刷新的</li>
+</ul>
+<h2 id="commandkill">Command：kill</h2>
+<ul>
+<li>使用<code>kill [options] &lt;PID&gt;</code>来终止进程</li>
+<li>Example：<code>kill -SIGTERM 1710</code></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">./helloworld.sh</span> <span class="kw">&amp;</span>      <span class="co"># 后台运行,返回 PID 1212</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ps</span> <span class="at">-u</span> dst1m17          <span class="co"># 找到 helloworld.sh 的 PID</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">kill</span> 1212              <span class="co"># 终止它</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 输出:[1]+ Terminated  ./helloworld.sh</span></span></code></pre></div>
+<ul>
+<li>有两种方式
+<ol type="1">
+<li>SIGTERM 可以被进程忽略，会优雅的退出（保存进度、释放资源）</li>
+<li>SIGKILL 强制立即终止，不能被忽略</li>
+</ol></li>
+</ul>
+<h2 id="run-in-background-前后台切换">Run in background 前后台切换</h2>
+<ul>
+<li>先Ctrl-z，暂停当前进程</li>
+<li>bg，让进程在后台进行</li>
+<li>fg，把后台进程来回前台</li>
+<li>和&amp;的区别，&amp;是启动时就放在后台；Ctr-z+bg是运行中途才放进后台</li>
+</ul>
+<h2 id="commandscreen">Command：Screen</h2>
+<ul>
+<li>Screen可以使即使用户断开服务器连接，让进程在screen里跑，进程仍然不会被结束</li>
+<li>简而言之，Screen是一个可以脱离用户登录状态而持续存在的终端会话</li>
+<li>Screen常用命令见下表:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>screen</td>
+<td>创建新的screen</td>
+</tr>
+<tr class="even">
+<td>screen -s 名字</td>
+<td>创建并命名一个screen</td>
+</tr>
+<tr class="odd">
+<td>screen-d</td>
+<td>分离，让进程继续在后台跑</td>
+</tr>
+<tr class="even">
+<td>screen-list</td>
+<td>列出所有screen</td>
+</tr>
+<tr class="odd">
+<td>screen-r 名字或id</td>
+<td>恢复一个screen</td>
+</tr>
+<tr class="even">
+<td>Ctrl-d/exit</td>
+<td>关闭并销毁当前screen</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-exchange">Data exchange</h1>
+<h2 id="csv-and-tsv">CSV and TSV</h2>
+<ul>
+<li>CSV用逗号分隔列，TSV用tab，每行一条记录</li>
+<li>简单，Unix工具(cut,sort,grep…)都可以直接处理</li>
+</ul>
+<h2 id="csv-defect-csv缺陷">CSV defect CSV缺陷</h2>
+<ol type="1">
+<li><p>换行符问题</p>
+<ul>
+<li>\r是回到行首，\n是下移一行</li>
+<li>Windows用\r\n, Mac Linux用\n</li>
+<li>单元格内excel原本有2行，导出CSV后，工具按行读得到3行</li>
+</ul></li>
+<li><p>读取逗号时冲突</p>
+<ul>
+<li>“The Lion, The Witch and the Wardrobe” 本身含逗号</li>
+<li>用 <code>cut -d',' -f1,2,3</code> 按逗号硬切,会把这本书名切成两列,数据错位</li>
+<li>CSV 的规则是含逗号的字段要用<strong>双引号</strong>包起来,但 <code>cut</code> 不懂引号</li>
+</ul></li>
+<li><p>写入时必须加引号</p>
+<ul>
+<li>导出时,含逗号的字段要加引号，否则读不对</li>
+</ul></li>
+</ol>
+<h2 id="csv-and-tsv不够用的场景">CSV and TSV不够用的场景</h2>
+<ul>
+<li>CSV and TSV是固定行列格式，因此所有的行都必须描述同一类东西</li>
+<li>适合列表，例如学生名单、新闻列表</li>
+<li>不适合灵活格式的关系型数据库(模块，学生，成绩混在一个文件里)</li>
+</ul>
+<h2 id="human-readable-and-machine-readable">Human-readable and Machine-readable</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>人可读</th>
+<th>机器可读</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>形式</td>
+<td>无结构(图片)</td>
+<td>必须有结构</td>
+</tr>
+<tr class="even">
+<td>关注点</td>
+<td>易用性</td>
+<td>效率</td>
+</tr>
+<tr class="odd">
+<td>特点</td>
+<td>人能读写</td>
+<td>人不好读写(XML)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>机器可读的好处:
+<ul>
+<li>Searching 搜索</li>
+<li>Aggregation 汇总</li>
+<li>Prediction 预测</li>
+<li>Linking 链接</li>
+</ul></li>
+</ul>
+<h2 id="relation-关系">Relation 关系</h2>
+<ul>
+<li>建模方式:
+<ol type="1">
+<li>Hierarchical 层级模型:单一父节点，类似于树
+<ul>
+<li>查询路径: COMP1314 → Andrew Smith → Coursework 2</li>
+<li><img src="assets/截屏2026-10-19-19.34.10.png" width="705" /></li>
+</ul></li>
+<li>Network 网络模型:允许多个父节点(一个学生属于多个模块),不再严格是树
+<ul>
+<li><img src="assets/截屏2026-10-19-19.34.48.png" width="715" /></li>
+</ul></li>
+<li>Object- oriented面向对象：实体是类，有属性，关系用指针表示
+<ul>
+<li>如：Modules[…].Students[…].Marks[…]</li>
+<li><img src="assets/截屏2026-10-19-19.35.10.png" width="658" /></li>
+</ul></li>
+<li>Relational 关系模型: 实体变成表(Modules,students,marks)，用id把表连起来
+<ul>
+<li>如：<code>Marks[Student_ID=1, Assignment=2]</code></li>
+<li><img src="assets/截屏2026-10-19-19.45.51.png" width="618" /></li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="markup-标记-从人读到机器读">Markup 标记 从人读到机器读</h2>
+<ul>
+<li>markup就是在原文上加标注(元数据),原文不变，类似于批注
+<ul>
+<li>可以标注结构，内容，含义，方便工具处理</li>
+<li>Example：蚂蚁与蚂蚱
+<ul>
+<li>先标出title，para，quote，moral</li>
+<li>再加属性：<code>&lt;story id="1"&gt;</code>、<code>&lt;para voice="narrator"&gt;</code>、<code>&lt;quote character="ant"&gt;</code></li>
+<li>层级关系也可以用标记语言表示:<code>&lt;Module name="COMP1204"&gt;&lt;Student name="Andrew Smith"&gt;&lt;Coursework ...&gt;&lt;Mark1&gt;78%&lt;/Mark1&gt;...</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="yaml">YAML</h2>
+<ul>
+<li>全称 Yet another markup language</li>
+<li>常用于配置文件</li>
+<li>技术上是Jason的超集: 合法的Jason 基本都是合法的YAML</li>
+<li>语法特点:
+<ul>
+<li>用空白缩进表示层级
+<ul>
+<li>优点：容易读</li>
+<li>缺点：容易写错</li>
+</ul></li>
+<li>基本结构是键值对(<code>key: value</code>)</li>
+<li>列表用-开头</li>
+</ul></li>
+<li>Example:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">people</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">person</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Tom</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">role</span><span class="kw">:</span><span class="at"> Teaching</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">favourite numbers</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="dv">42</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="dv">13</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fl">3.141</span></span></code></pre></div>
+<ul>
+<li>适用场景
+<ul>
+<li>适合配置文件，保存简单的应用状态</li>
+<li>缺点是规则模糊，不同解析器不同结果</li>
+</ul></li>
+</ul>
+<h2 id="json">Json</h2>
+<ul>
+<li>全称JavaScript Object Notation javascript的对象表示法</li>
+<li>为了在不同语言、程序之间互相交换数据</li>
+<li>json里只有: 对象Object ，列表List (一串东西)，值Value (字符串，数字，true/false，null)</li>
+<li>有对象但没有类</li>
+<li>语法
+<ul>
+<li>对象用<code>{ }</code>, 里面是<code>"字符串键": 值</code>，用逗号分隔</li>
+<li>列表用<code>[ ]</code></li>
+<li>键必须是双引号字符串</li>
+</ul></li>
+<li>Example:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;person&quot;</span><span class="fu">:</span> <span class="fu">{</span>                     <span class="er">//一整个{</span><span class="fu">}</span><span class="er">是对象</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;name&quot;</span><span class="er">:</span> <span class="st">&quot;Tom&quot;</span><span class="fu">,</span>             <span class="er">//值</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;Teaching&quot;</span><span class="fu">,</span>       <span class="er">//值</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;lucky&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">42</span><span class="ot">,</span> <span class="dv">13</span><span class="ot">,</span> <span class="fl">3.141</span><span class="ot">]</span> <span class="er">//列表</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<ul>
+<li>在各个语言中如何使用</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>语言</th>
+<th>解析</th>
+<th>取值</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Java</td>
+<td><code>new JSONObject("...")</code></td>
+<td><code>getJSONObject("person").getString("name")</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Python</td>
+<td><code>json.loads('...')</code></td>
+<td><code>myJSON["person"]["name"]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>JavaScript</td>
+<td><code>JSON.parse('...')</code></td>
+<td><code>myJSON["person"]["name"]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>myJSON["person"]["name"]</code> 先取出“person“这个键对应的值</p></li>
+<li><p><code>{"name": "Tom", "role": "Teaching", "lucky": [42, 13, 3.141]}</code></p></li>
+<li><p>接着找到name，输出Tom</p></li>
+<li><p>使用场景：</p>
+<ul>
+<li>网络数据传输 API调用</li>
+<li>不同程序之间交换数据</li>
+<li>配置文件</li>
+</ul></li>
+</ul>
+<h2 id="markup-languages-标记语言">Markup Languages 标记语言</h2>
+<ul>
+<li>不改变内容前提下给内容额外加信息</li>
+<li>可以控制样式/结构</li>
+<li>机器可以解析内容</li>
+<li>同上</li>
+</ul>
+<h3 id="html">HTML</h3>
+<ul>
+<li>分为三种：</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>结构 structure</td>
+<td>文档骨架</td>
+<td><code>&lt;body&gt;, &lt;h1&gt;</code></td>
+</tr>
+<tr class="even">
+<td>表现 presentation</td>
+<td>外观</td>
+<td><code>&lt;b&gt;, &lt;i&gt;</code> (粗体、斜体)</td>
+</tr>
+<tr class="odd">
+<td>语义 semantics</td>
+<td>含义</td>
+<td><code>&lt;strong&gt;, &lt;em&gt;</code> (强调）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>&lt;body&gt;, &lt;b&gt;</code>虽然显示上都是粗体，但是语义不同，<code>&lt;strong&gt;</code>表示很重要，搜索引擎可以理解，<code>&lt;b&gt;</code>只是单纯变粗，提倡用语义标签</li>
+</ul>
+<h3 id="ink-互动小说标记语言">ink 互动小说标记语言</h3>
+<ul>
+<li>用于网页互动小说，另一种超文本标记语言</li>
+<li>可以和Unity集成</li>
+<li>核心概念</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>概念</th>
+<th>语法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Knot 结</td>
+<td><code>=== london ===</code></td>
+<td>标签/章节，下面的内容属于这个 knot，直到下一个 knot</td>
+</tr>
+<tr class="even">
+<td>Divert 转向</td>
+<td><code>-&gt; london</code></td>
+<td>类似 <code>GOTO</code>，跳转到对应 knot</td>
+</tr>
+<tr class="odd">
+<td>Choice 选项</td>
+<td><code>+ "Around the world, Monsieur?"</code></td>
+<td>让读者选择，选项及其下面的文字会成为故事一部分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xml-extensible-markup-language可扩展标记语言">XML （eXtensible Markup Language）可扩展标记语言</h3>
+<ul>
+<li>特点：
+<ul>
+<li>Hierarchical（层级/树状结构）：由 tags、attributes、content 组成</li>
+<li>用来承载数据carry data，而不是显示数据display data，后者是HTML的作用</li>
+<li>没有预定义标签：标签可以自定义，比如 <code>&lt;Pizza&gt;</code>、<code>&lt;plugin&gt;</code></li>
+<li>可以用 DTD 或 Schema 来规定标签的含义和结构</li>
+</ul></li>
+<li><strong>语法规则–辨别HTML and XML</strong>
+<ol type="1">
+<li>所有元素都要有结束标签</li>
+<li>标签区分大小写</li>
+<li>元素必须正确嵌套</li>
+<li>文档必须有一个root element</li>
+<li>属性值必须加引号</li>
+</ol></li>
+<li>Example：</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">menu</span><span class="ot"> id=</span><span class="st">&quot;file&quot;</span><span class="ot"> value=</span><span class="st">&quot;File&quot;</span>&gt;  </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> &lt;<span class="kw">popup</span>&gt;  </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   &lt;<span class="kw">menuitem</span><span class="ot"> value=</span><span class="st">&quot;New&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;CreateNewDoc()&quot;</span> /&gt;  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   &lt;<span class="kw">menuitem</span><span class="ot"> value=</span><span class="st">&quot;Open&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;OpenDoc()&quot;</span> /&gt;  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   &lt;<span class="kw">menuitem</span><span class="ot"> value=</span><span class="st">&quot;Close&quot;</span><span class="ot"> onclick=</span><span class="st">&quot;CloseDoc()&quot;</span> /&gt;  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a> &lt;/<span class="kw">popup</span>&gt;  </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">menu</span>&gt;</span></code></pre></div>
+<ul>
+<li>Namespaces命名空间
+<ul>
+<li>由于tag是自己定义的，不同的人可能用同一个名字表示不同的东西</li>
+<li>例：
+<ul>
+<li>Vancy 眼中的 <code>&lt;Person&gt;</code>：名字、妻子、三个孩子</li>
+<li>Dennis眼中的 <code>&lt;Person&gt;</code>：员工 ID、价值 18000、按了 647 个按钮</li>
+</ul></li>
+<li>解决方法：加前缀</li>
+<li>语法：<code>xmlns:前缀="URI"</code>，之后就可以写 <code>前缀:标签名</code>
+<ul>
+<li>前缀localName是随便起的，URI才是namespaces唯一的名字</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">Employee</span><span class="ot"> xmlns:personal=</span><span class="st">&quot;https://buttonfactory/personal&quot;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ot">          xmlns:work=</span><span class="st">&quot;https://buttonfactory/work&quot;</span>&gt;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">personal:Person</span><span class="ot"> name=</span><span class="st">&quot;Joe&quot;</span>&gt;...&lt;/<span class="kw">personal:Person</span>&gt;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">work:Person</span><span class="ot"> id=</span><span class="st">&quot;106111101&quot;</span>&gt;...&lt;/<span class="kw">work:Person</span>&gt;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">Employee</span>&gt;</span></code></pre></div>
+<ul>
+<li>Schema 模式
+<ul>
+<li>Schema规定了合法数据的样子，赋予结构化数据含义</li>
+<li>例如所有餐厅都用一个schema写菜单，方便程序直接对比</li>
+<li>Example:
+<ul>
+<li>设计披萨 schema</li>
+</ul></li>
+<li>方法： <strong>XSD (XML Schema Definition)</strong>, DTD（Document Type Definition）
+<ul>
+<li>只要有属性或子元素就是complex type</li>
+</ul></li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>SimpleType</th>
+<th>ComplexType</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>只能包含文本</td>
+<td>可以有属性</td>
+</tr>
+<tr class="even">
+<td>不能有子元素</td>
+<td>可以有子元素(空、元素、文本、或混合)</td>
+</tr>
+<tr class="odd">
+<td>不能有属性</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>例: <code>&lt;Base&gt;Pan&lt;/Base&gt;</code></td>
+<td>例：<code>Toppings</code>里有多个<code>Topping</code>;或者带name属性的<code>&lt;Pizza&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb8"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Pizza&quot;</span>&gt;                      <span class="co">&lt;!-- 根元素 Pizza --&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">xs:complexType</span>&gt;                             <span class="co">&lt;!-- 有子元素+属性 → complex --&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">xs:sequence</span>&gt;                              <span class="co">&lt;!-- 下面三个按顺序 --&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Base&quot;</span><span class="ot"> type=</span><span class="st">&quot;xs:string&quot;</span>/&gt;      <span class="co">&lt;!-- 简单元素，恰好一次 --&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Cheese&quot;</span><span class="ot"> type=</span><span class="st">&quot;xs:string&quot;</span>/&gt;</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Toppings&quot;</span>&gt;</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">xs:complexType</span>&gt;</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">xs:sequence</span>&gt;</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Topping&quot;</span><span class="ot"> type=</span><span class="st">&quot;xs:string&quot;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ot">                        minOccurs=</span><span class="st">&quot;0&quot;</span><span class="ot"> maxOccurs=</span><span class="st">&quot;unbounded&quot;</span>/&gt;  <span class="co">&lt;!-- 0 到无限个 --&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">xs:sequence</span>&gt;</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">xs:complexType</span>&gt;</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">xs:element</span>&gt;</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">xs:sequence</span>&gt;</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">xs:attribute</span><span class="ot"> type=</span><span class="st">&quot;xs:string&quot;</span><span class="ot"> name=</span><span class="st">&quot;name&quot;</span>/&gt;  <span class="co">&lt;!-- 属性放最后 --&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">xs:complexType</span>&gt;</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">xs:element</span>&gt;</span></code></pre></div>
+<ul>
+<li>关键写法：
+<ul>
+<li><code>&lt;xs:sequence&gt;</code>：子元素必须按顺序出现</li>
+<li><code>&lt;xs:all&gt;</code>：子元素顺序任意</li>
+<li>两者默认 <code>minOccurs = 1</code>、<code>maxOccurs = 1</code>（即“恰好出现一次“）</li>
+<li><code>minOccurs="0"</code> → 可选</li>
+<li><code>maxOccurs="unbounded"</code> → 可以重复无限次</li>
+<li><code>&lt;xs:attribute&gt;</code> 要写在 complexType 的末尾（sequence 之后）</li>
+<li><code>use="required"</code> → 属性必填</li>
+</ul></li>
+</ul>
+<h1 id="relation-model-关系模型">Relation model 关系模型</h1>
+<h2 id="the-relational-data-model-关系数据模型">The relational data model 关系数据模型</h2>
+<ul>
+<li>关系数据库分为两部分：
+<ul>
+<li>数据库管理系统（DBMS），管理数据库的软件</li>
+<li>数据库（实际数据本身）</li>
+</ul></li>
+<li>还有多种类型的数据库技术，例如：
+<ul>
+<li>关系：MySQL、SQLite、PostgreSQL</li>
+<li>非关系（NoSQL）：MongoDB，Couchbase</li>
+</ul></li>
+</ul>
+<h3 id="independence-独立">Independence 独立</h3>
+<ul>
+<li>数据独立性：从应用程序和用户中绝缘数据的结构和存储方式</li>
+<li>逻辑独立性：防止逻辑结构变化（模式/属性）</li>
+<li>物理独立性：防止物理结构变化（如何储存）</li>
+</ul>
+<h3 id="dbms">DBMS</h3>
+<ul>
+<li>DBMS是一组计算机程序，它：
+<ul>
+<li>支持数据模型来表示数据库</li>
+<li>存储和管理大量数据</li>
+<li>管理交易和并发transaction management, concurrency control</li>
+<li>控制访问access control</li>
+<li>具有弹性resiliency（可以从崩溃中恢复）</li>
+</ul></li>
+</ul>
+<h3 id="data-model-数据模型">Data model 数据模型</h3>
+<ul>
+<li>数据模型是描述数据的数学概念
+<ul>
+<li>关系模型是使用最广泛的数据模型</li>
+</ul></li>
+<li>每个数据模型都必须配一种数据语言，它分成两个子语言：
+<ol type="1">
+<li>DDL（Data Definition Language，数据定义语言）
+<ul>
+<li>定义结构，即模版</li>
+<li>类似于设计表格的表头</li>
+</ul></li>
+<li>DML（Data Manipulation Language，数据操纵语言）
+<ul>
+<li>对数据进行增、删、改、查</li>
+<li>往表格里填数据、找数据</li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="relational-data-model-关系数据模型">Relational data model 关系数据模型</h3>
+<ul>
+<li>关系数据模型是一种使用关系relations的数据模型</li>
+<li><strong>正式定义：关系 = 若干集合的笛卡尔积的子集subset of cartesian product of sets</strong></li>
+<li>一个关系就是一张表</li>
+<li>非正式说法：关系就像表格，或者说是数据库表中记录的集合</li>
+<li>每一列是一个属性attribute</li>
+<li>每一行是一个元组Tuple</li>
+<li>k-ary relation k元关系是指有k列关系</li>
+<li>关系的5个性质
+<ol type="1">
+<li>每一行代表R的一个k元组</li>
+<li>行的顺序无关紧要</li>
+<li>所有行都互不相同</li>
+<li>列的顺序也不重要</li>
+<li>每一列的含义由它的名字来表达</li>
+</ol></li>
+<li>被SQL、Microsoft Access使用<br />
+<img src="assets/Pasted-image-20261027124251.png" width="382" /></li>
+<li>模式（schema）是某个 k 元关系的“蓝图“或“模板“
+<ul>
+<li>模式存储关系名和属性的有序序列</li>
+<li>DBMS 会实现这个模式，给出类型定义</li>
+<li>数据库中存放的是模式的实例instances，实例必须遵守模式所规定的性质</li>
+</ul></li>
+</ul>
+<h3 id="fundamental-discrete-mathematics-离散数学基本概念">Fundamental Discrete Mathematics 离散数学基本概念</h3>
+<blockquote>
+<p>相关：<a href="comp1311-mathematics.html#relation-关系">COMP1311 关系</a> · <a href="comp1311-mathematics.html#ordered-pairs-cartesian-products-and-power-sets-有序对乘积与幂集">COMP1311 有序对与笛卡尔积</a></p>
+</blockquote>
+<ul>
+<li>k-tuple k 元组：k 个元素的有序序列，元素可以重复。例如 (2,0,1) 是 3 元组，(a,b,a,a,c) 是 5 元组</li>
+<li>笛卡尔积: D₁ × D₂ × … × Dₖ：所有满足 dᵢ ∈ Dᵢ 的 k 元组 (d₁, d₂, …, dₖ) 组成的集合</li>
+<li>基数公式：|D₁ × D₂ × … × Dₖ| = |D₁| × |D₂| × … × |Dₖ|
+<ul>
+<li>例：D₁ = {0,1}，D₂ = {a,b,c,d}，则积的大小 = 2 × 4 = 8</li>
+</ul></li>
+<li>k-ary relation k元关系 和 arity元数
+<ul>
+<li>一个 k-ary relation 是 k 个集合笛卡尔积的子集，k 叫做 arity 元数，其实就是“表有几列“</li>
+<li>一元unary：R = {0, 2, 4, …, 100}，偶数集合</li>
+<li>二元binary：T = {(a,b) : a 和 b 生日相同}</li>
+<li>三元ternary：S = {(m,n,s) : s = m + n}，例如 (1,2,3)、(5,5,10)</li>
+</ul></li>
+</ul>
+<h3 id="schema-and-instance-模式与实例">Schema and Instance 模式与实例</h3>
+<ul>
+<li>Relation schema关系模式:
+<ul>
+<li>关系名+属性列表, 例如Student(ID, name)</li>
+<li>在真正的DBMS里，模式还会规定每个属性的数据类型, 例如 Student(int: ID, string: name)</li>
+</ul></li>
+<li>Instance实例:
+<ul>
+<li>符合这个模式的一个具体关系（具体的一张填好数据的表）</li>
+</ul></li>
+<li>Schema只有一个，而Instance可以有很多</li>
+<li>Intension 与 Extension内涵与外延
+<ul>
+<li>内涵可以理解为表格的结构，实例则为表格的数据</li>
+</ul></li>
+</ul>
+<h2 id="keys-and-functional-dependencies-键和函数依赖">Keys and functional dependencies 键和函数依赖</h2>
+<h2 id="key-键">key 键</h2>
+<ul>
+<li>键是指能够唯一标识一条记录的属性或属性集合,关系里不允许两行在这组属性上的值完全相同</li>
+<li>Example: number (ID) or a first name + surname</li>
+<li><img src="assets/截屏2026-10-29-15.13.53.png" width="496" /></li>
+<li>判断{title, year, length, starName} 是键吗？是，因为这四列组合在一起没有重复的项</li>
+<li>判断{year, studioName} 是键吗？不是，Paramount 在 1992 年有好几行</li>
+</ul>
+<h3 id="functional-dependency-函数依赖">Functional dependency 函数依赖</h3>
+<ul>
+<li>函数依赖关系是将列映射到其他列的函数</li>
+<li>定义: A1,…,An → B1,…,Bm 成立 ；只要两行在A上相同，它们在B上也一定相同</li>
+<li>A叫做determinant决定因素 B叫做dependent set依赖集</li>
+<li>Example:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>First name</th>
+<th>Last name</th>
+<th>Age</th>
+<th>Sex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hongyi</td>
+<td>Li</td>
+<td>20</td>
+<td>M</td>
+</tr>
+<tr class="even">
+<td>Huateng</td>
+<td>Ma</td>
+<td>55</td>
+<td>M</td>
+</tr>
+<tr class="odd">
+<td>Fei</td>
+<td>Wang</td>
+<td>57</td>
+<td>F</td>
+</tr>
+<tr class="even">
+<td>Li</td>
+<td>Li</td>
+<td>99</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>以上表格满足函数依赖:
+<ul>
+<li>(first name, last name) → (age, sex)</li>
+</ul></li>
+<li>不满足的依赖:
+<ul>
+<li>(last name) → (age)<br />
+- (last name) → (sex)</li>
+</ul></li>
+<li>存在依赖因为每个名字+姓都有一个唯一确定的年龄+性别</li>
+<li>不存在依赖因为当输入Li时，会有20，99两个年龄以及M和F两个性别</li>
+<li><strong>注意: 一张表只能证明 FD不成立，不能证明 FD一定成立</strong>
+<ul>
+<li>存在一个反例，整个表就不成立</li>
+<li>没有反例只能说明目前没冲突，不能确定它成立</li>
+</ul></li>
+</ul>
+<h3 id="functional-dependency-inference-rules-函数依赖推理规则">Functional dependency Inference rules 函数依赖推理规则</h3>
+<h4 id="splittingcombining-拆分合并规则">Splitting/Combining 拆分/合并规则</h4>
+<ul>
+<li>如果存在(A1, A2, A3…) → (B1, B2, B3…)，那可以推出
+<ul>
+<li>(A1, A2, A3…) → B1<br />
+- (A1, A2, A3…) → B2<br />
+- (A1, A2, A3…) → B3 etc.</li>
+</ul></li>
+</ul>
+<h4 id="trivial-fd-平凡依赖">Trivial FD 平凡依赖</h4>
+<ul>
+<li>右侧一定是左侧的子集
+<ul>
+<li>(A1, A2, A3) → (A1, A2)</li>
+<li>(A1, A2, A3) → A3</li>
+<li>(A1, A2, A3) → (A1, A3) etc.</li>
+</ul></li>
+</ul>
+<h4 id="implication-蕴含">Implication 蕴含</h4>
+<ul>
+<li>所有满足S的表都满足X → Y，就说 S 逻辑蕴含 X → Y
+<ul>
+<li>传递性 Transitivity：A → B，B → C ⊧ A → C</li>
+<li>增广律 Augmentation：A → B ⊧ AC → BC（两边同时加上同一个属性）</li>
+</ul></li>
+</ul>
+<h4 id="equivalence-等价">Equivalence 等价</h4>
+<ul>
+<li>如果S ⊧ T 且 T ⊧ S
+<ul>
+<li>那 S 和 T 等价，即它们被完全相同的表所满足(满足相同的函数依赖)</li>
+</ul></li>
+</ul>
+<h3 id="more-keys">More keys</h3>
+<h4 id="superkey-超键">Superkey 超键</h4>
+<ul>
+<li>X 是超键，当且仅当对每个属性 Aᵢ，都有X → Aᵢ</li>
+<li>因此，知道了超键的值，整行其他所有列就都确定了，所以它能唯一定位一行</li>
+<li>全部属性的集合永远是超键，所以每个关系至少有一个超键</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>First name</th>
+<th>Last name</th>
+<th>Age</th>
+<th>Sex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hongyi</td>
+<td>Li</td>
+<td>20</td>
+<td>M</td>
+</tr>
+<tr class="even">
+<td>Huateng</td>
+<td>Ma</td>
+<td>55</td>
+<td>M</td>
+</tr>
+<tr class="odd">
+<td>Fei</td>
+<td>Wang</td>
+<td>57</td>
+<td>F</td>
+</tr>
+<tr class="even">
+<td>Li</td>
+<td>Li</td>
+<td>99</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>上述表格中
+<ul>
+<li>(first name, last name)就是一个superkey,因为都是唯一的</li>
+<li>(Last name)就不是一个superkey因为有两个Li</li>
+</ul></li>
+</ul>
+<h4 id="candidate-key-候选键">Candidate key 候选键</h4>
+<ul>
+<li>一种特殊的superkey，是最小的超键</li>
+<li>去掉任何一个属性就不再是超键</li>
+<li>上表中{First name} {Age} {Last name, Sex}都是候选键
+<ul>
+<li>{Last name, Sex}中删掉 Sex，剩 {Last name}：Li 重复，删掉 Last name，剩 {Sex}：M、F 重复</li>
+</ul></li>
+</ul>
+<h3 id="closure-闭包">Closure 闭包</h3>
+<ul>
+<li>如何找到所有候选键？
+<ul>
+<li><ol type="1">
+<li>我们需要找到所有超键（superkeys）</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>我们需要弄清楚如何证明 F ⊧ X → Y（F 是一组函数依赖）</li>
+</ol></li>
+</ul></li>
+<li>X⁺ = { Aᵢ : F ⊧ X → Aᵢ } 是 X 关于 F 的闭包
+<ul>
+<li>简单来说，X⁺ 是 schema 中所有满足以下条件的列的集合：如果 F 中的函数依赖都成立，那么 X → X⁺ 中的这些列也成立</li>
+</ul></li>
+<li>F ⊧ X → Y 当且仅当 Y ⊆ X⁺
+<ul>
+<li>这句话的意思是：“只要 F 中的所有依赖都成立，X → Y 就成立“这个条件为真，当且仅当 Y 中的列全都属于“在 F 成立时 X 能推出的列”</li>
+<li>它让我们能够用计算的方式找出超键，进而找出候选键。</li>
+</ul></li>
+<li>如果 X⁺ 里没有包含所有的列，我们就可以确定 X 不是超键。如果包含了所有的列，那它就是超键</li>
+</ul>
+<h3 id="closure-algorithm-闭包算法">Closure algorithm 闭包算法</h3>
+<ul>
+<li>闭包算法可以帮我们检查一组列是否为超键，需要给出：
+<ul>
+<li>一个 schema：R</li>
+<li>一组函数依赖：F</li>
+<li>R 中要检查是否为超键的一组列：X</li>
+</ul></li>
+<li>闭包算法的步骤如下：
+<ul>
+<li>从集合 X 开始，把它记作 X₀</li>
+<li>查看 F，检查是否存在某个 Y → Z，使得 Y 是当前集合 Xₙ 的子集</li>
+<li>如果存在，就把 Z 与 X₀ 取并集，记作 X₁。之后用 X₁ 代替 X₀</li>
+<li>不断重复、反复遍历 F，直到 Xₙ 不再变化为止</li>
+<li>这时你得到的就是 X⁺</li>
+</ul></li>
+<li>举个例子：
+<ul>
+<li>R(A,B,C,D,E,H,G) - 这是我们的 schema</li>
+<li>F = { AB → CD, C → EH, AC → H } - 这是函数依赖的集合</li>
+<li>{A, C}⁺ - 这是我们要求的</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Xₙ</th>
+<th>值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X₀</td>
+<td>{A, C}</td>
+<td>一开始，我们从 X 中的值出发，也就是我们想判断是否为超键的那组列。</td>
+</tr>
+<tr class="even">
+<td>X₁</td>
+<td>{A, C} ∪ {E, H}</td>
+<td>F 中有 C → EH，而 X₀ 中有 ‘C’。因此我们可以把这个函数依赖的结果并入 X，并把下标加一。</td>
+</tr>
+<tr class="odd">
+<td>X₁</td>
+<td>{A, C, E, H}</td>
+<td>现在它应该是这样。</td>
+</tr>
+<tr class="even">
+<td>X₂</td>
+<td>{A, C, E, H} ∪ {H}</td>
+<td>F 中有 AC → H，而 X₁ 中有 ‘A’ 和 ‘C’，所以我们可以把 ‘H’ 并入 X。</td>
+</tr>
+<tr class="odd">
+<td>X₂</td>
+<td>{A, C, E, H}</td>
+<td>嗯，好像什么也没变。而且也没有其他可用的函数依赖了。因此这就是我们的输出：{A, C}⁺。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>因为 {A, C}⁺ 只有 {A, C, E, H}，没有包含 R 中的所有列，所以它不是超键</li>
+<li>再来看另一个例子：
+<ul>
+<li>R(A,B,C,D,E,H,G) - 这是我们的 schema</li>
+<li>F = { AB → CD, C → EH, D → G } - 这是函数依赖的集合</li>
+<li>{A, B}⁺ - 这是我们要求的</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Xₙ</th>
+<th>值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X₀</td>
+<td>{A, B}</td>
+<td>一开始，我们从 X 中的值出发，也就是我们想判断是否为超键的那组列</td>
+</tr>
+<tr class="even">
+<td>X₁</td>
+<td>{A, B} ∪ {C, D}</td>
+<td>F 中有 AB → CD，而 X₀ 中有 ‘A’ 和 ‘B’，因此我们可以把这个函数依赖的结果并入 X，并把下标加一</td>
+</tr>
+<tr class="odd">
+<td>X₁</td>
+<td>{A, B, C, D}</td>
+<td>现在它应该是这样</td>
+</tr>
+<tr class="even">
+<td>X₂</td>
+<td>{A, B, C, D} ∪ {E, H}</td>
+<td>F 中有 C → EH，而 X₁ 中现在有 ‘C’ 了，所以我们可以把 ‘E’ 和 ‘H’ 并入 X</td>
+</tr>
+<tr class="odd">
+<td>X₂</td>
+<td>{A, B, C, D, E, H}</td>
+<td>现在变成了这样</td>
+</tr>
+<tr class="even">
+<td>X₃</td>
+<td>{A, B, C, D, E, H} ∪ {G}</td>
+<td>F 中有 D → G。因为 X₂ 中有 ‘D’，所以我们可以把 ‘G’ 并入 X</td>
+</tr>
+<tr class="odd">
+<td>X₃</td>
+<td>{A, B, C, D, E, H, G}</td>
+<td>到这里就结束了，没有其他可用的函数依赖了。这就是 {A, B}⁺</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>{A, B}⁺ 包含了 R 中的所有元素，说明 {A, B} 是超键</li>
+<li>{A, B} 也是候选键，因为 {A}⁺ 是 {A}，{B}⁺ 是 {B}；它是这个 schema 中最小形式的超键</li>
+</ul>
+<h2 id="relational-algebra-关系代数">Relational algebra 关系代数</h2>
+<h3 id="基本概念">基本概念</h3>
+<table>
+<thead>
+<tr class="header">
+<th>SID</th>
+<th>Name</th>
+<th>Major</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>101</td>
+<td>Lina</td>
+<td>AI</td>
+</tr>
+<tr class="even">
+<td>102</td>
+<td>Dylan</td>
+<td>CS</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Attribute属性:
+<ul>
+<li>就是列,比如name,每个属性都有一个domain域，也就是允许取值的集合</li>
+</ul></li>
+<li>Tuple元组:
+<ul>
+<li>就是行，每个值对应一个属性。比如 (101, ‘Lina’, ‘AI’)</li>
+</ul></li>
+<li>Arity元数/度
+<ul>
+<li>列的数量，students有3个属性，arity=3</li>
+</ul></li>
+<li>Cardinality基数
+<ul>
+<li>行的数量</li>
+</ul></li>
+<li>Relation关系:
+<ul>
+<li>结构相同的元组组成的集合</li>
+</ul></li>
+</ol>
+<h3 id="基本运算">基本运算</h3>
+<blockquote>
+<p>相关：<a href="comp1311-mathematics.html#sets-operations-集合运算">COMP1311 集合运算</a></p>
+</blockquote>
+<h4 id="union-并">Union 并 ∪</h4>
+<p><span class="math display">R \cup S = \{ t \mid t \in R \text{ or } t \in S \}</span></p>
+<ul>
+<li>把两个关系的行合起来，重复的只保留一份</li>
+<li>必须同时满足
+<ul>
+<li>两个关系的 arity 相同（列数一样）</li>
+<li>对应位置的属性域相同（类型一样）<br />
+<img src="assets/截屏2026-11-02-12.47.45.png" width="502" /></li>
+</ul></li>
+</ul>
+<h4 id="difference-差">Difference 差 −</h4>
+<p><span class="math display">R - S = \{ t \mid t \in R \text{ and } t \notin S \}</span></p>
+<ul>
+<li>当对两个关系执行“差”操作时，从最左边的表格中拿走元素</li>
+<li>此操作返回左侧表格，但不返回右侧表格中的元素。<br />
+<img src="assets/截屏2026-11-02-12.51.51.png" width="526" /></li>
+</ul>
+<h4 id="cartesian-product-笛卡尔积">Cartesian Product 笛卡尔积 ×</h4>
+<blockquote>
+<p>相关：<a href="comp1311-mathematics.html#ordered-pairs-cartesian-products-and-power-sets-有序对乘积与幂集">COMP1311 有序对与笛卡尔积</a></p>
+</blockquote>
+<p><span class="math display">R_1 \times R_2</span></p>
+<ul>
+<li>笛卡尔积的工作方式与集合论相同</li>
+<li>这将返回一个表格，其中包含左侧表格中记录和右侧表格中记录的所有可能配对<br />
+<img src="assets/截屏2026-11-02-12.53.21.png" width="513" /></li>
+</ul>
+<h4 id="projection-投影-π">Projection 投影 π</h4>
+<p><span class="math display">\pi_{A_1, …, A_k}(R)</span></p>
+<ul>
+<li>投影操作就像“过滤器”一样。</li>
+<li>它从我们的表格中删除任何不需要的列，只留下我们想要的列。</li>
+<li>语法是这样的:
+<ul>
+<li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image5.png" alt="237" /></li>
+<li>其中“&lt;属性列表&gt;”是我们想要保留的列列表，而“&lt;关系名称&gt;”是要过滤的表的名称<br />
+<img src="assets/截屏2026-11-02-14.12.43.png" width="554" /></li>
+</ul></li>
+</ul>
+<h4 id="selection-选择-σ">Selection 选择 σ</h4>
+<p><span class="math display">\sigma_\theta(R) = \{ t \in R \mid \theta(t) = true \}</span></p>
+<ul>
+<li>“selection”运算符允许您在条件旁边检查记录。</li>
+<li>如果条件显示为假，则不要将此记录包含在结果中</li>
+<li>如果条件显示为真，则将此记录包含在结果中</li>
+<li>语法是这样的:
+<ul>
+<li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image7.png" alt="283" /></li>
+<li>其中“￼θ”是要使用的条件，“&lt;关系名称&gt;”是要检查的记录表的名称</li>
+</ul></li>
+<li>条件可以使用谓词逻辑的语法</li>
+<li>最后一个例子在实践中有点不必要，但它展示了如何在条件中使用谓词逻辑语法<br />
+<img src="assets/截屏2026-11-02-14.16.14.png" width="520" /></li>
+</ul>
+<h4 id="rename-重命名ρ">Rename 重命名ρ</h4>
+<ul>
+<li>重命名运算符只需将列从一个名称重命名为另一个名称</li>
+<li>这在“union”操作中特别有用，因为可以将一个表中的列重命名为另一个表的相同列名，然后将它们“union”在一起。</li>
+<li>语法是这样的:
+<ul>
+<li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image11.png" alt="308" /></li>
+<li>“<code>&lt;oldname&gt;</code>”是列的旧名称，“<code>&lt;newname&gt;</code>”是列的新名称，“&lt;关系名称&gt;”是我们应该重命名的列的关系名称</li>
+<li>还可以通过以下方式重命名多个列：</li>
+<li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image12.png" alt="305" /></li>
+<li>这将返回相同的表格，但O1、O2和O3列分别重命名为N1、N2和N3<br />
+<img src="assets/截屏2026-11-02-14.35.08.png" width="577" /></li>
+</ul></li>
+</ul>
+<h3 id="example">Example</h3>
+<p><strong>Relations:</strong></p>
+<p><span class="math display">Lecturers(LID, Name, Department)</span><br />
+<span class="math display">Teaches(LID, Module, Semester)</span><br />
+<span class="math display">Modules(Module, Credits)</span></p>
+<p><strong>Question:</strong> Write a single relational algebra expression to find the <strong>names of all lecturers in the CS department</strong> who <strong>teach at least one 15-credit module</strong> in <strong>Semester 1</strong>.</p>
+<hr />
+<p><strong>Step 1 – Combine all relations:</strong></p>
+<p><span class="math display">Lecturers \times Teaches \times Modules</span></p>
+<p>This produces every possible combination of lecturers, teaching records and modules.</p>
+<p><strong>Step 2 – Filter with selection:</strong></p>
+<p><span class="math display">\sigma_{Lecturers.LID=Teaches.LID \ \land\ Teaches.Module=Modules.Module \ \land\ Department=&#39;CS&#39; \ \land\ Credits=15 \ \land\ Semester=1}(Lecturers \times Teaches \times Modules)</span></p>
+<ul>
+<li>Linking conditions (match IDs between tables):
+<ul>
+<li><code>Lecturers.LID = Teaches.LID</code></li>
+<li><code>Teaches.Module = Modules.Module</code></li>
+</ul></li>
+<li>Question conditions:
+<ul>
+<li><code>Department = 'CS'</code>, <code>Credits = 15</code>, <code>Semester = 1</code></li>
+</ul></li>
+</ul>
+<p><strong>Step 3 – Project the attribute we want:</strong></p>
+<p><span class="math display">\pi_{Name}(\sigma_{Lecturers.LID=Teaches.LID \ \land\ Teaches.Module=Modules.Module \ \land\ Department=&#39;CS&#39; \ \land\ Credits=15 \ \land\ Semester=1}(Lecturers \times Teaches \times Modules))</span></p>
+<hr />
+<p><strong>Check with sample data:</strong></p>
+<p>Lecturers</p>
+<table>
+<thead>
+<tr class="header">
+<th>LID</th>
+<th>Name</th>
+<th>Department</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td>Rahman</td>
+<td>CS</td>
+</tr>
+<tr class="even">
+<td>L2</td>
+<td>Siti</td>
+<td>Maths</td>
+</tr>
+<tr class="odd">
+<td>L3</td>
+<td>Wei</td>
+<td>CS</td>
+</tr>
+</tbody>
+</table>
+<p>Teaches</p>
+<table>
+<thead>
+<tr class="header">
+<th>LID</th>
+<th>Module</th>
+<th>Semester</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td>COMP1314</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>L1</td>
+<td>COMP1206</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>L2</td>
+<td>MATH1001</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>L3</td>
+<td>COMP1215</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Modules</p>
+<table>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>COMP1314</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>COMP1206</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>MATH1001</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>COMP1215</td>
+<td>7.5</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Step 1: arity = 3 + 3 + 2 = 8 columns; cardinality = 3 × 4 × 4 = 48 rows</li>
+<li>Step 2: only 2 rows survive:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Lecturers.LID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Teaches.LID</th>
+<th>Teaches.Module</th>
+<th>Semester</th>
+<th>Modules.Module</th>
+<th>Credits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1</td>
+<td>Rahman</td>
+<td>CS</td>
+<td>L1</td>
+<td>COMP1314</td>
+<td>1</td>
+<td>COMP1314</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>L1</td>
+<td>Rahman</td>
+<td>CS</td>
+<td>L1</td>
+<td>COMP1206</td>
+<td>1</td>
+<td>COMP1206</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Siti fails: Department = ‘Maths’</li>
+<li>Wei fails: Semester = 2 and Credits = 7.5</li>
+<li>Step 3 result:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rahman</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Rahman 满足条件的课有两门，σ 之后有两行，但 π 之后只剩一行，因为关系是集合，π 自动去重。“at least one” 就是靠这个实现的：满足一门或多门，名字都只出现一次</li>
+</ul>
+<h3 id="derived-operations-派生运算">Derived Operations 派生运算</h3>
+<h4 id="set-intersection-交集">Set Intersection 交集∩</h4>
+<ul>
+<li>定义：R ∩ S = { t | t ∈ R 且 t ∈ S }，也就是两个关系共有的元组</li>
+<li>基本运算表达：R ∩ S = R − (R − S)
+<ul>
+<li>性质：满足交换律、结合律，并且是幂等的（R ∩ R = R）</li>
+<li>R − S 是“R 里不在 S 中的部分“，再从 R 里去掉这部分，剩下的就是两边都有的</li>
+</ul></li>
+</ul>
+<h4 id="assignment-赋值-或">Assignment 赋值← 或 =</h4>
+<ul>
+<li>定义: 类似于编程中的临时变量 P ← R ∩ S
+<ul>
+<li>不增加表达能力，只是 syntactic convenience句法便利</li>
+</ul></li>
+</ul>
+<h4 id="join-连接">Join 连接⋈</h4>
+<ul>
+<li>核心公式：R ⋈_θ S = σ_θ(R × S)
+<ul>
+<li>先做笛卡尔积（所有两两组合），再用条件 θ 筛选</li>
+</ul></li>
+<li>类型:
+<ol type="1">
+<li>Theta-join ⋈_θ
+<ul>
+<li>条件: 任意比较：=, ≠, &lt;, ≤, &gt;, ≥</li>
+<li>重复列: 保留</li>
+</ul></li>
+<li>Equi-join ⋈_A=B
+<ul>
+<li>条件: 只用 =</li>
+<li>重复列: 保留</li>
+</ul></li>
+<li>Natural join ⋈
+<ul>
+<li>条件: 自动对所有同名属性做 =</li>
+<li>重复列: 去掉</li>
+<li>注意: natural join会匹配所有同名属性，不只是你想要的那个</li>
+</ul></li>
+</ol></li>
+<li>Example:
+<ul>
+<li>Equi-join 的结果有 <code>SID | Name | Major | SID | Module | Grade</code>，SID 出现两次</li>
+<li>Natural join 的结果是 <code>SID | Name | Major | Module | Grade</code>，SID 只出现一次</li>
+</ul></li>
+</ul>
+<h4 id="division-除法">Division 除法 ÷</h4>
+<ul>
+<li>定义：R(X, Y) ÷ S(Y) = { x | 对 S 中每一个 y，(x, y) 都在 R 里 }</li>
+<li>基本运算表达：R ÷ S = π_X(R) − π_X( (π_X(R) × S) − R )</li>
+</ul>
+<h4 id="outer-joins外连接">Outer Joins外连接</h4>
+<ul>
+<li>inner join普通连接 会把没匹配上的元素丢掉，outer join会保留它们，缺的属性填充NULL
+<ul>
+<li>Left ⟕：保留左表全部</li>
+<li>Right ⟖：保留右表全部</li>
+<li>Full ⟗：两边都保留</li>
+</ul></li>
+</ul>
+<h2 id="normalisation-规范化">Normalisation 规范化</h2>
+<ul>
+<li>规范化避免了冗余数据，使数据库更高效，保持其大小更小，并使其更容易维护。</li>
+<li>有4种正态形式：
+<ul>
+<li>1 Normal form 第一范式</li>
+<li>2 NF 第二范式</li>
+<li>3 NF 第三范式</li>
+<li>BC NF BC范式 (Boyce-Codd 鲍依斯-科德范式)</li>
+</ul></li>
+</ul>
+<h3 id="1nf-原子性消除多值重复列">1NF 原子性(消除多值，重复列)</h3>
+<ul>
+<li>要以1NF形式，每个单元格中必须有一个信息，并且不应该有重复的组。</li>
+<li>而且每一行都能被主键唯一识别</li>
+<li>主键可以是单列，也可以由多列组成</li>
+<li>Example:<br />
+<img src="assets/截屏2026-11-10-14.19.55.png" /></li>
+<li>原表的Stand type和Parts可能是多值属性，违反原子性
+<ul>
+<li>Parts：拆出一张新表，每个“人 + 部数“组合占一行</li>
+<li>Stand type：把多个值展开成多行，所以主键变成Stand user, Stand type</li>
+</ul></li>
+<li>这现在是第一范式，因为重复的数据（部分）已被拆分到自己的表中，满足1NF</li>
+<li>注意，表格“stand user parts”除了主键外什么都没有；这意味着“stand user parts”没有任何非主属性</li>
+</ul>
+<h3 id="2nf-消除部分依赖">2NF 消除部分依赖</h3>
+<ul>
+<li>要成为第二范式，所有属性在功能上必须依赖于整个主键。</li>
+<li>更简单地说，对于每个属性，以下内容必须为真：K→Ai</li>
+<li>Example:<br />
+<img src="assets/截屏2026-11-10-14.31.52.png" /></li>
+<li>现在是第二范式。 在之前的“Stand user”表中，“Birthyear”列在功能上依赖于“Stand user”，但与“Stand type”无关。 这意味着“Stand user”在功能上并不依赖于整个主键，这意味着它不在2NF中</li>
+<li>为了解决这个问题，“Stand type”被移到了自己的表格中。 现在，“Stand user”表只有一个列的主键：“Stand user”。 “Stand user”的每个列在功能上都依赖于主键，使其成为2NF</li>
+<li>也就是说，将部分依赖拆出去，使得每张表内的每个列都依赖于整个主键</li>
+</ul>
+<h3 id="3nf-消除传递依赖">3NF 消除传递依赖</h3>
+<ul>
+<li>对于每个K→Ai，不应该有K→Ai→Aj</li>
+<li>基本上，每个属性都应该只依赖于主键</li>
+<li>要检查表格是否在3NF中，可以从从主键到非主属性，然后从该属性到另一个非主属性，所有这些都通过函数依赖性。 如果能做到这一点，那么该表格不是3NF</li>
+<li>满足2NF但不满足3NF的表格example:<br />
+<img src="assets/截屏2026-11-10-14.41.16.png" /></li>
+<li>以上表格存在一条传递依赖:Part → Protagonist → Stand name，不满足3NF
+<ul>
+<li>Stand name 并不是直接由主键 Part 决定的, 而是通过非主属性 Protagonist 间接决定的,因此违反了nothing but the key</li>
+</ul></li>
+<li>主键只有Part一列，不可能存在部分依赖，满足2NF</li>
+<li>为了解决这个问题，我们可以创建一个单独的表格：<br />
+<img src="assets/截屏2026-11-10-14.45.44.png" /></li>
+<li>现在上表满足3NF了</li>
+</ul>
+<h3 id="bcnf-bc范式-非键的决定因素">BCNF BC范式 (非键的决定因素)</h3>
+<ul>
+<li>拥有的每一个函数依赖，例如 A→B，以下情况之一必须为真：
+<ul>
+<li>“A”必须是超键</li>
+<li>依赖性是一种平凡依赖（B ⊆ A）</li>
+</ul></li>
+<li>要检查表格是否在BCNF中，找到一个函数依赖关系A→B，其中“A”不是超级键。如果能找到一个，那么你的表格不在BCNF中。</li>
+<li>满足3NF而不满足BCNF中的表格示例如下：<br />
+<img src="assets/截屏2026-11-10-15.03.36.png" /></li>
+<li>主键是学生证和科目。</li>
+<li>然而，subject和professor之间存在依赖性：
+<ul>
+<li>（professor）→（subject）</li>
+</ul></li>
+<li>虽然subject是一个主属性，但professor本身是一个非主属性（不是超键），这是BCNF中不允许的</li>
+<li>为了解决这个问题，将其分解为2个表格：<br />
+<img src="assets/截屏2026-11-10-15.05.49.png" /></li>
+<li>在students-professors表中，所有函数依赖关系都是平凡的（它们都与主键本身有关(右边都是左边的子集)）</li>
+<li>在professors-subjects表中，唯一存在的函数依赖是（professor）→（subjects），（professor）是一个超键，因此两个表都满足BCNF</li>
+</ul>
+<h2 id="modelling-and-sql-basics-数据建模和sql基础知识">Modelling and SQL basics 数据建模和SQL基础知识</h2>
+<h3 id="types-of-data-modelling">Types of data modelling</h3>
+<p><img src="assets/Pasted-image-20261111151616.png" width="480" /></p>
+<h4 id="conceptual-ideas-概念模型-构思层">Conceptual (ideas) 概念模型 构思层</h4>
+<ul>
+<li>包含重要的实体以及它们之间的关系</li>
+<li>不指定属性</li>
+<li>不指定主键</li>
+<li>作为逻辑数据模型的基础</li>
+<li>可以把它看作一个非常宽松的类图，没有操作（方法），也没有属性</li>
+</ul>
+<h4 id="logical-high-level-逻辑模型-高层设计">Logical (high level) 逻辑模型 高层设计</h4>
+<ul>
+<li>包含所有实体以及它们之间的关系</li>
+<li>为每个实体指定属性</li>
+<li>为每个实体指定主键</li>
+<li>指定外键，用来标识不同实体之间的关系</li>
+<li>设计normalisation规范化</li>
+<li>这一层不要使用索引，因为这会妨碍规范化工作</li>
+</ul>
+<h4 id="physical-low-level-物理模型-底层设计">Physical (low level) 物理模型 底层设计</h4>
+<ul>
+<li>指定所有的表和列</li>
+<li>包含外键，用来标识表与表之间的关系</li>
+<li>可能包含规范化，视用户需求而定</li>
+<li>可能与逻辑数据模型有很大差异</li>
+<li>会因所用的DBMS(数据库管理系统)不同而不同</li>
+<li>这一层应该尽可能的使用indexes索引</li>
+</ul>
+<h3 id="entities-实体">Entities 实体</h3>
+<ul>
+<li>现实中的一个概念，例如planet</li>
+<li>实体是系统中的一个对象，拥有属性，并与其他实体存在关系</li>
+</ul>
+<h3 id="attributes-属性">Attributes 属性</h3>
+<ul>
+<li>entities的单个属性，例如Planet的name</li>
+</ul>
+<h3 id="relation-关系模式">Relation 关系模式</h3>
+<ul>
+<li>entities在数据库理论中的表示，类似等于一张表</li>
+</ul>
+<h3 id="relationship-联系"><strong>Relationship 联系</strong></h3>
+<ul>
+<li>两个relation之间的连接，例如“一个 Planet 只有一个 Ruler，一个 Ruler 可以有多个 Planet“</li>
+</ul>
+<h5 id="one-to-one-11">One-to-one 1:1</h5>
+<ul>
+<li>例如一个planet只有一个统治者和一个种族</li>
+</ul>
+<h5 id="one-to-many-1n">One-to-many 1:N</h5>
+<ul>
+<li>一个 A 可以对应多个 B，但每个 B 只属于一个 A。B和A都为实体</li>
+<li>例如一个统治者可以统治多个planet、多艘船</li>
+<li>例如一个画家可以有很多画笔，但画笔只能属于一个画家</li>
+</ul>
+<h5 id="many-to-many-mn">Many-to-many M:N</h5>
+<ul>
+<li>一个实体可以有很多其他实体，另一个实体也可以有很多其他实体</li>
+<li>例如一个星球有多种资源，一种资源也出现在多个星球上</li>
+<li>例如一个学生可以有很多课程，一个课程可以有很多学生</li>
+</ul>
+<h3 id="crows-foot-notation-鸦脚符号">Crow’s Foot Notation 鸦脚符号</h3>
+<ul>
+<li>ERD 上连线末端的符号表示数量</li>
+<li>末端的符号读法是：靠近实体的符号 = 最大值，远离实体的符号 = 最小值</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>—┼</td>
+<td>One（一）</td>
+</tr>
+<tr class="even">
+<td>—&lt;</td>
+<td>Many（多，像鸟爪）</td>
+</tr>
+<tr class="odd">
+<td>—┼┼</td>
+<td>One and only one（恰好一个）</td>
+</tr>
+<tr class="even">
+<td>—○┼</td>
+<td>Zero or one（零或一，○ 表示可以没有）</td>
+</tr>
+<tr class="odd">
+<td>—┼&lt;</td>
+<td>One or many（至少一个）</td>
+</tr>
+<tr class="even">
+<td>—○&lt;</td>
+<td>Zero or many（零个或多个）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-type-数据类型">Data type 数据类型</h3>
+<ul>
+<li>CHAR(n) 定长，不足补空格；VARCHAR(n) 变长，只存实际内容</li>
+<li>TEXT 大文本，不能建索引</li>
+<li>DATE ‘YYYY-MM-DD’，TIME ‘HH:MM:SS’</li>
+<li>BLOB 不规定格式的二进制数据，如图片</li>
+</ul>
+<h3 id="keys-主键">Keys 主键</h3>
+<ul>
+<li>使表里每一行都要能被唯一确认</li>
+</ul>
+<h4 id="foreign-外键">Foreign 外键</h4>
+<ul>
+<li>在 Physical 层引入</li>
+<li>一张表里指向另一张表主键的列，用来把两张表连起来
+<ul>
+<li>相当于一个“门牌号“，告诉你这一行属于另一张表的哪一行</li>
+<li>例如 Photo 表里的 AlbumID，表示这张照片属于几号相册</li>
+</ul></li>
+</ul>
+<h4 id="join-table-连接表">Join table 连接表</h4>
+<ul>
+<li>多对多关系无法直接用一个外键表示，需要再建一张中间表</li>
+<li>中间表存两边的外键，每一行记录一对关联
+<ul>
+<li>例如 Tag_Photo 表（TagID, PhotoID）：记录哪张照片贴了哪个标签</li>
+</ul></li>
+<li>关系本身的属性也放在连接表里</li>
+</ul>
+<h4 id="natural-key-and-business-key-自然键和业务键">Natural Key and Business Key 自然键和业务键</h4>
+<ul>
+<li>是数据本身自带的唯一标识
+<ul>
+<li>简单键：email，社保号</li>
+<li>复合键：(楼，层，房间号）</li>
+</ul></li>
+<li>优点：省空间，索引更好，查询更直观</li>
+<li>缺点：不一定存在，也不一定稳定（例如学生可以改名）</li>
+</ul>
+<h4 id="surrogate-key-and-synthetic-key-代理键">Surrogate key and Synthetic key 代理键</h4>
+<ul>
+<li>系统自动生成，没有现实意义的ID，只是单纯为了技术目的而存在</li>
+<li>在physial设计阶段规范后加入</li>
+<li>优点:
+<ul>
+<li>稳定，几乎不会变</li>
+<li>性能好，例如比较 id=3 比比较 name=‘John Smith’ 快</li>
+<li>统一，所有表都用 id，统一</li>
+<li>简化 JOIN 的写法</li>
+</ul></li>
+<li>缺点:
+<ul>
+<li>用户常按自然键查询，还需要额外建索引</li>
+<li>自然键若要唯一，需要额外加唯一约束</li>
+<li>泄露信息，例如id=123 说明至少还有 122 个客户（German tank problem）</li>
+<li>暗示先后顺序</li>
+</ul></li>
+</ul>
+<h4 id="uuid-and-auto-increment-int-uuid和自增整数比较">UUID and Auto-increment INT UUID和自增整数比较</h4>
+<ul>
+<li>UUID/GUID
+<ul>
+<li>是 128 位的标识，总数 2¹²⁸ ≈ 3.4×10³⁸（约 340 undecillion 个）</li>
+<li>理论上不保证唯一，但实际上几乎不可能重复，而且生成时不需要任何协调</li>
+<li>不暗示顺序，各自随机生成即可，不易读，比较慢，适合分布式系统</li>
+</ul></li>
+<li>Auto-increment INT
+<ul>
+<li>暗示顺序，生成新值要先查上一个，易读速度快，适合单一数据库</li>
+</ul></li>
+</ul>
+<h3 id="sql---structured-query-language-结构化查询语言">SQL - Structured Query Language 结构化查询语言</h3>
+<ul>
+<li>SQL是一种查询语言，可以存储或者操作数据资料</li>
+</ul>
+<h4 id="data-definition-language-ddl-数据定义语言">Data definition language (DDL) 数据定义语言</h4>
+<ul>
+<li>用来定义表的结构</li>
+<li>将数据模型转换为（物理）数据库</li>
+<li>实际上存储数据</li>
+</ul>
+<h4 id="data-manipulation-language-dml-数据操作语言">Data manipulation language (DML) 数据操作语言</h4>
+<ul>
+<li>以编程方式操作表里的数据</li>
+<li>陈述性（说你想要什么，而不是你怎么做）</li>
+<li>插入、删除、更新或检索（选择）数据</li>
+</ul>
+<h3 id="data-definition-数据定义">Data definition 数据定义</h3>
+<h4 id="create-database-创建数据库">Create database 创建数据库</h4>
+<ul>
+<li>可以使用“CREATE DATABASE”操作来创建数据库：
+<ul>
+<li>CREATE DATABASE databasename；</li>
+</ul></li>
+</ul>
+<h4 id="create-table-ddl建表">Create table DDL建表</h4>
+<ul>
+<li>可以使用“CREATE TABLE“操作来建表:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS Student;CREATE TABLE Student  </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>( ID integer,  </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> email varchar(<span class="dv">20</span>),  </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a> lastName varchar(<span class="dv">20</span>),  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a> firstName varchar(<span class="dv">20</span>),  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> DOB date  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h4 id="select-dml查询">SELECT DML查询</h4>
+<ul>
+<li>可以使用“SELEC…FROM…WHERE…“操作来查询:</li>
+<li><code>SELECT *</code> 表示所有列</li>
+<li>字符串用单引号，比如 <code>WHERE name = 'Oli'</code>；数字不加引号，比如 <code>WHERE id = 3</code></li>
+<li>也可以比较两列，比如 <code>WHERE sector_x = sector_y</code></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> 列</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> 表</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> 条件</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> 分组</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> 排序 <span class="kw">ASC</span><span class="op">/</span><span class="kw">DESC</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> 条数;</span></code></pre></div>
+<ul>
+<li>AND的优先级比OR高
+<ul>
+<li>WHERE (id=1 OR id=2) AND name=‘Bob’ 只返回Bob</li>
+<li>WHERE id=1 OR id=2 AND name=‘Bob’
+<ul>
+<li>实际执行的是 id=1 OR (id=2 AND name=‘Bob’)</li>
+<li>所以 Andrew 和 Bob 都会返回</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="joins-多表连接">Joins 多表连接</h3>
+<ul>
+<li>加入意味着将多个表格连接在一起，通常通过使用外键</li>
+<li>语法:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c.<span class="dt">Character</span>, c.StandID, s.Stand</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Characters c</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> Stands s <span class="kw">ON</span> c.StandID <span class="op">=</span> s.StandID;</span></code></pre></div>
+<ul>
+<li>只要把 <code>LEFT</code> 换成 <code>INNER</code>、<code>RIGHT</code> 或 <code>FULL OUTER</code>，就分别对应后续的四张结果表</li>
+<li>有不同种类的连接：</li>
+</ul>
+<h4 id="inner-join-内连接">Inner join 内连接</h4>
+<ul>
+<li>只返回两边都能匹配上的行</li>
+<li>内部连接返回一个表，其中表1和表2的条目都有彼此的外键</li>
+<li>外键列中没有“空”值：<br />
+<img src="assets/Pasted-image-20261116121933.png" width="196" /></li>
+</ul>
+<p><strong>Characters</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stands</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Inner Join</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+</tbody>
+</table>
+<h4 id="left-join-左连接">Left join 左连接</h4>
+<ul>
+<li>左连接返回一个表，其中包含表1中的所有记录以及表2中的属性（如果存在）。 如果它不存在，那么表2列将为NULL<br />
+<img src="assets/Pasted-image-20261116122405.png" width="293" /><br />
+<strong>Characters</strong></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stands</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Left Join</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h4 id="right-join-右连接">Right join 右连接</h4>
+<ul>
+<li>右连接就像左连接一样，但它包含表2中的所有记录，以及表1中的属性（如果存在），如果没有，它们将为NULL：<br />
+<img src="assets/Pasted-image-20261116123239.png" width="296" /></li>
+</ul>
+<p><strong>Characters</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stands</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Right Join</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+<h4 id="full-outer-join-全外连接">Full outer join 全外连接</h4>
+<ul>
+<li>两边的所有行都保留</li>
+<li>这将返回表1和表2中的所有记录，如果任何外键为空，则相应的列将保留NULL<br />
+<img src="assets/Pasted-image-20261116124329.png" width="289" /></li>
+</ul>
+<p><strong>Characters</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stands</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Full Outer Join</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Character</th>
+<th>Stand ID</th>
+<th>Stand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jotaro Kujo</td>
+<td>1</td>
+<td>Star Platinum</td>
+</tr>
+<tr class="even">
+<td>Polnareff</td>
+<td>2</td>
+<td>Silver Chariot</td>
+</tr>
+<tr class="odd">
+<td>Jonathan Joestar</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>3</td>
+<td>The World</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</body>
+</html>

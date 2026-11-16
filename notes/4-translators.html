@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4. Translators</title>
+  <link rel="stylesheet" href="../css/page.css">
+</head>
+<body>
+<div class="doc">
+
+<p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
+<p class="title">4. Translators</p>
+<p class="subtitle">Hongyi Li</p>
+
+<p class="contents-label">Contents</p>
+<nav class="toc">
+<ul>
+<li><a href="#编程语言总体分类" id="toc-编程语言总体分类">编程语言总体分类</a></li>
+<li><a href="#什么是翻译器-translator" id="toc-什么是翻译器-translator">什么是翻译器 Translator？</a></li>
+<li><a href="#三种编译器对比" id="toc-三种编译器对比">三种编译器对比</a>
+<ul>
+<li><a href="#编译器-compiler" id="toc-编译器-compiler">编译器 Compiler</a></li>
+<li><a href="#解释器-interpreter" id="toc-解释器-interpreter">解释器 Interpreter</a></li>
+<li><a href="#汇编器-assembler" id="toc-汇编器-assembler">汇编器 Assembler</a></li>
+<li><a href="#三种翻译器对比" id="toc-三种翻译器对比">三种翻译器对比</a></li>
+</ul></li>
+<li><a href="#字节码与jvm" id="toc-字节码与jvm">字节码与JVM</a>
+<ul>
+<li><a href="#字节码-bytecode-是什么" id="toc-字节码-bytecode-是什么">字节码 Bytecode 是什么？</a></li>
+<li><a href="#java的流程" id="toc-java的流程">Java的流程</a></li>
+<li><a href="#python的流程" id="toc-python的流程">Python的流程</a></li>
+<li><a href="#java虚拟机jvm的优点" id="toc-java虚拟机jvm的优点">Java虚拟机JVM的优点</a></li>
+</ul></li>
+<li><a href="#编译阶段词法分析" id="toc-编译阶段词法分析">编译阶段：词法分析</a>
+<ul>
+<li><a href="#编译的三个阶段-stages-compilation" id="toc-编译的三个阶段-stages-compilation">编译的三个阶段 Stages Compilation</a></li>
+<li><a href="#词法分析lexical-analysis---功能" id="toc-词法分析lexical-analysis---功能">词法分析Lexical Analysis - 功能</a></li>
+<li><a href="#符号表-symbol-table" id="toc-符号表-symbol-table">符号表 Symbol Table</a></li>
+<li><a href="#标记化-tokenisation" id="toc-标记化-tokenisation">标记化 Tokenisation</a></li>
+<li><a href="#哈希表-hash-table" id="toc-哈希表-hash-table">哈希表 Hash Table</a></li>
+</ul></li>
+<li><a href="#编译阶段语法与语义分析" id="toc-编译阶段语法与语义分析">编译阶段：语法与语义分析</a>
+<ul>
+<li><a href="#语法分析-syntax-analysis" id="toc-语法分析-syntax-analysis">语法分析 Syntax Analysis</a></li>
+<li><a href="#语义分析-semantic-analysis" id="toc-语义分析-semantic-analysis">语义分析 Semantic Analysis</a></li>
+</ul></li>
+<li><a href="#编译阶段代码生成与优化" id="toc-编译阶段代码生成与优化">编译阶段：代码生成与优化</a>
+<ul>
+<li><a href="#代码生成与优化code-generation-optimisation" id="toc-代码生成与优化code-generation-optimisation">代码生成与优化Code Generation &amp; Optimisation</a></li>
+</ul></li>
+<li><a href="#dll链接器与加载器" id="toc-dll链接器与加载器">DLL，链接器与加载器</a>
+<ul>
+<li><a href="#动态链接库dlldynamic-linked-libraries" id="toc-动态链接库dlldynamic-linked-libraries">动态链接库DLL（Dynamic Linked Libraries）</a></li>
+<li><a href="#链接器-linker" id="toc-链接器-linker">链接器 Linker</a></li>
+<li><a href="#加载器-loader" id="toc-加载器-loader">加载器 Loader</a></li>
+<li><a href="#完整编译流程" id="toc-完整编译流程">完整编译流程</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="编程语言总体分类">编程语言总体分类</h1>
+<table>
+<thead>
+<tr class="header">
+<th>层次</th>
+<th>名称</th>
+<th>例子</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>高级语言 High-level</td>
+<td>High-Level Language</td>
+<td>C++，Java，Python</td>
+<td>无需了解硬件，可移植（portable），可在不同系统使用</td>
+</tr>
+<tr class="even">
+<td>低级语言Low-Level</td>
+<td>Assembly Language</td>
+<td>X86,ARM,MIPS汇编</td>
+<td>使用助记符mnemonic codes(MOV,ADD,SUB),与处理器架构相关，比机器语言可读性高，不占主存、执行快</td>
+</tr>
+<tr class="odd">
+<td>低级语言Low-Level</td>
+<td>Machine Language</td>
+<td>001011110..二进制</td>
+<td>CPU直接执行的最基本形式，特定于处理器架构，需了解硬件细节制</td>
+</tr>
+</tbody>
+</table>
+<h1 id="什么是翻译器-translator">什么是翻译器 Translator？</h1>
+<ul>
+<li>将程序员写的高级/汇编语言代码翻译成计算机可理解的二进制形式的实用程序</li>
+<li>三种翻译器：Compiler编译器/Interpreter解释器/Assembler汇编器</li>
+</ul>
+<h1 id="三种编译器对比">三种编译器对比</h1>
+<h2 id="编译器-compiler">编译器 Compiler</h2>
+<ul>
+<li>将高级语言代码一次性全部翻译成机器码，生成可执行文件</li>
+<li>编译后可多次使用，无需重新编译。会对代码进行优化（optimise）。错误只在完整编译后才报告。编译后的代码难以反推回溯代码，难以修改</li>
+<li>源代码（source code）➡️目标代码（Object code），特定于硬件平台。不同平台需要不同编译器（如windows+Intel是一个平台，Apple+PowerPC是另一个平台）</li>
+</ul>
+<h2 id="解释器-interpreter">解释器 Interpreter</h2>
+<ul>
+<li>逐条语句读取高级语言代码➡️转为中间代码（汇编语言）➡️再转化为机器码➡️执行，然后处理下一条语句。</li>
+<li>遇到错误立即提示用户更正，不生成可执行文件。代码不会被优化<br />
+源代码➡️中间代码➡️机器码➡️执行➡️</li>
+</ul>
+<h2 id="汇编器-assembler">汇编器 Assembler</h2>
+<ul>
+<li>将汇编语言翻译成机器码。有时先翻译成中间代码字节码（bytecode）。汇编后可多次使用，无需重新汇编。输入称为源代码，不同处理器架构有不同汇编指令</li>
+</ul>
+<h2 id="三种翻译器对比">三种翻译器对比</h2>
+<table>
+<thead>
+<tr class="header">
+<th>特点</th>
+<th>Complier 编译器</th>
+<th>Interpreter 解释器</th>
+<th>Assembler 汇编器</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>执行方式</td>
+<td>一次性翻译全部代码</td>
+<td>逐行翻译执行</td>
+<td>将汇编代码翻译为机器码</td>
+</tr>
+<tr class="even">
+<td>输出</td>
+<td>生成可执行文件</td>
+<td>不生成可执行文件</td>
+<td>直接生成机器码</td>
+</tr>
+<tr class="odd">
+<td>执行速度</td>
+<td>编译后更快</td>
+<td>较慢（逐行执行）</td>
+<td>取决于硬件</td>
+</tr>
+<tr class="even">
+<td>错误报告</td>
+<td>完整编译后才报告所有错误</td>
+<td>每遇错误立即停止并报告</td>
+<td>转换完成后报告错误</td>
+</tr>
+</tbody>
+</table>
+<h1 id="字节码与jvm">字节码与JVM</h1>
+<h2 id="字节码-bytecode-是什么">字节码 Bytecode 是什么？</h2>
+<ul>
+<li>介于编译和解释之间的中间表示形式，使程序可移植（portable）、平台无关（Platform-independent）。只要目标系统安装了对应的虚拟器，即可运行</li>
+<li>使用字节码的语言：Java，Python，MATLAB等。</li>
+</ul>
+<h2 id="java的流程">Java的流程</h2>
+<ul>
+<li>Java源代码（.Java）–编译Compile–字节码(.class文件)–JVM执行–本地机器码</li>
+</ul>
+<h2 id="python的流程">Python的流程</h2>
+<ul>
+<li>Python源代码（.py）–编译–字节码(.pyc文件)–Python解释器执行–运行结果</li>
+</ul>
+<h2 id="java虚拟机jvm的优点">Java虚拟机JVM的优点</h2>
+<ul>
+<li>机器无关性(Machine independence):字节码可在任何安装了JVM的系统上运行</li>
+<li>安全性增强：来自未知来源的字节码先在JVM中运行，确认无恶意后才运行主程序</li>
+</ul>
+<h1 id="编译阶段词法分析">编译阶段：词法分析</h1>
+<h2 id="编译的三个阶段-stages-compilation">编译的三个阶段 Stages Compilation</h2>
+<ul>
+<li>词法分析Lexical Analysis–语法&amp;语义分析Syntax &amp; Semantic–代码生成&amp;优化Code Generation</li>
+</ul>
+<h2 id="词法分析lexical-analysis---功能">词法分析Lexical Analysis - 功能</h2>
+<ul>
+<li>删除注释（#或//开头）和多余空格。例：num = int(input(…)) – num = int(input())</li>
+<li>检查非法标识符。例：Python变量名不能以数字开头，2num会被标记为非法</li>
+<li>检查非法常量值（如类型不匹配），会产出溢出overflow或下溢underflow错误</li>
+<li>将关键字，常量，变量替换为唯一符号–Token（标记）。标识符被替换为指向变量地址的指针；关键字(print等)替换为项目项目代码item codes</li>
+</ul>
+<h2 id="符号表-symbol-table">符号表 Symbol Table</h2>
+<ul>
+<li>存储源代码中所有关键字、变量、常量的详细信息。每条记录包含：</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kind 种类</td>
+<td>变量、关键字、常量、过程、函数或数组</td>
+</tr>
+<tr class="even">
+<td>Data type 地址类型</td>
+<td>Float, int, char, string, date, Boolean</td>
+</tr>
+<tr class="odd">
+<td>Address/Valuen地址或值</td>
+<td>运行时地址或常量值</td>
+</tr>
+<tr class="even">
+<td>数组边界 Bounds</td>
+<td>数组索引必须在边界内</td>
+</tr>
+<tr class="odd">
+<td>参数信息</td>
+<td>过程/函数的参数数据类型</td>
+</tr>
+</tbody>
+</table>
+<p>例：Area = width * height 的符号表中Area/width/height为float类型变量, =和*为运算符。</p>
+<h2 id="标记化-tokenisation">标记化 Tokenisation</h2>
+<ul>
+<li>符号表创建后，每个项目被标记化。例：Area = width * height 可被标记为7 1 2 3 6. 词法分析器填写名称和地址/值列；语法分析器在下一阶段填写种类和类型列。</li>
+</ul>
+<h2 id="哈希表-hash-table">哈希表 Hash Table</h2>
+<ul>
+<li>用于存储符号表的数据结构。元素以数组形式排列，下标通过哈希函数（Hash function）计算。编译器在标记化过程中多次访问符号表，哈希确保更快的处理速度</li>
+</ul>
+<h1 id="编译阶段语法与语义分析">编译阶段：语法与语义分析</h1>
+<h2 id="语法分析-syntax-analysis">语法分析 Syntax Analysis</h2>
+<ul>
+<li>判断token序列是否符合该语言的有效语法规则</li>
+<li>解析Parsing：通过一套规则判断条件语句是否有效</li>
+<li>括号配对检查：用栈stack验证括号是否正确配对</li>
+<li>运算符分析与优先级排序。将表达式转化为便于生成机器码形式</li>
+<li>常见语法错误Syntax Errors：括号未配对/缺少分号/错误缩进/语句结构不正确</li>
+</ul>
+<h2 id="语义分析-semantic-analysis">语义分析 Semantic Analysis</h2>
+<ul>
+<li>语法Syntax = 语言的语法规则。语义 Semantics = 语言的含义</li>
+<li>常见语义错误Semantic Errors：
+<ul>
+<li>使用未声明的变量（在某些语言中）</li>
+<li>类型不匹配的错误：把实数赋值给整数变量</li>
+<li>用实数值作为循环计数器</li>
+</ul></li>
+</ul>
+<p>注意：语法正确不代表语义正确，例：print（num1）语法错误，但如果num1未定义，则是语法错误</p>
+<h1 id="编译阶段代码生成与优化">编译阶段：代码生成与优化</h1>
+<h2 id="代码生成与优化code-generation-optimisation">代码生成与优化Code Generation &amp; Optimisation</h2>
+<ul>
+<li>编译的最后阶段，生成机器码</li>
+<li>代码优化技术 ：减少执行时间和资源消耗。方法：删除冗余指令、改变程序运行方式（但结果相同）</li>
+<li>例：将循环内部赋值语句移到循环外部，避免重复执行相同语句</li>
+</ul>
+<p>注意：某些优化可能导致程序产生错误结果。优化有时也会增加编译时间</p>
+<h1 id="dll链接器与加载器">DLL，链接器与加载器</h1>
+<h2 id="动态链接库dlldynamic-linked-libraries">动态链接库DLL（Dynamic Linked Libraries）</h2>
+<ul>
+<li>子程序的共享库。程序员在程序中需要时随时调用这些子程序，无需重新编写</li>
+<li>某些程序员频繁使用的例程序被开发并测试后存入库中。调用例程的语句被翻译时，代码库中取出并执行。多个程序可共享同一个DLL</li>
+</ul>
+<h2 id="链接器-linker">链接器 Linker</h2>
+<ul>
+<li>主程序编译后，已编译的子程序必须与机器码链接，这由链接器完成</li>
+<li>当子程序被调用时，call和return语句在主程序和子程序之间转移控制权。链接器的功能：在call和return语句提供机器地址，确保所有模块正确链接在一起</li>
+</ul>
+<h2 id="加载器-loader">加载器 Loader</h2>
+<ul>
+<li>重定位加载器（Relocating Loader）：将目标代码加载到内存中的任意位置</li>
+<li>运行条件：
+<ol type="1">
+<li>程序不得包含绝对地址</li>
+<li>程序必须是可重定位格式</li>
+</ol></li>
+</ul>
+<h2 id="完整编译流程">完整编译流程</h2>
+<p>源代码(HLL) – 翻译器 Translator – 机器码 – 链接器 Linker – 可执行文件 – 加载器 Loader – 内存 Memory</p>
+
+</div>
+</body>
+</html>

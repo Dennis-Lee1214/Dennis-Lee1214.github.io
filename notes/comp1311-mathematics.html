@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COMP1311 Mathematics</title>
+  <link rel="stylesheet" href="../css/page.css">
+  <script defer="" src="../vendor/katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="../vendor/katex/katex.min.css" />
+</head>
+<body>
+<div class="doc">
+
+<p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
+<p class="title">COMP1311 Mathematics</p>
+<p class="subtitle">Hongyi Li</p>
+
+<p class="contents-label">Contents</p>
+<nav class="toc">
+<ul>
+<li><a href="#formal-proof" id="toc-formal-proof">Formal Proof</a>
+<ul>
+<li><a href="#proposition-and-predicate-命题与谓词" id="toc-proposition-and-predicate-命题与谓词">Proposition and Predicate 命题与谓词</a></li>
+<li><a href="#components-of-a-formal-proof-形式证明的组成" id="toc-components-of-a-formal-proof-形式证明的组成">Components of a formal proof 形式证明的组成</a></li>
+<li><a href="#proof-method-证明方法" id="toc-proof-method-证明方法">Proof method 证明方法</a></li>
+<li><a href="#example" id="toc-example">Example</a></li>
+<li><a href="#证明方法" id="toc-证明方法">证明方法</a></li>
+</ul></li>
+<li><a href="#sets-functions-and-relations" id="toc-sets-functions-and-relations">Sets, Functions and Relations</a>
+<ul>
+<li><a href="#basic-of-sets-集合基础" id="toc-basic-of-sets-集合基础">Basic of sets 集合基础</a></li>
+<li><a href="#sets-operations-集合运算" id="toc-sets-operations-集合运算">Sets operations 集合运算</a></li>
+<li><a href="#ordered-pairs-cartesian-products-and-power-sets-有序对乘积与幂集" id="toc-ordered-pairs-cartesian-products-and-power-sets-有序对乘积与幂集">Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集</a></li>
+<li><a href="#relation-关系" id="toc-relation-关系">Relation 关系</a></li>
+<li><a href="#function-函数" id="toc-function-函数">Function 函数</a></li>
+</ul></li>
+<li><a href="#logic" id="toc-logic">Logic</a>
+<ul>
+<li><a href="#proposition-命题" id="toc-proposition-命题">proposition 命题</a></li>
+<li><a href="#logical-connectives-逻辑连接词" id="toc-logical-connectives-逻辑连接词">Logical Connectives 逻辑连接词</a></li>
+<li><a href="#special-proposition-特殊命题" id="toc-special-proposition-特殊命题">Special Proposition 特殊命题</a></li>
+<li><a href="#construct-a-truth-table-构造真值表" id="toc-construct-a-truth-table-构造真值表">Construct a truth table 构造真值表</a></li>
+<li><a href="#contrapositive-逆否命题" id="toc-contrapositive-逆否命题">Contrapositive 逆否命题</a></li>
+<li><a href="#syntax-语法" id="toc-syntax-语法">Syntax 语法</a></li>
+<li><a href="#and" id="toc-and">⊨ and ⊢</a></li>
+<li><a href="#soundness-and-completeness-可靠性和完备性" id="toc-soundness-and-completeness-可靠性和完备性">Soundness and Completeness 可靠性和完备性</a></li>
+<li><a href="#proof-trees-and-natural-deduction-证明树和自然演绎" id="toc-proof-trees-and-natural-deduction-证明树和自然演绎">Proof trees and Natural Deduction 证明树和自然演绎</a></li>
+<li><a href="#rules-规则表" id="toc-rules-规则表">Rules 规则表</a></li>
+<li><a href="#discharging-assumptions-解除假设" id="toc-discharging-assumptions-解除假设">Discharging Assumptions 解除假设</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="formal-proof">Formal Proof</h1>
+<h2 id="proposition-and-predicate-命题与谓词">Proposition and Predicate 命题与谓词</h2>
+<ol type="1">
+<li><p>proposition 命题</p>
+<ul>
+<li>定义:Declarative statements with a definite truth value (true or false), rather than subjective opinions. 有确定真值(T or F)的陈述句，非主观意见</li>
+<li>Example：Johor is in Malaysia.</li>
+</ul></li>
+<li><p>Predicate 谓词</p>
+<ul>
+<li>定义:Contains variables; the truth value depends on the values ​​assigned to the variables. 含变量，真值取决于变量取值</li>
+<li>Example: P(x): x&gt;8 if P=9,T</li>
+</ul></li>
+<li><p>Neither 两者皆非</p>
+<ul>
+<li>Example: 疑问句、命令、主观、悖论; What’s you name?, This statement is false.</li>
+</ul></li>
+</ol>
+<h2 id="components-of-a-formal-proof-形式证明的组成">Components of a formal proof 形式证明的组成</h2>
+<ol type="1">
+<li>Components 组成
+<ul>
+<li>Premises 前提：假设为真的陈述，证明起点。</li>
+<li>Conclusion 结论：需建立的陈述。</li>
+<li>Arguments 论证：从前提推导结论的逻辑步骤。</li>
+</ul></li>
+<li>可借助Axioms公理和已证结果（定理和引理）
+<ul>
+<li>可写为P→Q 形式</li>
+<li>Axioms 公理: 无需证明即接受为真</li>
+<li>Theorem 定理：已证明的命题</li>
+<li>Lemma 引理：辅助证明其他结果的已证命题</li>
+</ul></li>
+</ol>
+<h2 id="proof-method-证明方法">Proof method 证明方法</h2>
+<ol type="1">
+<li>Direct proof 直接证明: 从前提直接推导结论</li>
+<li>Proof by cases 分情况证明: 划分所有可能情况逐一证明</li>
+<li>Proof by contrapositive逆否证明: 证明非Q→非P代替P→Q </li>
+<li>Proof by contradiction反证法：假设命题为假，推出矛盾</li>
+<li>Mathematical induction数学归纳法：证基础情况，再证每步递推</li>
+</ol>
+<h2 id="example">Example</h2>
+<p>Proposition 命题:</p>
+<ul>
+<li>The 1st of October is a Wednesday, so the 13th of October is a Monday</li>
+</ul>
+<p>Premises 前提:</p>
+<ul>
+<li>October is a Wednesday.</li>
+<li>The days of the week repeat every seven days in their usual order.</li>
+<li>13 October is 12 days after 1 October.</li>
+</ul>
+<p>Argument 论证:</p>
+<ul>
+<li>Since 12 = 7 + 5, moving forward 7 days from Wednesday returns to Wednesday.</li>
+<li>Moving forward another 5 days gives Monday.</li>
+<li>Therefore, 13 October is a Monday.</li>
+</ul>
+<p>Conclusion 结论:</p>
+<ul>
+<li><p>13 October is a Monday.</p></li>
+<li><p>证明 = 前提 + 论证 + 结论。</p></li>
+</ul>
+<h2 id="证明方法">证明方法</h2>
+<ol type="1">
+<li><p>Direct proof 直接证明</p>
+<ul>
+<li>证 P→Q: 假设 P,用定义一步步推到 Q</li>
+<li>模版：假设P → 用定义展开 → 凑出Q的定义形式
+<ul>
+<li>例: 若 18|n,则 6|n n可以被18整除，则n可以被6整除
+<ul>
+<li>假设n = 18k，k∈ℤ</li>
+<li>18=6×3,所以 n=6(3k)</li>
+<li>3k 是整数</li>
+<li>所以 n=6m, m=3k∈ℤ, 即 6|n</li>
+</ul></li>
+<li>例：两个奇数之积是奇数
+<ul>
+<li>设 a=2k+1, b=2m+1</li>
+<li>ab=4km+2k+2m+1 =2(2km+k+m)+1</li>
+<li>2km+k+m 是整数,所以 ab 是奇数</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Counterexample 反例</p>
+<ul>
+<li>推翻全称命题:找一个 P 真、Q 假的例子
+<ul>
+<li>例: a²=b² ⟹ a=b
+<ul>
+<li>证明是假的,取 a=2,b=−2。应该改成 a=b 或 a=−b,或加条件 a,b≥0</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>If and only if 当且仅当</p>
+<ul>
+<li>证 P↔︎Q:两个方向都要证</li>
+<li>先假设P，推出Q，再重新假设Q，推出P
+<ul>
+<li>例：x²=x ⟺ x=0 或 x=1
+<ul>
+<li>⇒x²−x=0,即 x(x−1)=0,所以 x=0 或 x=1</li>
+<li>⇐:x=0 时 0²=0,x=1 时 1²=1</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Contraposition 逆否命题</p>
+<ul>
+<li>P→Q ≡ ¬Q→¬P (逻辑等价)</li>
+<li>用的时机：证“n² 偶 ⟹ n 偶“时,n²=2k 很难变成 n 的形式。逆否命题“n 奇 ⟹ n² 奇“则很顺:n=2k+1, n²=2(2k²+2k)+1
+<ul>
+<li>例：x+y≥2 ⟹ x≥1 或 y≥1
+<ul>
+<li>逆否: x&lt;1 且 y&lt;1 ⟹ x+y&lt;2</li>
+<li>两个不等式相加:x+y&lt;1+1=2</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Case analysis 分情况</p>
+<ul>
+<li>分的情况加起来必须覆盖所有情况；每个情况都要单独证明
+<ul>
+<li>例：n²+3n 是偶数
+<ul>
+<li>n=2k: 4k²+6k=2 (2k²+3k)</li>
+<li>n=2k+1:4k²+10k+4 =2 (2k²+5k+2)</li>
+<li>每个整数非奇即偶,所以情况穷尽</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Contradiction 反证法</p>
+<ul>
+<li>假设结论为假 → 推出矛盾 ⊥ → 原结论成立 不能只写矛盾，要写清楚和什么矛盾</li>
+<li>contraposition逆否命题 和 contradiction反证法的区别：</li>
+<li>contraposition：目标是 P→Q,假设 ¬Q, 必须推出 ¬P,目标明确</li>
+<li>Contradiction：假设整个命题为假, 推出任何矛盾都行
+<ul>
+<li>例：没有最小正实数
+<ul>
+<li>假设 x 是最小正实数,取 y=x/2。</li>
+<li>y&gt;0 且 y&lt;x, 与“x 最小“矛盾</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Induction 归纳法</p>
+<ul>
+<li>类似于多米诺骨牌</li>
+<li>Base case：证明 P(1) 成立(推倒第一块)</li>
+<li>Inductive hypothesis：假设某个 k 使 P(k) 成立</li>
+<li>Inductive step：证明 P(k+1)(每块推倒下一块)
+<ul>
+<li>例：2ⁿ≥n+1
+<ul>
+<li>Base:n=1, 2¹=2≥2</li>
+<li>Step:假设 2ᵏ≥k+1。则 2ᵏ⁺¹=2·2ᵏ ；2·2ᵏ ≥ 2(k+1) ；2(k+1) = 2k+2；2k+2 ≥ k+2</li>
+<li>2ᵏ⁺¹ = 2·2ᵏ ≥ 2(k+1) = 2k+2 ≥ k+2</li>
+<li>所以 2ᵏ⁺¹ ≥ k+2,这正是 P(k+1)</li>
+<li>用到的两个不等式:归纳假设 2ᵏ≥k+1,以及 2k+2≥k+2</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<h1 id="sets-functions-and-relations">Sets, Functions and Relations</h1>
+<h2 id="basic-of-sets-集合基础">Basic of sets 集合基础</h2>
+<ul>
+<li>定义：互不相同，定义明确的对象的集合</li>
+<li>写法：
+<ul>
+<li>Roster:D={0,1,2,3}</li>
+<li>Set-builder:I = {i∈ℤ : 0≤i&lt;4}, 冒号读作“such that“</li>
+</ul></li>
+<li>集合不记顺序和重复，因此 {1,2,3}={3,2,1}={1,1,2,3}</li>
+<li>| A | 的意思是集合中不同元素的个数
+<ul>
+<li>例如 |{1,1,2,2,3}| = 3</li>
+</ul></li>
+<li>∅ 和{∅}的不同：∅没有元素，因此｜∅｜ = 0；{∅}里有一个空集元素，因此为1；空集是任何集合的子集</li>
+<li>⊆ 的意思代表A的每个元素都在B里面；⊊ 代表A是B的子集，但A不等于B</li>
+</ul>
+<h2 id="sets-operations-集合运算">Sets operations 集合运算</h2>
+<blockquote>
+<p>相关：<a href="comp1314-data-management-i.html#基本运算">COMP1314 关系代数基本运算</a></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>逻辑</th>
+<th>运算</th>
+<th>意思</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OR</td>
+<td>A∪B</td>
+<td>在 A 或 B(包含两者都在)</td>
+</tr>
+<tr class="even">
+<td>AND</td>
+<td>A∩B</td>
+<td>在 A 且在 B</td>
+</tr>
+<tr class="odd">
+<td>AND NOT</td>
+<td>A∖B</td>
+<td>在 A 不在 B(顺序有关)</td>
+</tr>
+<tr class="even">
+<td>NOT</td>
+<td>Aᶜ=U∖A</td>
+<td>不在 A(要先知道全集 U)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Example：</p>
+<ul>
+<li>U={1..6}, A={1,2,4,6}, B={2,3,4}</li>
+<li>A∪B={1,2,3,4,6}</li>
+<li>A∩B={2,4}</li>
+<li>A∖B={1,6}</li>
+<li>Aᶜ={3,5}</li>
+</ul></li>
+<li><p>常用定律：</p>
+<ul>
+<li>恒等: A∪∅=A, A∩U=A</li>
+<li>幂等: A∪A=A, A∩A=A</li>
+<li>互补: A∪Aᶜ=U, A∩Aᶜ=∅, (Aᶜ)ᶜ=A</li>
+<li>交换律与结合律: ∪ 和 ∩ 都满足,但 ∖ 不满足交换律</li>
+<li>分配律: A∩(B∪C)=(A∩B)∪(A∩C)</li>
+<li>De Morgan: (A∪B)ᶜ=Aᶜ∩Bᶜ, (A∩B)ᶜ=Aᶜ∪Bᶜ 口诀：把 NOT 推进去, OR 和 AND 互换</li>
+</ul></li>
+<li><p>证明集合等式：</p>
+<ul>
+<li>取任意 x,用“每步等价“的方式推
+<ul>
+<li>Example:
+<ul>
+<li>x∈(A∪B)ᶜ ⟺ x∉A∪B ⟺ x∉A 且 x∉B ⟺ x∈Aᶜ∩Bᶜ</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ordered-pairs-cartesian-products-and-power-sets-有序对乘积与幂集">Ordered Pairs, Cartesian Products, and Power Sets 有序对，乘积与幂集</h2>
+<blockquote>
+<p>相关：<a href="comp1314-data-management-i.html#cartesian-product-笛卡尔积">COMP1314 笛卡尔积</a> · <a href="comp1314-data-management-i.html#fundamental-discrete-mathematics-离散数学基本概念">COMP1314 离散数学基本概念</a></p>
+</blockquote>
+<ol type="1">
+<li><p>Ordered pair有序对：(a,b) = (c,d) 当且仅当 a=c 且 b=d，例如 (2,5) ≠ (5,2),但 {2,5} = {5,2}</p></li>
+<li><p>Tuple 元组：固定位置数的记录，如 (student_id, module, mark)=(31415,”COMP1311“,78)</p></li>
+<li><p>Cartesian product 笛卡尔积 A×B={(a,b) : a∈A, b∈B}</p>
+<ul>
+<li>A={u₁,u₂}, B={read,write}:A×B 有 4 个对：A × B = {(u₁,read),(u₁,write),(u₂,read),(u₂,write)}</li>
+<li>独立选择相乘:3 个系统×2 个浏览器×2 种模式=12 个测试用例</li>
+<li>A×∅=∅;只允许部分组合时,得到的是 A×B 的子集</li>
+</ul></li>
+<li><p>Power set 幂集：𝒫(A) 是 A 的所有子集的集合</p>
+<ul>
+<li>它的元素是<strong>子集</strong>,不是 A 的元素</li>
+<li>𝒫({a,b}) = {∅,{a},{b},{a,b}}</li>
+<li>每个元素“选或不选“两种,所以 |A|=n 时 |𝒫(A)| = 2ⁿ</li>
+<li>3个元素即为1+3+3+1 = 8个子集</li>
+<li>Bit string位字符：顺序固定为 (logging, caching, encryption) 时,101 表示 {logging, encryption}
+<ul>
+<li>位字符串提供了子集的紧凑表示</li>
+</ul></li>
+<li>𝒫(∅)={∅}, 大小为 2⁰=1, 幂集永远不为空</li>
+</ul></li>
+<li><p>Relation 关系:R⊆A×B,即“真正成立的那些对“</p></li>
+<li><p>Function 函数 f:A→B:对每个 a∈A,输出存在且唯一。两个输入可以共用一个输出,但一个输入不能有两个输出</p>
+<ul>
+<li>A={1,2,3}, B={a,b}</li>
+<li>P={(1,a), (2,b),(3,b)}:是函数</li>
+<li>Q={(1,a), (1,b), (2,a), (3,b)}:不是函数, 1有两个输出(唯一性失败)</li>
+<li>T={(1,a), (2,b)}:不是函数, 3没有输出 (存在性失败)</li>
+</ul></li>
+</ol>
+<ul>
+<li><p>Example：U={u₁,u₂}, R={viewer,admin}, F={cache,logs}</p>
+<ul>
+<li>用户-角色可能对:2×2 = 4</li>
+<li>功能配置数:|𝒫(F)| = 2²=4</li>
+<li>实际允许的用户-角色对:一个 relation (U×R 的子集)</li>
+<li>每个用户恰有一个默认角色:一个 function U→R</li>
+</ul></li>
+<li><p>Conclusion：</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>概念</th>
+<th>回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Set 集合</td>
+<td>哪些对象属于？</td>
+</tr>
+<tr class="even">
+<td>Tuple 元组</td>
+<td>每个位置代表什么？</td>
+</tr>
+<tr class="odd">
+<td>Cartesian product 笛卡尔积</td>
+<td>哪些有序组合是可能的？</td>
+</tr>
+<tr class="even">
+<td>Power set 幂集</td>
+<td>哪些选法是可能的？</td>
+</tr>
+<tr class="odd">
+<td>Relation 关系</td>
+<td>哪些链接实际成立？</td>
+</tr>
+<tr class="even">
+<td>Function 函数</td>
+<td>每个输入是否恰好一个输出？</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relation-关系">Relation 关系</h2>
+<blockquote>
+<p>相关：<a href="comp1314-data-management-i.html#fundamental-discrete-mathematics-离散数学基本概念">COMP1314 离散数学基本概念</a></p>
+</blockquote>
+<ol type="1">
+<li>什么是relation
+<ul>
+<li>关系 R 是笛卡尔积的子集:R ⊆ A × B,即 R = {(a, b) | a ∈ A 且 b ∈ B}</li>
+<li>通俗理解：Relation就是“把集合里的元素连起来的方式”，R里的每个有序对就是一条连线</li>
+<li>Example：
+<ul>
+<li>A = {1,2,3}, R = {(1,2),(2,3)} → “1 与 2 相关, 2 与 3 相关”</li>
+<li>颜色与水果:C = {red, orange, yellow}, F = {apple, orange, lemon}
+<ul>
+<li>R = {(apple, red), (orange, orange), (lemon, yellow)}</li>
+<li>F × C 共有 3 × 3 = 9 个有序对, 而 R 只有 3 个 → R 只是 F × C 的一个子集</li>
+</ul></li>
+</ul></li>
+<li>Digraph 有向图:用箭头表示关系，每个有序对(a,b)画成一条从a指向b的箭头; (a,a)是自环</li>
+<li><img src="assets/截屏2026-10-19-21.31.02.png" width="364" /></li>
+</ul></li>
+<li>Six Types of Relational Properties 6种关系性质</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>性质</th>
+<th>形式化定义</th>
+<th>理解</th>
+<th>有向图特征</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reflexive 自反</td>
+<td>∀a∈A, (a,a)∈R</td>
+<td>每个元素都和自己相关</td>
+<td>每个点都有自环</td>
+</tr>
+<tr class="even">
+<td>Irreflexive 非自反</td>
+<td>∀a∈A, (a,a)∉R</td>
+<td>没有元素和自己相关</td>
+<td>每个都没有任何自环</td>
+</tr>
+<tr class="odd">
+<td>Symmetric 对称</td>
+<td>(a,b)∈R ⇒ (b,a)∈R</td>
+<td>有去必有回</td>
+<td>箭头都是双向的</td>
+</tr>
+<tr class="even">
+<td>Asymmetric 非对称</td>
+<td>(a,b)∈R ⇒ (b,a)∉R</td>
+<td>有去必无回</td>
+<td>无双向箭头,也无自环</td>
+</tr>
+<tr class="odd">
+<td>Transitive 传递</td>
+<td>(a,b)∈R 且 (b,c)∈R ⇒ (a,c)∈R</td>
+<td>能走两步到的,必须能一步直达</td>
+<td>a→b→c 时必有 a→c</td>
+</tr>
+<tr class="even">
+<td>Antisymmetric 反对称</td>
+<td>(a,b)∈R 且 (b,a)∈R ⇒ a=b</td>
+<td>不同元素不能互相指向</td>
+<td>双向箭头只允许是自环</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><p>Equivalence Relations and Equivalence Classes 等价关系与等价类</p>
+<ul>
+<li>给元素分组</li>
+<li>等价关系：同时满足自反+对称+传递，记作“~”</li>
+<li>等价关系中将集合元素分类到buckets中，每个buckets被称为等价类</li>
+<li><code>[a] = {x ∈ A : x ~ a}</code></li>
+<li>重要性质：
+<ul>
+<li>每个元素恰好属一个类</li>
+<li>各类互不重叠</li>
+<li>所有类合起来覆盖整个集合</li>
+</ul></li>
+<li>Example:
+<ul>
+<li>(首字母相同):A = {apple, ant, ball, bat, cat}</li>
+<li>[apple] = {apple, ant}, [ball] = {ball, bat}, [cat] = {cat}</li>
+</ul></li>
+</ul></li>
+<li><p>Partial Order 篇序</p>
+<ul>
+<li>给元素排高低</li>
+<li>定义：同时满足Reflexive 自反，Antisymmetric 反对称，Transitive 传递</li>
+<li>通常写作 a ≼ b 代替 (a,b)∈R。此时 (A, R) 称为poset偏序集</li>
+<li>类似 ≤, 但不要求所有两个元素都能比较</li>
+<li>严格篇序：把自反换成非自反,即 非自反 + 反对称 + 传递 (符号&lt; )</li>
+</ul></li>
+</ol>
+<h2 id="function-函数">Function 函数</h2>
+<ul>
+<li>function是一种特殊的relation</li>
+<li>规则：定义域里的每个元素，都恰好对应培域里的<strong>一个</strong>元素，不能一对多</li>
+<li>记作：<span class="math inline">f: X \to Y</span>，并且 <span class="math inline">f = \{(x, f(x))\} \subseteq X \times Y</span></li>
+<li>术语：
+<ol type="1">
+<li>定义域：
+<ul>
+<li>Domain，<span class="math inline">Dom(f) = S</span>，含义：所有输入</li>
+</ul></li>
+<li>陪域：
+<ul>
+<li>Codomain，<span class="math inline">T</span>， 含义：所有“允许的“输出</li>
+</ul></li>
+<li>值域/像:
+<ul>
+<li>Range / Image，<span class="math inline">img(f) = \{f(x) \mid x \in S\}</span>, 实际被打中的输出</li>
+</ul></li>
+<li>Example：
+<ul>
+<li><span class="math inline">A = \{a,b,c\}</span>，<span class="math inline">B = \{1,2,3,4,5\}</span>，<span class="math inline">f = \{(a,2),(b,1),(c,3)\}</span></li>
+<li>Domain = <span class="math inline">\{a,b,c\}</span></li>
+<li>Codomain = <span class="math inline">\{1,2,3,4,5\}</span></li>
+<li>Range = <span class="math inline">\{1,2,3\}</span></li>
+</ul></li>
+</ol></li>
+</ul>
+<h3 id="injective-单射">Injective 单射</h3>
+<ul>
+<li>不同的输入一定得到不同的输出，没有两个箭头指向同一个点</li>
+<li>陪域里的每一个元素，被至多1个(0或1个)输入指向</li>
+<li>形式定义: <span class="math display">f(x_1) = f(x_2) \implies x_1 = x_2</span></li>
+<li>证明:
+<ul>
+<li>思路：假设 <span class="math inline">f(a) = f(b)</span>，推出 <span class="math inline">a = b</span></li>
+<li>证明 <span class="math inline">f(x) = 2x + 1</span> 是单射：<span class="math display">2a + 1 = 2b + 1 \Rightarrow 2a = 2b \Rightarrow a = b \quad</span></li>
+<li>证明不是单射则找两个不同的输入得到相同的输出</li>
+</ul></li>
+</ul>
+<h3 id="surjective-满射">Surjective 满射</h3>
+<ul>
+<li>陪域里每一个元素都至少被一个箭头打中，没有空着的输出</li>
+<li>陪域里每个元素被至少 1 个输入指向</li>
+<li>形式定义: <span class="math display">\forall b \in B,\ \exists a \in A \text{ such that } f(a) = b</span></li>
+<li>证明:
+<ul>
+<li>思路：任取 <span class="math inline">y \in T</span>，反解出 <span class="math inline">x</span>，并检查 <span class="math inline">x</span> 确实在定义域里</li>
+<li>证明 <span class="math inline">f(x) = 2x + 1</span>（<span class="math inline">\mathbb{R} \to \mathbb{R}</span>）是满射：
+<ul>
+<li>任取 <span class="math inline">y \in \mathbb{R}</span>，令 <span class="math inline">y = 2x + 1</span></li>
+<li>解得 <span class="math inline">x = \dfrac{y - 1}{2}</span></li>
+<li>这个 <span class="math inline">x</span> 仍然是实数 → 满射</li>
+</ul></li>
+<li>证明不是满射则找一个陪域里打不中的元素：
+<ul>
+<li><span class="math inline">g(x) = x^2</span>：取 <span class="math inline">y = -1</span>，没有实数 <span class="math inline">x</span> 满足 <span class="math inline">x^2 = -1</span> → 不是满射</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="bijective-双射">Bijective 双射</h3>
+<ul>
+<li>即是单射又是满射</li>
+<li>两边每个元素都恰好有一个输入指向</li>
+</ul>
+<h3 id="inverse-function-反函数">Inverse function 反函数</h3>
+<ul>
+<li>定义：<span class="math display">f \text{ 是双射} \iff f \text{ 有反函数 } f^{-1}</span></li>
+<li>cancellation identities 消去恒等式:<span class="math display">f(f^{-1}(y)) = y \qquad f^{-1}(f(x)) = x</span>
+<ul>
+<li>也就是<span class="math inline">f</span> 和 <span class="math inline">f^{-1}</span> 复合起来等于什么都没做</li>
+</ul></li>
+<li>求反函数的三步:
+<ol type="1">
+<li>确认 <span class="math inline">f</span> 是双射</li>
+<li>交换 <span class="math inline">x</span> 和 <span class="math inline">y</span>：<span class="math inline">y = f(x)</span> 变成 <span class="math inline">x = f(y)</span></li>
+<li>解出 <span class="math inline">y</span>，得到 <span class="math inline">y = f^{-1}(x)</span></li>
+</ol>
+<ul>
+<li>Example:<span class="math inline">f(x) = 2x + 1</span>
+<ol type="1">
+<li>确认是双射</li>
+<li><span class="math inline">x = 2y + 1</span></li>
+<li><span class="math inline">y = \frac{1}{2}(x - 1)</span>，所以 <span class="math inline">f^{-1}(x) = \frac{1}{2}(x-1)</span></li>
+<li>验算：<span class="math inline">f(f^{-1}(x)) = 2 \cdot \frac{1}{2}(x-1) + 1 = x</span></li>
+</ol></li>
+</ul></li>
+</ul>
+<h3 id="cardinality-基数">Cardinality 基数</h3>
+<ul>
+<li>基数 = 集合里元素的个数，记作 <span class="math inline">|A|</span>
+<ul>
+<li><span class="math inline">|\{a,b,c\}| = 3</span></li>
+<li><span class="math inline">|\{\{1,2\},\{3\}\}| = 2</span></li>
+<li><span class="math inline">|\{\}| = 0</span></li>
+</ul></li>
+<li>有限集的规则
+<ul>
+<li>容斥原理 inclusion–exclusion： <span class="math inline">|A \cup B| = |A| + |B| - |A \cap B|</span></li>
+<li>不相交时: <span class="math inline">|A \cup B| = |A| + |B|</span></li>
+<li>幂集： <span class="math inline">|P(A)| = 2^{|A|}</span></li>
+<li>Example:
+<ul>
+<li><span class="math inline">A = \{1,2,3\}</span>，<span class="math inline">B = \{3,4\}</span> → <span class="math inline">|A \cup B| = 3 + 2 - 1 = 4</span>，<span class="math inline">|P(A)| = 8</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="infinite-sets-无穷集合">Infinite sets 无穷集合</h3>
+<ul>
+<li><p>Countably Infinite 可数无穷</p>
+<ul>
+<li>如果一个集合能和 <span class="math inline">\mathbb{N} = \{1, 2, 3, \dots\}</span> 建立双射，它就是可数无穷的，基数记作 <span class="math inline">\aleph_0</span>（读 aleph-null / aleph-zero）</li>
+<li><span class="math inline">\aleph_0</span> 是最小的无穷</li>
+<li>Example:
+<ul>
+<li><span class="math inline">A = \{1,2,3,\dots\}</span>，<span class="math inline">B = \{2,4,6,\dots\}</span>，取 <span class="math inline">f(n) = 2n</span></li>
+<li>单射：<span class="math inline">2n_1 = 2n_2 \Rightarrow n_1 = n_2</span></li>
+<li>满射：任意偶数 <span class="math inline">2k</span> 都有原像 <span class="math inline">k</span></li>
+<li>所以是双射，<span class="math inline">|A| = |B| = \aleph_0</span></li>
+<li>因此偶数和自然数一样多, <strong>基数看的是能不能配对, 不是谁包含谁</strong></li>
+</ul></li>
+</ul></li>
+<li><p>无穷集合</p>
+<ul>
+<li>定义: 集合 A 是无穷的 ⟺ A 能和它自己的某个真子集（proper subset）建立双射</li>
+<li>打破了“有限集合的真子集一定更小“这条规律
+<ul>
+<li><span class="math inline">\mathbb{N} = \{1, 2, 3, 4, \dots\}</span> 和偶数 <span class="math inline">E = \{2, 4, 6, 8, \dots\}</span></li>
+<li><span class="math inline">E</span> 是 <span class="math inline">\mathbb{N}</span> 的真子集，因为它把所有奇数都拿掉了</li>
+<li>但每个自然数都有一个偶数伙伴，每个偶数也都有一个自然数伙伴，谁都不落单</li>
+<li>因此真子集和原集合一样大</li>
+<li>这便是无穷集合的定义</li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="logic">Logic</h1>
+<h2 id="proposition-命题">proposition 命题</h2>
+<ul>
+<li>命题是一个陈述句，并且要么真、要么假。不能既真又假，也不能无法判断</li>
+</ul>
+<h2 id="logical-connectives-逻辑连接词">Logical Connectives 逻辑连接词</h2>
+<blockquote>
+<p>相关：<a href="comp1313-computer-system-i.html#logic-notation">COMP1313 Logic notation</a></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>名称</th>
+<th>读法</th>
+<th>何时为真</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>¬p</td>
+<td>Negation</td>
+<td>not p</td>
+<td>p 为假时</td>
+</tr>
+<tr class="even">
+<td>p ∧ q</td>
+<td>Conjunction</td>
+<td>p and q</td>
+<td>两个都真</td>
+</tr>
+<tr class="odd">
+<td>p ∨ q</td>
+<td>Disjunction</td>
+<td>p or q</td>
+<td>至少一个真</td>
+</tr>
+<tr class="even">
+<td>p ⊕ q</td>
+<td>XOR</td>
+<td>either p or q, not both</td>
+<td>恰好一个真（两者不同）</td>
+</tr>
+<tr class="odd">
+<td>p → q</td>
+<td>Implication</td>
+<td>if p then q</td>
+<td>只有 T→F 时为假，其余都真</td>
+</tr>
+<tr class="even">
+<td>p ↔︎ q</td>
+<td>Biconditional</td>
+<td>p iff q</td>
+<td>两者相同（同真或同假）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>真值表:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>p</th>
+<th>q</th>
+<th>¬p</th>
+<th>p∧q</th>
+<th>p∨q</th>
+<th>p⊕q</th>
+<th>p→q</th>
+<th>p↔︎q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td><strong>F</strong></td>
+<td>F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+<td>T</td>
+<td>F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>T</td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<h2 id="special-proposition-特殊命题">Special Proposition 特殊命题</h2>
+<ul>
+<li>Tautology 重言式
+<ul>
+<li>所有情况下都为T</li>
+<li>p ∨ ¬p</li>
+</ul></li>
+<li>Contradiction 矛盾式
+<ul>
+<li>所有情况下都为 F</li>
+<li>p ∧ ¬p</li>
+</ul></li>
+<li>Contingency 可满足但非永真
+<ul>
+<li>有时 T 有时 F</li>
+<li>p ∧ q, p → q</li>
+</ul></li>
+</ul>
+<h2 id="construct-a-truth-table-构造真值表">Construct a truth table 构造真值表</h2>
+<blockquote>
+<p>相关：<a href="comp1313-computer-system-i.html#truth-table">COMP1313 真值表</a></p>
+</blockquote>
+<ul>
+<li>变量个数 n → 行数 2ⁿ：2 个变量 4 行，3 个变量 8 行</li>
+<li>从最内层开始，一层一层算中间列，最后算出整个式子</li>
+</ul>
+<h4 id="example-1">Example 1</h4>
+<ul>
+<li>((p→q) ∧ (q→r)) → (p→r)</li>
+<li>思路: 要想证明以上式子为Tautology，恒为真；可以证明这个式子为F，若证明不出来，则恒为真</li>
+<li>步骤:
+<ol type="1">
+<li>依据真值表，只有在左边为T、右边为F的时候才位F</li>
+<li>箭头右侧的(p→r)为F，因此p为T, r为F</li>
+<li>箭头左侧要为T, 因此(p→q)为T, (q→r)为T，因此q = F</li>
+<li>q 不可能既 T 又 F，找不到让它为假的情况，为tautology</li>
+</ol></li>
+</ul>
+<h4 id="example-2">Example 2</h4>
+<ul>
+<li>p → (q∨r) 和 (p→q) ∨ (p→r) 是否等价</li>
+<li>逻辑等价的定义: 两个式子在每一行的真值都相同。 两列算出来完全一样（都只在 p=T, q=F, r=F 那行为 F），所以等价</li>
+</ul>
+<h4 id="example-3">Example 3</h4>
+<ul>
+<li>p → q → p ∧ q</li>
+<li>p → (q → (p ∧ q)) 右结合加括号</li>
+<li>最后一列全T</li>
+<li>直观理解：如果 p 真、q 真，那 p∧q 当然真</li>
+</ul>
+<h4 id="example-4">Example 4</h4>
+<ul>
+<li>{(P∨¬Q) ∧ (¬P∨¬Q)} ∨ Q</li>
+<li>真值表最后一列全 T ⇒ tautology</li>
+<li>(P∨¬Q) ∧ (¬P∨¬Q) 提取公因子 ¬Q</li>
+<li>变成 ¬Q ∨ (P∧¬P) = ¬Q ∨ F = ¬Q</li>
+<li>所以整个式子 = ¬Q ∨ Q</li>
+</ul>
+<h2 id="contrapositive-逆否命题">Contrapositive 逆否命题</h2>
+<ul>
+<li>对于P → Q</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>形式</th>
+<th>和 P→Q 等价吗</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contrapositive 逆否</td>
+<td>¬Q → ¬P</td>
+<td>等价</td>
+</tr>
+<tr class="even">
+<td>Converse 逆命题</td>
+<td>Q → P</td>
+<td>不等价</td>
+</tr>
+<tr class="odd">
+<td>Inverse 否命题</td>
+<td>¬P → ¬Q</td>
+<td>不等价</td>
+</tr>
+</tbody>
+</table>
+<h2 id="syntax-语法">Syntax 语法</h2>
+<ul>
+<li>Syntax = 式子怎么写才合法（形式）</li>
+<li>Semantics = 式子是什么意思、真值是多少（意义）</li>
+</ul>
+<h3 id="bnf-backus-naur-form-巴斯克范式">BNF Backus-Naur Form 巴斯克范式</h3>
+<p><code>⟨V⟩ ::= P | Q | R | ...</code><br />
+<code>⟨F⟩ ::= V | ⊥ | ¬F | F∧F | F∨F | F→F | (F)</code></p>
+<ul>
+<li>读法：<code>|</code> 表示“或者“，一个公式 F 可以是一个变量、⊥（恒假）、¬F、F∧F……</li>
+<li>Example:
+<ul>
+<li>用以上规则从F开始推倒:</li>
+<li>F</li>
+<li>F → F 用 F→F</li>
+<li><ol start="6" type="A">
+<li>→ (F) 用 (F)</li>
+</ol></li>
+<li>(F→F) → (F→F) 两边各用 F→F</li>
+<li>(F→F) → (¬F→¬F) 右边用 ¬F</li>
+<li>(V→V) → (¬V→¬V) 用 F ::= V</li>
+<li>(P→Q) → (¬Q→¬P) 代入变量</li>
+<li>技巧:先拆最外层的主运算符</li>
+</ul></li>
+</ul>
+<h3 id="syntax-tree-语法树">Syntax tree 语法树</h3>
+<ul>
+<li>根root = 最后执行的运算（主运算符）</li>
+<li>叶子leaves = 变量</li>
+<li>从叶子网上算就是求值顺序</li>
+<li>如何找根：找不在任何括号内、最后才算的运算符</li>
+<li>Example：
+<ul>
+<li>(P ∧ Q) → ¬R</li>
+</ul></li>
+</ul>
+<pre><code>        →
+       / \
+      ∧   ¬
+     / \   \
+    P   Q   R</code></pre>
+<h3 id="operator-precedence-associativity-优先级与结合性">Operator Precedence &amp; Associativity 优先级与结合性</h3>
+<ol type="1">
+<li><strong>¬</strong> 最紧</li>
+<li>∧ 和 ∨ 同级，左结合</li>
+<li><strong>→</strong> 最松，右结合</li>
+</ol>
+<ul>
+<li>右结合的意思：P → Q → R 读作 P → (Q → R)，不是 (P → Q) → R。这两个不等价</li>
+</ul>
+<h2 id="and">⊨ and ⊢</h2>
+<h3 id="γ-φ-语义蕴含">Γ ⊨ φ 语义蕴含</h3>
+<ul>
+<li><strong>⊨ 是“检查所有可能的世界“，⊢ 是“按规则搭出一条推导“</strong></li>
+<li>读法: Γ entails / models φ 伽马语义蕴含斐</li>
+<li>意思：凡是让 Γ 里所有公式都为真的赋值，也一定让 φ 为真。只看输入和输出，中间怎么推的不管(Γ 里的公式全为真时，φ 也一定为真)</li>
+<li>Γ 为空的情况：写成 ∅ ⊨ φ 或者直接 ⊨ φ
+<ul>
+<li>意思：没有前提，φ 必须在每一行都为 T</li>
+<li>也就是重言式</li>
+</ul></li>
+<li>做题步骤:
+<ul>
+<li>把 Γ 和 φ 的真值表列出来</li>
+<li>找出 Γ 全为 T 的那些行</li>
+<li>检查这些行里 φ 是否也都是 T</li>
+</ul></li>
+<li>例: P, (P→Q) ⊨ (Q→P)
+<ul>
+<li>P 和 P→Q 同时为真的只有第 1 行（P=T, Q=T）</li>
+<li>这一行 Q→P = T，所以成立</li>
+<li>其他行前提不全为真，直接不用看</li>
+</ul></li>
+</ul>
+<h3 id="可证-γ-φ">可证 Γ ⊢ φ</h3>
+<ul>
+<li>意思：只用推理规则，就能从 Γ 推出 φ</li>
+<li>这里完全不看真值表，就是纯符号操作</li>
+<li>Example:
+<ul>
+<li>P, P→Q ⊢ Q，用 →E（Modus Ponens) 有 A，又有 A→B，就能得到 B</li>
+<li>A, B ⊢ A∧B，用 <strong>∧I</strong>：有 A 也有 B，就能得到 A∧B</li>
+</ul></li>
+</ul>
+<h2 id="soundness-and-completeness-可靠性和完备性">Soundness and Completeness 可靠性和完备性</h2>
+<ul>
+<li>Sound 可靠性：(Γ ⊢ φ) → (Γ ⊨ φ)
+<ul>
+<li>只要能证出来，它在语义上就一定为真。也就是说，这套规则不会证出假的东西</li>
+</ul></li>
+<li>Complete 完备性：(Γ ⊨ φ) → (Γ ⊢ φ)
+<ul>
+<li>只要语义上为真，就一定能找到证明。也就是说，这套规则够用，不会漏掉真的东西</li>
+</ul></li>
+<li>Natural Deduction 自然演绎
+<ul>
+<li>对命题逻辑来说既 sound 又 complete，所以 ⊢ 和 ⊨ 是等价的</li>
+<li>如果真值表能找出一行让 Γ 全真而 φ 为假，那 φ 就一定证不出来, 因为 sound 保证了证不出假的东西</li>
+</ul></li>
+</ul>
+<h2 id="proof-trees-and-natural-deduction-证明树和自然演绎">Proof trees and Natural Deduction 证明树和自然演绎</h2>
+<ul>
+<li>每条规则的形状都是这样：</li>
+</ul>
+<pre><code>  前提(Premises)
+  ───────────── (规则名 Label)
+  结论(Conclusion)</code></pre>
+<ul>
+<li>含义: 如果上面的都成立，那么下面的就成立</li>
+<li>上一步得到的结论可以当下一步的前提，一层层叠起来就是证明树：
+<ul>
+<li>叶子在上：叶子就是假设或前提</li>
+<li>根在下：根就是要证的结论</li>
+<li>中间每一个节点都是一次规则应用</li>
+</ul></li>
+<li>做题流程:
+<ol type="1">
+<li>把 Γ 的元素放在最上面</li>
+<li>用规则添加、去掉或拆出符号</li>
+<li>一直做到底下得到 φ</li>
+</ol>
+<ul>
+<li>注意：如果题目给了前提，所有前提都必须用上</li>
+</ul></li>
+</ul>
+<h2 id="rules-规则表">Rules 规则表</h2>
+<p><img src="assets/Pasted-image-20261110161522.png" width="493" /></p>
+<ul>
+<li>∧: 这条规则处理的是哪个符号（这里是“且“）</li>
+<li>E: Elimination，消去（去掉这个符号）</li>
+<li>1: 第 1 个版本（取左边）</li>
+<li>I: Introduction，引入</li>
+<li>∨I1 就是“引入或，原来的公式放左边“：φ 得到 φ∨ψ</li>
+<li>∨I2 就是“引入或，原来的公式放右边“：ψ 得到 φ∨ψ</li>
+<li>特殊规则
+<ul>
+<li>LEM（排中律）：可以凭空写下 α ∨ ¬α</li>
+<li>⊥（爆炸原理）：从矛盾 ⊥ 可以推出任何 α</li>
+<li>RAA（反证法）：假设 <code>[¬α]</code> 推出 ⊥，所以 α</li>
+</ul></li>
+</ul>
+<h2 id="discharging-assumptions-解除假设">Discharging Assumptions 解除假设</h2>
+<ul>
+<li><code>[α]</code>表示临时假设，可以理解为借债，可以先假设 α 为真拿来用，但之后必须用一条规则把这笔债还掉，也就是 discharge</li>
+<li>写法: 在被 discharge 的假设上标一个记号（比如 1、2、x），在负责 discharge 的规则名旁边标同一个记号，表示“这条规则把这个假设还掉了“</li>
+<li>Example: ⊢ P→(Q→Q∧P)</li>
+</ul>
+<pre><code> [Q]¹  [P]²
+ ────────── (∧I)
+    Q∧P
+ ────────── (→I)¹    ← 还掉 [Q]
+   Q→Q∧P
+ ────────── (→I)²    ← 还掉 [P]
+ P→(Q→Q∧P)</code></pre>
+<ul>
+<li>前提是 ∅，什么都没给，所以只能自己假设 P 和 Q。两个 →I 正好把两笔债都还掉了，最后没有剩下没还的假设，证明就成立</li>
+<li>解题策略:
+<ul>
+<li>结论是 A→B：先假设 <code>[A]</code>，想办法推出 B，再用 →I discharge 掉</li>
+<li>前提里有大公式：用消去规则把它拆开（“dismantle”），比如 slide 43 用 ∧E 和两次 →E 从 {P∧Q, P→(Q→R)} 拆出 R</li>
+<li>前提里有 ∨：用 ∨E 分两种情况，每种情况都推出同一个结论</li>
+<li>结论是 ¬A：假设 <code>[A]</code>，推出 ⊥，再用 ¬I</li>
+</ul></li>
+</ul>
+
+</div>
+</body>
+</html>

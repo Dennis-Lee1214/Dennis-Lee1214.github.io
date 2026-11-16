@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$pagetitle$</title>
+  <link rel="stylesheet" href="../css/page.css">
+$if(math)$
+  $math$
+$endif$
+</head>
+<body>
+<div class="doc">
+
+<p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
+<p class="title">$pagetitle$</p>
+<p class="subtitle">Hongyi Li</p>
+
+$if(toc)$
+<p class="contents-label">Contents</p>
+<nav class="toc">
+$table-of-contents$
+</nav>
+$endif$
+
+$body$
+
+</div>
+</body>
+</html>

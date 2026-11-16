@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+"""Turn the Obsidian notes in <vault>/Study into note pages under notes/.
+
+Usage:  python3 tools/build_notes.py "<path to Obsidian vault>"
+
+Every .md file under <vault>/Study becomes notes/<slug>.html, e.g.
+  Study/Year 1/COMP1312/COMP1312-Programming I.md -> notes/comp1312-programming-i.html
+
+Handled Obsidian syntax:
+  ![[image.png]], ![[image.png|300]]   images (copied to notes/assets/)
+  [[Note]], [[Note|text]], [[Note#Heading|text]], [[#Heading]]   links
+  > [!note] Title                      callouts
+  ==highlight==, %%comment%%
+Frontmatter options:
+  title: Custom page title
+  publish: false        -> skip this note
+
+Only the Python standard library and pandoc are needed.
+"""
+
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+SITE = Path(__file__).resolve().parent.parent
+OUT_DIR = SITE / "notes"
+ASSET_DIR = OUT_DIR / "assets"
+TEMPLATE = SITE / "tools" / "note-template.html"
+
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".bmp"}
+FENCE_RE = re.compile(r"^(\s*)(`{3,}|~{3,})\s*([^\s`]*)(.*)$")
+HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.*?)[ \t]*#*[ \t]*$")
+WIKILINK_RE = re.compile(r"(!?)\[\[([^\]\|#]*)(#[^\]\|]*)?(\|[^\]]*)?\]\]")
+CALLOUT_RE = re.compile(r"^>\s*\[!(\w+)\][+-]?\s*(.*)$")
+MODULE_RE = re.compile(r"^([A-Z]{4}\d{4})[-_ ]+(.*)$")
+
+
+def slugify(name):
+    """File name -> URL slug: 'COMP1312-Programming I' -> 'comp1312-programming-i'."""
+    s = name.lower()
+    s = re.sub(r"[^\w一-鿿]+", "-", s)
+    return s.strip("-_") or "note"
+
+
+def heading_id(text):
+    """Heading text -> anchor id (used for both headings and links to them)."""
+    s = re.sub(r"[*_`~=\[\]]", "", text).strip().lower()
+    s = re.sub(r"[^\w一-鿿\s-]", "", s)
+    s = re.sub(r"\s+", "-", s)
+    return s.strip("-") or "section"
+
+
+def asset_name(filename):
+    return re.sub(r"\s+", "-", filename)
+
+
+def split_frontmatter(text):
+    meta = {}
+    if text.startswith("---"):
+        m = re.match(r"^---\s*\n(.*?)\n---\s*(\n|$)", text, re.S)
+        if m:
+            for line in m.group(1).splitlines():
+                kv = re.match(r"^(\w+):\s*(.*)$", line)
+                if kv:
+                    meta[kv.group(1).lower()] = kv.group(2).strip().strip("'\"")
+            text = text[m.end():]
+    return meta, text
+
+
+def page_title(stem, meta):
+    if meta.get("title"):
+        return meta["title"]
+    m = MODULE_RE.match(stem)
+    return f"{m.group(1)} {m.group(2)}" if m else stem
+
+
+class Converter:
+    def __init__(self, vault, notes):
+        self.vault = vault
+        self.notes = notes                       # lower-case stem -> slug
+        self.images = {}                         # filename -> Path in vault
+        for p in vault.rglob("*"):
+            if p.suffix.lower() in IMAGE_EXTS and ".obsidian" not in p.parts:
+                self.images.setdefault(p.name, p)
+        self.used_assets = set()
+        self.warnings = []
+
+    # -- inline rewriting (outside code) ---------------------------------
+    def rewrite_inline(self, line, current):
+        # leave inline `code` alone
+        parts = re.split(r"(`+[^`]*`+)", line)
+        for i in range(0, len(parts), 2):
+            parts[i] = WIKILINK_RE.sub(lambda m: self.wikilink(m, current), parts[i])
+            parts[i] = re.sub(r"==(\S(?:.*?\S)?)==", r"<mark>\1</mark>", parts[i])
+        return "".join(parts)
+
+    def wikilink(self, m, current):
+        embed, target, heading, alias = m.group(1), m.group(2).strip(), m.group(3), m.group(4)
+        heading = heading[1:].strip() if heading else ""
+        alias = alias[1:].strip() if alias else ""
+
+        if embed and Path(target).suffix.lower() in IMAGE_EXTS:
+            src = self.images.get(Path(target).name)
+            if not src:
+                self.warnings.append(f"{current}: image not found: {target}")
+                return ""
+            name = asset_name(src.name)
+            self.used_assets.add((name, src))
+            attrs = ""
+            size = re.match(r"^(\d+)(?:x(\d+))?$", alias)
+            if size:
+                attrs = "{width=%spx}" % size.group(1)
+            return f"![](assets/{name}){attrs}"
+
+        text = alias or heading or target
+        anchor = "#" + heading_id(heading) if heading else ""
+        if not target:                          # [[#Heading]] in the same note
+            return f"[{text}]({anchor})"
+        slug = self.notes.get(target.lower())
+        if not slug:
+            self.warnings.append(f"{current}: link to unpublished note: {target}")
+            return text
+        return f"[{text}]({slug}.html{anchor})"
+
+    # -- whole document ----------------------------------------------------
+    def preprocess(self, text, current):
+        text = re.sub(r"%%.*?%%", "", text, flags=re.S)
+        out = []
+        fence = None
+        seen_ids = {}
+        lines = text.split("\n")
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+            fm = FENCE_RE.match(line)
+            if fence:
+                out.append(line)
+                if fm and fm.group(2)[0] == fence[0] and len(fm.group(2)) >= len(fence) \
+                        and not fm.group(3):
+                    fence = None
+                i += 1
+                continue
+            if fm:
+                fence = fm.group(2)
+                lang = fm.group(3).lower()
+                out.append(f"{fm.group(1)}{fm.group(2)}{lang}{fm.group(4)}")
+                i += 1
+                continue
+
+            cm = CALLOUT_RE.match(line)
+            if cm:
+                kind, title = cm.group(1).lower(), cm.group(2) or cm.group(1).capitalize()
+                body = []
+                i += 1
+                while i < len(lines) and lines[i].startswith(">"):
+                    body.append(re.sub(r"^>\s?", "", lines[i]))
+                    i += 1
+                out.append(f"::: {{.callout .callout-{kind}}}")
+                out.append(f"**{self.rewrite_inline(title, current)}**")
+                out.append("")
+                out.extend(self.rewrite_inline(b, current) for b in body)
+                out.append(":::")
+                continue
+
+            hm = HEADING_RE.match(line)
+            if hm and "{#" not in line:
+                hid = heading_id(hm.group(2))
+                n = seen_ids.get(hid, 0)
+                seen_ids[hid] = n + 1
+                if n:
+                    hid = f"{hid}-{n}"
+                line = f"{hm.group(1)} {self.rewrite_inline(hm.group(2), current)} {{#{hid}}}"
+                out.append(line)
+                i += 1
+                continue
+
+            out.append(self.rewrite_inline(line, current))
+            i += 1
+        return "\n".join(out)
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(__doc__)
+    vault = Path(sys.argv[1]).expanduser()
+    study = vault / "Study"
+    if not study.is_dir():
+        sys.exit(f"Can't find the Study folder in {vault}")
+    if not shutil.which("pandoc"):
+        sys.exit("pandoc is not installed. Install it with:  brew install pandoc")
+
+    sources = []
+    for md in sorted(study.rglob("*.md")):
+        meta, body = split_frontmatter(md.read_text(encoding="utf-8"))
+        if meta.get("publish", "").lower() == "false":
+            continue
+        sources.append((md, meta, body))
+    notes = {md.stem.lower(): slugify(md.stem) for md, _, _ in sources}
+
+    OUT_DIR.mkdir(exist_ok=True)
+    ASSET_DIR.mkdir(exist_ok=True)
+    conv = Converter(vault, notes)
+    built = set()
+
+    for md, meta, body in sources:
+        slug = notes[md.stem.lower()]
+        title = page_title(md.stem, meta)
+        markdown = conv.preprocess(body, md.stem)
+        out = OUT_DIR / f"{slug}.html"
+        cmd = [
+            "pandoc",
+            "-f", "commonmark_x+hard_line_breaks",
+            "-t", "html5",
+            "--template", str(TEMPLATE),
+            "--toc", "--toc-depth=2",
+            "--katex=../vendor/katex/",
+            "--wrap=none",
+            "-M", f"pagetitle={title}",
+            "-o", str(out),
+        ]
+        result = subprocess.run(cmd, input=markdown, text=True, capture_output=True)
+        if result.returncode != 0:
+            print(f"FAILED  {md.relative_to(vault)}\n{result.stderr}")
+            continue
+        built.add(out.name)
+        print(f"ok      notes/{out.name}   <-  {md.relative_to(vault)}")
+
+    # copy images that are used, remove ones that aren't any more
+    used = {}
+    for name, src in conv.used_assets:
+        used[name] = src
+        dest = ASSET_DIR / name
+        if not dest.exists() or dest.stat().st_size != src.stat().st_size \
+                or dest.stat().st_mtime < src.stat().st_mtime:
+            shutil.copy2(src, dest)
+    for f in ASSET_DIR.iterdir():
+        if f.name not in used and not f.name.startswith("."):
+            f.unlink()
+    for f in OUT_DIR.glob("*.html"):
+        if f.name not in built:
+            f.unlink()
+            print(f"removed notes/{f.name}")
+
+    for w in sorted(set(conv.warnings)):
+        print("warning:", w)
+    print(f"\n{len(built)} notes, {len(used)} images.")
+
+
+if __name__ == "__main__":
+    main()
