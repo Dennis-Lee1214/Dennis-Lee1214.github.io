@@ -285,6 +285,10 @@ def main():
         html = html.replace("<table>", '<div class="table-wrap"><table>')
         html = html.replace("</table>", "</table></div>")
         html = wrap_images(html)
+        # a display formula is its own line already: drop the extra line breaks
+        # around it, which otherwise leave big gaps between stacked formulas
+        html = re.sub(r'(<span class="math display">[^<]*</span>)\s*<br />', r"\1", html)
+        html = re.sub(r'<br />(\s*<span class="math display">)', r"\1", html)
         out.write_text(html, encoding="utf-8")
         built.add(out.name)
         print(f"ok      notes/{out.name}   <-  {md.relative_to(vault)}")

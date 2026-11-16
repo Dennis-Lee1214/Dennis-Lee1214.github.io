@@ -1423,8 +1423,8 @@ grep [opentions] pattern [file…]</li>
 </ul>
 <h3 id="example">Example</h3>
 <p><strong>Relations:</strong></p>
-<p><span class="math display">Lecturers(LID, Name, Department)</span><br />
-<span class="math display">Teaches(LID, Module, Semester)</span><br />
+<p><span class="math display">Lecturers(LID, Name, Department)</span>
+<span class="math display">Teaches(LID, Module, Semester)</span>
 <span class="math display">Modules(Module, Credits)</span></p>
 <p><strong>Question:</strong> Write a single relational algebra expression to find the <strong>names of all lecturers in the CS department</strong> who <strong>teach at least one 15-credit module</strong> in <strong>Semester 1</strong>.</p>
 <hr />
@@ -2289,5 +2289,22 @@ grep [opentions] pattern [file…]</li>
 </table></div>
 
 </div>
+<script>
+/* Shrink a long display formula so it fits the page instead of sticking out */
+function fitFormulas() {
+  document.querySelectorAll(".katex-display > .katex").forEach(function (k) {
+    var box = k.parentElement, scale = 1;
+    k.style.fontSize = "";
+    for (var i = 0; i < 4 && box.scrollWidth > box.clientWidth && scale > 0.5; i++) {
+      scale = Math.max(0.5, scale * box.clientWidth / box.scrollWidth * 0.98);
+      k.style.fontSize = (1.21 * scale) + "em";
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", fitFormulas);
+window.addEventListener("load", fitFormulas);           /* again once fonts are in */
+if (document.fonts) document.fonts.addEventListener("loadingdone", fitFormulas);
+window.addEventListener("resize", fitFormulas);
+</script>
 </body>
 </html>

@@ -26,5 +26,24 @@ $endif$
 $body$
 
 </div>
+$if(math)$
+<script>
+/* Shrink a long display formula so it fits the page instead of sticking out */
+function fitFormulas() {
+  document.querySelectorAll(".katex-display > .katex").forEach(function (k) {
+    var box = k.parentElement, scale = 1;
+    k.style.fontSize = "";
+    for (var i = 0; i < 4 && box.scrollWidth > box.clientWidth && scale > 0.5; i++) {
+      scale = Math.max(0.5, scale * box.clientWidth / box.scrollWidth * 0.98);
+      k.style.fontSize = (1.21 * scale) + "em";
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", fitFormulas);
+window.addEventListener("load", fitFormulas);           /* again once fonts are in */
+if (document.fonts) document.fonts.addEventListener("loadingdone", fitFormulas);
+window.addEventListener("resize", fitFormulas);
+</script>
+$endif$
 </body>
 </html>
