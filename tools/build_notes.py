@@ -183,6 +183,8 @@ class Converter:
     # -- whole document ----------------------------------------------------
     def preprocess(self, text, current):
         text = re.sub(r"%%.*?%%", "", text, flags=re.S)
+        # coloured-circle emoji used as highlight markers are left out of the page
+        text = re.sub("[\U0001F534\U0001F535\U0001F7E0-\U0001F7E3\u26AA\u26AB]\uFE0F?", "", text)
         out = []
         fence = None
         seen_ids = {}
@@ -271,7 +273,7 @@ def main():
             "-f", "commonmark_x+hard_line_breaks",
             "-t", "html5",
             "--template", str(TEMPLATE),
-            "--toc", "--toc-depth=2",
+            "--toc", "--toc-depth=3",
             "--katex=../vendor/katex/",
             "--wrap=none",
             "-M", f"pagetitle={title}",

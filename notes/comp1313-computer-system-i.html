@@ -84,12 +84,60 @@
 <li><a href="#pipelines-流水线" id="toc-pipelines-流水线">Pipelines 流水线</a>
 <ul>
 <li><a href="#hazards-冒险" id="toc-hazards-冒险">Hazards 冒险</a></li>
-<li><a href="#superscalar-超标量" id="toc-superscalar-超标量">Superscalar 超标量</a></li>
-<li><a href="#parallel-processing-并行处理" id="toc-parallel-processing-并行处理">Parallel Processing 并行处理</a></li>
-<li><a href="#instruction-sets-指令集" id="toc-instruction-sets-指令集">Instruction sets 指令集</a></li>
-<li><a href="#arm-assembly-arm汇编语言" id="toc-arm-assembly-arm汇编语言">ARM Assembly ARM汇编语言</a></li>
-<li><a href="#computer-interfaces-计算机接口" id="toc-computer-interfaces-计算机接口">Computer interfaces 计算机接口</a></li>
-<li><a href="#cache-缓存" id="toc-cache-缓存">Cache 缓存</a></li>
+<li><a href="#superscalar-超标量" id="toc-superscalar-超标量">Superscalar 超标量</a>
+<ul>
+<li><a href="#what-is-superscalar-什么是超标量" id="toc-what-is-superscalar-什么是超标量">What is superscalar? 什么是超标量</a></li>
+<li><a href="#limitations" id="toc-limitations">Limitations</a></li>
+</ul></li>
+<li><a href="#parallel-processing-并行处理" id="toc-parallel-processing-并行处理">Parallel Processing 并行处理</a>
+<ul>
+<li><a href="#speedup-加速比" id="toc-speedup-加速比">Speedup 加速比</a></li>
+<li><a href="#amdahls-law-阿姆达尔定律" id="toc-amdahls-law-阿姆达尔定律"><strong>Amdahl’s law 阿姆达尔定律</strong></a></li>
+<li><a href="#multiprogramming-and-multiprocessors-多道程序与多处理器" id="toc-multiprogramming-and-multiprocessors-多道程序与多处理器">Multiprogramming and Multiprocessors 多道程序与多处理器</a></li>
+<li><a href="#flynn分类法" id="toc-flynn分类法">Flynn分类法</a></li>
+</ul></li>
+<li><a href="#instruction-sets-指令集" id="toc-instruction-sets-指令集">Instruction sets 指令集</a>
+<ul>
+<li><a href="#interpretation-of-binary-data-二进制数据解释" id="toc-interpretation-of-binary-data-二进制数据解释">Interpretation of binary data 二进制数据解释</a></li>
+<li><a href="#instruction-set-指令集" id="toc-instruction-set-指令集">Instruction set 指令集</a></li>
+<li><a href="#elements-of-an-instruction-指令的要素" id="toc-elements-of-an-instruction-指令的要素">Elements of an instruction 指令的要素</a></li>
+<li><a href="#instruction-types-指令的类型" id="toc-instruction-types-指令的类型">Instruction types 指令的类型</a></li>
+<li><a href="#instruction-format-design-指令格式设计" id="toc-instruction-format-design-指令格式设计">Instruction Format Design 指令格式设计</a></li>
+<li><a href="#instruction-set-architectures-isa-指令集架构" id="toc-instruction-set-architectures-isa-指令集架构">Instruction set architectures (ISA) 指令集架构</a></li>
+<li><a href="#addressing-modes-寻址方式" id="toc-addressing-modes-寻址方式">addressing modes 寻址方式</a></li>
+</ul></li>
+<li><a href="#arm-assembly-arm汇编语言" id="toc-arm-assembly-arm汇编语言">ARM Assembly ARM汇编语言</a>
+<ul>
+<li><a href="#arm-instruction-set-arm指令集" id="toc-arm-instruction-set-arm指令集">ARM instruction set ARM指令集</a></li>
+<li><a href="#thumb-2" id="toc-thumb-2">Thumb-2</a></li>
+<li><a href="#arm-registers-arm寄存器" id="toc-arm-registers-arm寄存器">ARM registers ARM寄存器</a></li>
+<li><a href="#simple-instruction-examples-简单指令示例" id="toc-simple-instruction-examples-简单指令示例">Simple instruction examples 简单指令示例</a></li>
+<li><a href="#branches-跳转" id="toc-branches-跳转">Branches 跳转</a></li>
+<li><a href="#status-register-状态寄存器" id="toc-status-register-状态寄存器">Status register 状态寄存器</a></li>
+<li><a href="#arithmetic-算术例子" id="toc-arithmetic-算术例子">Arithmetic 算术例子</a></li>
+<li><a href="#memory-access-内存访问" id="toc-memory-access-内存访问">Memory access 内存访问</a></li>
+<li><a href="#subroutine-函数调用" id="toc-subroutine-函数调用">Subroutine 函数调用</a></li>
+<li><a href="#compile-run-编译和运行-树莓派" id="toc-compile-run-编译和运行-树莓派">Compile &amp; run 编译和运行 树莓派</a></li>
+<li><a href="#32-bit-weirdness-大立即数" id="toc-32-bit-weirdness-大立即数">32-bit weirdness 大立即数</a></li>
+<li><a href="#looping-循环" id="toc-looping-循环">Looping 循环</a></li>
+<li><a href="#printing-打印" id="toc-printing-打印">Printing 打印</a></li>
+</ul></li>
+<li><a href="#computer-interfaces-计算机接口" id="toc-computer-interfaces-计算机接口">Computer interfaces 计算机接口</a>
+<ul>
+<li><a href="#adc-analog-to-digital-converter-模数转换器" id="toc-adc-analog-to-digital-converter-模数转换器">ADC Analog-to-Digital Converter 模数转换器</a></li>
+<li><a href="#dac-digital-to-analog-converter-数模转换器" id="toc-dac-digital-to-analog-converter-数模转换器">DAC Digital-to-Analog Converter 数模转换器</a></li>
+</ul></li>
+<li><a href="#cache-缓存" id="toc-cache-缓存">Cache 缓存</a>
+<ul>
+<li><a href="#definition-定义" id="toc-definition-定义">Definition 定义</a></li>
+<li><a href="#cache工作流程" id="toc-cache工作流程">Cache工作流程</a></li>
+<li><a href="#三级缓存" id="toc-三级缓存">三级缓存</a></li>
+<li><a href="#primary-memory-and-memory-hierarchy-主内存与内存层次结构" id="toc-primary-memory-and-memory-hierarchy-主内存与内存层次结构">Primary Memory and Memory Hierarchy 主内存与内存层次结构</a></li>
+<li><a href="#ram-内存" id="toc-ram-内存">RAM 内存</a></li>
+<li><a href="#simm-dimm-rimm-内存条" id="toc-simm-dimm-rimm-内存条">SIMM / DIMM / RIMM 内存条</a></li>
+<li><a href="#dram-and-sdram-and-sram" id="toc-dram-and-sdram-and-sram">DRAM and SDRAM and SRAM</a></li>
+<li><a href="#sdr-and-ddr" id="toc-sdr-and-ddr">SDR and DDR</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -1192,17 +1240,17 @@ I3: SUB R3, #2</li>
 <li><strong>True Data Dependency (Read-After-Write) 真数据依赖</strong>
 <ul>
 <li>当多个指令使用同一个寄存器，只能等待</li>
-<li><mark>🟡R0</mark> = R1 + R2</li>
-<li>R3 = <mark>🟡R0</mark></li>
+<li><mark>R0</mark> = R1 + R2</li>
+<li>R3 = <mark>R0</mark></li>
 </ul></li>
 <li><strong>Procedural Dependency 过程/控制依赖</strong>
 <ul>
 <li>类似于真数据依赖，不过是分支绝了寄存器的内容</li>
 <li>IF R0 = 1 THEN
 <ul>
-<li><mark>🟡R1</mark> = 5</li>
+<li><mark>R1</mark> = 5</li>
 </ul></li>
-<li>R2 = R2 + <mark>🟡R1</mark></li>
+<li>R2 = R2 + <mark>R1</mark></li>
 </ul></li>
 <li><strong>Resource Conflict 资源冲突</strong>
 <ul>

@@ -50,29 +50,48 @@ a {
   margin: 0 0 16pt;
 }
 
+/* Contents: plain black text like the Docs table of contents */
 .contents-label {
-  margin: 12pt 0 4pt;
+  font-size: 14pt;
+  font-weight: 700;
+  margin: 18pt 0 12pt;
 }
 
-/* Table of contents */
+.toc {
+  margin-bottom: 24pt;
+}
+
 .toc ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.toc ul {
-  padding-left: 0;
-}
-
 .toc ul ul {
-  padding-left: 18pt;
+  padding-left: 22pt;
 }
 
 .toc li {
   list-style: none;
   margin: 0;
   line-height: 1.6;
+}
+
+.toc a {
+  color: #000;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.toc > ul > li > a {
+  font-weight: 700;
+}
+
+.toc > ul > li + li {
+  margin-top: 6pt;
 }
 
 /* Headings, following Google Docs defaults */
