@@ -7,8 +7,8 @@ Every .md file under <vault>/Study becomes notes/<slug>.html, e.g.
   Study/Year 1/COMP1312/COMP1312-Programming I.md -> notes/comp1312-programming-i.html
 
 Handled Obsidian syntax:
-  ![[image.png]]                       images (copied to notes/assets/;
-                                       all shown centred at the same width)
+  ![[image.png]], ![[image.png|300]]   images (copied to notes/assets/, centred;
+                                       large ones all the same width)
   [[Note]], [[Note|text]], [[Note#Heading|text]], [[#Heading]]   links
   > [!note] Title                      callouts
   ==highlight==, %%comment%%
@@ -22,6 +22,7 @@ Only the Python standard library and pandoc are needed.
 import os
 import re
 import shutil
+import struct
 import subprocess
 import sys
 from pathlib import Path
@@ -54,8 +55,56 @@ def heading_id(text):
     return s.strip("-") or "section"
 
 
+def image_display_width(path):
+    """Width in CSS pixels the image should be shown at, at most.
+
+    PNG screenshots from a Retina Mac are saved at 144 dpi, so they count as
+    half their pixel width; everything else as its own pixel width.
+    Returns None if the size can't be read.
+    """
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        width = struct.unpack(">I", data[16:20])[0]
+        scale = 1
+        i = 8
+        while i + 8 <= len(data):
+            length = struct.unpack(">I", data[i:i + 4])[0]
+            ctype = data[i + 4:i + 8]
+            if ctype == b"pHYs":
+                ppm, _, unit = struct.unpack(">IIB", data[i + 8:i + 17])
+                if unit == 1 and ppm >= 5000:      # >= ~127 dpi -> 2x screenshot
+                    scale = 2
+            if ctype == b"IDAT":
+                break
+            i += 12 + length
+        return round(width / scale)
+    if data[:2] == b"\xff\xd8":                   # JPEG: read the SOF marker
+        i = 2
+        while i + 9 < len(data):
+            if data[i] != 0xFF:
+                i += 1
+                continue
+            if data[i + 1] in (0xC0, 0xC1, 0xC2):
+                return struct.unpack(">H", data[i + 7:i + 9])[0]
+            i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
+    if data[:6] in (b"GIF87a", b"GIF89a"):
+        return struct.unpack("<H", data[6:8])[0]
+    return None
+
+
 def asset_name(filename):
     return re.sub(r"\s+", "-", filename)
+
+
+def wrap_images(html):
+    """Put every image that isn't inside a table in a centring wrapper."""
+    parts = re.split(r"(<table>.*?</table>)", html, flags=re.S)
+    for i in range(0, len(parts), 2):
+        parts[i] = re.sub(r"(<img [^>]*>)", r'<span class="img-wrap">\1</span>', parts[i])
+    return "".join(parts)
 
 
 def split_frontmatter(text):
@@ -110,8 +159,16 @@ class Converter:
                 return ""
             name = asset_name(src.name)
             self.used_assets.add((name, src))
-            # every image is shown at the same width (set in css/page.css)
-            return f"![](assets/{name})"
+            # Large images are all shown at the same width (80% of the page,
+            # see css/page.css); smaller ones at their own size, never enlarged.
+            # A width set in Obsidian is kept when it shrinks the image a lot
+            # on purpose (e.g. a formula cropped from a slide).
+            width = image_display_width(src)
+            size = re.match(r"^(\d+)(?:x(\d+))?$", alias)
+            if size and width and int(size.group(1)) < width / 2:
+                width = int(size.group(1))
+            attrs = "{width=%dpx}" % width if width else ""
+            return f"![](assets/{name}){attrs}"
 
         text = alias or heading or target
         anchor = "#" + heading_id(heading) if heading else ""
@@ -227,6 +284,7 @@ def main():
         html = out.read_text(encoding="utf-8")
         html = html.replace("<table>", '<div class="table-wrap"><table>')
         html = html.replace("</table>", "</table></div>")
+        html = wrap_images(html)
         out.write_text(html, encoding="utf-8")
         built.add(out.name)
         print(f"ok      notes/{out.name}   <-  {md.relative_to(vault)}")

@@ -255,13 +255,21 @@ li > :is(div.sourceCode, pre) {
   max-width: none;
 }
 
-/* Images: all the same width, centred on the page (also inside lists) */
-.doc img {
+/* Images: centred on the page (also inside lists). Large images are all
+   80% of the page wide; smaller ones keep their own size (width attribute). */
+.img-wrap {
   display: block;
-  width: 80cqw;
-  max-width: none;
+  width: 100cqw;
+  margin: 10pt 0 10pt calc(-1 * var(--depth, 0) * var(--list-step));
+  text-align: center;
+  line-height: 0;
+}
+
+.img-wrap > img {
+  display: inline-block;
+  max-width: 80cqw;
   height: auto;
-  margin: 8pt 0 8pt calc(10cqw - var(--depth, 0) * var(--list-step));
+  margin: 0;
 }
 
 /* Tables: centred on the page (also inside lists) */
@@ -277,9 +285,8 @@ li > :is(div.sourceCode, pre) {
 
 /* ...but an image inside a table cell just fits its cell */
 .doc td img, .doc th img {
-  width: auto;
   max-width: 100%;
-  margin: 0 auto;
+  height: auto;
 }
 
 /* Code boxes span the full width of the page */
@@ -331,7 +338,7 @@ div.sourceCode, .doc > pre, li > pre {
 }
 
 /* A bullet that only holds an image: hide the dash */
-li:has(> img:only-child),
-li:has(> p:only-child > img:only-child) {
+li:has(> .img-wrap:only-child),
+li:has(> p:only-child > .img-wrap:only-child) {
   list-style-type: none;
 }
