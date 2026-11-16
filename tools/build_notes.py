@@ -21,6 +21,7 @@ Only the Python standard library and pandoc are needed.
 
 import os
 import re
+import hashlib
 import shutil
 import struct
 import subprocess
@@ -261,6 +262,9 @@ def main():
     OUT_DIR.mkdir(exist_ok=True)
     ASSET_DIR.mkdir(exist_ok=True)
     conv = Converter(vault, notes)
+    # version tag for the stylesheet link, so browsers fetch it again
+    # whenever css/page.css changes instead of using an old cached copy
+    cssver = hashlib.md5((SITE / "css" / "page.css").read_bytes()).hexdigest()[:8]
     built = set()
 
     for md, meta, body in sources:
@@ -277,6 +281,7 @@ def main():
             "--katex=../vendor/katex/",
             "--wrap=none",
             "-M", f"pagetitle={title}",
+            "-V", f"cssver={cssver}",
             "-o", str(out),
         ]
         result = subprocess.run(cmd, input=markdown, text=True, capture_output=True)
