@@ -396,7 +396,7 @@ Local: 20   Static: 40</code></pre>
 </ul></li>
 <li>不同类型如何打印值和地址:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>类型</th>
@@ -426,7 +426,7 @@ Local: 20   Static: 40</code></pre>
 <td>%p</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>打印地址时一定要用&amp;变量名 + %p
 <ul>
@@ -593,7 +593,7 @@ Local: 20   Static: 40</code></pre>
 <ul>
 <li>如果写成 <code>void swap(int a, int b)</code>，交换的只是拷贝，x、y不会变</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>传什么</th>
@@ -628,7 +628,7 @@ Local: 20   Static: 40</code></pre>
 <td>p-&gt;age = …</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ol type="1">
 <li>Swap</li>
 </ol>
@@ -965,7 +965,7 @@ Local: 20   Static: 40</code></pre>
 <li>成功时返回一个 <code>FILE *</code></li>
 <li>失败时返回 <code>NULL</code></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>模式</th>
@@ -1018,7 +1018,7 @@ Local: 20   Static: 40</code></pre>
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="fclose">fclose()</h2>
 <ul>
 <li>一定要关闭文件的原因
@@ -1161,7 +1161,7 @@ HELLO</code></pre>
 <li><code>{}</code> 是空 dict 而不是空 set</li>
 <li><code>input()</code> 返回的永远是字符串，<code>True</code>/<code>False</code> 首字母要大写</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>类别</th>
@@ -1226,7 +1226,7 @@ HELLO</code></pre>
 <td>表示“没有值“，类似其他语言的 null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="main-guard-主程序入口判断">Main guard 主程序入口判断</h3>
 <ul>
 <li>类似 C 的 int main()，但 Python 不强制</li>
@@ -1277,7 +1277,7 @@ HELLO</code></pre>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;x: </span><span class="sc">{0}</span><span class="st"> y: </span><span class="sc">{1}</span><span class="st">&quot;</span>.<span class="bu">format</span>(x, y))      <span class="co"># ③ format() → x: 3 y: 6 </span></span>
 <span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;x: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(x) <span class="op">+</span> <span class="st">&quot; y: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(y))  <span class="co"># ④ concatenation → x: 3 y: 6 </span></span></code></pre></div>
 <h3 id="data-types-数据类型">Data Types 数据类型</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>例子</th>
@@ -1312,7 +1312,7 @@ HELLO</code></pre>
 <td>只有 <code>True</code> / <code>False</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>True/False 首字母要大写</li>
 <li>Dynamic typing 动态类型：Python 不用声明类型，变量的类型由当前的值决定，并且可以随时变</li>
@@ -1328,7 +1328,7 @@ HELLO</code></pre>
 <li>空格要自己加，<code>+</code> 不会自动加空格</li>
 </ul>
 <h4 id="escape-characters-转义字符">Escape Characters 转义字符</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>写法</th>
@@ -1361,7 +1361,7 @@ HELLO</code></pre>
 <td>回车 carriage return（初学基本用不到）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;programming </span><span class="ch">\n</span><span class="st">is </span><span class="ch">\n</span><span class="st">fun&quot;</span>)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># programming</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># is</span></span>
@@ -1384,7 +1384,7 @@ HELLO</code></pre>
 <ul>
 <li>调用格式：<code>变量.方法()</code></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Method</th>
@@ -1434,7 +1434,7 @@ HELLO</code></pre>
 <td><code>"123"</code> → True，<code>"12.5"</code> → False，<code>"-5"</code> → False</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>noun <span class="op">=</span> <span class="st">&quot;programming&quot;</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>verb <span class="op">=</span> <span class="st">&quot;is&quot;</span></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>adjective <span class="op">=</span> <span class="st">&quot;fun&quot;</span></span>
@@ -1461,7 +1461,7 @@ HELLO</code></pre>
 <span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Fail&quot;</span>)   <span class="co"># 输出 Fail</span></span></code></pre></div>
 <h3 id="conditional-and-logical-operators-条件与逻辑运算符">Conditional and Logical Operators 条件与逻辑运算符</h3>
 <h4 id="comparison-operators-比较运算符">Comparison operators 比较运算符</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>运算符</th>
@@ -1508,7 +1508,7 @@ HELLO</code></pre>
 <td>False</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4 id="逻辑运算符">逻辑运算符</h4>
 <ul>
 <li><code>and</code>：两边都为 True 才是 True</li>

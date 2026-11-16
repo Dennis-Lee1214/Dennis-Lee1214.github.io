@@ -7,7 +7,8 @@ Every .md file under <vault>/Study becomes notes/<slug>.html, e.g.
   Study/Year 1/COMP1312/COMP1312-Programming I.md -> notes/comp1312-programming-i.html
 
 Handled Obsidian syntax:
-  ![[image.png]], ![[image.png|300]]   images (copied to notes/assets/)
+  ![[image.png]]                       images (copied to notes/assets/;
+                                       all shown centred at the same width)
   [[Note]], [[Note|text]], [[Note#Heading|text]], [[#Heading]]   links
   > [!note] Title                      callouts
   ==highlight==, %%comment%%
@@ -21,7 +22,6 @@ Only the Python standard library and pandoc are needed.
 import os
 import re
 import shutil
-import struct
 import subprocess
 import sys
 from pathlib import Path
@@ -52,47 +52,6 @@ def heading_id(text):
     s = re.sub(r"[^\w一-鿿\s-]", "", s)
     s = re.sub(r"\s+", "-", s)
     return s.strip("-") or "section"
-
-
-def image_display_width(path):
-    """Width in CSS pixels the image should be shown at.
-
-    PNG screenshots from a Retina Mac are saved at 144 dpi, so they are shown at
-    half their pixel width; everything else at its own pixel width.
-    Returns None if the size can't be read (the CSS then just fits it to the page).
-    """
-    try:
-        data = path.read_bytes()
-    except OSError:
-        return None
-    if data[:8] == b"\x89PNG\r\n\x1a\n":
-        width = struct.unpack(">I", data[16:20])[0]
-        scale = 1
-        i = 8
-        while i + 8 <= len(data):
-            length = struct.unpack(">I", data[i:i + 4])[0]
-            ctype = data[i + 4:i + 8]
-            if ctype == b"pHYs":
-                ppm, _, unit = struct.unpack(">IIB", data[i + 8:i + 17])
-                if unit == 1 and ppm >= 5000:      # >= ~127 dpi -> 2x screenshot
-                    scale = 2
-            if ctype == b"IDAT":
-                break
-            i += 12 + length
-        return round(width / scale)
-    if data[:2] == b"\xff\xd8":                   # JPEG: find the SOF marker
-        i = 2
-        while i + 9 < len(data):
-            if data[i] != 0xFF:
-                i += 1
-                continue
-            marker = data[i + 1]
-            if marker in (0xC0, 0xC1, 0xC2):
-                return struct.unpack(">H", data[i + 7:i + 9])[0]
-            i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
-    if data[:6] in (b"GIF87a", b"GIF89a"):
-        return struct.unpack("<H", data[6:8])[0]
-    return None
 
 
 def asset_name(filename):
@@ -151,16 +110,8 @@ class Converter:
                 return ""
             name = asset_name(src.name)
             self.used_assets.add((name, src))
-            # Same rule for every image: its natural size (Retina screenshots at
-            # half size), shrunk to the page width by CSS when it's wider.
-            # A width set in Obsidian is only kept when it makes the image much
-            # smaller on purpose (e.g. a formula cropped from a slide).
-            width = image_display_width(src)
-            size = re.match(r"^(\d+)(?:x(\d+))?$", alias)
-            if size and width and int(size.group(1)) < width / 2:
-                width = int(size.group(1))
-            attrs = "{width=%dpx}" % width if width else ""
-            return f"![](assets/{name}){attrs}"
+            # every image is shown at the same width (set in css/page.css)
+            return f"![](assets/{name})"
 
         text = alias or heading or target
         anchor = "#" + heading_id(heading) if heading else ""
@@ -273,6 +224,10 @@ def main():
         if result.returncode != 0:
             print(f"FAILED  {md.relative_to(vault)}\n{result.stderr}")
             continue
+        html = out.read_text(encoding="utf-8")
+        html = html.replace("<table>", '<div class="table-wrap"><table>')
+        html = html.replace("</table>", "</table></div>")
+        out.write_text(html, encoding="utf-8")
         built.add(out.name)
         print(f"ok      notes/{out.name}   <-  {md.relative_to(vault)}")
 

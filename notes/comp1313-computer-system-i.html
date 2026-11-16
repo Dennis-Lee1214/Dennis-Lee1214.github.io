@@ -159,7 +159,7 @@
 <li>Example with AND:(A and B is inputs; Y is outputs)</li>
 </ul></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>A</th>
@@ -189,9 +189,9 @@
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="logic-gates">Logic gates</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Gate</th>
@@ -201,26 +201,26 @@
 <tbody>
 <tr class="odd">
 <td>AND</td>
-<td><img src="assets/6dd5333ee4144bc32b635ca6865eaa26-1.png" width="824" /></td>
+<td><img src="assets/6dd5333ee4144bc32b635ca6865eaa26-1.png" /></td>
 </tr>
 <tr class="even">
 <td>OR</td>
-<td><img src="assets/Pasted-image-20260929215111.png" width="819" /></td>
+<td><img src="assets/Pasted-image-20260929215111.png" /></td>
 </tr>
 <tr class="odd">
 <td>NAND</td>
-<td><img src="assets/Pasted-image-20260929215118.png" width="813" /></td>
+<td><img src="assets/Pasted-image-20260929215118.png" /></td>
 </tr>
 <tr class="even">
 <td>NOR</td>
-<td><img src="assets/Pasted-image-20260929215134.png" width="819" /></td>
+<td><img src="assets/Pasted-image-20260929215134.png" /></td>
 </tr>
 <tr class="odd">
 <td>XOR</td>
-<td><img src="assets/Pasted-image-20260929215145.png" width="814" /></td>
+<td><img src="assets/Pasted-image-20260929215145.png" /></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>Can make ANY gate out of NAND/NOR gates 可以用NAND门或者NOR门构造所有其他门</li>
 </ul>
@@ -252,7 +252,7 @@
 <ul>
 <li>¬(A + B) = ¬A . ¬B</li>
 <li>¬(A . B) = ¬A + ¬B</li>
-<li><img src="assets/Pasted-image-20260929223241.png" width="262" /></li>
+<li><img src="assets/Pasted-image-20260929223241.png" /></li>
 <li>Break the line, change the sign 拆开顶线，改变中间符号</li>
 <li>A + B 取反，表示A或B至少一个成立这件事不成立，也就是A不成立并且B不成立，即 Ā · B̄</li>
 </ul></li>
@@ -395,7 +395,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <ul>
 <li>sign | Exponent | Mantissa</li>
 <li>这是存储顺序,不是科学计数法的书写顺序<br />
-<img src="assets/Pasted-image-20261014122425.png" width="618" /></li>
+<img src="assets/Pasted-image-20261014122425.png" /></li>
 </ul></li>
 <li>假设数字01101 000011,步骤按以下进行
 <ol type="1">
@@ -407,7 +407,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 → 或者0.1101 = 0.5+0.25+0.0625 = 0.8125 * 2^3 = 6.5</li>
 <li>尾数小数点后的数位见下表</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Decimal representation</th>
@@ -432,14 +432,14 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>0.03125</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id="adder-加法器">Adder 加法器</h1>
 <h2 id="half-adder-半加器">Half Adder 半加器</h2>
 <ul>
 <li>将两个1位数相加输出Sum和Cout</li>
 <li>Truth Table:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>A</th>
@@ -474,7 +474,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>1</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>1 + 1 = 0, carry 1</li>
 <li>Sum = A ⊕ B (XOR异或: 两个输入不同为1)</li>
@@ -496,7 +496,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>实现方式:
 <ul>
 <li>2 个半加器 + 1 个 OR 门<br />
-<img src="assets/Pasted-image-20261014235525.png" width="297" /></li>
+<img src="assets/Pasted-image-20261014235525.png" /></li>
 </ul></li>
 </ul>
 <h2 id="ripple-carry-adder-行波进位加法器">Ripple Carry Adder 行波进位加法器</h2>
@@ -511,7 +511,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </ul></li>
 <li><p>流程: 从最右边开始逐位相加 → 产生 sum 和 carry → carry 传给下一级 → 重复</p></li>
 <li><p>缺点: 高位必须等低位的进位算出来才能算,所以位数越多越慢<br />
-<img src="assets/Pasted-image-20261015000503.png" width="694" /></p></li>
+<img src="assets/Pasted-image-20261015000503.png" /></p></li>
 </ul>
 <h1 id="flip-flops-and-registers">Flip-flops and Registers</h1>
 <ul>
@@ -519,7 +519,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>一共有3种类型</li>
 </ul>
 <h2 id="组合电路combina-circuit-和-时序电路-sequential-circuit">组合电路combina circuit 和 时序电路 sequential circuit</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th></th>
@@ -549,13 +549,13 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>通常需要</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="rest-set-flip-flopssr-基本锁存器">Rest-set flip flops(SR) 基本锁存器</h2>
 <ul>
 <li>一种使用reset复位 和 set设置 的输入的flip flops, 由NAND 或 NOR gates组成</li>
 <li>输出结果为 Q存储的值 ; Q(NOT Q) Q的相反值</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>S</th>
@@ -585,7 +585,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>禁止</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li><p>NOR门的禁止状态是S=R=1 ; S=R=0是保持不变</p></li>
 <li><p>NAND门的禁止状态是S=R=0 ; S=R=1是保持不变</p></li>
@@ -593,14 +593,14 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <ul>
 <li>两个输入都为 1 时,两个 NOR 门输出都变成 0,Q 和 Q̄ 都是 0,违反了“Q 和 Q̄ 互为相反“的规则。如果 S、R 同时变回 0,两个门会“竞争“,最后停在哪个状态是随机的</li>
 </ul>
-<p><img src="assets/Pasted-image-20261015172827.png" width="194" /></p></li>
+<p><img src="assets/Pasted-image-20261015172827.png" /></p></li>
 </ul>
 <h2 id="gated-latch-门控锁存器">Gated Latch 门控锁存器</h2>
 <ul>
 <li>在基本锁存器上加一个时钟输入</li>
 <li>CLK = 0 时 S和R不起作用，锁存器保持原状态</li>
 <li>CLK = 1 时 S和R恢复正常<br />
-<img src="assets/Pasted-image-20261015173358.png" width="279" /></li>
+<img src="assets/Pasted-image-20261015173358.png" /></li>
 </ul>
 <h2 id="d-type-flip-flop-d锁存器常用">D-type flip flop D锁存器——常用</h2>
 <ul>
@@ -609,7 +609,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>D当作S</li>
 <li>NOT当R</li>
 <li>S和R永远相反，这样就不会出现无效状态<br />
-<img src="assets/Pasted-image-20261015174016.png" width="277" /></li>
+<img src="assets/Pasted-image-20261015174016.png" /></li>
 </ul></li>
 </ul>
 <h2 id="register-寄存器">Register 寄存器</h2>
@@ -621,14 +621,14 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>更多的寄存器可以帮助加快复杂的计算速度</li>
 </ul></li>
 </ul>
-<p><img src="assets/Pasted-image-20261015180100.png" width="518" /></p>
+<p><img src="assets/Pasted-image-20261015180100.png" /></p>
 <ul>
 <li>4 位寄存器 = 4 个 D 触发器。用法:把数据放在 D0–D3 上,然后给一个时钟脉冲把它存进去</li>
 </ul>
 <h2 id="shift-register-移位寄存器">Shift Register 移位寄存器</h2>
 <ul>
 <li><p>结构：触发器首尾相连,前一个的输出 Q 接下一个的输入 D,共用时钟。每来一个时钟脉冲,所有数据同时向右(或左)挪一格<br />
-<img src="assets/Pasted-image-20261015180956.png" width="554" /></p></li>
+<img src="assets/Pasted-image-20261015180956.png" /></p></li>
 <li><p>串行：只有1根线，数据排队一个一个过</p></li>
 <li><p>并行：多根线，数据同时过</p></li>
 <li><p>Example SI是串行接口，一次进1位:</p>
@@ -641,7 +641,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </ul></li>
 <li><p>共有四种类型：</p></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>类型</th>
@@ -676,13 +676,13 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>就是普通寄存器。例:老式并行打印口,一次接收 8 位</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="移位的算术逻辑用途">移位的算术/逻辑用途</h2>
 <ul>
 <li>移位在算数中: 左移1位 = *2 右移1位 = /2</li>
 <li>以11010001为例子</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>操作</th>
@@ -722,7 +722,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>10100011</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="cpu中寄存器种类">CPU中寄存器种类</h2>
 <ul>
 <li><p>通用/数据/地址寄存器：</p>
@@ -902,7 +902,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </ul></li>
 </ul></li>
 </ol>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th></th>
@@ -937,7 +937,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>每次操作都在变化</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="read-and-write-读写流程">Read and Write 读写流程</h2>
 <ul>
 <li>Read:
@@ -955,7 +955,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </ul></li>
 </ul>
 <h2 id="serial-and-parallel-串行与并行">Serial and Parallel 串行与并行</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th></th>
@@ -990,7 +990,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <td>差</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>现在几乎都是Serial串行
 <ul>
@@ -1020,7 +1020,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <h2 id="von-neumann架构">Von Neumann架构</h2>
 <ul>
 <li>核心思想: 顺序处理，Stored- program 存储程序。程序和数据放在同一个内存里，通过同一套总线和CPU交换</li>
-<li><img src="assets/Pasted-image-20261026101916.png" width="500" /></li>
+<li><img src="assets/Pasted-image-20261026101916.png" /></li>
 <li>每一步要访问内存两次：一次取指令，一次取或写数据。因为只有一条路，这两次只能一前一后进行</li>
 <li>CPU越快，由于内存相对较慢因此等待的比例越大，解决办法：
 <ul>
@@ -1032,7 +1032,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <h2 id="harvard架构">Harvard架构</h2>
 <ul>
 <li>核心思想：并行处理，CPU在取下一条指令的同时，可以读写数据</li>
-<li><img src="assets/Pasted-image-20261026103235.png" width="500" /></li>
+<li><img src="assets/Pasted-image-20261026103235.png" /></li>
 <li>优点：
 <ul>
 <li>没有Von Neumann的瓶颈</li>
@@ -1094,7 +1094,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>有流水线: 总时间 = (k+n-1) * T ——在一条k个阶段的流水线上，n条指令全部执行完一共需要多少个时钟周期</li>
 </ul></li>
 <li>运行方式如下图</li>
-<li><img src="assets/Pasted-image-20261027112531.png" width="643" /></li>
+<li><img src="assets/Pasted-image-20261027112531.png" /></li>
 </ul>
 <h2 id="hazards-冒险">Hazards 冒险</h2>
 <ol type="1">
@@ -1250,14 +1250,14 @@ I3: SUB R3, #2</li>
 <li>Ws = 绝对必须按顺序完成的位</li>
 <li>Wp = 可以并行完成的位</li>
 <li>P = 核心数量</li>
-<li><img src="assets/Pasted-image-20261103112346.png" width="115" /></li>
+<li><img src="assets/Pasted-image-20261103112346.png" /></li>
 </ul></li>
 <li>加速比
 <ul>
 <li>s = 顺序部分占的比例（只能 1 个处理器做）</li>
 <li>p = 可并行部分占的比例，s + p = 1</li>
 <li>n = 处理器个数</li>
-<li><img src="assets/截屏2026-11-03-11.39.33.png" width="181" /></li>
+<li><img src="assets/截屏2026-11-03-11.39.33.png" /></li>
 </ul></li>
 <li>上限speedup
 <ul>
@@ -1266,7 +1266,7 @@ I3: SUB R3, #2</li>
 </ul></li>
 <li>直觉上，会认为核心越多，电脑就越快。</li>
 <li>实际上，由于Amdahl定律，随着核心数量的增加，处理能力有限:<br />
-<img src="assets/Pasted-image-20261103112529.png" width="886" /></li>
+<img src="assets/Pasted-image-20261103112529.png" /></li>
 <li>Amdahl定律表明，在CPU的更大部分应用小速度比在CPU的小部分应用大速度效率更高</li>
 <li>程序的顺序部分比例决定了加速的上限</li>
 <li>N 核 CPU 不可能比同频率的单核快 N 倍</li>
@@ -1281,7 +1281,7 @@ I3: SUB R3, #2</li>
 <ul>
 <li>分类</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th></th>
@@ -1301,7 +1301,7 @@ I3: SUB R3, #2</li>
 <td>MIMD</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>SISD 单指令单数据
 <ul>
@@ -1418,7 +1418,7 @@ I3: SUB R3, #2</li>
 <li>地址越少，指令越短，指令条数越多</li>
 </ul></li>
 </ol>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>地址数</th>
@@ -1453,7 +1453,7 @@ I3: SUB R3, #2</li>
 <td>10</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ol start="3" type="1">
 <li><p>Addressable Registers 可寻址寄存器数</p>
 <ul>
@@ -1587,11 +1587,11 @@ I3: SUB R3, #2</li>
 <li>判断方式:括号外面带一个数字</li>
 <li>EA = 基地址 + index register X</li>
 <li>基地址是楼的门牌号，X 是房间号。指令本身不变，只要改 X，就能访问不同房间<br />
-<img src="assets/截屏2026-11-10-16.57.55.png" width="746" /></li>
+<img src="assets/截屏2026-11-10-16.57.55.png" /></li>
 <li>每次读完执行 <code>Add X, #1</code>（这里的 <code>#1</code> 用的就是 immediate 寻址）。这相当于 C 语言里的 <code>a[i]</code>：500 是数组首地址，X 是下标 i</li>
 </ul>
 <h4 id="总结表">总结表</h4>
-<p><img src="assets/截屏2026-11-10-16.59.03.png" width="749" /></p>
+<p><img src="assets/截屏2026-11-10-16.59.03.png" /></p>
 <h2 id="arm-assembly-arm汇编语言">ARM Assembly ARM汇编语言</h2>
 <h3 id="arm-instruction-set-arm指令集">ARM instruction set ARM指令集</h3>
 <ul>
@@ -1619,18 +1619,18 @@ I3: SUB R3, #2</li>
 <li>当前程序状态寄存器（CPSR）, 存 4 个标志位，分别是 <strong>N</strong>（结果为负）、<strong>Z</strong>（结果为零）、<strong>C</strong>（进位）、<strong>V</strong>（溢出）</li>
 </ul>
 <h3 id="simple-instruction-examples-简单指令示例">Simple instruction examples 简单指令示例</h3>
-<table>
+<div class="table-wrap"><table>
 <tbody>
 <tr class="odd">
 <td>mov r2, r1<br>mov r4, #7<br>add r3, r1, r2<br>subs r3, r1, r2<br>B &lt;label&gt;<br>cmp r1, #7<br>ble &lt;label&gt;</td>
 <td>r2 = r1<br>r4 = 7<br>r3 = r1 + r2<br>r3 = r1 – r2<br>Branch to &lt;label&gt; 跳转到 &lt;label&gt;<br>Compare r1 with 7 将 r1 与 7 比较<br>Branch if less or equal 小于或等于时跳转</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>常用指令如下表:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>指令</th>
@@ -1675,7 +1675,7 @@ I3: SUB R3, #2</li>
 <td>判断奇偶：结果 0 为偶数，1 为奇数</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>例：<code>AND R0, R1, #1</code> → 1010 AND 0001 → R0 = 0（偶数）</p>
 <p>CMP Rn, Rm：比较寄存器，不保存结果，只设置标志位，内部计算 Rn − Rm</p>
 <ul>
@@ -1684,7 +1684,7 @@ I3: SUB R3, #2</li>
 <li>Rn &lt; Rm → N 标志置位</li>
 </ul>
 <h3 id="branches-跳转">Branches 跳转</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>指令</th>
@@ -1721,7 +1721,7 @@ I3: SUB R3, #2</li>
 <td>上一次比较的两个值不相等时跳转</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>条件跳转的格式是 <code>B{cond} label</code>，即 B 加一个条件后缀</p>
 <p>例：</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    B Loop</span>
@@ -1766,7 +1766,7 @@ I3: SUB R3, #2</li>
 <li>x 放在 R4。CMP 设置状态寄存器，BLE（小于等于时跳转）根据它决定是否跳到 case2</li>
 </ul>
 <h3 id="memory-access-内存访问">Memory access 内存访问</h3>
-<table>
+<div class="table-wrap"><table>
 <tbody>
 <tr class="odd">
 <td><code>MOV r1, #Table</code><br><code>LDR r0, [r1]</code></td>
@@ -1777,7 +1777,7 @@ I3: SUB R3, #2</li>
 <td>r1 里的地址加 8，再读一个 word<br>r1 存的是内存地址</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>方括号 <code>[r1]</code> 表示 r1 里存的是地址，要去那个地址取数据</li>
 <li>用标签 Table 而不是固定地址（如 23000），程序放在内存哪里都能运行</li>
@@ -1929,7 +1929,7 @@ I3: SUB R3, #2</li>
 <li>Example:
 <ul>
 <li>DAC可以将5v量化为约20mV</li>
-<li><img src="assets/Pasted-image-20261115184135.png" width="270" /></li>
+<li><img src="assets/Pasted-image-20261115184135.png" /></li>
 </ul></li>
 </ul>
 <h2 id="cache-缓存">Cache 缓存</h2>
@@ -1959,7 +1959,7 @@ I3: SUB R3, #2</li>
 <li>L1、L2 是每个 core 私有的，所以为速度做了优化</li>
 <li>L3 由所有 core 共享，作用是 “shield” RAM，减少对 DRAM 的访问，同时方便 core 之间交换数据</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Feature</th>
@@ -2012,7 +2012,7 @@ I3: SUB R3, #2</li>
 <td>大容量共享池，减少所有 core 访问 DRAM</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="primary-memory-and-memory-hierarchy-主内存与内存层次结构">Primary Memory and Memory Hierarchy 主内存与内存层次结构</h3>
 <ul>
 <li>层级从上到下：Registers → L1 → L2 → L3 → RAM（DRAM）→ SSD/HDD</li>
@@ -2072,7 +2072,7 @@ I3: SUB R3, #2</li>
 </ul></li>
 <li>对比</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Feature</th>
@@ -2127,7 +2127,7 @@ I3: SUB R3, #2</li>
 <td><strong>Volatile</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>带宽计算
 <ul>

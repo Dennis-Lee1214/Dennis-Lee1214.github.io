@@ -158,12 +158,6 @@ img {
   height: auto;
 }
 
-/* An image on its own line is a block, not part of the text */
-p > img:only-child, li > p > img,
-li > img {
-  display: block;
-  margin: 4pt 0;
-}
 
 /* Long formulas scroll inside their own line instead of leaving the page */
 .katex-display {
@@ -243,32 +237,49 @@ code span.at { color: #880000; }                                     /* attribut
 code span.im { color: #1f7199; }                                     /* imports */
 code span.er, code span.al { color: #ff0000; font-weight: 700; }
 
-/* Images, tables and code boxes inside a list line up with the left edge of
-   the page, like in the Docs export, instead of being pushed right by each
-   level of the list. Every list level indents by 36pt. */
-
-.doc > :is(ul, ol) > li > :is(table, div.sourceCode, pre, img),
-.doc > :is(ul, ol) > li > p > img {
-  margin-left: calc(-1 * var(--list-step));
-  max-width: calc(100% + 1 * var(--list-step));
+/* Code boxes inside a list line up with the left edge of the page,
+   like in the Docs export, instead of moving right with each list level. */
+.doc {
+  container-type: inline-size;     /* 100cqw = width of the text column */
 }
 
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > :is(table, div.sourceCode, pre, img),
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > p > img {
-  margin-left: calc(-2 * var(--list-step));
-  max-width: calc(100% + 2 * var(--list-step));
+li { --depth: 1; }
+li li { --depth: 2; }
+li li li { --depth: 3; }
+li li li li { --depth: 4; }
+li li li li li { --depth: 5; }
+
+li > :is(div.sourceCode, pre) {
+  margin-left: calc(-1 * var(--depth) * var(--list-step));
+  width: 100cqw;
+  max-width: none;
 }
 
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > :is(table, div.sourceCode, pre, img),
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > p > img {
-  margin-left: calc(-3 * var(--list-step));
-  max-width: calc(100% + 3 * var(--list-step));
+/* Images: all the same width, centred on the page (also inside lists) */
+.doc img {
+  display: block;
+  width: 80cqw;
+  max-width: none;
+  height: auto;
+  margin: 8pt 0 8pt calc(10cqw - var(--depth, 0) * var(--list-step));
 }
 
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > :is(table, div.sourceCode, pre, img),
-.doc > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > :is(ul, ol) > li > p > img {
-  margin-left: calc(-4 * var(--list-step));
-  max-width: calc(100% + 4 * var(--list-step));
+/* Tables: centred on the page (also inside lists) */
+.table-wrap {
+  width: 100cqw;
+  margin: 8pt 0 8pt calc(-1 * var(--depth, 0) * var(--list-step));
+  overflow-x: auto;
+}
+
+.table-wrap > table {
+  margin: 0 auto;
+}
+
+/* ...but an image inside a table cell just fits its cell */
+.doc td img, .doc th img {
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* Code boxes span the full width of the page */
@@ -319,7 +330,7 @@ div.sourceCode, .doc > pre, li > pre {
   }
 }
 
-/* A bullet that only holds an image: hide the dash, the image moves to the left edge */
+/* A bullet that only holds an image: hide the dash */
 li:has(> img:only-child),
 li:has(> p:only-child > img:only-child) {
   list-style-type: none;

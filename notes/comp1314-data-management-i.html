@@ -116,7 +116,7 @@
 <li>They can be used just like in piping. 可以像管道一样使用</li>
 <li>some filters:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Filter</th>
@@ -161,7 +161,7 @@
 <td>构建和执行命令行</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="grep">grep</h2>
 <ul>
 <li>搜索文本，输出匹配的整行 Find regex matches in a text and print every line which contains at least one match
@@ -229,9 +229,9 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 </ul>
 <h2 id="regular-expression">Regular expression</h2>
-<p><img src="assets/截屏2026-10-11-18.02.41.png" width="763" /></p>
+<p><img src="assets/截屏2026-10-11-18.02.41.png" /></p>
 <h2 id="wildcards-通配符">Wildcards 通配符</h2>
-<p><img src="assets/截屏2026-10-16-15.01.09.png" width="771" /></p>
+<p><img src="assets/截屏2026-10-16-15.01.09.png" /></p>
 <ul>
 <li>通配符可以组合使用
 <ul>
@@ -260,17 +260,17 @@ grep [opentions] pattern [file…]</li>
 <li>法1
 <ul>
 <li>要获取文件的权限号，请像这样排列一个表格：<br />
-<img src="assets/截屏2026-10-16-15.11.58.png" width="672" />
+<img src="assets/截屏2026-10-16-15.11.58.png" />
 <ul>
 <li>如果授予权限，在表格里写1，禁止写0<br />
-<img src="assets/截屏2026-10-16-15.13.03.png" width="656" /></li>
+<img src="assets/截屏2026-10-16-15.13.03.png" /></li>
 <li>现在取出三组二进制数字：111 100 100</li>
 <li>转换为十进制：7 4 4</li>
 <li>以下为每个权限组合的表格</li>
 </ul></li>
 </ul></li>
 </ol>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Binary</th>
@@ -320,7 +320,7 @@ grep [opentions] pattern [file…]</li>
 <td style="text-align: center;">All permissions</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ol start="2" type="1">
 <li>法2 使用chmod修改权限
 <ul>
@@ -340,7 +340,7 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 </ul></li>
 </ol>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Person accesing<br></th>
@@ -370,7 +370,7 @@ grep [opentions] pattern [file…]</li>
 <td>‘-’ = none</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="process-management-流程管理">Process management 流程管理</h2>
 <h2 id="run-job运行程序">Run job运行程序</h2>
 <ul>
@@ -398,7 +398,7 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 <li><code>ps -u 用户名</code> 输入后会输出一以下列，含义如下表</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>列</th>
@@ -423,7 +423,7 @@ grep [opentions] pattern [file…]</li>
 <td>启动该进程的命令</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2 id="commandtop">Command：top</h2>
 <ul>
 <li>用来查看所有进程的CPU、内存使用情况，是实时刷新的</li>
@@ -458,7 +458,7 @@ grep [opentions] pattern [file…]</li>
 <li>简而言之，Screen是一个可以脱离用户登录状态而持续存在的终端会话</li>
 <li>Screen常用命令见下表:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>命令</th>
@@ -491,7 +491,7 @@ grep [opentions] pattern [file…]</li>
 <td>关闭并销毁当前screen</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h1 id="data-exchange">Data exchange</h1>
 <h2 id="csv-and-tsv">CSV and TSV</h2>
 <ul>
@@ -524,7 +524,7 @@ grep [opentions] pattern [file…]</li>
 <li>不适合灵活格式的关系型数据库(模块，学生，成绩混在一个文件里)</li>
 </ul>
 <h2 id="human-readable-and-machine-readable">Human-readable and Machine-readable</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th></th>
@@ -549,7 +549,7 @@ grep [opentions] pattern [file…]</li>
 <td>人不好读写(XML)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>机器可读的好处:
 <ul>
@@ -566,21 +566,21 @@ grep [opentions] pattern [file…]</li>
 <li>Hierarchical 层级模型:单一父节点，类似于树
 <ul>
 <li>查询路径: COMP1314 → Andrew Smith → Coursework 2</li>
-<li><img src="assets/截屏2026-10-19-19.34.10.png" width="736" /></li>
+<li><img src="assets/截屏2026-10-19-19.34.10.png" /></li>
 </ul></li>
 <li>Network 网络模型:允许多个父节点(一个学生属于多个模块),不再严格是树
 <ul>
-<li><img src="assets/截屏2026-10-19-19.34.48.png" width="755" /></li>
+<li><img src="assets/截屏2026-10-19-19.34.48.png" /></li>
 </ul></li>
 <li>Object- oriented面向对象：实体是类，有属性，关系用指针表示
 <ul>
 <li>如：Modules[…].Students[…].Marks[…]</li>
-<li><img src="assets/截屏2026-10-19-19.35.10.png" width="753" /></li>
+<li><img src="assets/截屏2026-10-19-19.35.10.png" /></li>
 </ul></li>
 <li>Relational 关系模型: 实体变成表(Modules,students,marks)，用id把表连起来
 <ul>
 <li>如：<code>Marks[Student_ID=1, Assignment=2]</code></li>
-<li><img src="assets/截屏2026-10-19-19.45.51.png" width="640" /></li>
+<li><img src="assets/截屏2026-10-19-19.45.51.png" /></li>
 </ul></li>
 </ol></li>
 </ul>
@@ -653,7 +653,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>在各个语言中如何使用</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>语言</th>
@@ -686,7 +686,7 @@ grep [opentions] pattern [file…]</li>
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li><p><code>myJSON["person"]["name"]</code> 先取出“person“这个键对应的值</p></li>
 <li><p><code>{"name": "Tom", "role": "Teaching", "lucky": [42, 13, 3.141]}</code></p></li>
@@ -709,7 +709,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>分为三种：</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>类型</th>
@@ -734,7 +734,7 @@ grep [opentions] pattern [file…]</li>
 <td><code>&lt;strong&gt;, &lt;em&gt;</code> (强调）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li><code>&lt;body&gt;, &lt;b&gt;</code>虽然显示上都是粗体，但是语义不同，<code>&lt;strong&gt;</code>表示很重要，搜索引擎可以理解，<code>&lt;b&gt;</code>只是单纯变粗，提倡用语义标签</li>
 </ul>
@@ -744,7 +744,7 @@ grep [opentions] pattern [file…]</li>
 <li>可以和Unity集成</li>
 <li>核心概念</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>概念</th>
@@ -769,7 +769,7 @@ grep [opentions] pattern [file…]</li>
 <td>让读者选择，选项及其下面的文字会成为故事一部分</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="xml-extensible-markup-language可扩展标记语言">XML （eXtensible Markup Language）可扩展标记语言</h3>
 <ul>
 <li>特点：
@@ -832,7 +832,7 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 </ul></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>SimpleType</th>
@@ -857,7 +857,7 @@ grep [opentions] pattern [file…]</li>
 <td>例：<code>Toppings</code>里有多个<code>Topping</code>;或者带name属性的<code>&lt;Pizza&gt;</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">xs:element</span><span class="ot"> name=</span><span class="st">&quot;Pizza&quot;</span>&gt;                      <span class="co">&lt;!-- 根元素 Pizza --&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">xs:complexType</span>&gt;                             <span class="co">&lt;!-- 有子元素+属性 → complex --&gt;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">xs:sequence</span>&gt;                              <span class="co">&lt;!-- 下面三个按顺序 --&gt;</span></span>
@@ -956,7 +956,7 @@ grep [opentions] pattern [file…]</li>
 <li>每一列的含义由它的名字来表达</li>
 </ol></li>
 <li>被SQL、Microsoft Access使用<br />
-<img src="assets/Pasted-image-20261027124251.png" width="382" /></li>
+<img src="assets/Pasted-image-20261027124251.png" /></li>
 <li>模式（schema）是某个 k 元关系的“蓝图“或“模板“
 <ul>
 <li>模式存储关系名和属性的有序序列</li>
@@ -1005,7 +1005,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>键是指能够唯一标识一条记录的属性或属性集合,关系里不允许两行在这组属性上的值完全相同</li>
 <li>Example: number (ID) or a first name + surname</li>
-<li><img src="assets/截屏2026-10-29-15.13.53.png" width="618" /></li>
+<li><img src="assets/截屏2026-10-29-15.13.53.png" /></li>
 <li>判断{title, year, length, starName} 是键吗？是，因为这四列组合在一起没有重复的项</li>
 <li>判断{year, studioName} 是键吗？不是，Paramount 在 1992 年有好几行</li>
 </ul>
@@ -1016,7 +1016,7 @@ grep [opentions] pattern [file…]</li>
 <li>A叫做determinant决定因素 B叫做dependent set依赖集</li>
 <li>Example:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>First name</th>
@@ -1051,7 +1051,7 @@ grep [opentions] pattern [file…]</li>
 <td>F</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>以上表格满足函数依赖:
 <ul>
@@ -1111,7 +1111,7 @@ grep [opentions] pattern [file…]</li>
 <li>因此，知道了超键的值，整行其他所有列就都确定了，所以它能唯一定位一行</li>
 <li>全部属性的集合永远是超键，所以每个关系至少有一个超键</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>First name</th>
@@ -1146,7 +1146,7 @@ grep [opentions] pattern [file…]</li>
 <td>F</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>上述表格中
 <ul>
@@ -1208,7 +1208,7 @@ grep [opentions] pattern [file…]</li>
 <li>{A, C}⁺ - 这是我们要求的</li>
 </ul></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Xₙ</th>
@@ -1243,7 +1243,7 @@ grep [opentions] pattern [file…]</li>
 <td>嗯，好像什么也没变。而且也没有其他可用的函数依赖了。因此这就是我们的输出：{A, C}⁺。</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>因为 {A, C}⁺ 只有 {A, C, E, H}，没有包含 R 中的所有列，所以它不是超键</li>
 <li>再来看另一个例子：
@@ -1253,7 +1253,7 @@ grep [opentions] pattern [file…]</li>
 <li>{A, B}⁺ - 这是我们要求的</li>
 </ul></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Xₙ</th>
@@ -1298,14 +1298,14 @@ grep [opentions] pattern [file…]</li>
 <td>到这里就结束了，没有其他可用的函数依赖了。这就是 {A, B}⁺</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>{A, B}⁺ 包含了 R 中的所有元素，说明 {A, B} 是超键</li>
 <li>{A, B} 也是候选键，因为 {A}⁺ 是 {A}，{B}⁺ 是 {B}；它是这个 schema 中最小形式的超键</li>
 </ul>
 <h2 id="relational-algebra-关系代数">Relational algebra 关系代数</h2>
 <h3 id="基本概念">基本概念</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>SID</th>
@@ -1325,7 +1325,7 @@ grep [opentions] pattern [file…]</li>
 <td>CS</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ol type="1">
 <li>Attribute属性:
 <ul>
@@ -1360,7 +1360,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>两个关系的 arity 相同（列数一样）</li>
 <li>对应位置的属性域相同（类型一样）<br />
-<img src="assets/截屏2026-11-02-12.47.45.png" width="640" /></li>
+<img src="assets/截屏2026-11-02-12.47.45.png" /></li>
 </ul></li>
 </ul>
 <h4 id="difference-差">Difference 差 −</h4>
@@ -1368,7 +1368,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>当对两个关系执行“差”操作时，从最左边的表格中拿走元素</li>
 <li>此操作返回左侧表格，但不返回右侧表格中的元素。<br />
-<img src="assets/截屏2026-11-02-12.51.51.png" width="622" /></li>
+<img src="assets/截屏2026-11-02-12.51.51.png" /></li>
 </ul>
 <h4 id="cartesian-product-笛卡尔积">Cartesian Product 笛卡尔积 ×</h4>
 <blockquote>
@@ -1378,7 +1378,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li>笛卡尔积的工作方式与集合论相同</li>
 <li>这将返回一个表格，其中包含左侧表格中记录和右侧表格中记录的所有可能配对<br />
-<img src="assets/截屏2026-11-02-12.53.21.png" width="627" /></li>
+<img src="assets/截屏2026-11-02-12.53.21.png" /></li>
 </ul>
 <h4 id="projection-投影-π">Projection 投影 π</h4>
 <p><span class="math display">\pi_{A_1, …, A_k}(R)</span></p>
@@ -1389,7 +1389,7 @@ grep [opentions] pattern [file…]</li>
 <ul>
 <li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image5.png" alt="237" /></li>
 <li>其中“&lt;属性列表&gt;”是我们想要保留的列列表，而“&lt;关系名称&gt;”是要过滤的表的名称<br />
-<img src="assets/截屏2026-11-02-14.12.43.png" width="627" /></li>
+<img src="assets/截屏2026-11-02-14.12.43.png" /></li>
 </ul></li>
 </ul>
 <h4 id="selection-选择-σ">Selection 选择 σ</h4>
@@ -1405,7 +1405,7 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 <li>条件可以使用谓词逻辑的语法</li>
 <li>最后一个例子在实践中有点不必要，但它展示了如何在条件中使用谓词逻辑语法<br />
-<img src="assets/截屏2026-11-02-14.16.14.png" width="626" /></li>
+<img src="assets/截屏2026-11-02-14.16.14.png" /></li>
 </ul>
 <h4 id="rename-重命名ρ">Rename 重命名ρ</h4>
 <ul>
@@ -1418,7 +1418,7 @@ grep [opentions] pattern [file…]</li>
 <li>还可以通过以下方式重命名多个列：</li>
 <li><img src="https://demos.matt-barnes.co.uk/notes-network-archive/assets/data-management/image12.png" alt="305" /></li>
 <li>这将返回相同的表格，但O1、O2和O3列分别重命名为N1、N2和N3<br />
-<img src="assets/截屏2026-11-02-14.35.08.png" width="582" /></li>
+<img src="assets/截屏2026-11-02-14.35.08.png" /></li>
 </ul></li>
 </ul>
 <h3 id="example">Example</h3>
@@ -1449,7 +1449,7 @@ grep [opentions] pattern [file…]</li>
 <hr />
 <p><strong>Check with sample data:</strong></p>
 <p>Lecturers</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>LID</th>
@@ -1474,9 +1474,9 @@ grep [opentions] pattern [file…]</li>
 <td>CS</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Teaches</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>LID</th>
@@ -1506,9 +1506,9 @@ grep [opentions] pattern [file…]</li>
 <td>2</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Modules</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Module</th>
@@ -1533,12 +1533,12 @@ grep [opentions] pattern [file…]</li>
 <td>7.5</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>Step 1: arity = 3 + 3 + 2 = 8 columns; cardinality = 3 × 4 × 4 = 48 rows</li>
 <li>Step 2: only 2 rows survive:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Lecturers.LID</th>
@@ -1573,13 +1573,13 @@ grep [opentions] pattern [file…]</li>
 <td>15</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>Siti fails: Department = ‘Maths’</li>
 <li>Wei fails: Semester = 2 and Credits = 7.5</li>
 <li>Step 3 result:</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Name</th>
@@ -1590,7 +1590,7 @@ grep [opentions] pattern [file…]</li>
 <td>Rahman</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <ul>
 <li>Rahman 满足条件的课有两门，σ 之后有两行，但 π 之后只剩一行，因为关系是集合，π 自动去重。“at least one” 就是靠这个实现的：满足一门或多门，名字都只出现一次</li>
 </ul>
@@ -1673,7 +1673,7 @@ grep [opentions] pattern [file…]</li>
 <li>而且每一行都能被主键唯一识别</li>
 <li>主键可以是单列，也可以由多列组成</li>
 <li>Example:<br />
-<img src="assets/截屏2026-11-10-14.19.55.png" width="641" /></li>
+<img src="assets/截屏2026-11-10-14.19.55.png" /></li>
 <li>原表的Stand type和Parts可能是多值属性，违反原子性
 <ul>
 <li>Parts：拆出一张新表，每个“人 + 部数“组合占一行</li>
@@ -1687,7 +1687,7 @@ grep [opentions] pattern [file…]</li>
 <li>要成为第二范式，所有属性在功能上必须依赖于整个主键。</li>
 <li>更简单地说，对于每个属性，以下内容必须为真：K→Ai</li>
 <li>Example:<br />
-<img src="assets/截屏2026-11-10-14.31.52.png" width="627" /></li>
+<img src="assets/截屏2026-11-10-14.31.52.png" /></li>
 <li>现在是第二范式。 在之前的“Stand user”表中，“Birthyear”列在功能上依赖于“Stand user”，但与“Stand type”无关。 这意味着“Stand user”在功能上并不依赖于整个主键，这意味着它不在2NF中</li>
 <li>为了解决这个问题，“Stand type”被移到了自己的表格中。 现在，“Stand user”表只有一个列的主键：“Stand user”。 “Stand user”的每个列在功能上都依赖于主键，使其成为2NF</li>
 <li>也就是说，将部分依赖拆出去，使得每张表内的每个列都依赖于整个主键</li>
@@ -1698,14 +1698,14 @@ grep [opentions] pattern [file…]</li>
 <li>基本上，每个属性都应该只依赖于主键</li>
 <li>要检查表格是否在3NF中，可以从从主键到非主属性，然后从该属性到另一个非主属性，所有这些都通过函数依赖性。 如果能做到这一点，那么该表格不是3NF</li>
 <li>满足2NF但不满足3NF的表格example:<br />
-<img src="assets/截屏2026-11-10-14.41.16.png" width="618" /></li>
+<img src="assets/截屏2026-11-10-14.41.16.png" /></li>
 <li>以上表格存在一条传递依赖:Part → Protagonist → Stand name，不满足3NF
 <ul>
 <li>Stand name 并不是直接由主键 Part 决定的, 而是通过非主属性 Protagonist 间接决定的,因此违反了nothing but the key</li>
 </ul></li>
 <li>主键只有Part一列，不可能存在部分依赖，满足2NF</li>
 <li>为了解决这个问题，我们可以创建一个单独的表格：<br />
-<img src="assets/截屏2026-11-10-14.45.44.png" width="621" /></li>
+<img src="assets/截屏2026-11-10-14.45.44.png" /></li>
 <li>现在上表满足3NF了</li>
 </ul>
 <h3 id="bcnf-bc范式-非键的决定因素">BCNF BC范式 (非键的决定因素)</h3>
@@ -1717,7 +1717,7 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 <li>要检查表格是否在BCNF中，找到一个函数依赖关系A→B，其中“A”不是超级键。如果能找到一个，那么你的表格不在BCNF中。</li>
 <li>满足3NF而不满足BCNF中的表格示例如下：<br />
-<img src="assets/截屏2026-11-10-15.03.36.png" width="622" /></li>
+<img src="assets/截屏2026-11-10-15.03.36.png" /></li>
 <li>主键是学生证和科目。</li>
 <li>然而，subject和professor之间存在依赖性：
 <ul>
@@ -1725,13 +1725,13 @@ grep [opentions] pattern [file…]</li>
 </ul></li>
 <li>虽然subject是一个主属性，但professor本身是一个非主属性（不是超键），这是BCNF中不允许的</li>
 <li>为了解决这个问题，将其分解为2个表格：<br />
-<img src="assets/截屏2026-11-10-15.05.49.png" width="623" /></li>
+<img src="assets/截屏2026-11-10-15.05.49.png" /></li>
 <li>在students-professors表中，所有函数依赖关系都是平凡的（它们都与主键本身有关(右边都是左边的子集)）</li>
 <li>在professors-subjects表中，唯一存在的函数依赖是（professor）→（subjects），（professor）是一个超键，因此两个表都满足BCNF</li>
 </ul>
 <h2 id="modelling-and-sql-basics-数据建模和sql基础知识">Modelling and SQL basics 数据建模和SQL基础知识</h2>
 <h3 id="types-of-data-modelling">Types of data modelling</h3>
-<p><img src="assets/Pasted-image-20261111151616.png" width="555" /></p>
+<p><img src="assets/Pasted-image-20261111151616.png" /></p>
 <h4 id="conceptual-ideas-概念模型-构思层">Conceptual (ideas) 概念模型 构思层</h4>
 <ul>
 <li>包含重要的实体以及它们之间的关系</li>
@@ -1796,7 +1796,7 @@ grep [opentions] pattern [file…]</li>
 <li>ERD 上连线末端的符号表示数量</li>
 <li>末端的符号读法是：靠近实体的符号 = 最大值，远离实体的符号 = 最小值</li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>符号</th>
@@ -1829,7 +1829,7 @@ grep [opentions] pattern [file…]</li>
 <td>Zero or many（零个或多个）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="data-type-数据类型">Data type 数据类型</h3>
 <ul>
 <li>CHAR(n) 定长，不足补空格；VARCHAR(n) 变长，只存实际内容</li>
@@ -1977,10 +1977,10 @@ grep [opentions] pattern [file…]</li>
 <li>只返回两边都能匹配上的行</li>
 <li>内部连接返回一个表，其中表1和表2的条目都有彼此的外键</li>
 <li>外键列中没有“空”值：<br />
-<img src="assets/Pasted-image-20261116121933.png" width="187" /></li>
+<img src="assets/Pasted-image-20261116121933.png" /></li>
 </ul>
 <p><strong>Characters</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2001,9 +2001,9 @@ grep [opentions] pattern [file…]</li>
 <td>null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Stands</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Stand ID</th>
@@ -2024,9 +2024,9 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Inner Join</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2046,14 +2046,14 @@ grep [opentions] pattern [file…]</li>
 <td>Silver Chariot</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4 id="left-join-左连接">Left join 左连接</h4>
 <ul>
 <li>左连接返回一个表，其中包含表1中的所有记录以及表2中的属性（如果存在）。 如果它不存在，那么表2列将为NULL<br />
-<img src="assets/Pasted-image-20261116122405.png" width="187" /><br />
+<img src="assets/Pasted-image-20261116122405.png" /><br />
 <strong>Characters</strong></li>
 </ul>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2074,9 +2074,9 @@ grep [opentions] pattern [file…]</li>
 <td>null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Stands</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Stand ID</th>
@@ -2097,9 +2097,9 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Left Join</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2124,14 +2124,14 @@ grep [opentions] pattern [file…]</li>
 <td>null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4 id="right-join-右连接">Right join 右连接</h4>
 <ul>
 <li>右连接就像左连接一样，但它包含表2中的所有记录，以及表1中的属性（如果存在），如果没有，它们将为NULL：<br />
-<img src="assets/Pasted-image-20261116123239.png" width="187" /></li>
+<img src="assets/Pasted-image-20261116123239.png" /></li>
 </ul>
 <p><strong>Characters</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2152,9 +2152,9 @@ grep [opentions] pattern [file…]</li>
 <td>null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Stands</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Stand ID</th>
@@ -2175,9 +2175,9 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Right Join</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2202,15 +2202,15 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4 id="full-outer-join-全外连接">Full outer join 全外连接</h4>
 <ul>
 <li>两边的所有行都保留</li>
 <li>这将返回表1和表2中的所有记录，如果任何外键为空，则相应的列将保留NULL<br />
-<img src="assets/Pasted-image-20261116124329.png" width="187" /></li>
+<img src="assets/Pasted-image-20261116124329.png" /></li>
 </ul>
 <p><strong>Characters</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2231,9 +2231,9 @@ grep [opentions] pattern [file…]</li>
 <td>null</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Stands</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Stand ID</th>
@@ -2254,9 +2254,9 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>Full Outer Join</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr class="header">
 <th>Character</th>
@@ -2286,7 +2286,7 @@ grep [opentions] pattern [file…]</li>
 <td>The World</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 </div>
 </body>
