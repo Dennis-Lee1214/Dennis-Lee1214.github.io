@@ -201,23 +201,23 @@
 <tbody>
 <tr class="odd">
 <td>AND</td>
-<td><img src="assets/6dd5333ee4144bc32b635ca6865eaa26-1.png" /></td>
+<td><img src="assets/6dd5333ee4144bc32b635ca6865eaa26-1.png" width="824" /></td>
 </tr>
 <tr class="even">
 <td>OR</td>
-<td><img src="assets/Pasted-image-20260929215111.png" /></td>
+<td><img src="assets/Pasted-image-20260929215111.png" width="819" /></td>
 </tr>
 <tr class="odd">
 <td>NAND</td>
-<td><img src="assets/Pasted-image-20260929215118.png" /></td>
+<td><img src="assets/Pasted-image-20260929215118.png" width="813" /></td>
 </tr>
 <tr class="even">
 <td>NOR</td>
-<td><img src="assets/Pasted-image-20260929215134.png" /></td>
+<td><img src="assets/Pasted-image-20260929215134.png" width="819" /></td>
 </tr>
 <tr class="odd">
 <td>XOR</td>
-<td><img src="assets/Pasted-image-20260929215145.png" /></td>
+<td><img src="assets/Pasted-image-20260929215145.png" width="814" /></td>
 </tr>
 </tbody>
 </table>
@@ -252,7 +252,7 @@
 <ul>
 <li>¬(A + B) = ¬A . ¬B</li>
 <li>¬(A . B) = ¬A + ¬B</li>
-<li><img src="assets/Pasted-image-20260929223241.png" width="186" /></li>
+<li><img src="assets/Pasted-image-20260929223241.png" width="262" /></li>
 <li>Break the line, change the sign 拆开顶线，改变中间符号</li>
 <li>A + B 取反，表示A或B至少一个成立这件事不成立，也就是A不成立并且B不成立，即 Ā · B̄</li>
 </ul></li>
@@ -348,8 +348,8 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>定义: X + (-X) = 2<sup>n 一个正数X加上它的负数−X，结果等于2</sup>n(其中n是二进制数的位数)</li>
 <li>+3 0011</li>
 <li>-3 1101</li>
-<li><pre><code> &lt;mark&gt;==&lt;/mark&gt;</code></pre></li>
-<li><pre><code>   &lt;span style=&quot;color:#d9534f;&quot;&gt;1&lt;/span&gt;0000</code></pre></li>
+<li><pre><code>&lt;mark&gt;==&lt;/mark&gt;</code></pre></li>
+<li><pre><code>  &lt;span style=&quot;color:#d9534f;&quot;&gt;1&lt;/span&gt;0000</code></pre></li>
 <li>结果10000是5位二进制，等于十进制的16，就是公式的2^4</li>
 <li>计算机寄存器通常只有4位，因此存不下5位的10000，最高位的1被扔掉后剩下0000，对应十进制的0，3+(-3) = 0 数学逻辑完全正确，可以用作数学</li>
 <li>最高有效位（最左边的那一位）仍然可以作为正负号的标志，类似于原码</li>
@@ -376,7 +376,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>001001变为负数</li>
 <li>取反所有位110110</li>
 </ul></li>
-<li> Similar to 2’s complement</li>
+<li>Similar to 2’s complement</li>
 </ul>
 <h2 id="floating-point">Floating point</h2>
 <blockquote>
@@ -395,7 +395,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <ul>
 <li>sign | Exponent | Mantissa</li>
 <li>这是存储顺序,不是科学计数法的书写顺序<br />
-<img src="assets/Pasted-image-20261014122425.png" width="565" /></li>
+<img src="assets/Pasted-image-20261014122425.png" width="618" /></li>
 </ul></li>
 <li>假设数字01101 000011,步骤按以下进行
 <ol type="1">
@@ -496,7 +496,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>实现方式:
 <ul>
 <li>2 个半加器 + 1 个 OR 门<br />
-<img src="assets/Pasted-image-20261014235525.png" width="329" /></li>
+<img src="assets/Pasted-image-20261014235525.png" width="297" /></li>
 </ul></li>
 </ul>
 <h2 id="ripple-carry-adder-行波进位加法器">Ripple Carry Adder 行波进位加法器</h2>
@@ -511,7 +511,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </ul></li>
 <li><p>流程: 从最右边开始逐位相加 → 产生 sum 和 carry → carry 传给下一级 → 重复</p></li>
 <li><p>缺点: 高位必须等低位的进位算出来才能算,所以位数越多越慢<br />
-<img src="assets/Pasted-image-20261015000503.png" width="537" /></p></li>
+<img src="assets/Pasted-image-20261015000503.png" width="694" /></p></li>
 </ul>
 <h1 id="flip-flops-and-registers">Flip-flops and Registers</h1>
 <ul>
@@ -588,19 +588,19 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 </table>
 <ul>
 <li><p>NOR门的禁止状态是S=R=1 ; S=R=0是保持不变</p></li>
-<li><p> NAND门的禁止状态是S=R=0 ; S=R=1是保持不变</p></li>
+<li><p>NAND门的禁止状态是S=R=0 ; S=R=1是保持不变</p></li>
 <li><p>为什么S=R=1禁止:</p>
 <ul>
 <li>两个输入都为 1 时,两个 NOR 门输出都变成 0,Q 和 Q̄ 都是 0,违反了“Q 和 Q̄ 互为相反“的规则。如果 S、R 同时变回 0,两个门会“竞争“,最后停在哪个状态是随机的</li>
 </ul>
-<p><img src="assets/Pasted-image-20261015172827.png" width="249" /></p></li>
+<p><img src="assets/Pasted-image-20261015172827.png" width="194" /></p></li>
 </ul>
 <h2 id="gated-latch-门控锁存器">Gated Latch 门控锁存器</h2>
 <ul>
 <li>在基本锁存器上加一个时钟输入</li>
 <li>CLK = 0 时 S和R不起作用，锁存器保持原状态</li>
 <li>CLK = 1 时 S和R恢复正常<br />
-<img src="assets/Pasted-image-20261015173358.png" width="319" /></li>
+<img src="assets/Pasted-image-20261015173358.png" width="279" /></li>
 </ul>
 <h2 id="d-type-flip-flop-d锁存器常用">D-type flip flop D锁存器——常用</h2>
 <ul>
@@ -609,7 +609,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>D当作S</li>
 <li>NOT当R</li>
 <li>S和R永远相反，这样就不会出现无效状态<br />
-<img src="assets/Pasted-image-20261015174016.png" width="393" /></li>
+<img src="assets/Pasted-image-20261015174016.png" width="277" /></li>
 </ul></li>
 </ul>
 <h2 id="register-寄存器">Register 寄存器</h2>
@@ -621,14 +621,14 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>更多的寄存器可以帮助加快复杂的计算速度</li>
 </ul></li>
 </ul>
-<p><img src="assets/Pasted-image-20261015180100.png" width="376" /></p>
+<p><img src="assets/Pasted-image-20261015180100.png" width="518" /></p>
 <ul>
 <li>4 位寄存器 = 4 个 D 触发器。用法:把数据放在 D0–D3 上,然后给一个时钟脉冲把它存进去</li>
 </ul>
 <h2 id="shift-register-移位寄存器">Shift Register 移位寄存器</h2>
 <ul>
 <li><p>结构：触发器首尾相连,前一个的输出 Q 接下一个的输入 D,共用时钟。每来一个时钟脉冲,所有数据同时向右(或左)挪一格<br />
-<img src="assets/Pasted-image-20261015180956.png" width="415" /></p></li>
+<img src="assets/Pasted-image-20261015180956.png" width="554" /></p></li>
 <li><p>串行：只有1根线，数据排队一个一个过</p></li>
 <li><p>并行：多根线，数据同时过</p></li>
 <li><p>Example SI是串行接口，一次进1位:</p>
@@ -636,8 +636,8 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>SI = 0, register = 0011 -&gt; register = 0001</li>
 <li>SI = 1, register = 0001 -&gt; register = 1000</li>
 <li>SI = 1, register = 1000-&gt; register = 1100</li>
-<li> SI = 0, register = 1100 -&gt; register = 0110</li>
-<li> SI = 1, register = 0110 -&gt; register = 1011</li>
+<li>SI = 0, register = 1100 -&gt; register = 0110</li>
+<li>SI = 1, register = 0110 -&gt; register = 1011</li>
 </ul></li>
 <li><p>共有四种类型：</p></li>
 </ul>
@@ -1020,7 +1020,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <h2 id="von-neumann架构">Von Neumann架构</h2>
 <ul>
 <li>核心思想: 顺序处理，Stored- program 存储程序。程序和数据放在同一个内存里，通过同一套总线和CPU交换</li>
-<li><img src="assets/Pasted-image-20261026101916.png" width="313" /></li>
+<li><img src="assets/Pasted-image-20261026101916.png" width="500" /></li>
 <li>每一步要访问内存两次：一次取指令，一次取或写数据。因为只有一条路，这两次只能一前一后进行</li>
 <li>CPU越快，由于内存相对较慢因此等待的比例越大，解决办法：
 <ul>
@@ -1032,7 +1032,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <h2 id="harvard架构">Harvard架构</h2>
 <ul>
 <li>核心思想：并行处理，CPU在取下一条指令的同时，可以读写数据</li>
-<li><img src="assets/Pasted-image-20261026103235.png" width="358" /></li>
+<li><img src="assets/Pasted-image-20261026103235.png" width="500" /></li>
 <li>优点：
 <ul>
 <li>没有Von Neumann的瓶颈</li>
@@ -1094,7 +1094,7 @@ Example: 111001 = 1 * 2<sup>0 + 0 * 2</sup>1+ 0 * 2<sup>2 + 1 * 2</sup>3 + 1 * 2
 <li>有流水线: 总时间 = (k+n-1) * T ——在一条k个阶段的流水线上，n条指令全部执行完一共需要多少个时钟周期</li>
 </ul></li>
 <li>运行方式如下图</li>
-<li><img src="assets/Pasted-image-20261027112531.png" width="449" /></li>
+<li><img src="assets/Pasted-image-20261027112531.png" width="643" /></li>
 </ul>
 <h2 id="hazards-冒险">Hazards 冒险</h2>
 <ol type="1">
@@ -1198,7 +1198,7 @@ I3: SUB R3, #2</li>
 <li><strong>Procedural Dependency 过程/控制依赖</strong>
 <ul>
 <li>类似于真数据依赖，不过是分支绝了寄存器的内容</li>
-<li> IF R0 = 1 THEN
+<li>IF R0 = 1 THEN
 <ul>
 <li><mark>🟡R1</mark> = 5</li>
 </ul></li>
@@ -1250,7 +1250,7 @@ I3: SUB R3, #2</li>
 <li>Ws = 绝对必须按顺序完成的位</li>
 <li>Wp = 可以并行完成的位</li>
 <li>P = 核心数量</li>
-<li><img src="assets/Pasted-image-20261103112346.png" width="135" /></li>
+<li><img src="assets/Pasted-image-20261103112346.png" width="115" /></li>
 </ul></li>
 <li>加速比
 <ul>
@@ -1266,7 +1266,7 @@ I3: SUB R3, #2</li>
 </ul></li>
 <li>直觉上，会认为核心越多，电脑就越快。</li>
 <li>实际上，由于Amdahl定律，随着核心数量的增加，处理能力有限:<br />
-<img src="assets/Pasted-image-20261103112529.png" width="443" /></li>
+<img src="assets/Pasted-image-20261103112529.png" width="886" /></li>
 <li>Amdahl定律表明，在CPU的更大部分应用小速度比在CPU的小部分应用大速度效率更高</li>
 <li>程序的顺序部分比例决定了加速的上限</li>
 <li>N 核 CPU 不可能比同频率的单核快 N 倍</li>
@@ -1361,7 +1361,7 @@ I3: SUB R3, #2</li>
 <ul>
 <li>结果存在哪里，例如R2</li>
 </ul></li>
-<li> Next Instruction reference 下一条指令
+<li>Next Instruction reference 下一条指令
 <ul>
 <li>通常是隐含的PC 自动加一指向下一条</li>
 </ul></li>
@@ -1374,9 +1374,9 @@ I3: SUB R3, #2</li>
 <li>浮点</li>
 <li>可能包含:
 <ul>
-<li> 增量 (x = x + 1)</li>
-<li> 递减 (x = x – 1)</li>
-<li> 否定 (x = -x)</li>
+<li>增量 (x = x + 1)</li>
+<li>递减 (x = x – 1)</li>
+<li>否定 (x = -x)</li>
 </ul></li>
 </ul>
 <h4 id="data-transfer-数据交换">Data transfer 数据交换</h4>
@@ -1587,11 +1587,11 @@ I3: SUB R3, #2</li>
 <li>判断方式:括号外面带一个数字</li>
 <li>EA = 基地址 + index register X</li>
 <li>基地址是楼的门牌号，X 是房间号。指令本身不变，只要改 X，就能访问不同房间<br />
-<img src="assets/截屏2026-11-10-16.57.55.png" width="678" /></li>
+<img src="assets/截屏2026-11-10-16.57.55.png" width="746" /></li>
 <li>每次读完执行 <code>Add X, #1</code>（这里的 <code>#1</code> 用的就是 immediate 寻址）。这相当于 C 语言里的 <code>a[i]</code>：500 是数组首地址，X 是下标 i</li>
 </ul>
 <h4 id="总结表">总结表</h4>
-<p><img src="assets/截屏2026-11-10-16.59.03.png" width="657" /></p>
+<p><img src="assets/截屏2026-11-10-16.59.03.png" width="749" /></p>
 <h2 id="arm-assembly-arm汇编语言">ARM Assembly ARM汇编语言</h2>
 <h3 id="arm-instruction-set-arm指令集">ARM instruction set ARM指令集</h3>
 <ul>
