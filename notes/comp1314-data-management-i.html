@@ -114,6 +114,12 @@
 <li><a href="#sql---structured-query-language-结构化查询语言" id="toc-sql---structured-query-language-结构化查询语言">SQL - Structured Query Language 结构化查询语言</a></li>
 <li><a href="#data-definition-数据定义" id="toc-data-definition-数据定义">Data definition 数据定义</a></li>
 <li><a href="#joins-多表连接" id="toc-joins-多表连接">Joins 多表连接</a></li>
+<li><a href="#insert-插入" id="toc-insert-插入">INSERT 插入</a></li>
+<li><a href="#views-视图" id="toc-views-视图">Views 视图</a></li>
+<li><a href="#update-and-delete" id="toc-update-and-delete">UPDATE and DELETE</a></li>
+<li><a href="#group-by-聚合函数" id="toc-group-by-聚合函数">GROUP BY 聚合函数</a></li>
+<li><a href="#index-索引" id="toc-index-索引">Index 索引</a></li>
+<li><a href="#sql-injection" id="toc-sql-injection">SQL Injection</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2374,7 +2380,7 @@ grep [opentions] pattern [file…]</li>
 </tr>
 </tbody>
 </table></div>
-<h4 id="insert-插入">INSERT 插入</h4>
+<h3 id="insert-插入">INSERT 插入</h3>
 <ul>
 <li>INSERT … SELECT：可以直接把一个 SELECT 的结果插入表中，只要列数对得上就行</li>
 </ul>
@@ -2382,7 +2388,7 @@ grep [opentions] pattern [file…]</li>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="kw">Table</span> <span class="kw">VALUES</span> (v1, v2, <span class="op">..</span>., vN);</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- 只给指定的列赋值</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="kw">Table</span> (Col1, Col2, Col3) <span class="kw">VALUES</span> (<span class="st">&#39;V1&#39;</span>, <span class="st">&#39;V2&#39;</span>, <span class="dv">3</span>);</span></code></pre></div>
-<h4 id="views-视图">Views 视图</h4>
+<h3 id="views-视图">Views 视图</h3>
 <ul>
 <li>视图有名字，可以像普通表一样 SELECT，也可以和别的表 JOIN</li>
 <li>不存储任何数据，每次查询都会重新执行一遍底层的查询，所以结果永远是最新的</li>
@@ -2394,13 +2400,13 @@ grep [opentions] pattern [file…]</li>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> resources</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> planets_resources <span class="kw">ON</span> resources.<span class="kw">id</span> <span class="op">=</span> planets_resources.resource_id</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> planets <span class="kw">ON</span> planets_resources.planet_id <span class="op">=</span> planets.<span class="kw">id</span>;</span></code></pre></div>
-<h4 id="update-and-delete">UPDATE and DELETE</h4>
+<h3 id="update-and-delete">UPDATE and DELETE</h3>
 <ul>
 <li>不写WHERE就会作用到全表</li>
 </ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> <span class="kw">Table</span> <span class="kw">SET</span> col <span class="op">=</span> <span class="fu">value</span>, col2 <span class="op">=</span> value2 <span class="kw">WHERE</span> 条件;</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="kw">Table</span> <span class="kw">WHERE</span> 条件;</span></code></pre></div>
-<h4 id="group-by-聚合函数">GROUP BY 聚合函数</h4>
+<h3 id="group-by-聚合函数">GROUP BY 聚合函数</h3>
 <ul>
 <li>把多行“压缩“成一个值：<code>COUNT</code>、<code>SUM</code>、<code>AVG</code>、<code>MAX</code>、<code>MIN</code></li>
 <li>类似于编程里的函数？</li>
@@ -2421,7 +2427,7 @@ grep [opentions] pattern [file…]</li>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> planets <span class="kw">ON</span> planets.<span class="kw">id</span> <span class="op">=</span> planets_resources.planet_id</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> planets.quadrant <span class="op">=</span> <span class="st">&#39;Alpha&#39;</span></span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> resources.name;</span></code></pre></div>
-<h4 id="index-索引">Index 索引</h4>
+<h3 id="index-索引">Index 索引</h3>
 <ul>
 <li>原理:
 <ul>
@@ -2471,7 +2477,7 @@ grep [opentions] pattern [file…]</li>
 </tr>
 </tbody>
 </table></div>
-<h4 id="sql-injection">SQL Injection</h4>
+<h3 id="sql-injection">SQL Injection</h3>
 <ul>
 <li>正常输入 <code>Tom</code> 时没有问题。但如果输入的是 <code>Tom'); DROP TABLE students;--</code>，拼接出来的 SQL 就会变成“插入 Tom，然后删掉整张表“</li>
 </ul>
