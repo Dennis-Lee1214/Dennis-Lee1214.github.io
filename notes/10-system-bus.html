@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>10. System Bus</title>
-  <link rel="stylesheet" href="../css/page.css?v=075134ca">
+  <link rel="stylesheet" href="../css/page.css?v=289c0e09">
 </head>
 <body>
 <div class="doc">
 
 <p class="crumb"><a href="../notes.html">Computer Science Notes</a></p>
 <p class="title">10. System Bus</p>
-<p class="subtitle">Hongyi Li</p>
+<p class="subtitle">Hongyi Li<span class="stats">62 words</span></p>
 
 <p class="contents-label">Contents</p>
 <nav class="toc">
@@ -31,5 +31,69 @@
 </ul>
 
 </div>
+<script>
+/* Page numbers in the contents, like a printed Google Doc.
+   The sheet is a US Letter page (8.5 x 11 in, 1 in margins), so every
+   864px of text height in the full-width layout counts as one page.
+   On a phone the text wraps differently, so the numbers are worked out from
+   a hidden full-width copy of the page instead, and stay the same. */
+function ensureNumSpans() {
+  return Array.prototype.map.call(document.querySelectorAll(".toc a"), function (a) {
+    var num = a.parentElement.querySelector(":scope > .page-num");
+    if (!num) {
+      num = document.createElement("span");
+      num.className = "page-num";
+      a.after(num);
+    }
+    return num;
+  });
+}
+
+function measurePages() {
+  var doc = document.querySelector(".doc");
+  var cs = getComputedStyle(doc);
+  var top = doc.getBoundingClientRect().top + window.scrollY + parseFloat(cs.paddingTop);
+  return Array.prototype.map.call(document.querySelectorAll(".toc a"), function (a) {
+    var target = document.getElementById(decodeURIComponent(a.getAttribute("href").slice(1)));
+    if (!target) return "";
+    var y = target.getBoundingClientRect().top + window.scrollY - top;
+    return Math.floor(Math.max(0, y) / 864) + 1;
+  });
+}
+
+var fullWidthPages = null;
+
+function pageNumbers() {
+  var spans = ensureNumSpans();
+  var doc = document.querySelector(".doc");
+  var cs = getComputedStyle(doc);
+  var textWidth = doc.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  var show = function (pages) {
+    spans.forEach(function (s, i) { s.textContent = pages[i]; });
+  };
+  if (textWidth >= 600 || window.self !== window.top) {
+    show(measurePages());
+    return;
+  }
+  if (fullWidthPages) { show(fullWidthPages); return; }
+  var frame = document.createElement("iframe");
+  frame.setAttribute("aria-hidden", "true");
+  frame.tabIndex = -1;
+  frame.style.cssText = "position:absolute;left:-10000px;top:0;width:1000px;height:800px;border:0;visibility:hidden";
+  frame.onload = function () {
+    try {
+      fullWidthPages = Array.prototype.map.call(
+        frame.contentDocument.querySelectorAll(".toc .page-num"),
+        function (s) { return s.textContent; });
+      show(fullWidthPages);
+    } catch (e) {}
+    frame.remove();
+  };
+  frame.src = location.pathname;
+  document.body.appendChild(frame);
+}
+window.addEventListener("load", pageNumbers);
+window.addEventListener("resize", pageNumbers);
+</script>
 </body>
 </html>

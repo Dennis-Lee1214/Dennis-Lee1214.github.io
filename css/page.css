@@ -50,6 +50,14 @@ a {
   margin: 0 0 16pt;
 }
 
+/* "12,345 words" next to the name */
+.subtitle .stats {
+  font-size: 11pt;
+  color: #999999;
+  margin-left: 12pt;
+  white-space: nowrap;
+}
+
 /* Contents: plain black text like the Docs table of contents */
 .contents-label {
   font-size: 14pt;
@@ -86,8 +94,16 @@ a {
   text-decoration: underline;
 }
 
-.toc > ul > li > a {
+.toc > ul > li > a,
+.toc > ul > li > .page-num {
   font-weight: 700;
+}
+
+/* page number after each contents line, like the Docs table of contents */
+.toc .page-num {
+  margin-left: 2.2em;
+  color: #000;
+  white-space: nowrap;
 }
 
 .toc > ul > li + li {
@@ -350,6 +366,9 @@ div.sourceCode, .doc > pre, li > pre {
     max-width: none;
     padding: 24px 18px;
     --list-step: 20pt;
+  }
+  .toc .page-num {
+    margin-left: 0.8em;
   }
   .title {
     font-size: 22pt;

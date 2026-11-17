@@ -108,6 +108,20 @@ def wrap_images(html):
     return "".join(parts)
 
 
+def word_count(markdown):
+    """Words in a note: English words count one each, each Chinese character
+    counts as one. Code, maths, images and links' addresses aren't counted."""
+    text = re.sub(r"^\s*(```|~~~).*?^\s*\1\s*$", " ", markdown, flags=re.S | re.M)
+    text = re.sub(r"\$\$.*?\$\$|\$[^$\n]+\$", " ", text, flags=re.S)
+    text = re.sub(r"!\[\[[^\]]*\]\]|!\[[^\]]*\]\([^)]*\)", " ", text)
+    text = re.sub(r"\]\([^)]*\)", "]", text)
+    text = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]", r"\1", text)
+    text = re.sub(r"<[^>]+>|`[^`]*`", " ", text)
+    cjk = len(re.findall(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]", text))
+    english = len(re.findall(r"[A-Za-z0-9]+(?:['’.-][A-Za-z0-9]+)*", text))
+    return english + cjk
+
+
 def split_frontmatter(text):
     meta = {}
     if text.startswith("---"):
@@ -271,6 +285,7 @@ def main():
         slug = notes[md.stem.lower()]
         title = page_title(md.stem, meta)
         markdown = conv.preprocess(body, md.stem)
+        words = word_count(body)
         out = OUT_DIR / f"{slug}.html"
         cmd = [
             "pandoc",
@@ -282,6 +297,7 @@ def main():
             "--wrap=none",
             "-M", f"pagetitle={title}",
             "-V", f"cssver={cssver}",
+            "-V", f"wordcount={words:,}",
             "-o", str(out),
         ]
         result = subprocess.run(cmd, input=markdown, text=True, capture_output=True)
