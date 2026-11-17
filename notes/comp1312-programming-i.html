@@ -98,6 +98,13 @@
 <li><a href="#conditional-and-logical-operators-条件与逻辑运算符" id="toc-conditional-and-logical-operators-条件与逻辑运算符">Conditional and Logical Operators 条件与逻辑运算符</a></li>
 <li><a href="#if-and-elif" id="toc-if-and-elif">if and elif</a></li>
 </ul></li>
+<li><a href="#loops-循环-1" id="toc-loops-循环-1">Loops 循环</a>
+<ul>
+<li><a href="#while-循环" id="toc-while-循环">While 循环</a></li>
+<li><a href="#for-循环" id="toc-for-循环">For 循环</a></li>
+<li><a href="#break-and-continue" id="toc-break-and-continue">break and continue</a></li>
+<li><a href="#nested-loops-嵌套循环" id="toc-nested-loops-嵌套循环">Nested loops 嵌套循环</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -428,29 +435,29 @@ Local: 20   Static: 40</code></pre>
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>类型</th>
 <th>值的格式符</th>
 <th>地址格式符</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>int</td>
 <td>%d</td>
 <td>%p</td>
 </tr>
-<tr class="even">
+<tr>
 <td>double</td>
 <td>%lf</td>
 <td>%p</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>float</td>
 <td>%f</td>
 <td>%p</td>
 </tr>
-<tr class="even">
+<tr>
 <td>char</td>
 <td>%c</td>
 <td>%p</td>
@@ -625,7 +632,7 @@ Local: 20   Static: 40</code></pre>
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>传什么</th>
 <th>形参写法</th>
 <th>实参写法</th>
@@ -633,25 +640,25 @@ Local: 20   Static: 40</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>普通变量</td>
 <td>int *a</td>
 <td>&amp;x</td>
 <td>*a =…</td>
 </tr>
-<tr class="even">
+<tr>
 <td>指针变量</td>
 <td>int *w</td>
 <td>ptr</td>
 <td>*w = …</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>数组</td>
 <td>int *ar或int ar[]</td>
 <td>arr</td>
 <td>ar[i] = …</td>
 </tr>
-<tr class="even">
+<tr>
 <td>结构体</td>
 <td>struct personal *p</td>
 <td>&amp;p</td>
@@ -997,7 +1004,7 @@ Local: 20   Static: 40</code></pre>
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>模式</th>
 <th>含义</th>
 <th>文件已存在</th>
@@ -1005,43 +1012,43 @@ Local: 20   Static: 40</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>“r”</td>
 <td>只读</td>
 <td>打开，从开头读</td>
 <td>返回 NULL</td>
 </tr>
-<tr class="even">
+<tr>
 <td>“w”</td>
 <td>只写</td>
 <td>清空全部内容</td>
 <td>新建</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>“a”</td>
 <td>追加</td>
 <td>保留内容，写在末尾</td>
 <td>新建</td>
 </tr>
-<tr class="even">
+<tr>
 <td>“r+”</td>
 <td>读+写</td>
 <td>打开，从开头开始</td>
 <td>返回 NULL</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>“w+”</td>
 <td>读+写</td>
 <td>清空全部内容</td>
 <td>新建</td>
 </tr>
-<tr class="even">
+<tr>
 <td>“a+”</td>
 <td>读+追加</td>
 <td>可以读任意位置，但只能写在末尾</td>
 <td>新建</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>+ “b”</td>
 <td>二进制文件(“rb““wb”)</td>
 <td></td>
@@ -1193,7 +1200,7 @@ HELLO</code></pre>
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>类别</th>
 <th>类型</th>
 <th>例子</th>
@@ -1201,55 +1208,55 @@ HELLO</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Sequence 序列</td>
 <td>str</td>
 <td>“john”</td>
 <td>字符串，不可修改</td>
 </tr>
-<tr class="even">
+<tr>
 <td></td>
 <td>list</td>
 <td><code>["apple", "banana"]</code></td>
 <td>方括号，可修改</td>
 </tr>
-<tr class="odd">
+<tr>
 <td></td>
 <td>tuple</td>
 <td>(20, 30)</td>
 <td>圆括号，不可修改</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Numeric 数字</td>
 <td>int</td>
 <td>25</td>
 <td>整数</td>
 </tr>
-<tr class="odd">
+<tr>
 <td></td>
 <td>float</td>
 <td>25.0</td>
 <td>小数（有 <code>.0</code> 就是 float）</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Set 集合</td>
 <td>set</td>
 <td>{1, 2, 3}</td>
 <td>无序、元素不重复</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Mapping 映射</td>
 <td>dict</td>
 <td>{“name”: “John”, “age”:21}</td>
 <td>键值对 key: value</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Boolean</td>
 <td>bool</td>
 <td>True/False</td>
 <td>首字母必须大写</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>None</td>
 <td>NoneType</td>
 <td>None</td>
@@ -1309,7 +1316,7 @@ HELLO</code></pre>
 <h3 id="data-types-数据类型">Data Types 数据类型</h3>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>例子</th>
 <th>类型</th>
 <th>中文</th>
@@ -1317,25 +1324,25 @@ HELLO</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>x = 4</code></td>
 <td><code>int</code></td>
 <td>整数</td>
 <td>integer</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>name = "Rover"</code></td>
 <td><code>str</code></td>
 <td>字符串</td>
 <td>单引号 <code>'Rover'</code> 也可以</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>interest_rate = 4.1</code></td>
 <td><code>float</code></td>
 <td>浮点数</td>
 <td>带小数点，<code>4.0</code> 也是 float</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>answer = True</code></td>
 <td><code>bool</code></td>
 <td>布尔值</td>
@@ -1360,33 +1367,33 @@ HELLO</code></pre>
 <h4 id="escape-characters-转义字符">Escape Characters 转义字符</h4>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>写法</th>
 <th>含义</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>\'</code></td>
 <td>单引号 single quote</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>\"</code></td>
 <td>双引号 double quote</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>\\</code></td>
 <td>反斜杠 backslash</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>\n</code></td>
 <td>换行 new line</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>\t</code></td>
 <td>制表符 tab</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>\r</code></td>
 <td>回车 carriage return（初学基本用不到）</td>
 </tr>
@@ -1416,49 +1423,49 @@ HELLO</code></pre>
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>Method</th>
 <th>作用</th>
 <th>例子 → 结果</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>upper()</code></td>
 <td>转大写</td>
 <td><code>"fun".upper()</code> → <code>"FUN"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>lower()</code></td>
 <td>转小写</td>
 <td><code>"IS".lower()</code> → <code>"is"</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>strip()</code></td>
 <td>去掉<strong>两端</strong>空白</td>
 <td><code>"  hi  ".strip()</code> → <code>"hi"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>lstrip()</code> / <code>rstrip()</code></td>
 <td>只去左边 / 只去右边</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>replace(a, b)</code></td>
 <td>把 a 换成 b</td>
 <td><code>"programming is fun".replace("fun", "hard")</code> → <code>"programming is hard"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>split(sep)</code></td>
 <td>按分隔符切开，返回 <strong>list</strong></td>
 <td><code>"a,b,c".split(",")</code> → <code>['a', 'b', 'c']</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>index(x)</code></td>
 <td>返回 x 第一次出现的位置（从 0 数）</td>
 <td><code>"programming is fun".index("is")</code> → <code>12</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>isdigit()</code></td>
 <td>全是数字字符就 True</td>
 <td><code>"123"</code> → True，<code>"12.5"</code> → False，<code>"-5"</code> → False</td>
@@ -1493,7 +1500,7 @@ HELLO</code></pre>
 <h4 id="comparison-operators-比较运算符">Comparison operators 比较运算符</h4>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>运算符</th>
 <th>含义</th>
 <th>例子（score = 50）</th>
@@ -1501,37 +1508,37 @@ HELLO</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>==</code></td>
 <td>等于</td>
 <td><code>score == 50</code></td>
 <td>True</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>!=</code></td>
 <td>不等于</td>
 <td><code>score != 50</code></td>
 <td>False</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>&gt;</code></td>
 <td>大于</td>
 <td><code>score &gt; 90</code></td>
 <td>False</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>&lt;</code></td>
 <td>小于</td>
 <td><code>score &lt; 60</code></td>
 <td>True</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>&gt;=</code></td>
 <td>大于等于</td>
 <td><code>score &gt;= 50</code></td>
 <td>True</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>&lt;=</code></td>
 <td>小于等于</td>
 <td><code>score &lt;= 20</code></td>
@@ -1583,6 +1590,108 @@ HELLO</code></pre>
 <span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Pass&quot;</span>)</span>
 <span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Fail&quot;</span>)</span></code></pre></div>
+<h2 id="loops-循环-1">Loops 循环</h2>
+<h3 id="while-循环">While 循环</h3>
+<ul>
+<li>只要为True，就一直循环</li>
+<li>必须有初始值、条件、更新</li>
+<li>要等某件事发生改变（比如用户输对）就选while循环</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">1</span>            <span class="co"># ① 初始化</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;=</span> <span class="dv">5</span>:    <span class="co"># ② 条件：每一轮开始前检查</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span>       <span class="co"># ③ 更新：让条件最终变成 False</span></span></code></pre></div>
+<h3 id="for-循环">For 循环</h3>
+<ul>
+<li>把一个序列里的每一项都走一遍</li>
+<li>知道次数，或者要遍历每一项就选for循环</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num)</span></code></pre></div>
+<ul>
+<li>print里逗号和加号的区别: 逗号会自动加空格，数字也能直接放；加号是字符串硬拼接，空格要自己加，数字要先 <code>str()</code>。<code>"Age: " + 20</code> 会报 <code>TypeError</code></li>
+</ul>
+<h4 id="accumulator-累加器">Accumulator 累加器</h4>
+<ul>
+<li>total = total + price</li>
+<li>用来求和</li>
+</ul>
+<h4 id="counter-计数器">Counter 计数器</h4>
+<ul>
+<li>+=1</li>
+<li>用来统计满足条件的有几个</li>
+</ul>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>readings <span class="op">=</span> [<span class="dv">45</span>, <span class="dv">62</span>, <span class="dv">110</span>, <span class="dv">98</span>, <span class="dv">155</span>, <span class="dv">72</span>, <span class="dv">105</span>]</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>unhealthy_days <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> api <span class="kw">in</span> readings:</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> api <span class="op">&gt;</span> <span class="dv">100</span>:</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>        unhealthy_days <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Unhealthy days:&quot;</span>, unhealthy_days)</span></code></pre></div>
+<h4 id="list-列表">List 列表</h4>
+<ul>
+<li><code>students = ["Alice", "Bob", "Charlie"]</code>，一个变量装多个值。下标从 0 开始</li>
+</ul>
+<h4 id="range">Range()</h4>
+<ul>
+<li>生成一串数字，stop 永远不包含在内</li>
+<li>Example:
+<ul>
+<li>range(5) results: 0,1,2,3,4</li>
+<li>range(1, 5) results: 1,2,3,4</li>
+<li>range(1,5,2) results: 1,3</li>
+<li>range(10, 0, -1) results: 10,9,..,1</li>
+</ul></li>
+</ul>
+<h3 id="break-and-continue">break and continue</h3>
+<ul>
+<li>两个几乎都在if里面使用</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>作用</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>break</code></td>
+<td>整个循环立刻结束，跳到循环后的第一行</td>
+<td>包里找钥匙，找到就不翻了</td>
+</tr>
+<tr>
+<td><code>continue</code></td>
+<td>跳过这一轮剩下的部分，直接进入下一轮</td>
+<td>改卷子，空白卷跳过，继续改下一张</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span>      <span class="co"># 必须在 continue 之前更新！</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+<ul>
+<li><code>continue</code> 会直接跳回条件检查，下面的 <code>count += 1</code> 就被跳过了。如果 if 里面没有先更新一次，<code>count</code> 会永远停在 2，变成死循环</li>
+<li>for 循环没有这个问题，因为它自动取下一个值</li>
+</ul>
+<h3 id="nested-loops-嵌套循环">Nested loops 嵌套循环</h3>
+<ul>
+<li>循环里面套循环</li>
+<li>外层每走一步，内层都要从头到尾完整跑一遍</li>
+<li>就像时钟：分针（内层）转一整圈，时针（外层）才走一格</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>):       <span class="co"># 2 轮</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>):   <span class="co"># 每轮 3 次</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i, j)</span></code></pre></div>
+<ul>
+<li>一共打印 2 × 3 = 6次。内层的 <code>j</code> 在外层每一轮都会重新从 1 开始</li>
+</ul>
 
 </div>
 </body>

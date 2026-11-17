@@ -269,29 +269,29 @@
 </blockquote>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>逻辑</th>
 <th>运算</th>
 <th>意思</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>OR</td>
 <td>A∪B</td>
 <td>在 A 或 B(包含两者都在)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>AND</td>
 <td>A∩B</td>
 <td>在 A 且在 B</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>AND NOT</td>
 <td>A∖B</td>
 <td>在 A 不在 B(顺序有关)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NOT</td>
 <td>Aᶜ=U∖A</td>
 <td>不在 A(要先知道全集 U)</td>
@@ -373,33 +373,33 @@
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>概念</th>
 <th>回答的问题</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Set 集合</td>
 <td>哪些对象属于？</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Tuple 元组</td>
 <td>每个位置代表什么？</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Cartesian product 笛卡尔积</td>
 <td>哪些有序组合是可能的？</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Power set 幂集</td>
 <td>哪些选法是可能的？</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Relation 关系</td>
 <td>哪些链接实际成立？</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Function 函数</td>
 <td>每个输入是否恰好一个输出？</td>
 </tr>
@@ -430,7 +430,7 @@
 </ol>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>性质</th>
 <th>形式化定义</th>
 <th>理解</th>
@@ -438,37 +438,37 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Reflexive 自反</td>
 <td>∀a∈A, (a,a)∈R</td>
 <td>每个元素都和自己相关</td>
 <td>每个点都有自环</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Irreflexive 非自反</td>
 <td>∀a∈A, (a,a)∉R</td>
 <td>没有元素和自己相关</td>
 <td>每个都没有任何自环</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Symmetric 对称</td>
 <td>(a,b)∈R ⇒ (b,a)∈R</td>
 <td>有去必有回</td>
 <td>箭头都是双向的</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Asymmetric 非对称</td>
 <td>(a,b)∈R ⇒ (b,a)∉R</td>
 <td>有去必无回</td>
 <td>无双向箭头,也无自环</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Transitive 传递</td>
 <td>(a,b)∈R 且 (b,c)∈R ⇒ (a,c)∈R</td>
 <td>能走两步到的,必须能一步直达</td>
 <td>a→b→c 时必有 a→c</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Antisymmetric 反对称</td>
 <td>(a,b)∈R 且 (b,a)∈R ⇒ a=b</td>
 <td>不同元素不能互相指向</td>
@@ -650,7 +650,7 @@
 </blockquote>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>符号</th>
 <th>名称</th>
 <th>读法</th>
@@ -658,37 +658,37 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>¬p</td>
 <td>Negation</td>
 <td>not p</td>
 <td>p 为假时</td>
 </tr>
-<tr class="even">
+<tr>
 <td>p ∧ q</td>
 <td>Conjunction</td>
 <td>p and q</td>
 <td>两个都真</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>p ∨ q</td>
 <td>Disjunction</td>
 <td>p or q</td>
 <td>至少一个真</td>
 </tr>
-<tr class="even">
+<tr>
 <td>p ⊕ q</td>
 <td>XOR</td>
 <td>either p or q, not both</td>
 <td>恰好一个真（两者不同）</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>p → q</td>
 <td>Implication</td>
 <td>if p then q</td>
 <td>只有 T→F 时为假，其余都真</td>
 </tr>
-<tr class="even">
+<tr>
 <td>p ↔︎ q</td>
 <td>Biconditional</td>
 <td>p iff q</td>
@@ -701,7 +701,7 @@
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>p</th>
 <th>q</th>
 <th>¬p</th>
@@ -713,7 +713,7 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>T</td>
 <td>T</td>
 <td>F</td>
@@ -723,7 +723,7 @@
 <td>T</td>
 <td>T</td>
 </tr>
-<tr class="even">
+<tr>
 <td>T</td>
 <td>F</td>
 <td>F</td>
@@ -733,7 +733,7 @@
 <td><strong>F</strong></td>
 <td>F</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>F</td>
 <td>T</td>
 <td>T</td>
@@ -743,7 +743,7 @@
 <td>T</td>
 <td>F</td>
 </tr>
-<tr class="even">
+<tr>
 <td>F</td>
 <td>F</td>
 <td>T</td>
@@ -819,24 +819,24 @@
 </ul>
 <div class="table-wrap"><table>
 <thead>
-<tr class="header">
+<tr>
 <th>名称</th>
 <th>形式</th>
 <th>和 P→Q 等价吗</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Contrapositive 逆否</td>
 <td>¬Q → ¬P</td>
 <td>等价</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Converse 逆命题</td>
 <td>Q → P</td>
 <td>不等价</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Inverse 否命题</td>
 <td>¬P → ¬Q</td>
 <td>不等价</td>
